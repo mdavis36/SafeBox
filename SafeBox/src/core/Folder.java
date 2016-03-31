@@ -1,7 +1,7 @@
 package core;
 
 public class Folder {
-	String name;
+	private String name;
 	
 	public Folder() {
 		name = "";
