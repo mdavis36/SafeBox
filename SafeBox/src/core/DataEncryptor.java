@@ -13,7 +13,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class DataEncryptor {
+class DataEncryptor {
 		private static final int ITERATION_COUNT = 65536;
 		private static final int KEY_LENGTH = 128;
 		private static final String ALGORITHM = "AES";

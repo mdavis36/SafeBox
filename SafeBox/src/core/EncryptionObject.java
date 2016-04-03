@@ -1,24 +1,24 @@
 package core;
 
-public class EncryptionObject {
+class EncryptionObject {
 	private byte[] iv;
 	private byte[] data;
 	
-	public EncryptionObject(byte[] data, byte[] iv) {
+	protected EncryptionObject(byte[] data, byte[] iv) {
 		this.iv = iv;
 		this.data = data;
 	}
 	
-	public byte[] getIv() {
+	protected byte[] getIv() {
 		return iv;
 	}
-	public void setIv(byte[] iv) {
+	protected void setIv(byte[] iv) {
 		this.iv = iv;
 	}
-	public byte[] getData() {
+	protected byte[] getData() {
 		return data;
 	}
-	public void setData(byte[] data) {
+	protected void setData(byte[] data) {
 		this.data = data;
 	}
 }

@@ -1,5 +1,7 @@
 package core;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+
 public class MiscUtils {
 	
 	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
@@ -12,4 +14,9 @@ public class MiscUtils {
 		}
 		return new String(hexChars);
 	}
+	
+	public static String bytesToBase64String(byte[] bytes){
+		return new String(Base64.encode(bytes));
+	}
+	
 }
