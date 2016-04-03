@@ -5,68 +5,29 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 class SerializationUtils {
-	protected static Object byteArrayToObject(byte[] bytes){
-		ByteArrayInputStream byteStream = new ByteArrayInputStream(bytes);
-		ObjectInput objectInput = null;
-		
+	protected static Object byteArrayToObject(byte[] bytes) {
 		Object tmpObject = null;
-		
-		
-		try {
-		  objectInput = new ObjectInputStream(byteStream);
-		  tmpObject = objectInput.readObject(); 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		try (ByteArrayInputStream byteStream = new ByteArrayInputStream(bytes);
+				ObjectInput objectInput = new ObjectInputStream(byteStream)
+		) {
+			tmpObject = objectInput.readObject();
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-		  try {
-		    byteStream.close();
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
-		  try {
-		    if (objectInput != null) {
-		      objectInput.close();
-		    }
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
 		}
 		return tmpObject;
 	}
-	
+
 	protected static byte[] objectToByteArray(Object obj){
-		ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
-		ObjectOutput objectOutput = null;
 		byte[] byteArray = null;
-		try {
-		  objectOutput = new ObjectOutputStream(byteArrayOS);   
-		  objectOutput.writeObject(obj);
-		  byteArray = byteArrayOS.toByteArray();
+		try (ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream()) {
+			new ObjectOutputStream(byteArrayOS).writeObject(obj);
+			byteArray = byteArrayOS.toByteArray();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-		  try {
-		    if (objectOutput != null) {
-		      objectOutput.close();
-		    }
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
-		  try {
-		    byteArrayOS.close();
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
 		}
 		return byteArray;
 	}
@@ -88,8 +49,5 @@ class SerializationUtils {
 		} else {
 			System.out.println("Error: unserialized object isn't a HashMap");
 		}
-		
-		
-		
 	}
 }
