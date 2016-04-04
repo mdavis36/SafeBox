@@ -2,7 +2,7 @@ package core;
 import java.util.ArrayList;
 
 public class Record extends Folder{
-	private ArrayList<Field> fields = new ArrayList();
+	private ArrayList<Field> fields = new ArrayList<Field>();
 	
 	public Record() {
 		
