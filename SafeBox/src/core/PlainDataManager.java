@@ -65,7 +65,7 @@ public class PlainDataManager {
 		saveToFile();
 		loadFromFile();
 		
-		System.out.println(getElement("test key #1"));
+		System.out.println(getElement("test key #3"));
 		System.out.println();
 		
 	}
