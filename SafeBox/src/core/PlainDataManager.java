@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class PlainDataManager {
-	static HashMap data = new HashMap<String, String>();
+	static HashMap<String, String> data = new HashMap<String, String>();
 	static byte[] dataSerialized;
 	
 	protected static String getElement(String element) {
@@ -53,7 +53,7 @@ public class PlainDataManager {
 			e.printStackTrace();
 			System.out.println("couldnt write data to file");
 		}
-		data = (HashMap) SerializationUtils.byteArrayToObject(dataSerialized);
+		data = (HashMap<String, String>) SerializationUtils.byteArrayToObject(dataSerialized);
 	
 		System.out.println(data.toString());
 	}
@@ -63,6 +63,8 @@ public class PlainDataManager {
 		setElement("test key #2", "test value #2");
 		
 		saveToFile();
+		data.clear();
+		data = null;
 		loadFromFile();
 		
 		System.out.println(getElement("test key #3"));
