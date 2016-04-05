@@ -1,19 +1,17 @@
 package core;
 
 public class HintManager {
-	final static String HINT_NAME = "hint";
 	
 	public static void setHint(String hint) {
-		PlainDataManager.setElement(HINT_NAME, hint);
+		PlainDataManager.setElement(Consts.HINT_NAME, hint);
 	}
 	
 	public static String getHint() {
-		return PlainDataManager.getElement(HINT_NAME);
+		return PlainDataManager.getElement(Consts.HINT_NAME);
 	}
 	
 	public static void main(String[] args) {
-		setHint("hi");
-		
+		setHint(Consts.HINT_NAME);
 		System.out.println(getHint());
 	}
 }
