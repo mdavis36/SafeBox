@@ -2,9 +2,6 @@ package core;
 
 import java.util.ArrayList;
 
-import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeModel;
 
 public class FileSystemHandler {
 	private int currentIndex;
