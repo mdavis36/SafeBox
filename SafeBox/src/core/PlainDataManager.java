@@ -42,7 +42,7 @@ public class PlainDataManager {
 		data = null;
 		loadFromFile();
 		
-		System.out.println(getElement("test key #3"));
+		System.out.println(getElement("test key #2"));
 		System.out.println();
 		
 	}

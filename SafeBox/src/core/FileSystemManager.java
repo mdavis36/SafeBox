@@ -1,10 +1,12 @@
 package core;
 
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Reader;
 
 public class FileSystemManager {
 
@@ -31,23 +33,33 @@ public class FileSystemManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		FileInputStream in = null;
+		try {
+			in = new FileInputStream(file);
+			try {
+				in.read(data);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
 	protected static byte[] readFromFile(String file) {
-		byte[] data = null;
-		FileInputStream in = null;
+		FileInputStream input = null;
 		try {
-			in = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		try {
-			in.read(data);
+			byte[] data = new byte[1000];
+			input = new FileInputStream(file);
+			input.read(data);
+			input.close();
+			return data;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return data;
 	}
 	
 	protected static boolean fileExists(String file) {
