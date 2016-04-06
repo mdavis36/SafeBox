@@ -25,37 +25,12 @@ public class PlainDataManager {
 	
 	protected static void saveToFile() {
 		dataSerialized = SerializationUtils.objectToByteArray(data);
-		FileOutputStream file = null;
-		try {
-			file = new FileOutputStream(Consts.PLAIN_FILE_NAME);
-		} catch (FileNotFoundException e) {
-			System.out.println("file does not exist");
-		}
-		try {
-			file.write(dataSerialized);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("couldnt write data to file");
-		}
-		
+		FileSystemManager.saveToFile(dataSerialized, Consts.PLAIN_FILE_NAME);
 	}
 	
 	private static void loadFromFile() {
-		FileInputStream file = null;
-		try {
-			file = new FileInputStream(Consts.PLAIN_FILE_NAME);
-		} catch (FileNotFoundException e) {
-			System.out.println("file does not exist");
-		}
-		try {
-			file.read(dataSerialized);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("couldnt write data to file");
-		}
+		dataSerialized = FileSystemManager.readFromFile(Consts.PLAIN_FILE_NAME);
 		data = (HashMap<String, String>) SerializationUtils.byteArrayToObject(dataSerialized);
-	
-		System.out.println(data.toString());
 	}
 	
 	public static void main(String[] args){
