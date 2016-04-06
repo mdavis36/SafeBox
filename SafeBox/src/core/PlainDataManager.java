@@ -6,20 +6,29 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class PlainDataManager {
-	static HashMap<String, String> data = new HashMap<String, String>();
+	static HashMap<String, String> data = null;
 	static byte[] dataSerialized;
+	
+	private static void attemtToLoadFromFile(){
+		if (FileSystemManager.fileExists(Consts.PLAIN_FILE_NAME)){
+			loadFromFile();
+		}
+		if (data == null){
+			data = new HashMap<String, String>();
+		}
+	}
 	
 	protected static String getElement(String element) {
 		if (data == null) {
-			loadFromFile();
-			if (data == null) {
-				return null;
-			}
+			attemtToLoadFromFile();
 		}
 		return (String) data.get(element);
 	}
 	
 	protected static void setElement(String element, String value) {
+		if (data == null) {
+			attemtToLoadFromFile();
+		}
 		data.put(element, value);
 	}
 	

@@ -1,6 +1,9 @@
 package core;
 
-public class Folder {
+import java.io.Serializable;
+
+public class Folder implements Serializable{
+	private static final long serialVersionUID = -1433098247613371153L;
 	private String name;
 	
 	public Folder() {

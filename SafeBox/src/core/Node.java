@@ -1,8 +1,10 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Node {
+public class Node implements Serializable{
+	private static final long serialVersionUID = 221949262324254923L;
 	/////////////
 	//Variables//
 	/////////////

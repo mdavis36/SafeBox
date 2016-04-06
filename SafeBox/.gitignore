@@ -11,3 +11,5 @@ target/
 # OS Files #
 .DS_Store
 
+/EncryptedData.txt
+/PlainData.ser

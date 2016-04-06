@@ -2,6 +2,7 @@ package core;
 import java.util.ArrayList;
 
 public class Record extends Folder{
+	private static final long serialVersionUID = 6005440839659159341L;
 	private ArrayList<Field> fields = new ArrayList<Field>();
 	
 	public Record() {
