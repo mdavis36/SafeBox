@@ -74,4 +74,14 @@ public class Node implements Serializable{
 	public void removeChild(int index){
 		children.remove(index);
 	}
+	
+	public String toString(){
+		String output = data.toString();
+		int length = children.size();
+		for(int i = 0; i < length; i++){
+			output += children.get(i).getData().toString() + "\n";
+		}
+		return output;
+		
+	}
 }

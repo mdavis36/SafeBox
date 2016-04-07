@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Folder implements Serializable{
 	private static final long serialVersionUID = -1433098247613371153L;
-	private String name;
+	protected String name;
 	
 	public Folder() {
 		name = "";
@@ -16,5 +16,10 @@ public class Folder implements Serializable{
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String toString(){
+		String output = name;
+		return output;
 	}
 }

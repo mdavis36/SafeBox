@@ -40,4 +40,16 @@ public class Record extends Folder{
 		Field temp = fields.set(field1, fields.get(field2));
 		fields.set(field2, temp);
 	}
+	
+	public String toString(){
+		String output = name + "\n";
+		int length = fields.size();
+		for(int i = 0; i < length; i++){
+			output += fields.get(i).getName();
+			output +="\n";
+			output += fields.get(i).getData();
+			output += "\n";
+		}
+		return output;
+	}
 }

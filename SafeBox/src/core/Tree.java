@@ -15,4 +15,8 @@ public class Tree implements Serializable{
 	public Node getRoot(){
 		return root;
 	}
+	public String toString(){
+		//TODO: Finish
+		return null;
+	}
 }
