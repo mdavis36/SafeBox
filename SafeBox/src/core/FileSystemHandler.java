@@ -44,7 +44,7 @@ public class FileSystemHandler implements Serializable{
 		return nodeToAdd;
 	}
 	
-	public boolean deleteFolder(Node parent,int index){
+	public boolean deleteFolder(Node parent, int index){
 		//TODO: Not sure if this is the right implementation yet. The true/false I think should be handled with the GUI.
 		parent.removeChild(index);
 		return true;
