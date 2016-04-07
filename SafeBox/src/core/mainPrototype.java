@@ -1,5 +1,6 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class mainPrototype {
@@ -13,20 +14,36 @@ public class mainPrototype {
 		Node root = tree.getRoot();
 		String choice = "";
 		boolean exit = false;
+		ArrayList<String> path;
+		String directoryPath;
+
 		while (!exit) {
-			if (current.getData().isRecord()) {
-				System.out.println("Record: " + current.getData().toString());
-				choice = scan.nextLine();
-				if (choice.equals("B") || choice.equals("b")){
-					current = current.getParent();
+			path = new ArrayList<String>();
+			directoryPath = "";
+			if(current != root) {
+				Node temp = current;
+				while (temp != root) {
+					temp = temp.getParent();
+					path.add(temp.getData().getName());
 				}
-				else if(choice.equals("E") || choice.equals("e")){
+				int dirHeight = path.size();
+				for (int i = dirHeight - 1; i >= 0; i--) {
+					directoryPath += path.get(i)+" | ";
+				}
+			}
+			if (current.getData().isRecord()) {
+				System.out.println("Record: " + directoryPath + current.getData().toString());
+				System.out.println("[B]ack\n[E]xit");
+				choice = scan.nextLine();
+				if (choice.equals("B") || choice.equals("b")) {
+					current = current.getParent();
+				} else if (choice.equals("E") || choice.equals("e")) {
 					exit = true;
 				}
 			} else {
-				System.out.println("Directory: " + current.toString());
+				System.out.println("Directory: " +directoryPath+ current.toString());
 				System.out
-						.println("Select Folder/Record Number or \n[F]older\n[R]ecord\n[B]ack\n[E]xit");
+						.println("Select Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[B]ack\n[E]xit");
 				choice = scan.nextLine();
 				if (choice.equals("F") || choice.equals("f")) {
 					System.out

@@ -77,7 +77,12 @@ public class Node implements Serializable{
 			int length = children.size();
 			for(int i = 0; i < length; i++){
 				int index = i+1;
-				output += index + ". "+ children.get(i).getData().toString() + "\n   ";
+				if(children.get(i).getData().isRecord()){
+					output += index + ". [R]"+ children.get(i).getData().getName() + "\n   ";
+				}
+				else{
+					output += index + ". [F]"+ children.get(i).getData().getName() + "\n   ";
+				}
 			}
 		}
 		return output;
