@@ -6,7 +6,7 @@ public class Record extends Folder{
 	private ArrayList<Field> fields = new ArrayList<Field>();
 	
 	public Record() {
-		
+		//
 	}
 	
 	public boolean addField(Field field) {

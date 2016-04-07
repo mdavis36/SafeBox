@@ -18,7 +18,7 @@ public class Node implements Serializable{
 	//Constructor Initializes a new node containing the folder/record f , with it's parent = p, without any children
 	public Node(Folder f, Node p){
 		data = f;
-		children = null;
+		children = new ArrayList<Node>();
 		parent = p;
 	}
 	
@@ -76,12 +76,36 @@ public class Node implements Serializable{
 	}
 	
 	public String toString(){
-		String output = data.toString();
-		int length = children.size();
-		for(int i = 0; i < length; i++){
-			output += children.get(i).getData().toString() + "\n";
+		String output = data.toString()+"\n\t";
+		if(children !=null){
+			int length = children.size();
+			for(int i = 0; i < length; i++){
+				output += children.get(i).getData().getName() + "\n\t";
+			}
 		}
 		return output;
 		
 	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Folder f1 = new Folder();
+		Folder f2 = new Folder();
+		Folder f3 = new Folder();
+		f1.setName("Home");
+		f2.setName("Child 1");
+		f3.setName("Child 2");
+		Node n1 = new Node(f1, null);
+		Node n2 = new Node(f2, n1);
+		Node n3 = new Node(f3, n1);
+		n1.addChild(n2);
+		n1.addChild(n3);
+		if(n1.children == null){
+			System.out.println("Uh oh");
+		}
+		else
+			System.out.println(n1.toString());
+	}
 }
+
+
