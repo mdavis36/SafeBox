@@ -34,17 +34,6 @@ public class FileSystemManager {
 			e.printStackTrace();
 		}
 		
-		FileInputStream in = null;
-		try {
-			in = new FileInputStream(file);
-			try {
-				in.read(data);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 		return true;
 	}
 	
