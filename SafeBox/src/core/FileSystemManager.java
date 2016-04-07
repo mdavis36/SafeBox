@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileSystemManager {
 
@@ -38,24 +40,19 @@ public class FileSystemManager {
 	}
 	
 	protected static byte[] readFromFile(String file) {
-		FileInputStream input = null;
 		try {
-			byte[] data = new byte[1000];
-			input = new FileInputStream(file);
-			input.read(data);
-			input.close();
-			return data;
+			return Files.readAllBytes(Paths.get(file));
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
+		return null;
 	}
 	
 	protected static boolean fileExists(String file) {
 		try {
 			FileInputStream in = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			return false;
 		}
 		

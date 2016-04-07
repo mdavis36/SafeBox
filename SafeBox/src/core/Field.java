@@ -1,6 +1,9 @@
 package core;
 
-public class Field {
+import java.io.Serializable;
+
+public class Field  implements Serializable{
+	private static final long serialVersionUID = 1452217924276409260L;
 	private String name;
 	private String data;
 	

@@ -1,7 +1,10 @@
 package core;
 
-public class Folder {
-	private String name;
+import java.io.Serializable;
+
+public class Folder implements Serializable{
+	private static final long serialVersionUID = -1433098247613371153L;
+	protected String name;
 	
 	public Folder() {
 		name = "";
@@ -13,5 +16,10 @@ public class Folder {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String toString(){
+		String output = name;
+		return output;
 	}
 }

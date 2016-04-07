@@ -2,6 +2,7 @@ package core;
 import java.util.ArrayList;
 
 public class Record extends Folder{
+	private static final long serialVersionUID = 6005440839659159341L;
 	private ArrayList<Field> fields = new ArrayList<Field>();
 	
 	public Record() {
@@ -38,5 +39,17 @@ public class Record extends Folder{
 	public void swap(int field1, int field2) {
 		Field temp = fields.set(field1, fields.get(field2));
 		fields.set(field2, temp);
+	}
+	
+	public String toString(){
+		String output = name + "\n";
+		int length = fields.size();
+		for(int i = 0; i < length; i++){
+			output += fields.get(i).getName();
+			output +="\n";
+			output += fields.get(i).getData();
+			output += "\n";
+		}
+		return output;
 	}
 }

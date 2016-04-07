@@ -1,8 +1,10 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Node {
+public class Node implements Serializable{
+	private static final long serialVersionUID = 221949262324254923L;
 	/////////////
 	//Variables//
 	/////////////
@@ -71,5 +73,15 @@ public class Node {
 	
 	public void removeChild(int index){
 		children.remove(index);
+	}
+	
+	public String toString(){
+		String output = data.toString();
+		int length = children.size();
+		for(int i = 0; i < length; i++){
+			output += children.get(i).getData().toString() + "\n";
+		}
+		return output;
+		
 	}
 }

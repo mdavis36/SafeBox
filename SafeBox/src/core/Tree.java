@@ -1,6 +1,9 @@
 package core;
 
-public class Tree {
+import java.io.Serializable;
+
+public class Tree implements Serializable{
+	private static final long serialVersionUID = -3576405232059064152L;
 	private Node root;
 	//Initializes the root directory to be called Home without a parent.
 	public Tree(){
@@ -11,5 +14,9 @@ public class Tree {
 	
 	public Node getRoot(){
 		return root;
+	}
+	public String toString(){
+		//TODO: Finish
+		return null;
 	}
 }

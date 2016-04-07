@@ -1,9 +1,11 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class FileSystemHandler {
+public class FileSystemHandler implements Serializable{
+	private static final long serialVersionUID = -5417133060210085474L;
 	private int currentIndex;
 	public Tree contents;
 	
