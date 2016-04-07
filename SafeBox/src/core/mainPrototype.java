@@ -20,6 +20,7 @@ public class mainPrototype {
 		while (!exit) {
 			path = new ArrayList<String>();
 			directoryPath = "";
+			
 			//If you aren't at the Home directory
 			if(current != root) {
 				Node temp = current;
@@ -32,6 +33,7 @@ public class mainPrototype {
 					directoryPath += path.get(i)+" | ";
 				}
 			}
+			
 			//Record Screen Start
 			if (current.getData().isRecord()) {
 				System.out.println("Record: " + directoryPath + current.getData().toString());
@@ -93,7 +95,8 @@ public class mainPrototype {
 				} 
 				else if (choice.equals("e") || choice.equals("E")) {
 					exit = true;
-				} 
+				}
+				//TODO: When user inputs nothing or a letter after a number
 				else if (choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 					int index = Integer.parseInt(choice);
 					if (index <= current.getChildren().size() && index > 0) {

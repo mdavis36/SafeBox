@@ -26,6 +26,9 @@ public class FileSystemHandler implements Serializable{
 		return parent.getChild(index);
 	}
 	
+	public Node getCurrent(){
+		return currentNode;
+	}
 	////////////////
 	//MANIPULATION//
 	////////////////
