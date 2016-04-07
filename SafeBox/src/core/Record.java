@@ -47,7 +47,7 @@ public class Record extends Folder{
 	}
 	
 	public String toString(){
-		String output = name + "(Record)\n";
+		String output = name+" (Record)\n";
 		int length = fields.size();
 		for(int i = 0; i < length; i++){
 			output += "\t"+fields.get(i).getName();
@@ -56,6 +56,10 @@ public class Record extends Folder{
 			output += "\n";
 		}
 		return output;
+	}
+	
+	public boolean isRecord(){
+		return true;
 	}
 	
 	public static void main(String[] args) {

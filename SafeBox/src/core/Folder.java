@@ -22,4 +22,8 @@ public class Folder implements Serializable{
 		String output = name + "(Folder)";
 		return output;
 	}
+	
+	public boolean isRecord(){
+		return false;
+	}
 }
