@@ -1,68 +1,69 @@
 package gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
-
-import com.sun.media.jfxmedia.control.VideoFormat;
-import com.sun.xml.internal.ws.developer.MemberSubmissionAddressing.Validation;
 
 import gui.StateManager.ValidStates;
 
 public class MainScreenState extends State{
-	JLabel pword;
 	
 	protected MainScreenState(StateManager sm) {
 		this.sm = sm;
-		pword = new JLabel();
-		components.add(pword);
+
+		//mtitle.setLocation(200, 200);
+		
+		//add components to list
+		
+		//add components to JFrame window
+		//addComponentsToWindow();
+		init();
+		clear();
 	}
 	
 	@Override
 	protected void init() {
-		System.out.println("MainScreen State");
-		pword.setText("Main Screen State");
-		pword.setLocation(100, 100);
-		clear();
+		System.out.println("Init : MainScreen State");
 	}
 
 	@Override
 	protected void draw() {
-		
+		//viewComponentsOnWindow();
+		System.out.println("Draw : MainScreen State");
 	}
 
 	@Override
 	protected void clear() {
-		
+		//clearComponentsOnWindow();
+		System.out.println("Clear : MainScreen State");
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked() {
 		sm.setState(ValidStates.PasswordState);
-		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased() {
 		// TODO Auto-generated method stub
 		
 	}
