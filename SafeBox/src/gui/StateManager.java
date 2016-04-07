@@ -13,7 +13,7 @@ public class StateManager {
 		PasswordState,
 		MainScreenState
 	}
-	
+	//small change to test commit
 	private ValidStates currentState;
 	private ValidStates currentBoxState;
 	
