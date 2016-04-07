@@ -20,6 +20,7 @@ public class mainPrototype {
 		while (!exit) {
 			path = new ArrayList<String>();
 			directoryPath = "";
+			//If you aren't at the Home directory
 			if(current != root) {
 				Node temp = current;
 				while (temp != root) {
@@ -37,10 +38,12 @@ public class mainPrototype {
 				choice = scan.nextLine();
 				if (choice.equals("B") || choice.equals("b")) {
 					current = current.getParent();
-				} else if (choice.equals("E") || choice.equals("e")) {
+				} 
+				else if (choice.equals("E") || choice.equals("e")) {
 					exit = true;
 				}
-			} else {
+			} 
+			else {
 				System.out.println("Directory: " +directoryPath+ current.toString());
 				System.out
 						.println("Select Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[B]ack\n[E]xit");
@@ -50,11 +53,11 @@ public class mainPrototype {
 							.println("What would you like to call your Folder?");
 					String fName = scan.nextLine();
 					current.addChild(fileSys.createFolder(current, fName));
-				} else if (choice.equals("R") || choice.equals("r")) {
+				} 
+				else if (choice.equals("R") || choice.equals("r")) {
 					System.out
 							.println("What would you like to call your Record?");
 					String rName = scan.nextLine();
-					// Record temp = new Record();
 					current.addChild(fileSys.createRecord(current, rName));
 					current = current
 							.getChild(current.getChildren().size() - 1);
@@ -66,15 +69,18 @@ public class mainPrototype {
 					String fContent = scan.nextLine();
 					temp.getField(0).setData(fContent);
 
-				} else if (choice.equals("B") || choice.equals("b")) {
+				} 
+				else if (choice.equals("B") || choice.equals("b")) {
 					if (current.getParent() != null) {
 						current = current.getParent();
 					} else {
 						System.out.println("You are at the home directory!");
 					}
-				} else if (choice.equals("e") || choice.equals("E")) {
+				} 
+				else if (choice.equals("e") || choice.equals("E")) {
 					exit = true;
-				} else if (choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
+				} 
+				else if (choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 					int index = Integer.parseInt(choice);
 					if (index <= current.getChildren().size() && index > 0) {
 						current = current.getChild(index - 1);
@@ -82,6 +88,7 @@ public class mainPrototype {
 				}
 			}
 		}
+		scan.close();
 		System.out.println("Bye!");
 	}
 
