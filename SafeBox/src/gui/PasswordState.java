@@ -1,20 +1,17 @@
 package gui;
 
-import java.util.ArrayList;
-
-import javax.swing.JComponent;
-import javax.swing.JLabel;
+import com.sun.glass.events.KeyEvent;
 
 import gui.StateManager.ValidStates;
 
 public class PasswordState extends State{
-	
+	private static final long serialVersionUID = 1L;
+
 	protected PasswordState(StateManager sm) {
 		this.sm = sm;
 		//ptitle.setLocation(200, 100);
 		
 		//add components to list
-
 		
 		//add components to JFrame window
 		//addComponentsToWindow();
@@ -22,51 +19,44 @@ public class PasswordState extends State{
 		clear();
 	}
 
-	@Override
 	protected void init() {
 		System.out.println("Init : Password State");
 	}
 
-	@Override
 	protected void draw() {
-		//viewComponentsOnWindow();
 		System.out.println("Draw : Password State");
 	}
 
-	@Override
 	protected void clear() {
-		//clearComponentsOnWindow();
 		System.out.println("Clear : Password State");
 	}
 
-	@Override
 	public void mouseClicked() {
 		sm.setState(ValidStates.MainScreenState);
-		
 	}
 
-	@Override
 	public void mouseEntered() {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void mouseExited() {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void mousePressed() {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void mouseReleased() {
-		// TODO Auto-generated method stub
-		
+	}
+
+	protected void keyPressed(int k) {
+		if (k == KeyEvent.VK_M){
+			sm.setState(ValidStates.MessageBoxState);
+		}
+	}
+
+	protected void keyReleased(int k) {
+	}
+
+	protected void keyTyped(int k) {
 	}
 
 

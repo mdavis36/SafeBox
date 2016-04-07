@@ -9,15 +9,12 @@ public class Main {
 	private static final int WIDTH = 800;
 	
 	
-	private static StateManager sm;
-	
 	public static void main(String[] args){		
 		JFrame window = new JFrame(TITLE);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
 		window.setSize(WIDTH, HEIGHT);
 		window.setVisible(true);
-	
-		sm = new StateManager(window);
+		new StateManager(window);
 	}
 }

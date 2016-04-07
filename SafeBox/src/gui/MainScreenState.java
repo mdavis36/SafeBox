@@ -1,14 +1,10 @@
 package gui;
 
-import java.util.ArrayList;
-
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-
 import gui.StateManager.ValidStates;
 
 public class MainScreenState extends State{
-	
+	private static final long serialVersionUID = 1L;
+
 	protected MainScreenState(StateManager sm) {
 		this.sm = sm;
 
@@ -64,6 +60,24 @@ public class MainScreenState extends State{
 
 	@Override
 	public void mouseReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void keyPressed(int k) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void keyReleased(int k) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void keyTyped(int k) {
 		// TODO Auto-generated method stub
 		
 	}

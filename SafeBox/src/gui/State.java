@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public abstract class State extends JComponent{
+	private static final long serialVersionUID = 1L;
 	
 	StateManager sm;
 	protected ArrayList<JComponent> components;
@@ -17,6 +18,9 @@ public abstract class State extends JComponent{
 	protected abstract void mouseExited();
 	protected abstract void mousePressed();
 	protected abstract void mouseReleased();
+	protected abstract void keyPressed(int k);
+	protected abstract void keyReleased(int k);
+	protected abstract void keyTyped(int k);
 	
 	/*protected void addComponentsToWindow(){
 		for(int i = 0; i < components.size(); i++){

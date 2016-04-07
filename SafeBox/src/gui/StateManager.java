@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
@@ -8,15 +10,23 @@ import javax.swing.JFrame;
 
 import core.EncryptedFileSystemManager;
 
-public class StateManager implements MouseListener{
+public class StateManager implements MouseListener, KeyListener{
 	protected JFrame window;
 	
 	public enum ValidStates{
 		PasswordState,
-		MainScreenState
+		MainScreenState,
+		MessageBoxState
 	}
+	
+	public enum ValidMBoxStates{
+		NoMessageBox,
+		FirstStateBox
+	}
+	
+	private ValidStates lastState;
 	private ValidStates currentState;
-	private ValidStates currentBoxState;
+	private ValidMBoxStates currentBoxState;
 	
 	private HashMap<ValidStates, State> states;
 	private HashMap<ValidStates, MessageBoxState> boxStates;
@@ -25,9 +35,11 @@ public class StateManager implements MouseListener{
 	protected StateManager(JFrame window){
 		this.window = window;
 		window.addMouseListener(this);
+		window.addKeyListener(this);
 		
+		lastState = ValidStates.PasswordState;
 		currentState = ValidStates.PasswordState;
-		currentBoxState = null;
+		currentBoxState = ValidMBoxStates.NoMessageBox;
 		
 		populateStates();
 		init();
@@ -45,15 +57,32 @@ public class StateManager implements MouseListener{
 	}
 	
 	protected void init(){
-		states.get(currentState).init();
+		if (currentState != ValidStates.MessageBoxState){
+			states.get(currentState).init();
+		}
+		else{
+			
+		}
+		
 	}
 	
 	protected void draw(){
-		states.get(currentState).draw();
+		if (currentState != ValidStates.MessageBoxState){
+			states.get(currentState).draw();
+		}
+		else{
+			
+		}
+		
 	}
 	
 	protected void clear(){
-		states.get(currentState).clear();
+		if (currentState != ValidStates.MessageBoxState){
+			states.get(currentState).clear();
+		}
+		else{
+			
+		}
 	}
 	
 	protected void setState(ValidStates state){
@@ -85,6 +114,22 @@ public class StateManager implements MouseListener{
 
 	public void mouseReleased(MouseEvent e) {
 		states.get(currentState).mouseReleased();
+	}
+
+
+	public void keyPressed(KeyEvent k) {
+		states.get(currentState).keyPressed(k.getID());
+	}
+
+
+	public void keyReleased(KeyEvent k) {
+		states.get(currentState).keyReleased(k.getID());
+	}
+
+
+	public void keyTyped(KeyEvent k) {
+		states.get(currentState).keyTyped(k.getID());
+		
 	}
 	
 }
