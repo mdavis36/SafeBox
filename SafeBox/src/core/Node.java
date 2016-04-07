@@ -76,25 +76,25 @@ public class Node implements Serializable{
 	}
 	
 	public String toString(){
-		String output = data.toString()+"\n\t";
+		String output = data.toString()+"\n   ";
 		if(children !=null){
 			int length = children.size();
 			for(int i = 0; i < length; i++){
-				output += children.get(i).getData().getName() + "\n\t";
+				int index = i+1;
+				output += index + ". "+ children.get(i).getData().getName() + "\n   ";
 			}
 		}
 		return output;
 		
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	//TODO: Remove once done testing
+	/*public static void main(String[] args) {
 		Folder f1 = new Folder();
 		Folder f2 = new Folder();
 		Folder f3 = new Folder();
 		f1.setName("Home");
-		f2.setName("Child 1");
-		f3.setName("Child 2");
+		f2.setName("Websites");
+		f3.setName("Contacts");
 		Node n1 = new Node(f1, null);
 		Node n2 = new Node(f2, n1);
 		Node n3 = new Node(f3, n1);
@@ -105,7 +105,7 @@ public class Node implements Serializable{
 		}
 		else
 			System.out.println(n1.toString());
-	}
+	}*/
 }
 
 

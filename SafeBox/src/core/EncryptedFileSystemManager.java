@@ -11,6 +11,7 @@ public class EncryptedFileSystemManager {
 	
 	public EncryptedFileSystemManager() {
 		// TODO Auto-generated constructor stub
+		fileSystem = new FileSystemHandler();
 	}
 	
 	/**
