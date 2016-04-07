@@ -32,9 +32,10 @@ public class mainPrototype {
 					directoryPath += path.get(i)+" | ";
 				}
 			}
+			//Record Screen Start
 			if (current.getData().isRecord()) {
 				System.out.println("Record: " + directoryPath + current.getData().toString());
-				System.out.println("[B]ack\n[E]xit");
+				System.out.println("[N]ew Field\n[B]ack\n[E]xit");
 				choice = scan.nextLine();
 				if (choice.equals("B") || choice.equals("b")) {
 					current = current.getParent();
@@ -42,7 +43,20 @@ public class mainPrototype {
 				else if (choice.equals("E") || choice.equals("e")) {
 					exit = true;
 				}
+				else if (choice.equals("N") || choice.equals("n")) {
+					System.out.println("What is the name of the field?");
+					String fName = scan.nextLine();
+					System.out.println("What is the content of the field?");
+					String fContents = scan.nextLine();
+					Field toAdd = new Field();
+					toAdd.setName(fName);
+					toAdd.setData(fContents);
+					((Record) current.getData()).addField(toAdd);
+				}
 			} 
+			//Record Screen End
+			
+			//Directory Screen Start
 			else {
 				System.out.println("Directory: " +directoryPath+ current.toString());
 				System.out
@@ -87,6 +101,7 @@ public class mainPrototype {
 					}
 				}
 			}
+			//Directory Screen End
 		}
 		scan.close();
 		System.out.println("Bye!");
