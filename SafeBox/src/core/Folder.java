@@ -19,7 +19,7 @@ public class Folder implements Serializable{
 	}
 	
 	public String toString(){
-		String output = name;
+		String output = name + "(Folder)";
 		return output;
 	}
 }

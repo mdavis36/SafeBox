@@ -9,7 +9,6 @@ public class Node implements Serializable{
 	//Variables//
 	/////////////
 	private Folder data;
-	private String name;
 	private int index;
 	private Node parent;
 	private ArrayList<Node> children;
@@ -37,9 +36,6 @@ public class Node implements Serializable{
 		return parent;
 	}
 	
-	public String getName(){
-		return name;
-	}
 	
 	public ArrayList<Node> getChildren(){
 		return children;
@@ -76,12 +72,12 @@ public class Node implements Serializable{
 	}
 	
 	public String toString(){
-		String output = data.toString()+"\n   ";
+		String output = data.getName()+"\n   ";
 		if(children !=null){
 			int length = children.size();
 			for(int i = 0; i < length; i++){
 				int index = i+1;
-				output += index + ". "+ children.get(i).getData().getName() + "\n   ";
+				output += index + ". "+ children.get(i).getData().toString() + "\n   ";
 			}
 		}
 		return output;

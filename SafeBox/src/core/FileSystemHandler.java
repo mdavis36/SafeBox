@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class FileSystemHandler implements Serializable{
 	private static final long serialVersionUID = -5417133060210085474L;
-	private int currentIndex;
+	private Node currentNode;
 	public Tree contents;
 	
 	public FileSystemHandler(){
-		currentIndex = 0;
 		contents = new Tree();
+		currentNode = contents.getRoot();
 	}
 
 	

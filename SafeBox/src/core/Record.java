@@ -47,12 +47,12 @@ public class Record extends Folder{
 	}
 	
 	public String toString(){
-		String output = name + "\n";
+		String output = name + "(Record)\n";
 		int length = fields.size();
 		for(int i = 0; i < length; i++){
-			output += fields.get(i).getName();
+			output += "\t"+fields.get(i).getName();
 			output +="\n";
-			output += fields.get(i).getData();
+			output += "\t"+fields.get(i).getData();
 			output += "\n";
 		}
 		return output;
