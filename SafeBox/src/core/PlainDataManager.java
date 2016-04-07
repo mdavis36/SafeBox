@@ -6,56 +6,40 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class PlainDataManager {
-	static HashMap<String, String> data = new HashMap<String, String>();
+	static HashMap<String, String> data = null;
 	static byte[] dataSerialized;
+	
+	private static void attemtToLoadFromFile(){
+		if (FileSystemManager.fileExists(Consts.PLAIN_FILE_NAME)){
+			loadFromFile();
+		}
+		if (data == null){
+			data = new HashMap<String, String>();
+		}
+	}
 	
 	protected static String getElement(String element) {
 		if (data == null) {
-			loadFromFile();
-			if (data == null) {
-				return null;
-			}
+			attemtToLoadFromFile();
 		}
 		return (String) data.get(element);
 	}
 	
 	protected static void setElement(String element, String value) {
+		if (data == null) {
+			attemtToLoadFromFile();
+		}
 		data.put(element, value);
 	}
 	
 	protected static void saveToFile() {
 		dataSerialized = SerializationUtils.objectToByteArray(data);
-		FileOutputStream file = null;
-		try {
-			file = new FileOutputStream(Consts.PLAIN_FILE_NAME);
-		} catch (FileNotFoundException e) {
-			System.out.println("file does not exist");
-		}
-		try {
-			file.write(dataSerialized);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("couldnt write data to file");
-		}
-		
+		FileSystemManager.saveToFile(dataSerialized, Consts.PLAIN_FILE_NAME);
 	}
 	
 	private static void loadFromFile() {
-		FileInputStream file = null;
-		try {
-			file = new FileInputStream(Consts.PLAIN_FILE_NAME);
-		} catch (FileNotFoundException e) {
-			System.out.println("file does not exist");
-		}
-		try {
-			file.read(dataSerialized);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("couldnt write data to file");
-		}
+		dataSerialized = FileSystemManager.readFromFile(Consts.PLAIN_FILE_NAME);
 		data = (HashMap<String, String>) SerializationUtils.byteArrayToObject(dataSerialized);
-	
-		System.out.println(data.toString());
 	}
 	
 	public static void main(String[] args){
@@ -67,7 +51,7 @@ public class PlainDataManager {
 		data = null;
 		loadFromFile();
 		
-		System.out.println(getElement("test key #1"));
+		System.out.println(getElement("test key #2"));
 		System.out.println();
 		
 	}

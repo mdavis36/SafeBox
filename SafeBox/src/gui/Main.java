@@ -10,6 +10,7 @@ public class Main {
 	private static final int HEIGHT = 600;
 	private static final int WIDTH = 800;
 	
+	
 	private static StateManager sm;
 	
 	public static void main(String[] args){		

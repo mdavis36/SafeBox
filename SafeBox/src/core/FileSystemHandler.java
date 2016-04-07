@@ -1,46 +1,59 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.swing.JTree;
-import javax.swing.tree.TreeModel;
 
-public class FileSystemHandler {
+public class FileSystemHandler implements Serializable{
+	private static final long serialVersionUID = -5417133060210085474L;
 	private int currentIndex;
-	private TreeModel contents;
+	public Tree contents;
 	
 	public FileSystemHandler(){
-		
+		currentIndex = 0;
+		contents = new Tree();
 	}
 
+	
+	///////////
+	//GETTERS//
+	///////////
+	public Node getRoot(){
+		return contents.getRoot();
+	}
+	
+	public Node getNode(Node parent, int index){
+		return parent.getChild(index);
+	}
+	
+	////////////////
+	//MANIPULATION//
+	////////////////
+	public Node createFolder(Node parent, String name){//Creates a Node with the indicated parent and naming the folder with name. Returns the node just created.
+		Folder folderToAdd = new Folder();
+		folderToAdd.setName(name);
+		Node nodeToAdd = new Node(folderToAdd,parent);
+		return nodeToAdd;
+	}
+	
+	public Node createRecord(Node parent, String name){
+		Record recordToAdd = new Record();
+		recordToAdd.setName(name);
+		Node nodeToAdd = new Node(recordToAdd,parent);
+		
+		return nodeToAdd;
+	}
+	
+	public boolean deleteFolder(Node parent,int index){
+		//TODO: Not sure if this is the right implementation yet. The true/false I think should be handled with the GUI.
+		parent.removeChild(index);
+		return true;
+		}
+	
 	public ArrayList<Folder> search(String query){
 		//TODO: 
-		ArrayList<Folder> temp = null;
-		return temp;
-	}
-	
-	public Folder getRoot(){
-		//TODO: 
-		return new Folder();
-	}
-	
-	public Folder getNode(int Node){
-		//TODO: 
-		return new Folder();
-	}
-	
-	public Folder createFolder(){
-		//TODO: 
-		return new Folder();
-	}
-	
-	public Folder createRecord(){
-		//TODO: 
-		return new Folder();
-	}
-	
-	public boolean deleteFolder(int node){
-		//TODO: 
-		return true;
+		ArrayList<Folder> toReturn = null;
+		
+		return toReturn;
 	}
 }
