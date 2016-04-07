@@ -11,6 +11,7 @@ public class Record extends Folder{
 		field.setName("Name");
 		field.setData("Content");
 		addField(field);
+		//check
 	}
 	
 	public boolean addField(Field field) {
