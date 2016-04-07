@@ -6,7 +6,11 @@ public class Record extends Folder{
 	private ArrayList<Field> fields = new ArrayList<Field>();
 	
 	public Record() {
-		
+		name = "New Record";
+		Field field = new Field();
+		field.setName("Name");
+		field.setData("Content");
+		addField(field);
 	}
 	
 	public boolean addField(Field field) {
@@ -52,4 +56,23 @@ public class Record extends Folder{
 		}
 		return output;
 	}
+	
+	public static void main(String[] args) {
+		Record rec = new Record();
+		Field f1 = new Field();
+		f1.setName("field 1 name");
+		f1.setData("field 1 content");
+		rec.addField(f1);
+		rec.setName("Record");
+		System.out.println(rec.getField("field 1 name").getName());
+		System.out.println(rec.toString());
+		rec.swap(1, 0);
+		System.out.println(rec.toString());
+		rec.deleteField(f1);
+		System.out.println(rec.toString());
+		
+		
+	}
 }
+
+	
