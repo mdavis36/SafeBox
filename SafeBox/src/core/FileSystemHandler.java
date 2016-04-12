@@ -9,6 +9,12 @@ public class FileSystemHandler implements Serializable{
 	private Node currentNode;
 	public Tree contents;
 	
+	@Override
+	public String toString() {
+		return "FileSystemHandler [currentNode=" + currentNode + ", contents=" + contents + "]";
+	}
+
+
 	public FileSystemHandler(){
 		contents = new Tree();
 		currentNode = contents.getRoot();
