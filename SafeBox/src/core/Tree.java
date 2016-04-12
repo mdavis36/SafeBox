@@ -16,7 +16,6 @@ public class Tree implements Serializable{
 		return root;
 	}
 	public String toString(){
-		//TODO: Finish
-		return null;
+		return root.toString();
 	}
 }
