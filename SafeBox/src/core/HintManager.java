@@ -4,6 +4,7 @@ public class HintManager {
 	
 	public static void setHint(String hint) {
 		PlainDataManager.setElement(Consts.HINT_NAME, hint);
+		PlainDataManager.saveToFile();
 	}
 	
 	public static String getHint() {

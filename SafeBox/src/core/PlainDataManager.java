@@ -9,7 +9,7 @@ public class PlainDataManager {
 	static HashMap<String, String> data = null;
 	static byte[] dataSerialized;
 	
-	private static void attemtToLoadFromFile(){
+	private static void attemptToLoadFromFile(){
 		if (FileSystemManager.fileExists(Consts.PLAIN_FILE_NAME)){
 			loadFromFile();
 		}
@@ -20,14 +20,14 @@ public class PlainDataManager {
 	
 	protected static String getElement(String element) {
 		if (data == null) {
-			attemtToLoadFromFile();
+			attemptToLoadFromFile();
 		}
 		return (String) data.get(element);
 	}
 	
 	protected static void setElement(String element, String value) {
 		if (data == null) {
-			attemtToLoadFromFile();
+			attemptToLoadFromFile();
 		}
 		data.put(element, value);
 	}
