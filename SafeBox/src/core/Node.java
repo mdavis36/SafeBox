@@ -73,7 +73,7 @@ public class Node implements Serializable{
 	
 	public String toString(){
 		String output = data.getName()+"\n   ";
-		if(children !=null){
+		if(!children.isEmpty()){
 			int length = children.size();
 			for(int i = 0; i < length; i++){
 				int index = i+1;

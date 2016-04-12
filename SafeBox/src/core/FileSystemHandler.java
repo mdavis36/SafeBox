@@ -41,7 +41,8 @@ public class FileSystemHandler implements Serializable{
 	public Node createFolder(Node parent, String name){//Creates a Node with the indicated parent and naming the folder with name. Returns the node just created.
 		Folder folderToAdd = new Folder();
 		folderToAdd.setName(name);
-		Node nodeToAdd = new Node(folderToAdd,parent);
+		Node nodeToAdd = new Node(folderToAdd,parent);		
+		parent.addChild(nodeToAdd);
 		return nodeToAdd;
 	}
 	
