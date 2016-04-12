@@ -72,7 +72,7 @@ public class Node implements Serializable{
 	}
 	
 	public String toString(){
-		String output = data.getName()+"\n   ";
+		String output = data.getName();
 		if(!children.isEmpty()){
 			int length = children.size();
 			for(int i = 0; i < length; i++){
@@ -82,6 +82,9 @@ public class Node implements Serializable{
 				}
 				else{
 					output += index + ". [F]"+ children.get(i).getData().getName() + "\n   ";
+					for(int j = 0; j < children.get(i).getChildren().size(); j++){
+						output += children.get(i).toString();
+					}
 				}
 			}
 		}

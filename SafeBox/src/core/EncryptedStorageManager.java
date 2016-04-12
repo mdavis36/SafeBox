@@ -130,8 +130,8 @@ public class EncryptedStorageManager {
 		
 		System.out.println(fsh);
 		
-		fsh.createFolder(fsh.getRoot(), "test folder"); // change something here
-		
+		Node tempNode = fsh.createFolder(fsh.getRoot(), "test folder"); // change something here
+		fsh.createFolder(tempNode, "Lets go deeper");
 		System.out.println(fsh); // write it out to see the change
 		
 		eSM.saveFileSystemHandler(); // save the FileSystemHandler to the disk
