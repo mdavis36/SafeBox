@@ -50,7 +50,7 @@ public class FileSystemHandler implements Serializable{
 		Record recordToAdd = new Record();
 		recordToAdd.setName(name);
 		Node nodeToAdd = new Node(recordToAdd,parent);
-		
+		parent.addChild(nodeToAdd);
 		return nodeToAdd;
 	}
 	
