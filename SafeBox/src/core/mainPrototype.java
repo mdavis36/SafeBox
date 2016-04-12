@@ -7,7 +7,7 @@ public class mainPrototype {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		EncryptedFileSystemManager efsm = new EncryptedFileSystemManager();
+		EncryptedStorageManager efsm = new EncryptedStorageManager();
 		FileSystemHandler fileSys = efsm.fileSystem;
 		Tree tree = efsm.fileSystem.contents;
 		Node current = tree.getRoot();

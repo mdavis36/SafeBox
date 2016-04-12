@@ -10,7 +10,7 @@ public class PlainDataManager {
 	static byte[] dataSerialized;
 	
 	private static void attemptToLoadFromFile(){
-		if (FileSystemManager.fileExists(Consts.PLAIN_FILE_NAME)){
+		if (StorageManager.fileExists(Consts.PLAIN_FILE_NAME)){
 			loadFromFile();
 		}
 		if (data == null){
@@ -34,11 +34,11 @@ public class PlainDataManager {
 	
 	protected static void saveToFile() {
 		dataSerialized = SerializationUtils.objectToByteArray(data);
-		FileSystemManager.saveToFile(dataSerialized, Consts.PLAIN_FILE_NAME);
+		StorageManager.saveToFile(dataSerialized, Consts.PLAIN_FILE_NAME);
 	}
 	
 	private static void loadFromFile() {
-		dataSerialized = FileSystemManager.readFromFile(Consts.PLAIN_FILE_NAME);
+		dataSerialized = StorageManager.readFromFile(Consts.PLAIN_FILE_NAME);
 		data = (HashMap<String, String>) SerializationUtils.byteArrayToObject(dataSerialized);
 	}
 	

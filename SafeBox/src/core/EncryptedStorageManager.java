@@ -5,11 +5,11 @@ import javax.crypto.BadPaddingException;
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
-public class EncryptedFileSystemManager {
+public class EncryptedStorageManager {
 	FileSystemHandler fileSystem;
 	char[] password;
 	
-	public EncryptedFileSystemManager() {
+	public EncryptedStorageManager() {
 		// TODO Auto-generated constructor stub
 		fileSystem = new FileSystemHandler();
 	}
@@ -32,7 +32,7 @@ public class EncryptedFileSystemManager {
 	 * @return true if a FileSystemHandler has been saved before, otherwise false
 	 */
 	public boolean fileSystemExists(){
-		return FileSystemManager.fileExists(Consts.ENCRYPTED_FILE_NAME);
+		return StorageManager.fileExists(Consts.ENCRYPTED_FILE_NAME);
 	}
 	
 	/**
@@ -47,7 +47,7 @@ public class EncryptedFileSystemManager {
 	 * @return true if successful, otherwise false
 	 */
 	public boolean loadFileSystemHandler(){		
-		byte[] savedData = FileSystemManager.readFromFile(Consts.ENCRYPTED_FILE_NAME);
+		byte[] savedData = StorageManager.readFromFile(Consts.ENCRYPTED_FILE_NAME);
 		byte[] IV = getIv();
 		
 		byte[] decryptedSavedData;
@@ -81,7 +81,7 @@ public class EncryptedFileSystemManager {
 		}
 		
 		storeIv(encryptedFileSystem.getIv());
-		FileSystemManager.saveToFile(encryptedFileSystem.getData(), Consts.ENCRYPTED_FILE_NAME);
+		StorageManager.saveToFile(encryptedFileSystem.getData(), Consts.ENCRYPTED_FILE_NAME);
 		
 		return true;
 	}
@@ -109,15 +109,15 @@ public class EncryptedFileSystemManager {
 	}
 	
 	public static void main(String[] args){
-		EncryptedFileSystemManager eFSM = new EncryptedFileSystemManager();
+		EncryptedStorageManager eSM = new EncryptedStorageManager();
 		
-		eFSM.setPassword("this is my password!".toCharArray()); // this is used for all encryption/decryption
+		eSM.setPassword("this is my password!".toCharArray()); // this is used for all encryption/decryption
 		
-		if (!eFSM.fileSystemExists()){ // if this is the first run
+		if (!eSM.fileSystemExists()){ // if this is the first run
 			System.out.println("No filesystem exists, creating one!");
-			eFSM.initNewFileSystem(); // make a blank filesystem
+			eSM.initNewFileSystem(); // make a blank filesystem
 		} else {
-			if (eFSM.loadFileSystemHandler()){ // try to load the saved filesystem
+			if (eSM.loadFileSystemHandler()){ // try to load the saved filesystem
 				System.out.println("Successfully loaded FSH!");
 			} else {
 				System.out.println("Error loading FSH!");
@@ -125,7 +125,7 @@ public class EncryptedFileSystemManager {
 			}
 		}
 		
-		FileSystemHandler fsh = eFSM.getFileSystemHandler(); // this gets the actual saved FileSystemhandler object
+		FileSystemHandler fsh = eSM.getFileSystemHandler(); // this gets the actual saved FileSystemhandler object
 		
 		
 		System.out.println(fsh);
@@ -134,7 +134,7 @@ public class EncryptedFileSystemManager {
 		
 		System.out.println(fsh); // write it out to see the change
 		
-		eFSM.saveFileSystemHandler(); // save the FileSystemHandler to the disk
+		eSM.saveFileSystemHandler(); // save the FileSystemHandler to the disk
 		
 		
 	}

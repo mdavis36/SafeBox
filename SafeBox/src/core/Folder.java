@@ -7,7 +7,7 @@ public class Folder implements Serializable{
 	protected String name;
 	
 	public Folder() {
-		name = "New Folder";
+		name = "";
 	}
 	
 	public void setName(String name) {

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-import core.EncryptedFileSystemManager;
+import core.EncryptedStorageManager;
 
 public class StateManager implements MouseListener, KeyListener{
 	protected JFrame window;
@@ -30,7 +30,7 @@ public class StateManager implements MouseListener, KeyListener{
 	
 	private HashMap<ValidStates, State> states;
 	private HashMap<ValidStates, MessageBoxState> boxStates;
-	private core.EncryptedFileSystemManager eFSM;
+	private core.EncryptedStorageManager eSM;
 	
 	protected StateManager(JFrame window){
 		this.window = window;
@@ -92,8 +92,8 @@ public class StateManager implements MouseListener, KeyListener{
 		draw();
 	}
 	
-	protected EncryptedFileSystemManager getEFSM(){
-		return eFSM;
+	protected EncryptedStorageManager getEFSM(){
+		return eSM;
 	}
 
 	public void mouseClicked(MouseEvent e) {

@@ -10,7 +10,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FileSystemManager {
+public class StorageManager {
 
 	protected static boolean saveToFile(byte[] data, String file) {
 		FileOutputStream out = null;
