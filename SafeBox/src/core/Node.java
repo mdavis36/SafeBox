@@ -9,23 +9,25 @@ public class Node implements Serializable{
 	//Variables//
 	/////////////
 	private Folder data;
-	private int index;
+	private int globalIndex;
 	private Node parent;
 	private ArrayList<Node> children;
 	
 	
 	//Constructor Initializes a new node containing the folder/record f , with it's parent = p, without any children
-	public Node(Folder f, Node p){
+	public Node(Folder f){
 		data = f;
 		children = new ArrayList<Node>();
-		parent = p;
 	}
 	
 	///////////
 	//GETTERS//
 	///////////
-	public int getIndex(){
-		return index;
+	public int getLocalIndex(){
+		if (parent == null){ // this should mean we're the root node
+			return 0;
+		}
+		return parent.getChildren().indexOf(this);
 	}
 	
 	public Folder getData(){
@@ -41,15 +43,19 @@ public class Node implements Serializable{
 		return children;
 	}
 	
-	public Node getChild(int index){
-		return children.get(index);
+	public Node getChild(int localIndex){
+		return children.get(localIndex);
+	}
+	
+	public int getGlobalIndex(){
+		return globalIndex;
 	}
 	
 	///////////
 	//SETTERS//
 	///////////
-	public void setIndex(int i){
-		index = i;
+	public void setGlobalIndex(int globalIndex){
+		this.globalIndex = globalIndex;
 	}
 	
 	public void setData(Folder f){
@@ -71,26 +77,36 @@ public class Node implements Serializable{
 		children.remove(index);
 	}
 	
-	public String toString(){
-		String output = data.getName();
-		if(!children.isEmpty()){
-			int length = children.size();
-			for(int i = 0; i < length; i++){
-				int index = i+1;
-				if(children.get(i).getData().isRecord()){
-					output += index + ". [R]"+ children.get(i).getData().getName() + "\n   ";
-				}
-				else{
-					output += index + ". [F]"+ children.get(i).getData().getName() + "\n   ";
-					for(int j = 0; j < children.get(i).getChildren().size(); j++){
-						output += children.get(i).toString();
-					}
-				}
+	/**
+	 * @return a multi-line, indented representation of the tree, starting at this node
+	 */
+	public String deepToString(){
+		return getGlobalIndex() + "G [Top] " + getData().getName() + "\n" + recursiveToString(1);
+	}
+	
+	/**
+	 * @param depth the number of indents to place before a row, will be incremented on each recursive call
+	 * @return a multi-line, indented representation of the tree, starting at this.children
+	 */
+	private String recursiveToString(int depth){
+		String output = "";
+		
+		for (Node child : children){
+			if(child.getData().isRecord()){
+				output += MiscUtils.repeatStr("  ", depth) + child.getGlobalIndex() + "G " + child.getLocalIndex() + "L [R] "+ child.getData().getName() + "\n";
+			} else {
+				output += MiscUtils.repeatStr("  ", depth) + child.getGlobalIndex() + "G " + child.getLocalIndex() + "L [F] "+ child.getData().getName() + "\n";
+				output += child.recursiveToString(depth + 1);
 			}
 		}
-		return output;
 		
+		return output;
 	}
+	
+	public String toString(){
+		return "[name=" + getData().getName() + ", localIndex=" + getLocalIndex() + ", globaIndex=" + getGlobalIndex() + ", children.size()=" + getChildren().size() + "]";
+	}
+	
 	//TODO: Remove once done testing
 	/*public static void main(String[] args) {
 		Folder f1 = new Folder();

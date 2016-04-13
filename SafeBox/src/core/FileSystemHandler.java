@@ -11,7 +11,7 @@ public class FileSystemHandler implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "FileSystemHandler [currentNode=" + currentNode + ", contents=" + contents + "]";
+		return "FileSystemHandler [currentNode=" + currentNode + ", contents=\n" + contents + "]";
 	}
 
 
@@ -28,10 +28,6 @@ public class FileSystemHandler implements Serializable{
 		return contents.getRoot();
 	}
 	
-	public Node getNode(Node parent, int index){
-		return parent.getChild(index);
-	}
-	
 	public Node getCurrent(){
 		return currentNode;
 	}
@@ -41,16 +37,19 @@ public class FileSystemHandler implements Serializable{
 	public Node createFolder(Node parent, String name){//Creates a Node with the indicated parent and naming the folder with name. Returns the node just created.
 		Folder folderToAdd = new Folder();
 		folderToAdd.setName(name);
-		Node nodeToAdd = new Node(folderToAdd,parent);		
-		parent.addChild(nodeToAdd);
+		
+		Node nodeToAdd = new Node(folderToAdd);
+		contents.addNode(parent, nodeToAdd);
 		return nodeToAdd;
 	}
 	
 	public Node createRecord(Node parent, String name){
 		Record recordToAdd = new Record();
 		recordToAdd.setName(name);
-		Node nodeToAdd = new Node(recordToAdd,parent);
-		parent.addChild(nodeToAdd);
+		
+		Node nodeToAdd = new Node(recordToAdd);
+		
+		contents.addNode(parent, nodeToAdd);
 		return nodeToAdd;
 	}
 	

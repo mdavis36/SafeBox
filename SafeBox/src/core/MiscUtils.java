@@ -19,4 +19,8 @@ public class MiscUtils {
 		return new String(Base64.encode(bytes));
 	}
 	
+	public static String repeatStr(String str, int times){
+		return new String(new char[times]).replace("\0", str);
+	}
+	
 }
