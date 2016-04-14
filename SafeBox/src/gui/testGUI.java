@@ -81,37 +81,12 @@ public class testGUI {
 		lblSafeboxLogo.setBounds(321, 170, 162, 14);
 		passCard.add(lblSafeboxLogo);
 		
-		/*
-		//final JButton btnNewButton = new JButton("Enter SafeBox");
-		ImageIcon ESBB1 = new ImageIcon("res/buttons/EnterSafeBoxButtonImg1.png");
-		
-		final JButton btnNewButton = new JButton(ESBB1);
-		
-		btnNewButton.setBackground(new Color(255, 153, 51));
-		btnNewButton.setBounds((window.getWidth() / 2) - (ESBB1.getIconWidth() / 2), 
-								(window.getHeight() / 2) - (ESBB1.getIconHeight() / 2), 
-								ESBB1.getIconWidth(), 
-								ESBB1.getIconHeight());
-		
-		passCard.add(btnNewButton);
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent e){
-				//btnNewButton.setText("mouse in");
-			}
-			public void mouseExited(MouseEvent e){
-				//btnNewButton.setText("Go To main");
-			}
-		});
-		
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cl.show(cards, "main");
-			}
-		});*/
-		CustomButton enterSBButton = new CustomButton("res/buttons/EnterSafeBoxButtonImg1.png",
+		CustomButton enterSBButton = new CustomButton("EnterSafeBoxButtonImg1.png",
 											(window.getWidth() / 2) - (350 / 2), 
 											(window.getHeight() / 2) - (60 / 2), 
-											350);
+											350,
+											200,
+											false);
 		
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
