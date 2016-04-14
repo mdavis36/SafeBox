@@ -20,7 +20,9 @@ public class Record extends Folder{
 	}
 	
 	public Field getField(int field) {
+		
 		return fields.get(field);
+		
 	}
 	
 	public Field getField(String field) {
