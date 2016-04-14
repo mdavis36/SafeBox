@@ -140,7 +140,7 @@ public class EncryptedStorageManager {
 		fsh.createRecord(fsh.getRoot(), "under root #2");
 		System.out.println(fsh); // write it out to see the change
 		
-		//eSM.saveFileSystemHandler(); // save the FileSystemHandler to the disk
+		eSM.saveFileSystemHandler(); // save the FileSystemHandler to the disk
 		
 		
 	}
