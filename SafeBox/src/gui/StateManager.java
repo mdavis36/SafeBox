@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -7,129 +8,47 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
 
-public class StateManager implements MouseListener, KeyListener{
+public class StateManager{
 	protected JFrame window;
+
+	protected final String PASSWORD_STATE = "passwordState";
+	protected final String MAIN_SCREEN_STATE = "mainScreenState";
 	
-	public enum ValidStates{
-		PasswordState,
-		MainScreenState,
-		MessageBoxState
-	}
-	
-	public enum ValidMBoxStates{
-		NoMessageBox,
-		FirstStateBox
-	}
-	
-	private ValidStates lastState;
-	private ValidStates currentState;
-	private ValidMBoxStates currentBoxState;
-	
-	private HashMap<ValidStates, State> states;
-	private HashMap<ValidStates, MessageBoxState> boxStates;
 	private core.EncryptedStorageManager eSM;
+	
+	static JPanel cards;
+	static CardLayout cl;
 	
 	protected StateManager(JFrame window){
 		this.window = window;
-		window.addMouseListener(this);
-		window.addKeyListener(this);
 		
-		lastState = ValidStates.PasswordState;
-		currentState = ValidStates.PasswordState;
-		currentBoxState = ValidMBoxStates.NoMessageBox;
+		//Initialize cards
+		cards = new JPanel(new CardLayout());
+		cl = (CardLayout) cards.getLayout();
 		
 		populateStates();
-		init();
-		draw();
+		
+		window.getContentPane().add(cards);
+		cl.show(cards, PASSWORD_STATE);
+		
 	}
 	
 	private void populateStates(){
-		states = new HashMap<ValidStates, State>();
 		
 		PasswordState passwordState = new PasswordState(this);
 		MainScreenState mainScreenState = new MainScreenState(this);
 		
-		states.put(ValidStates.PasswordState, passwordState);
-		states.put(ValidStates.MainScreenState, mainScreenState);
+		cards.add(mainScreenState, MAIN_SCREEN_STATE);
+		cards.add(passwordState, PASSWORD_STATE);
 	}
 	
-	protected void init(){
-		if (currentState != ValidStates.MessageBoxState){
-			states.get(currentState).init();
-		}
-		else{
-			
-		}
-		
-	}
-	
-	protected void draw(){
-		if (currentState != ValidStates.MessageBoxState){
-			states.get(currentState).draw();
-		}
-		else{
-			
-		}
-		
-	}
-	
-	protected void clear(){
-		if (currentState != ValidStates.MessageBoxState){
-			states.get(currentState).clear();
-		}
-		else{
-			
-		}
-	}
-	
-	protected void setState(ValidStates state){
-		clear();
-		currentState = state;
-		init();
-		draw();
-	}
 	
 	protected EncryptedStorageManager getEFSM(){
 		return eSM;
-	}
-
-	public void mouseClicked(MouseEvent e) {
-		states.get(currentState).mouseClicked();
-	}
-
-	public void mouseEntered(MouseEvent e) {
-		states.get(currentState).mouseEntered();
-	}
-
-	public void mouseExited(MouseEvent e) {
-		states.get(currentState).mouseExited();
-	}
-
-	public void mousePressed(MouseEvent e) {
-		states.get(currentState).mousePressed();
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		states.get(currentState).mouseReleased();
-	}
-
-
-	public void keyPressed(KeyEvent k) {
-		states.get(currentState).keyPressed(k.getID());
-	}
-
-
-	public void keyReleased(KeyEvent k) {
-		states.get(currentState).keyReleased(k.getID());
-	}
-
-
-	public void keyTyped(KeyEvent k) {
-		states.get(currentState).keyTyped(k.getID());
-		
 	}
 	
 }

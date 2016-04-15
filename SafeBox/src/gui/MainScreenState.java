@@ -1,87 +1,37 @@
 package gui;
 
-import gui.StateManager.ValidStates;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class MainScreenState extends State{
 	private static final long serialVersionUID = 1L;
 
-	protected MainScreenState(StateManager sm) {
+	protected MainScreenState(final StateManager sm) {
 		this.sm = sm;
-
-		//mtitle.setLocation(200, 200);
 		
-		//add components to list
 		
-		//add components to JFrame window
-		//addComponentsToWindow();
-		init();
-		clear();
-	}
-	
-	@Override
-	protected void init() {
-		System.out.println("Init : MainScreen State");
-	}
-
-	@Override
-	protected void draw() {
-		//viewComponentsOnWindow();
-		System.out.println("Draw : MainScreen State");
-	}
-
-	@Override
-	protected void clear() {
-		//clearComponentsOnWindow();
-		System.out.println("Clear : MainScreen State");
-	}
-
-	@Override
-	public void mouseClicked() {
-		sm.setState(ValidStates.PasswordState);
-	}
-
-	@Override
-	public void mouseEntered() {
-		// TODO Auto-generated method stub
+		setLayout(null);
 		
+		JLabel lblMaincard = new JLabel("MainCard");
+		lblMaincard.setBounds(325, 9, 96, 14);
+		add(lblMaincard);
+				
+		JButton btnNewButton_1 = new JButton("Go to pass");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(255, 153, 102));
+		btnNewButton_1.setBounds(271, 104, 179, 124);
+		add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
+			}
+		});
 	}
-
-	@Override
-	public void mouseExited() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void keyPressed(int k) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void keyReleased(int k) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void keyTyped(int k) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
 }
+	

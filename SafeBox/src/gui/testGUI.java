@@ -27,10 +27,6 @@ public class testGUI {
 	static JPanel cards;
 	static CardLayout cl;
 	
-	
-	
-	
-	
 	public static void main(String[] args){		
 		JFrame window = new JFrame(TITLE);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,8 +36,6 @@ public class testGUI {
 
 		//Initialize seperate Panels
 		final JPanel passCard = new JPanel();
-		passCard.setForeground(new Color(255, 255, 255));
-		passCard.setBackground(new Color(0, 204, 255));
 		JPanel mainCard = new JPanel();
 		
 		//Initialize cards
@@ -58,7 +52,10 @@ public class testGUI {
 		mainCard.add(lblMaincard);
 				
 		JButton btnNewButton_1 = new JButton("Go to pass");
-		btnNewButton_1.setBounds(338, 106, 83, 23);
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(255, 153, 102));
+		btnNewButton_1.setBounds(271, 104, 179, 124);
 		mainCard.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,30 +78,37 @@ public class testGUI {
 		lblSafeboxLogo.setBounds(321, 170, 162, 14);
 		passCard.add(lblSafeboxLogo);
 		
-		CustomButton enterSBButton = new CustomButton("EnterSafeBoxButtonImg1.png",
-											(window.getWidth() / 2) - (350 / 2), 
-											(window.getHeight() / 2) - (60 / 2), 
-											350,
-											200,
-											false);
-		
+		CustomButton enterSBButton = new CustomButton("Enter SafeBox",
+														"buttonBackground1.png",
+														(window.getWidth() / 2) - (270 / 2), 
+														(window.getHeight() / 2) - (60 / 2) + 40, 
+														270,
+														200,
+														true);
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cl.show(cards, "main");
 			}
 		});
 		
+		
 		passCard.add(enterSBButton);
 		
-		
-		JButton btnNewButton_2 = new JButton("Forgot Password");
-		btnNewButton_2.setBounds(321, 326, 136, 50);
-		passCard.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		CustomButton forgotPWButton = new CustomButton("Forgot Password",
+														"buttonBackground1.png", 
+														(window.getWidth() / 2) - (270 / 2), 
+														(window.getHeight() / 2) - (60 / 2) + 100, 
+														270,
+														0,
+														true);
+		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(passCard, "This is your hint", null, JOptionPane.PLAIN_MESSAGE);
+				
+				
+				JOptionPane.showMessageDialog(passCard, "//This is your hint", null, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
+		passCard.add(forgotPWButton);
 
 		
 		//-------------------------------------------------
