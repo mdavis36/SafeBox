@@ -103,8 +103,24 @@ public class Node implements Serializable{
 		return output;
 	}
 	
+//	public String toString(){//For debugging
+//		return "[name=" + getData().getName() + ", localIndex=" + getLocalIndex() + ", globaIndex=" + getGlobalIndex() + ", children.size()=" + getChildren().size() + "]";
+//	}
+	
 	public String toString(){
-		return "[name=" + getData().getName() + ", localIndex=" + getLocalIndex() + ", globaIndex=" + getGlobalIndex() + ", children.size()=" + getChildren().size() + "]";
+		String outputString = data.getName();
+		if(children.size() == 0){
+			outputString += "\n\tThis folder is empty! Add something!";
+		}
+		for(int i = 0; i < children.size(); i++){
+			if (children.get(i).getData().isRecord()){
+				outputString += "\n\t"+ (i+1) +"[R]" + children.get(i).getData().getName();
+			}
+			else{
+				outputString += "\n\t"+ (i+1) +"[F]" + children.get(i).getData().getName();
+			}
+		}
+		return outputString;
 	}
 	
 	//TODO: Remove once done testing
