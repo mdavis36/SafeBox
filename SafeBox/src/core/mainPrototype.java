@@ -83,21 +83,22 @@ public class mainPrototype {
 					String fName = scan.nextLine();
 					fsh.createFolder(fsh.getCurrent(), fName);
 				} 
-				//TODO: .equalsIgnoreCase
 				else if (choice.equalsIgnoreCase("R")) {
-					System.out
-							.println("What would you like to call your Record?");
+					//TODO: Fix addition of Record
+					System.out.println("What would you like to call your Record?");
 					String rName = scan.nextLine();
-					current.addChild(fsh.createRecord(current, rName));
-					current = current
-							.getChild(current.getChildren().size() - 1);
+					//current.addChild(fsh.createRecord(current, rName));
+					fsh.createRecord(current, rName);
+					current = current.getChild(current.getChildren().size()-1);
 					System.out.println("What is the name of the field?");
 					String fName = scan.nextLine();
 					Record temp = (Record) current.getData();
-					temp.getField("Name").setName(fName);
+					Field fieldToAdd = new Field();
+					fieldToAdd.setName(fName);
 					System.out.println("What is the content of the field?");
 					String fContent = scan.nextLine();
-					temp.getField(0).setData(fContent);
+					fieldToAdd.setData(fContent);
+					temp.addField(fieldToAdd);
 
 				} 
 				else if (choice.equalsIgnoreCase("B")) {
