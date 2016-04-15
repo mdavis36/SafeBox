@@ -36,6 +36,7 @@ public class testGUI {
 
 		//Initialize seperate Panels
 		final JPanel passCard = new JPanel();
+		passCard.setBackground(new Color(102, 153, 255));
 		JPanel mainCard = new JPanel();
 		
 		//Initialize cards
