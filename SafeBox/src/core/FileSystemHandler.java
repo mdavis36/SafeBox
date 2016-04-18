@@ -31,6 +31,10 @@ public class FileSystemHandler implements Serializable{
 	public Node getCurrent(){
 		return currentNode;
 	}
+	
+	public Tree getContents(){
+		return contents;
+	}
 	////////////////
 	//MANIPULATION//
 	////////////////
@@ -59,10 +63,30 @@ public class FileSystemHandler implements Serializable{
 		return true;
 		}
 	
-	public ArrayList<Folder> search(String query){
-		//TODO: 
-		ArrayList<Folder> toReturn = null;
-		
+	public ArrayList<Node> search(String query, Node startNode){
+		//TODO:  Review to make sure it works properly
+		ArrayList<Node> toReturn = new ArrayList<Node>();
+		int size = contents.getGlobalIndex();
+		String lowercaseQuery = query.toLowerCase();
+		String name = "";
+		for(int i = 0; i <=size; i++){
+			name = contents.getNode(i).getData().getName().toLowerCase();
+			if(name.contains(lowercaseQuery)){
+				toReturn.add(contents.getNode(i));
+			}
+		}
 		return toReturn;
 	}
+	/*
+	public static void main(String[] args){
+		FileSystemHandler fsh = new FileSystemHandler();
+		fsh.createFolder(fsh.getCurrent(), "One Folder");
+		fsh.createRecord(fsh.getCurrent(), "Two Folder");
+		fsh.createRecord(fsh.getCurrent(), "Not searched");
+		fsh.createRecord(fsh.getCurrent().getChild(0), "Three Folder");
+		ArrayList<Node> temp = fsh.search("folder", fsh.getContents().getRoot());
+		for(int i = 0; i < temp.size(); i++){
+			System.out.println(temp.get(i));
+		}
+	}*/
 }

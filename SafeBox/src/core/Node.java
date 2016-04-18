@@ -114,10 +114,10 @@ public class Node implements Serializable{
 		}
 		for(int i = 0; i < children.size(); i++){
 			if (children.get(i).getData().isRecord()){
-				outputString += "\n\t"+ (i+1) +"[R]" + children.get(i).getData().getName();
+				outputString += "\n\t"+ (i+1) +". [R]" + children.get(i).getData().getName();
 			}
 			else{
-				outputString += "\n\t"+ (i+1) +"[F]" + children.get(i).getData().getName();
+				outputString += "\n\t"+ (i+1) +". [F]" + children.get(i).getData().getName();
 			}
 		}
 		return outputString;

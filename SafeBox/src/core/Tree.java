@@ -2,22 +2,21 @@ package core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class Tree implements Serializable{
 	private static final long serialVersionUID = -3576405232059064152L;
 	private Node root;
-	Hashtable<String,Node> nodeMap;
+	ArrayList<Node> nodeList;
 	private int maxGlobalIndex = 0;
 	
 	//Initializes the root directory to be called Home without a parent.
 	public Tree(){
-		nodeMap = new Hashtable<String,Node>();
+		nodeList = new ArrayList<Node>();
 		root = new Node(new Folder());
 		root.setParent(null);
 		root.getData().setName("Home");
 		root.setGlobalIndex(0);
-		nodeMap.put("home", root);
+		nodeList.add(root);
 	}
 	
 	public void addNode(Node parent, Node child){
@@ -25,6 +24,11 @@ public class Tree implements Serializable{
 		child.setGlobalIndex(maxGlobalIndex);
 		child.setParent(parent);
 		parent.addChild(child);
+		nodeList.add(child);
+	}
+	
+	public Node getNode(int globalIndex){
+		return nodeList.get(globalIndex);
 	}
 	
 	public Node getNode(Node parent, int localIndex){
@@ -35,6 +39,9 @@ public class Tree implements Serializable{
 		return root;
 	}
 	
+	public int getGlobalIndex(){
+		return maxGlobalIndex;
+	}
 	public String toString(){
 		return "Tree [\n" + root.deepToString() + "]";
 	}
