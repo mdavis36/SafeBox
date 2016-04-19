@@ -53,9 +53,9 @@ public class mainPrototype {
 		String directoryPath;
 		EncryptedStorageManager esm = new EncryptedStorageManager();
 		do {
-			System.out.println("Enter a password: ");
+			System.out.println("Enter a password: "); //user creates or enters existing password at startup
 			choice = scan.nextLine();
-		} while (choice.isEmpty());
+		} while (choice.isEmpty()); //in case user presses enter
 		esm.setPassword(choice.toCharArray()); // this is used
 																// for all
 																// encryption/decryption
@@ -67,8 +67,13 @@ public class mainPrototype {
 												// filesystem
 				System.out.println("Successfully loaded FSH!");
 			} else {
-				System.out.println("Error loading FSH!");
-				return; // abort if loading failed
+				while (!esm.loadFileSystemHandler()){
+				do {
+					System.out.println("WRONG! Enter different password: "); //user creates or enters existing password at startup
+					choice = scan.nextLine();
+				} while (choice.isEmpty()); //in case user presses enter
+				esm.setPassword(choice.toCharArray());
+				}
 			}
 		}
 		Tree tree = esm.fileSystem.contents;
