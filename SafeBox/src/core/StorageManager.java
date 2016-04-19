@@ -1,12 +1,11 @@
 package core;
 
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -50,12 +49,10 @@ public class StorageManager {
 	}
 	
 	protected static boolean fileExists(String file) {
-		try {
-			FileInputStream in = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
+		if (file == null){
 			return false;
 		}
 		
-		return true;
+		return new File(file).exists();
 	}
 }
