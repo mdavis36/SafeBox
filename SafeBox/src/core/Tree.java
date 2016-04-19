@@ -18,7 +18,9 @@ public class Tree implements Serializable{
 		root.setGlobalIndex(0);
 		nodeList.add(root);
 	}
-	
+	public ArrayList<Node> getNodeList(){
+		return nodeList;
+	}
 	public void addNode(Node parent, Node child){
 		maxGlobalIndex++;
 		child.setGlobalIndex(maxGlobalIndex);

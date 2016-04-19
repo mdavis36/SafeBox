@@ -56,11 +56,25 @@ public class FileSystemHandler implements Serializable{
 	}
 	
 	public boolean deleteFolder(Node parent, int index){
-
-		parent.removeChild(index);
-		
-		return true;
+		//TODO: Start from last index, remove inward
+		//TODO: Set nodeList pointer to null
+		if (parent == null){
+			return false;
 		}
+		else{
+			Node temp = parent.getChild(index);
+			parent.removeChild(index);
+			int size = temp.getChildren().size();
+			for(int i = size; i >= 0; i--){
+				if(temp.getChild(i).hasChildren()){
+					deleteFolder(temp, i);
+				}
+				contents.getNodeList().set(temp.getChild(i).getGlobalIndex(), null);
+				temp.getChildren().remove(i);
+			}
+			return true;
+		}
+	}
 	
 	public ArrayList<Node> search(String query, Node startNode){
 		ArrayList<Node> toReturn = new ArrayList<Node>();
@@ -75,7 +89,7 @@ public class FileSystemHandler implements Serializable{
 		}
 		return toReturn;
 	}
-	/*
+	
 	public static void main(String[] args){
 		FileSystemHandler fsh = new FileSystemHandler();
 		fsh.createFolder(fsh.getCurrent(), "One Folder");
@@ -86,5 +100,9 @@ public class FileSystemHandler implements Serializable{
 		for(int i = 0; i < temp.size(); i++){
 			System.out.println(temp.get(i));
 		}
-	}*/
+		fsh.deleteFolder(temp.get(0), 0);
+		for(int i = 0; i < temp.size(); i++){
+			System.out.println(temp.get(i));
+		}
+	}
 }

@@ -123,6 +123,15 @@ public class Node implements Serializable{
 		return outputString;
 	}
 	
+	public boolean hasChildren(){
+		if(children.size() == 0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
 	//TODO: Remove once done testing
 	/*public static void main(String[] args) {
 		Folder f1 = new Folder();
