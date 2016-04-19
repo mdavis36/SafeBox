@@ -35,7 +35,9 @@ public class CustomButton extends JButton{
 		
 		Image small = i.getScaledInstance(c_width, c_height, Image.SCALE_SMOOTH);
 		this.setIcon(new ImageIcon(small));
-		
+		setBorderPainted(false);
+		setBorder(null);
+		setContentAreaFilled(false);
 		setHorizontalTextPosition(JButton.CENTER);
 		setVerticalTextPosition(JButton.CENTER);
 		setForeground(Color.WHITE);
