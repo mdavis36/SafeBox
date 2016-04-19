@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
@@ -25,7 +26,7 @@ public class StateManager{
 	
 	protected StateManager(JFrame window){
 		this.window = window;
-		
+		eSM = new EncryptedStorageManager();
 		//Initialize cards
 		cards = new JPanel(new CardLayout());
 		cl = (CardLayout) cards.getLayout();
@@ -35,6 +36,11 @@ public class StateManager{
 		window.getContentPane().add(cards);
 		cl.show(cards, PASSWORD_STATE);
 		
+		if(!eSM.fileSystemExists()){
+			JOptionPane.showMessageDialog(window, "This is the first time running", null, JOptionPane.PLAIN_MESSAGE);
+		}else{
+			JOptionPane.showMessageDialog(window, "A file system Exists", null, JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 	
 	private void populateStates(){

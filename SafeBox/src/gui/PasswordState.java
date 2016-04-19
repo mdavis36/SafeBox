@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -31,6 +32,7 @@ public class PasswordState extends State{
 		
 		
 		JLabel lblSafeboxLogo = new JLabel("//RUNNING FROM MAIN");
+		lblSafeboxLogo.setIcon(new ImageIcon("res/logos/largeLogo.png"));
 		lblSafeboxLogo.setBounds(321, 170, 162, 14);
 		add(lblSafeboxLogo);
 		
