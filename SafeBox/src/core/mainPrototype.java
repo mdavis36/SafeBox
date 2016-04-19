@@ -52,7 +52,11 @@ public class mainPrototype {
 		ArrayList<String> path;
 		String directoryPath;
 		EncryptedStorageManager esm = new EncryptedStorageManager();
-		esm.setPassword("this is my password!".toCharArray()); // this is used
+		do {
+			System.out.println("Enter a password: ");
+			choice = scan.nextLine();
+		} while (choice.isEmpty());
+		esm.setPassword(choice.toCharArray()); // this is used
 																// for all
 																// encryption/decryption
 		if (!esm.fileSystemExists()) { // if this is the first run
