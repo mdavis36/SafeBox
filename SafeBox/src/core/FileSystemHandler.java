@@ -61,21 +61,33 @@ public class FileSystemHandler implements Serializable{
 	public Node createRecord(Node parent, String name){
 		Record recordToAdd = new Record();
 		recordToAdd.setName(name);
-		
 		Node nodeToAdd = new Node(recordToAdd);
-		
 		contents.addNode(parent, nodeToAdd);
 		return nodeToAdd;
 	}
 	
 	public boolean deleteFolder(Node parent, int index){
-		//TODO: Not sure if this is the right implementation yet. The true/false I think should be handled with the GUI.
-		parent.removeChild(index);
-		return true;
+		//TODO: Start from last index, remove inward
+		//TODO: Set nodeList pointer to null
+		if (parent == null){
+			return false;
 		}
+		else{
+			Node temp = parent.getChild(index);
+			parent.removeChild(index);
+			int size = temp.getChildren().size();
+			for(int i = size; i >= 0; i--){
+				if(temp.getChild(i).hasChildren()){
+					deleteFolder(temp, i);
+				}
+				contents.getNodeList().set(temp.getChild(i).getGlobalIndex(), null);
+				temp.getChildren().remove(i);
+			}
+			return true;
+		}
+	}
 	
 	public ArrayList<Node> search(String query, Node startNode){
-		//TODO:  Review to make sure it works properly
 		ArrayList<Node> toReturn = new ArrayList<Node>();
 		int size = contents.getMaxGlobalIndex();
 		String lowercaseQuery = query.toLowerCase();
@@ -94,7 +106,7 @@ public class FileSystemHandler implements Serializable{
 		}
 		return toReturn;
 	}
-	/*
+	
 	public static void main(String[] args){
 		FileSystemHandler fsh = new FileSystemHandler();
 		fsh.createFolder(fsh.getCurrent(), "One Folder");
@@ -105,5 +117,9 @@ public class FileSystemHandler implements Serializable{
 		for(int i = 0; i < temp.size(); i++){
 			System.out.println(temp.get(i));
 		}
-	}*/
+		fsh.deleteFolder(temp.get(0), 0);
+		for(int i = 0; i < temp.size(); i++){
+			System.out.println(temp.get(i));
+		}
+	}
 }
