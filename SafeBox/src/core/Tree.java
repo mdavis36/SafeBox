@@ -27,8 +27,20 @@ public class Tree implements Serializable{
 		nodeList.add(child);
 	}
 	
-	public Node getNode(int globalIndex){
-		return nodeList.get(globalIndex);
+	/**
+	 * @param globalIndex the global index of the node to get
+	 * @return a node if found, or null if it doesn't exist
+	 */
+	public Node getNodeByGlobalIndex(int globalIndex){
+		if (nodeList == null){
+			return null;
+		}
+		
+		try {
+			return nodeList.get(globalIndex);
+		} catch (IndexOutOfBoundsException e){
+			return null;
+		}
 	}
 	
 	public Node getNode(Node parent, int localIndex){
@@ -39,7 +51,7 @@ public class Tree implements Serializable{
 		return root;
 	}
 	
-	public int getGlobalIndex(){
+	public int getMaxGlobalIndex(){
 		return maxGlobalIndex;
 	}
 	public String toString(){

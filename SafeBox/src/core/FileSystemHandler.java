@@ -38,7 +38,12 @@ public class FileSystemHandler implements Serializable{
 	////////////////
 	//MANIPULATION//
 	////////////////
-	public Node createFolder(Node parent, String name){//Creates a Node with the indicated parent and naming the folder with name. Returns the node just created.
+	/**
+	 * @param parent the parent of the new node
+	 * @param name the new folder's name
+	 * @return the node just created
+	 */
+	public Node createFolder(Node parent, String name){
 		Folder folderToAdd = new Folder();
 		folderToAdd.setName(name);
 		
@@ -47,6 +52,12 @@ public class FileSystemHandler implements Serializable{
 		return nodeToAdd;
 	}
 	
+	
+	/**
+	 * @param parent the parent of the new node
+	 * @param name the new record's name
+	 * @return the node just created
+	 */
 	public Node createRecord(Node parent, String name){
 		Record recordToAdd = new Record();
 		recordToAdd.setName(name);
@@ -66,13 +77,19 @@ public class FileSystemHandler implements Serializable{
 	public ArrayList<Node> search(String query, Node startNode){
 		//TODO:  Review to make sure it works properly
 		ArrayList<Node> toReturn = new ArrayList<Node>();
-		int size = contents.getGlobalIndex();
+		int size = contents.getMaxGlobalIndex();
 		String lowercaseQuery = query.toLowerCase();
-		String name = "";
-		for(int i = 0; i <=size; i++){
-			name = contents.getNode(i).getData().getName().toLowerCase();
-			if(name.contains(lowercaseQuery)){
-				toReturn.add(contents.getNode(i));
+		Node node;
+		
+		for (int i = 0; i <=size; i++){
+			node = contents.getNodeByGlobalIndex(i);
+			
+			if (node == null){
+				continue;
+			}
+			
+			if(node.getData().getName().toLowerCase().contains(lowercaseQuery)){
+				toReturn.add(contents.getNodeByGlobalIndex(i));
 			}
 		}
 		return toReturn;
