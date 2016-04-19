@@ -31,7 +31,7 @@ public class mainPrototype {
 			if (choice.equalsIgnoreCase("B")) {
 				back = true;
 				return current;
-			} else if (choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
+			} else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 				int index = Integer.parseInt(choice);
 				if (index <= results.size() && index > 0) {
 					return results.get(index - 1);
@@ -152,7 +152,8 @@ public class mainPrototype {
 					exit = true;
 				} else if (choice.equalsIgnoreCase("S")) {
 					current = search(scan, fsh, current);
-				} else if (choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
+				} else if (!choice.isEmpty() && 
+					choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 					int index = Integer.parseInt(choice);
 					if (index <= current.getChildren().size() && index > 0) {
 						current = current.getChild(index - 1);
