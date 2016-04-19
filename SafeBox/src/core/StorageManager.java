@@ -2,9 +2,6 @@ package core;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,29 +9,11 @@ import java.nio.file.Paths;
 public class StorageManager {
 
 	protected static boolean saveToFile(byte[] data, String file) {
-		FileOutputStream out = null;
 		try {
-			out = new FileOutputStream(file);
-		} catch (FileNotFoundException e) {
+			Files.write(new File(file).toPath(), data);
+		} catch (IOException e) {
 			return false;
 		}
-		try {
-			out.write(data);
-		} catch (IOException e) {
-			e.printStackTrace();
-			try {
-				out.close();
-			} catch (IOException d) {
-				d.printStackTrace();
-			}
-			return false;
-		}
-		try {
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		return true;
 	}
 	
