@@ -50,23 +50,21 @@ public class FileSystemHandler implements Serializable{
 	public Node createRecord(Node parent, String name){
 		Record recordToAdd = new Record();
 		recordToAdd.setName(name);
-		
 		Node nodeToAdd = new Node(recordToAdd);
-		
 		contents.addNode(parent, nodeToAdd);
 		return nodeToAdd;
 	}
 	
 	public boolean deleteFolder(Node parent, int index){
-		//TODO: Not sure if this is the right implementation yet. The true/false I think should be handled with the GUI.
+
 		parent.removeChild(index);
+		
 		return true;
 		}
 	
 	public ArrayList<Node> search(String query, Node startNode){
-		//TODO:  Review to make sure it works properly
 		ArrayList<Node> toReturn = new ArrayList<Node>();
-		int size = contents.getGlobalIndex();
+		int size = contents.getMaxGlobalIndex();
 		String lowercaseQuery = query.toLowerCase();
 		String name = "";
 		for(int i = 0; i <=size; i++){

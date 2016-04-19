@@ -39,7 +39,7 @@ public class Tree implements Serializable{
 		return root;
 	}
 	
-	public int getGlobalIndex(){
+	public int getMaxGlobalIndex(){
 		return maxGlobalIndex;
 	}
 	public String toString(){

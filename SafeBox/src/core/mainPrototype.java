@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 public class mainPrototype {
 	public static Node search(Scanner scan, FileSystemHandler fsh, Node current) {
-		System.out
-				.println("What would you like to search your Record/Folder names for?\n");
+		System.out.println("What would you like to search your Record/Folder names for?\n");
 		String query = scan.nextLine();
-		ArrayList<Node> results = fsh
-				.search(query, fsh.getContents().getRoot());
+		ArrayList<Node> results = fsh.search(query, fsh.getContents().getRoot());
 		int size = results.size();
 		boolean back = false;
 		while (!back) {
@@ -45,9 +43,9 @@ public class mainPrototype {
 	}
 
 	public static void main(String[] args) {
-		// /////////////
-		// SETUP BEGIN//
-		// /////////////
+		///////////////
+		//SETUP BEGIN//
+		///////////////
 		Scanner scan = new Scanner(System.in);
 		String choice = "";
 		boolean exit = false;
@@ -130,14 +128,10 @@ public class mainPrototype {
 					String fName = scan.nextLine();
 					fsh.createFolder(fsh.getCurrent(), fName);
 				} else if (choice.equalsIgnoreCase("R")) {
-					// TODO: Fix addition of Record
-					System.out
-							.println("What would you like to call your Record?");
+					System.out.println("What would you like to call your Record?");
 					String rName = scan.nextLine();
-					// current.addChild(fsh.createRecord(current, rName));
 					fsh.createRecord(current, rName);
-					current = current
-							.getChild(current.getChildren().size() - 1);
+					current = current.getChild(current.getChildren().size() - 1);
 					System.out.println("What is the name of the field?");
 					String fName = scan.nextLine();
 					Record temp = (Record) current.getData();
@@ -168,8 +162,9 @@ public class mainPrototype {
 			// Directory Screen End
 		}
 		scan.close();
-		System.out.println("Bye!");
+		System.out.println("Encrypting data...");
 		esm.saveFileSystemHandler(); // save the FileSystemHandler to the disk
+		System.out.println("Data saved and encrypted. Bye!");
 	}
 
 }
