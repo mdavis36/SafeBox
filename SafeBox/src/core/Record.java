@@ -45,13 +45,10 @@ public class Record extends Folder{
 	}
 	
 	public String toString(){
-		String output = name+"\n";
+		String output = "\n" + getName();
 		int length = fields.size();
 		for(int i = 0; i < length; i++){
-			output += "\t"+fields.get(i).getName();
-			output +=":\n";
-			output += "\t  "+fields.get(i).getData();
-			output += "\n";
+			output += "\n\t"+fields.get(i).getName() + ":\n\t  " + getField(i).getData();
 		}
 		return output;
 	}
