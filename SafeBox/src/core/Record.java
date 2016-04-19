@@ -26,11 +26,12 @@ public class Record extends Folder{
 	}
 	
 	public Field getField(String field) {
-		for (int i = 0; i < fields.size(); i++) {
-			if (fields.get(i).getName() == field) {
-				return fields.get(i);
+		for(Field theField : fields) {
+			if (theField.getName().equals(field)) {
+				return theField;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -66,7 +67,7 @@ public class Record extends Folder{
 		f1.setData("field 1 content");
 		rec.addField(f1);
 		rec.setName("Record");
-		System.out.println(rec.getField("field 1 name").getName());
+		System.out.println(rec.getField("field 2 name"));
 		System.out.println(rec.toString());
 		rec.swap(1, 0);
 		System.out.println(rec.toString());
