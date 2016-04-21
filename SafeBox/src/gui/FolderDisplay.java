@@ -30,13 +30,13 @@ public class FolderDisplay extends BackgroundPanel{
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	
 	protected FolderDisplay(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(new Color(218, 232, 252), new Color(126, 166, 224), DISPLAY_WIDTH, sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
 		setLayout(new BorderLayout(0, 5));
 		setBounds(0, 0, DISPLAY_WIDTH, DISPLAT_HEIGHT);
 		
 		
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, new Color(108, 142, 191));
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
 		
@@ -53,9 +53,6 @@ public class FolderDisplay extends BackgroundPanel{
 		JLabel directoryTitle = new JLabel(sm.getEFSM().getFileSystemHandler().getCurrent().getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		directoryTitle.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		
-		
-		
 		
 		
 		CustomButton homeButton = new CustomButton("", 0, 0, 50, 50);

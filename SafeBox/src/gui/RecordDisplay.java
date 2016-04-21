@@ -21,8 +21,8 @@ public class RecordDisplay extends BackgroundPanel {
 	
 	
 	protected RecordDisplay(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(new Color(255, 242, 204), new Color(255, 217, 102), DISPLAY_WIDTH, sm.window.getHeight(), true));
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, new Color(215, 155, 0));
+		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
 		

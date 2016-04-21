@@ -34,13 +34,13 @@ public class SearchBar extends BackgroundPanel{
 	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
 	
 	protected SearchBar(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(new Color(218, 232, 252), new Color(126, 166, 224), BAR_WIDTH, BAR_HEIGHT, true));
-		
+		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
+		setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 5));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);		
 		//----------------------Border---------------------
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, new Color(108, 142, 191));
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
 		
@@ -76,7 +76,7 @@ public class SearchBar extends BackgroundPanel{
 		searchBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);
-		searchBox.setPreferredSize(new Dimension(450, (int)(BAR_HEIGHT * 0.6)));
+		searchBox.setPreferredSize(new Dimension(400, (int)(BAR_HEIGHT * 0.6)));
 		searchBox.setOpaque(true);
 		searchBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,6 +144,8 @@ public class SearchBar extends BackgroundPanel{
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
 		titleLabel.setLocation(700, 20);
+		
+		
 		
 		rightPanel.add(titleLabel);
 		
