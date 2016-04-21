@@ -7,15 +7,19 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import com.sun.glass.events.MouseEvent;
+
+import core.Node;
 
 public class FolderDisplay extends BackgroundPanel{
 
@@ -25,14 +29,20 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final int DISPLAY_WIDTH = 250;
 	private static final int DISPLAT_HEIGHT = 500;
 	
-	private JPanel toolBar = new JPanel(new BorderLayout(5,0));
+	private JPanel toolBar = new JPanel(new BorderLayout(15,0));
 	private JPanel centerBox = new JPanel(new FlowLayout(0));
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	
+	StateManager sm;
+	Node currentNode;
+	
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		this.sm = sm;
+		currentNode = sm.getEFSM().getFileSystemHandler().getCurrent();
+		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
-		setLayout(new BorderLayout(0, 5));
+		setLayout(new BorderLayout(10, 5));
 		setBounds(0, 0, DISPLAY_WIDTH, DISPLAT_HEIGHT);
 		
 		
@@ -41,16 +51,19 @@ public class FolderDisplay extends BackgroundPanel{
 		setOpaque(true);
 		
 		//-------------------TOOLBAR--------------------
+		
+		
 		CustomButton backButton = new CustomButton("", 0, 0, 50, 50);
 		backButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		backButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
 			}
 		});
 		
-		JLabel directoryTitle = new JLabel(sm.getEFSM().getFileSystemHandler().getCurrent().getData().getName());
+		JLabel directoryTitle = new JLabel(currentNode.getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		directoryTitle.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		
@@ -59,18 +72,56 @@ public class FolderDisplay extends BackgroundPanel{
 		homeButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		
+		
 		toolBar.add(backButton, BorderLayout.WEST);
 		toolBar.add(directoryTitle, BorderLayout.CENTER);
 		toolBar.add(homeButton, BorderLayout.EAST);
-		
 		//-------------------CENTERBOX---------------------
 		
+		
+		
 		//-------------------BOTTOMBAR---------------------
-		CustomButton addRecordOrField = new CustomButton("", 0, 0, 15, 15);
 		
+		CustomButton addRecordOrField = new CustomButton("Add Record / Folder", 0, 0, 25, 25);
+		addRecordOrField.setImageFromFile("plus.png", true);
+		addRecordOrField.setHorizontalAlignment(SwingConstants.LEFT);
+		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
+		addRecordOrField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(sm.window, "//Add record / folder", null, JOptionPane.PLAIN_MESSAGE);
+			}
+		});
 		
+		bottomBar.add(addRecordOrField);
 		
 		setTransparentAdd(true);
+		update();
 		add(toolBar, BorderLayout.NORTH);
+		add(bottomBar, BorderLayout.SOUTH);
+		add(centerBox, BorderLayout.CENTER);
+		
 	}
+	
+	protected void update(){
+		if(currentNode.hasChildren()){
+			clearCenter();
+			ArrayList<Node> children = currentNode.getChildren();
+			System.out.println(children.size());
+			for(int i = 0; i < currentNode.getChildren().size(); i++){
+				JLabel l = new JLabel(children.get(i).toString());
+				System.out.println(children.get(i).toString());
+				centerBox.add(l, BorderLayout.CENTER);
+				
+				
+			}			
+		}		
+	}
+	
+	protected void clearCenter(){
+		int count = centerBox.getComponentCount();
+		for(int i = 0; i < count; i++){
+			centerBox.remove(i);
+		}
+	}
+	
 }

@@ -57,7 +57,7 @@ public class CustomButton extends JButton{
 		setImageIcon(i, true);
 	}
 	
-	private void setImageIcon(Image image, boolean keepRatio){
+	public void setImageIcon(Image image, boolean keepRatio){
 		int tmp_height = getHeight();
 		if (keepRatio){
 			float ratio = image.getWidth(getParent())/ image.getHeight(getParent()) ;

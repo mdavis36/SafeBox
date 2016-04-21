@@ -41,7 +41,6 @@ public class MiscUtils {
 	}
 	
 	
-	
 	protected static BufferedImage getBufferedImageFromFile(String fileName, int width){
 		
 		float scale = 1f;
