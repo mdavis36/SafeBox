@@ -12,10 +12,16 @@ public class Field  implements Serializable{
 		data = "";
 	}
 	
+	/**
+	 * @param name the string being set as the name of the field
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * @param data the string being set as the data of the field
+	 */
 	public void setData(String data) {
 		this.data = data;
 	}

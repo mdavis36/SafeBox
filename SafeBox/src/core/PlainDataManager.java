@@ -18,6 +18,10 @@ public class PlainDataManager {
 		}
 	}
 	
+	/**
+	 * @param element
+	 * @return
+	 */
 	protected static String getElement(String element) {
 		if (data == null) {
 			attemptToLoadFromFile();

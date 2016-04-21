@@ -15,10 +15,19 @@ public class MiscUtils {
 		return new String(hexChars);
 	}
 	
+	/**
+	 * @param bytes the bytes of data being turned into a string
+	 * @return the string form of the byte
+	 */
 	public static String bytesToBase64String(byte[] bytes){
 		return new String(Base64.encode(bytes));
 	}
 	
+	/**
+	 * @param str the text being replaced
+	 * @param times how many times str will be repeated in the string
+	 * @return
+	 */
 	public static String repeatStr(String str, int times){
 		return new String(new char[times]).replace("\0", str);
 	}

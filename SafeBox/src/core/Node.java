@@ -69,10 +69,16 @@ public class Node implements Serializable{
 	////////////////
 	//MANIPULATION//
 	////////////////
+	/**
+	 * @param child the node added as a child of the current node
+	 */
 	public void addChild(Node child){
 		children.add(child);
 	}
 	
+	/**
+	 * @param index the spot where a child node is
+	 */
 	public void removeChild(int index){
 		children.remove(index);
 	}
@@ -123,6 +129,9 @@ public class Node implements Serializable{
 		return outputString;
 	}
 	
+	/**
+	 * @return whether of not the node has children
+	 */
 	public boolean hasChildren(){
 		if(children.size() == 0){
 			return false;

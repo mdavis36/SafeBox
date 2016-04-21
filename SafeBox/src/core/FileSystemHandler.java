@@ -66,6 +66,11 @@ public class FileSystemHandler implements Serializable{
 		return nodeToAdd;
 	}
 	
+	/**
+	 * @param parent the node that is the parent of the node being deleted
+	 * @param index the index in the tree of the folder being deleted
+	 * @return
+	 */
 	public boolean deleteFolder(Node parent, int index){
 		//TODO: Start from last index, remove inward
 		//TODO: Set nodeList pointer to null
@@ -87,6 +92,11 @@ public class FileSystemHandler implements Serializable{
 		}
 	}
 	
+	/**
+	 * @param query the name being searched for in the tree
+	 * @param startNode the node of the folder where the search starts in
+	 * @return
+	 */
 	public ArrayList<Node> search(String query, Node startNode){
 		ArrayList<Node> toReturn = new ArrayList<Node>();
 		int size = contents.getMaxGlobalIndex();
