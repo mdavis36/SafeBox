@@ -20,6 +20,8 @@ public class StateManager{
 	protected final String MAIN_SCREEN_STATE = "mainScreenState";
 	
 	private core.EncryptedStorageManager eSM;
+	private PasswordState passwordState;
+	private MainScreenState mainScreenState;
 	
 	static JPanel cards;
 	static CardLayout cl;
@@ -68,16 +70,21 @@ public class StateManager{
 	
 	private void populateStates(){
 		
-		PasswordState passwordState = new PasswordState(this);
-		MainScreenState mainScreenState = new MainScreenState(this);
+		passwordState = new PasswordState(this);
+		mainScreenState = new MainScreenState(this);
 		
 		cards.add(mainScreenState, MAIN_SCREEN_STATE);
 		cards.add(passwordState, PASSWORD_STATE);
 	}
 	
 	
-	protected EncryptedStorageManager getEFSM(){
+	protected EncryptedStorageManager getESM(){
 		return eSM;
+	}
+	
+	protected void update(){
+		mainScreenState.update();
+		passwordState.update();
 	}
 	
 }

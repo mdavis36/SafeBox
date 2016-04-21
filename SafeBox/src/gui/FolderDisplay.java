@@ -39,7 +39,8 @@ public class FolderDisplay extends BackgroundPanel{
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
-		currentNode = sm.getEFSM().getFileSystemHandler().getCurrent();
+		
+		currentNode = sm.getESM().getFileSystemHandler().getRoot();
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
 		setLayout(new BorderLayout(10, 5));
@@ -95,7 +96,6 @@ public class FolderDisplay extends BackgroundPanel{
 		bottomBar.add(addRecordOrField);
 		
 		setTransparentAdd(true);
-		update();
 		add(toolBar, BorderLayout.NORTH);
 		add(bottomBar, BorderLayout.SOUTH);
 		add(centerBox, BorderLayout.CENTER);
@@ -103,14 +103,15 @@ public class FolderDisplay extends BackgroundPanel{
 	}
 	
 	protected void update(){
+		System.out.println(currentNode.toString());
 		if(currentNode.hasChildren()){
 			clearCenter();
 			ArrayList<Node> children = currentNode.getChildren();
 			System.out.println(children.size());
 			for(int i = 0; i < currentNode.getChildren().size(); i++){
-				JLabel l = new JLabel(children.get(i).toString());
-				System.out.println(children.get(i).toString());
-				centerBox.add(l, BorderLayout.CENTER);
+				//JLabel l = new JLabel(children.get(i).toString());
+				System.out.println(children.get(i).getData().getName());
+				//centerBox.add(l, BorderLayout.CENTER);
 				
 				
 			}			

@@ -25,11 +25,12 @@ public class PasswordState extends State{
 	private final int textBoxWidth = 330;
 	
 	private void validatePasswordAndMoveForward(JPasswordField passwordField){
-		sm.getEFSM().setPassword(passwordField.getPassword());
-		if (sm.getEFSM().fileSystemExists()){			
-			if (sm.getEFSM().loadFileSystemHandler()){
+		sm.getESM().setPassword(passwordField.getPassword());
+		if (sm.getESM().fileSystemExists()){			
+			if (sm.getESM().loadFileSystemHandler()){
 				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
 				sm.setSuccessfullyDecrypted(true);
+				sm.update();
 			} else {
 				JOptionPane.showMessageDialog(sm.window, "Incorrect password, please try again.", null, JOptionPane.PLAIN_MESSAGE);
 				passwordField.setText("");
@@ -145,6 +146,12 @@ public class PasswordState extends State{
 				}
 			}
 		});
+		
+	}
+
+	@Override
+	protected void update() {
+		// TODO Auto-generated method stub
 		
 	}
 

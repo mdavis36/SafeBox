@@ -9,4 +9,6 @@ public abstract class State extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	StateManager sm;
+	
+	protected abstract void update();
 }

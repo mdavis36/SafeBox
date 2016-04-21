@@ -8,11 +8,13 @@ public class MainScreenState extends State{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel mainPanel = new JPanel();
-		
+	private SearchBar searchBar;
+	private FolderDisplay folderDisplay;
+	private RecordDisplay recordDisplay;
 	protected MainScreenState(final StateManager sm) {
-		SearchBar searchBar = new SearchBar(sm);
-		FolderDisplay folderDisplay = new FolderDisplay(sm);
-		RecordDisplay recordDisplay = new RecordDisplay(sm);
+		searchBar = new SearchBar(sm);
+		folderDisplay = new FolderDisplay(sm);
+		recordDisplay = new RecordDisplay(sm);
 		
 		mainPanel.setLayout(new BorderLayout(0,0));		
 		mainPanel.add(folderDisplay, BorderLayout.WEST);
@@ -26,6 +28,11 @@ public class MainScreenState extends State{
 		add(searchBar, BorderLayout.NORTH);
 		add(mainPanel, BorderLayout.CENTER);
 		
+	}
+
+	@Override
+	protected void update() {
+		folderDisplay.update();
 	}
 }
 	
