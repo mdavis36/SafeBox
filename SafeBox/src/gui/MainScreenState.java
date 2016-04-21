@@ -14,7 +14,7 @@ public class MainScreenState extends State{
 		FolderDisplay folderDisplay = new FolderDisplay(sm);
 		RecordDisplay recordDisplay = new RecordDisplay(sm);
 		
-		mainPanel.setLayout(new BorderLayout(0,0));
+		mainPanel.setLayout(new BorderLayout(0,0));		
 		mainPanel.add(folderDisplay, BorderLayout.WEST);
 		mainPanel.add(recordDisplay, BorderLayout.CENTER);
 		

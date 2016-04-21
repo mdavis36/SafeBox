@@ -48,23 +48,16 @@ public class CustomButton extends JButton{
 	}
 	
 	public void setImageFromFile(String fileName, boolean keepRatio){
-		
-		BufferedImage i = null;
-		try {
-			i = ImageIO.read(new File(PATH + fileName));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		setImageIcon(i, keepRatio);
-		
+		BufferedImage i = MiscUtils.getBufferedImageFromFile(PATH + fileName, getWidth());
+		setImageIcon(i, keepRatio);	
 	}
-	
+		
 	public void setGradientBackground(Color c1, Color c2, boolean down){
 		BufferedImage i = MiscUtils.getBufferedGradImage(c1, c2, getWidth(), getHeight(), down);
 		setImageIcon(i, true);
 	}
 	
-	private void setImageIcon(BufferedImage image, boolean keepRatio){
+	private void setImageIcon(Image image, boolean keepRatio){
 		int tmp_height = getHeight();
 		if (keepRatio){
 			float ratio = image.getWidth(getParent())/ image.getHeight(getParent()) ;
@@ -74,7 +67,6 @@ public class CustomButton extends JButton{
 		setIcon(new ImageIcon(small));
 		setSize(getWidth(),tmp_height);
 	}
-	
 }
 
 

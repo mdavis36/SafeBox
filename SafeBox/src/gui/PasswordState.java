@@ -2,11 +2,13 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dialog;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -35,8 +37,13 @@ public class PasswordState extends State{
 		
 		
 		JLabel lblSafeboxLogo = new JLabel("//RUNNING FROM MAIN");
-		lblSafeboxLogo.setIcon(new ImageIcon("res/logos/largeLogo.png"));
-		lblSafeboxLogo.setBounds(321, 170, 162, 14);
+		//lblSafeboxLogo.setIcon(new ImageIcon("res/logos/largeLogo.png"));
+		int logoWidth = 160;
+		lblSafeboxLogo.setSize(new Dimension(logoWidth, 20));
+		BufferedImage logo = MiscUtils.getBufferedImageFromFile("res/logos/largeLogo.png", lblSafeboxLogo.getWidth());
+		lblSafeboxLogo.setIcon(new ImageIcon(logo));
+		lblSafeboxLogo.setSize(new Dimension(logo.getWidth(), logo.getHeight()));
+		lblSafeboxLogo.setLocation((sm.window.getWidth() / 2) - (logo.getWidth() / 2), (sm.window.getHeight() / 2) - (logo.getHeight() / 2) - 100);
 		add(lblSafeboxLogo);
 		
 		
@@ -46,7 +53,7 @@ public class PasswordState extends State{
 														(sm.window.getHeight() / 2) + 65, 
 														buttonWidth,
 														buttonHeight);
-		enterSBButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
+		enterSBButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, new Color(255, 165, 0), true);
 		enterSBButton.setBoarderDetails(new Color(215, 155, 0), 2);
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

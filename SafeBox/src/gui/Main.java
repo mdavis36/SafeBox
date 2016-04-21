@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class Main {
@@ -14,6 +16,7 @@ public class Main {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
 		window.setSize(WIDTH, HEIGHT);
+		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		new StateManager(window);
 	}

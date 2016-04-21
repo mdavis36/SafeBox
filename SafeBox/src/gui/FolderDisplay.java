@@ -16,7 +16,7 @@ public class FolderDisplay extends BackgroundPanel{
 	private Border border;
 	private int boarderWidth = 3;
 	
-	private static final int DISPLAY_WIDTH = 200;
+	private static final int DISPLAY_WIDTH = 250;
 	private static final int DISPLAT_HEIGHT = 500;
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(new Color(218, 232, 252), new Color(126, 166, 224), DISPLAY_WIDTH, sm.window.getHeight(), true));

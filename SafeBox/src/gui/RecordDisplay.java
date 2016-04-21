@@ -11,11 +11,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class RecordDisplay extends JPanel {
+	
+
+public class RecordDisplay extends BackgroundPanel {
+	private static final int DISPLAY_WIDTH = 250;
 	private Border border;
 	private int boarderWidth = 3;
+	
+	
+	
 	protected RecordDisplay(final StateManager sm){
-		
+		super(MiscUtils.getBufferedGradImage(new Color(255, 242, 204), new Color(255, 217, 102), DISPLAY_WIDTH, sm.window.getHeight(), true));
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, new Color(215, 155, 0));
 		setBorder(border);
 		setOpaque(true);
@@ -24,9 +30,9 @@ public class RecordDisplay extends JPanel {
 		JButton btnNewButton_1 = new JButton("record display");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(255, 153, 102));
+		btnNewButton_1.setBackground(new Color(255, 217, 102));
 		btnNewButton_1.setPreferredSize(new Dimension(600, 600));
-		add(btnNewButton_1);
+		//add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
