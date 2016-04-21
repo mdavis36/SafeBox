@@ -19,8 +19,8 @@ public class PlainDataManager {
 	}
 	
 	/**
-	 * @param element
-	 * @return
+	 * @param element the index being grabbed from the hashmap
+	 * @return the data at the element
 	 */
 	protected static String getElement(String element) {
 		if (data == null) {
@@ -29,6 +29,10 @@ public class PlainDataManager {
 		return (String) data.get(element);
 	}
 	
+	/**
+	 * @param element the string index for the hashmap
+	 * @param value hte data being saved at the index in the hashmap
+	 */
 	protected static void setElement(String element, String value) {
 		if (data == null) {
 			attemptToLoadFromFile();

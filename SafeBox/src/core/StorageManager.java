@@ -8,6 +8,11 @@ import java.nio.file.Paths;
 
 public class StorageManager {
 
+	/**
+	 * @param data bytes being saved
+	 * @param file the name of the file being saved to
+	 * @return whether or not it was saved
+	 */
 	protected static boolean saveToFile(byte[] data, String file) {
 		try {
 			Files.write(new File(file).toPath(), data);
@@ -17,6 +22,10 @@ public class StorageManager {
 		return true;
 	}
 	
+	/**
+	 * @param file the name of the file bing read from
+	 * @return the bytes read from the file
+	 */
 	protected static byte[] readFromFile(String file) {
 		try {
 			return Files.readAllBytes(Paths.get(file));
@@ -27,6 +36,10 @@ public class StorageManager {
 		return null;
 	}
 	
+	/**
+	 * @param file the name of the file
+	 * @return whether the file exists
+	 */
 	protected static boolean fileExists(String file) {
 		if (file == null){
 			return false;

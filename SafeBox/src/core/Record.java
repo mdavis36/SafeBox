@@ -15,6 +15,9 @@ public class Record extends Folder{
 	}
 	
 	//TO-DO test if it will delete same object
+	/**
+	 * @param field the field being removed
+	 */
 	public void deleteField(Field field) {
 		fields.remove(field);
 	}
@@ -39,6 +42,10 @@ public class Record extends Folder{
 		return fields;
 	}
 	
+	/**
+	 * @param field1 a field being switched
+	 * @param field2 a field being switched
+	 */
 	public void swap(int field1, int field2) {
 		Field temp = fields.set(field1, fields.get(field2));
 		fields.set(field2, temp);

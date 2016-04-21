@@ -21,6 +21,10 @@ class SerializationUtils {
 		return tmpObject;
 	}
 
+	/**
+	 * @param obj the object being turned to a byte array
+	 * @return the byte array 
+	 */
 	protected static byte[] objectToByteArray(Object obj){
 		byte[] byteArray = null;
 		try (ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream()) {
