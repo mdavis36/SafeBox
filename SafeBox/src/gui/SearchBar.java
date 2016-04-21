@@ -25,16 +25,16 @@ public class SearchBar extends BackgroundPanel{
 	private Border border;
 	private int boarderWidth = 3;
 	
+	private JPanel leftPanel = new JPanel(new FlowLayout());
 	private JPanel centerPanel = new JPanel(new FlowLayout());
+	private JPanel rightPanel = new JPanel(new FlowLayout());
 	
 	protected SearchBar(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(new Color(218, 232, 252), new Color(126, 166, 224), BAR_WIDTH, BAR_HEIGHT, true));
 		
 		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
-		setLayout(new BorderLayout(0,0));
+		setLayout(new BorderLayout(20, 5));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);		
-		
-		
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, new Color(108, 142, 191));
 		setBorder(border);
@@ -42,10 +42,11 @@ public class SearchBar extends BackgroundPanel{
 		
 		
 		
+		//-----------------------------------------
+		//------------- LEFT PANEL ----------------
+		//-----------------------------------------
 		
-		
-		
-		
+		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//---------------------Settings button---------------------
 		int buttonWidth = BAR_HEIGHT - 10;
@@ -57,35 +58,60 @@ public class SearchBar extends BackgroundPanel{
 				JOptionPane.showMessageDialog(sm.window, "//This is your settings", null, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
-		add(settingsButton, BorderLayout.WEST);
+		leftPanel.add(settingsButton);
 		
+		
+		//-------------------------------------------
+		//------------- CENTER PANEL ----------------
+		//-------------------------------------------
+		
+		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Search Box---------------------
 		JTextField searchBox = new JTextField("SearchBar");
 		searchBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);
-		searchBox.setPreferredSize(new Dimension(500, (int)(BAR_HEIGHT * 0.6)));
+		searchBox.setPreferredSize(new Dimension(450, (int)(BAR_HEIGHT * 0.6)));
 		searchBox.setOpaque(true);
-		centerPanel.add(searchBox, BorderLayout.CENTER);
 		searchBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
 			}
 		});
 		
+		CustomButton searchButton = new CustomButton("Search", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
+		searchButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
+		searchButton.setBoarderDetails(new Color(215, 155, 0), 2);
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(sm.window, "You", null, JOptionPane.PLAIN_MESSAGE);
+			}
+		});
+		
+		centerPanel.add(searchBox);
+		centerPanel.add(searchButton);
 		
 		
+		//------------------------------------------
+		//------------- RIGHT PANEL ----------------
+		//------------------------------------------
 		
+		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Title---------------------
 		JLabel titleLabel = new JLabel("SafeBox");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
 		titleLabel.setLocation(700, 20);
-		add(titleLabel, BorderLayout.EAST);
+		
+		rightPanel.add(titleLabel);
+		
+		
 		setTransparentAdd(true);
+		add(leftPanel, BorderLayout.WEST);
 		add(centerPanel, BorderLayout.CENTER);
+		add(rightPanel, BorderLayout.EAST);
 	}
 	
 }
