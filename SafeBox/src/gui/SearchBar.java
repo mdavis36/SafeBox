@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
@@ -28,6 +30,8 @@ public class SearchBar extends BackgroundPanel{
 	private JPanel leftPanel = new JPanel(new FlowLayout());
 	private JPanel centerPanel = new JPanel(new FlowLayout());
 	private JPanel rightPanel = new JPanel(new FlowLayout());
+	
+	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
 	
 	protected SearchBar(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(new Color(218, 232, 252), new Color(126, 166, 224), BAR_WIDTH, BAR_HEIGHT, true));
@@ -68,7 +72,7 @@ public class SearchBar extends BackgroundPanel{
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Search Box---------------------
-		JTextField searchBox = new JTextField("SearchBar");
+		JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
 		searchBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);
@@ -79,6 +83,42 @@ public class SearchBar extends BackgroundPanel{
 				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
 			}
 		});
+		searchBox.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if (searchBox.getText().equals(SEARCH_BAR_STARTING_VALUE)){
+					searchBox.setText("");
+				}
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+		);
 		
 		CustomButton searchButton = new CustomButton("Search", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
 		searchButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
