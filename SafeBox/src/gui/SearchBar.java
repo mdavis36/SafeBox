@@ -72,7 +72,7 @@ public class SearchBar extends BackgroundPanel{
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Search Box---------------------
-		JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
+		final JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
 		searchBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);

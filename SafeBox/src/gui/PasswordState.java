@@ -53,8 +53,8 @@ public class PasswordState extends State{
 														(sm.window.getHeight() / 2) + 65, 
 														buttonWidth,
 														buttonHeight);
-		enterSBButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, new Color(255, 165, 0), true);
-		enterSBButton.setBoarderDetails(new Color(215, 155, 0), 2);
+		enterSBButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		enterSBButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
@@ -69,8 +69,8 @@ public class PasswordState extends State{
 														(sm.window.getHeight() / 2) + 110, 
 														buttonWidth,
 														buttonHeight);
-		forgotPWButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
-		forgotPWButton.setBoarderDetails(new Color(215, 155, 0), 2);
+		enterSBButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		enterSBButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

@@ -14,9 +14,9 @@ import javax.imageio.ImageIO;
 public class MiscUtils {
 	
 	protected static final Color BUTTON_COLOUR_LIGHT = new Color(255, 205, 40);
-	/*protected static final Color BUTTON_COLOUR_LIGHT = new Color(255, 205, 40);
-	protected static final Color BUTTON_COLOUR_LIGHT = new Color(255, 205, 40);
-	
+	protected static final Color BUTTON_COLOUR_DARK = new Color(255, 165, 0);
+	protected static final Color BUTTON_COLOUR_BORDER = new Color(215, 155, 0);
+	/*
 	protected static final Color BUTTON_COLOUR_LIGHT = new Color(255, 205, 40);
 	protected static final Color BUTTON_COLOUR_LIGHT = new Color(255, 205, 40);*/
 	
@@ -48,9 +48,6 @@ public class MiscUtils {
 			e.printStackTrace();
 		}
 		scale = (float)width / (float)img.getWidth(null);
-		System.out.println(scale);
-		System.out.println(scale * img.getWidth(null));
-		System.out.println(scale * img.getHeight(null));
 		BufferedImage bi = new BufferedImage((int)(scale * (float)img.getWidth(null)),
 												(int)(scale * (float)img.getHeight(null)),
 												BufferedImage.TYPE_INT_ARGB);
