@@ -37,7 +37,6 @@ public class PasswordState extends State{
 		
 		
 		JLabel lblSafeboxLogo = new JLabel("//RUNNING FROM MAIN");
-		//lblSafeboxLogo.setIcon(new ImageIcon("res/logos/largeLogo.png"));
 		int logoWidth = 160;
 		lblSafeboxLogo.setSize(new Dimension(logoWidth, 20));
 		BufferedImage logo = MiscUtils.getBufferedImageFromFile("res/logos/largeLogo.png", lblSafeboxLogo.getWidth());
@@ -73,7 +72,6 @@ public class PasswordState extends State{
 		forgotPWButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				
 				JOptionPane.showMessageDialog(sm.window, "//This is your hint", null, JOptionPane.PLAIN_MESSAGE);
 			}
