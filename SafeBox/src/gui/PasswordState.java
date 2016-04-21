@@ -24,6 +24,22 @@ public class PasswordState extends State{
 	private final int buttonHeight = 270 / 7;
 	private final int textBoxWidth = 330;
 	
+	private void validatePasswordAndMoveForward(JPasswordField passwordField){
+		if (sm.getEFSM().fileSystemExists()){
+			sm.getEFSM().setPassword(passwordField.getPassword());
+			
+			if (sm.getEFSM().loadFileSystemHandler()){
+				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
+			} else {
+				JOptionPane.showMessageDialog(sm.window, "Incorrect password, please try again.", null, JOptionPane.PLAIN_MESSAGE);
+				passwordField.setText("");
+			}
+			
+		} else {
+			sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
+		}
+	}
+	
 	protected PasswordState(final StateManager sm) {
 		this.sm = sm;
 		
@@ -45,7 +61,13 @@ public class PasswordState extends State{
 		lblSafeboxLogo.setLocation((sm.window.getWidth() / 2) - (logo.getWidth() / 2), (sm.window.getHeight() / 2) - (logo.getHeight() / 2) - 100);
 		add(lblSafeboxLogo);
 		
-		
+		final JPasswordField passWordField = new JPasswordField();
+		passWordField.setBounds((sm.window.getWidth() / 2) - (textBoxWidth / 2), 
+								(sm.window.getHeight() / 2) + 15, 
+								textBoxWidth,
+								40);
+		passWordField.setVisible(false);
+		add(passWordField);
 		
 		CustomButton enterSBButton = new CustomButton("Enter SafeBox",
 														(sm.window.getWidth() / 2) - (buttonWidth / 2), 
@@ -56,8 +78,9 @@ public class PasswordState extends State{
 		enterSBButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
+				validatePasswordAndMoveForward(passWordField);
 			}
+				
 		});
 		add(enterSBButton);
 		
@@ -76,18 +99,7 @@ public class PasswordState extends State{
 				JOptionPane.showMessageDialog(sm.window, "//This is your hint", null, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
-		add(forgotPWButton);
-		
-		
-		
-		final JPasswordField passWordField = new JPasswordField();
-		passWordField.setBounds((sm.window.getWidth() / 2) - (textBoxWidth / 2), 
-								(sm.window.getHeight() / 2) + 15, 
-								textBoxWidth,
-								40);
-		passWordField.setVisible(false);
-		add(passWordField);
-		
+		add(forgotPWButton);		
 		
 		
 		final JTextField textField = new JTextField("Enter Password");
