@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 public class RecordDisplay extends JPanel {
 	
-	
 	protected RecordDisplay(final StateManager sm){
 		JButton btnNewButton_1 = new JButton("record display");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));

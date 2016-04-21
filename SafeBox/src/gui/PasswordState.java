@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 public class PasswordState extends State{
 	private static final long serialVersionUID = 1L;
 	private final int buttonWidth = 270;
+	private final int buttonHeight = 270 / 7;
 	private final int textBoxWidth = 330;
 	
 	protected PasswordState(final StateManager sm) {
@@ -41,12 +42,12 @@ public class PasswordState extends State{
 		
 		
 		CustomButton enterSBButton = new CustomButton("Enter SafeBox",
-														"buttonBackground1.png",
 														(sm.window.getWidth() / 2) - (buttonWidth / 2), 
 														(sm.window.getHeight() / 2) + 65, 
 														buttonWidth,
-														0,
-														true);
+														buttonHeight);
+		enterSBButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
+		enterSBButton.setBoarderDetails(new Color(215, 155, 0), 2);
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
@@ -57,12 +58,12 @@ public class PasswordState extends State{
 		
 		
 		CustomButton forgotPWButton = new CustomButton("Forgot Password",
-														"buttonBackground1.png", 
 														(sm.window.getWidth() / 2) - (buttonWidth / 2), 
 														(sm.window.getHeight() / 2) + 110, 
 														buttonWidth,
-														0,
-														true);
+														buttonHeight);
+		forgotPWButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
+		forgotPWButton.setBoarderDetails(new Color(215, 155, 0), 2);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

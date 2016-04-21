@@ -79,37 +79,8 @@ public class testGUI {
 		lblSafeboxLogo.setBounds(321, 170, 162, 14);
 		passCard.add(lblSafeboxLogo);
 		
-		CustomButton enterSBButton = new CustomButton("Enter SafeBox",
-														"buttonBackground1.png",
-														(window.getWidth() / 2) - (270 / 2), 
-														(window.getHeight() / 2) - (60 / 2) + 40, 
-														270,
-														200,
-														true);
-		enterSBButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cl.show(cards, "main");
-			}
-		});
 		
 		
-		passCard.add(enterSBButton);
-		
-		CustomButton forgotPWButton = new CustomButton("Forgot Password",
-														"buttonBackground1.png", 
-														(window.getWidth() / 2) - (270 / 2), 
-														(window.getHeight() / 2) - (60 / 2) + 100, 
-														270,
-														0,
-														true);
-		forgotPWButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				JOptionPane.showMessageDialog(passCard, "//This is your hint", null, JOptionPane.PLAIN_MESSAGE);
-			}
-		});
-		passCard.add(forgotPWButton);
 
 		
 		//-------------------------------------------------

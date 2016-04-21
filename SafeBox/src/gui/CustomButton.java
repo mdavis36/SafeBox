@@ -1,47 +1,92 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.Border;
+
+import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
 
 public class CustomButton extends JButton{
 
-	private final static String path = "res/buttons/";
-	protected int c_width;
-	protected int c_height;
+	private final static String PATH = "res/buttons/";
+	private final static float FONT_MULTIPLIER = 0.6f;
 	
-	public CustomButton(String text, String fileName, int x, int y, int width, int height, boolean keepImgRatio){
+	
+	public CustomButton(String text, int x, int y, int width, int height){
 		super(text);
-		c_width = width;
-		c_height = height;
+		setLocation(x, y);
+		setSize(width, height);
 		
-		Image i = null;
-		try {
-			i = ImageIO.read(new File(path + fileName));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		if (keepImgRatio){
-			float ratio = i.getWidth(getParent())/ i.getHeight(getParent()) ;
-			c_height =(int) (c_width / ratio);
-		}
-		
-		Image small = i.getScaledInstance(c_width, c_height, Image.SCALE_SMOOTH);
-		this.setIcon(new ImageIcon(small));
 		setBorderPainted(false);
 		setBorder(null);
 		setContentAreaFilled(false);
+		
 		setHorizontalTextPosition(JButton.CENTER);
 		setVerticalTextPosition(JButton.CENTER);
 		setForeground(Color.WHITE);
-		setFont(new Font("Arial", Font.PLAIN, (int)(c_height * 0.6)));
-		setBounds(x, y, c_width, c_height);	
+		setFont(new Font("Arial", Font.PLAIN, (int)(getHeight() * FONT_MULTIPLIER)));
 	}
+	
+	public void setBoarderDetails(Color c, int w){
+		setBorderPainted(true);
+		setBorder(BorderFactory.createMatteBorder(w, w, w, w, c));
+	}
+	
+	public void setImageFromFile(String fileName, boolean keepRatio){
+		
+		BufferedImage i = null;
+		try {
+			i = ImageIO.read(new File(PATH + fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setImageIcon(i, keepRatio);
+		
+	}
+	
+	public void setGradientBackground(Color c1, Color c2, boolean down){
+		BufferedImage i = MiscUtils.getBufferedGradImage(c1, c2, getWidth(), getHeight(), down);
+		setImageIcon(i, true);
+	}
+	
+	private void setImageIcon(BufferedImage image, boolean keepRatio){
+		int tmp_height = getHeight();
+		if (keepRatio){
+			float ratio = image.getWidth(getParent())/ image.getHeight(getParent()) ;
+			tmp_height =(int) (getWidth() / ratio);
+		}
+		Image small = image.getScaledInstance(getWidth(), tmp_height, Image.SCALE_SMOOTH);
+		setIcon(new ImageIcon(small));
+		setSize(getWidth(),tmp_height);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
