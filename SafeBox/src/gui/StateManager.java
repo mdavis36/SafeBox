@@ -24,6 +24,16 @@ public class StateManager{
 	static JPanel cards;
 	static CardLayout cl;
 	
+	private boolean successfullyDecrypted = false;
+	
+	boolean isSuccessfullyDecrypted() {
+		return successfullyDecrypted;
+	}
+
+	void setSuccessfullyDecrypted(boolean successfullyDecrypted) {
+		this.successfullyDecrypted = successfullyDecrypted;
+	}
+
 	protected StateManager(JFrame window){
 		this.window = window;
 		eSM = new EncryptedStorageManager();
@@ -41,6 +51,19 @@ public class StateManager{
 		}else{
 			JOptionPane.showMessageDialog(window, "A file system Exists", null, JOptionPane.PLAIN_MESSAGE);
 		}
+		
+		Runtime.getRuntime().addShutdownHook(new Thread(){
+		    @Override
+		    public void run(){
+		    	if (successfullyDecrypted){
+			    	System.out.println("Saving...");
+			        eSM.saveFileSystemHandler();
+			        System.out.println("Saved.");
+		    	}
+		    }
+		});
+		
+		
 	}
 	
 	private void populateStates(){

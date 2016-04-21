@@ -25,18 +25,21 @@ public class PasswordState extends State{
 	private final int textBoxWidth = 330;
 	
 	private void validatePasswordAndMoveForward(JPasswordField passwordField){
-		if (sm.getEFSM().fileSystemExists()){
-			sm.getEFSM().setPassword(passwordField.getPassword());
-			
+		sm.getEFSM().setPassword(passwordField.getPassword());
+		if (sm.getEFSM().fileSystemExists()){			
 			if (sm.getEFSM().loadFileSystemHandler()){
 				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
+				sm.setSuccessfullyDecrypted(true);
 			} else {
 				JOptionPane.showMessageDialog(sm.window, "Incorrect password, please try again.", null, JOptionPane.PLAIN_MESSAGE);
 				passwordField.setText("");
 			}
 			
 		} else {
-			sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
+			if (passwordField.getPassword().length > 1){
+				sm.setSuccessfullyDecrypted(true);
+				sm.cl.show(sm.cards, sm.MAIN_SCREEN_STATE);
+			}
 		}
 	}
 	
