@@ -20,7 +20,9 @@ public class FileSystemHandler implements Serializable{
 		currentNode = contents.getRoot();
 	}
 
-	
+	public void setCurrentNode(Node n){
+		currentNode = n;
+	}
 	///////////
 	//GETTERS//
 	///////////
