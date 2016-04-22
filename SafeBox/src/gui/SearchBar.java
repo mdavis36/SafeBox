@@ -27,9 +27,9 @@ public class SearchBar extends BackgroundPanel{
 	private Border border;
 	private int boarderWidth = 3;
 	
-	private JPanel leftPanel = new JPanel(new FlowLayout());
-	private JPanel centerPanel = new JPanel(new FlowLayout());
-	private JPanel rightPanel = new JPanel(new FlowLayout());
+	private JPanel leftPanel = new JPanel(new FlowLayout(0));
+	private JPanel centerPanel = new JPanel(new FlowLayout(0));
+	private JPanel rightPanel = new JPanel(new FlowLayout(0));
 	
 	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
 	
@@ -37,7 +37,7 @@ public class SearchBar extends BackgroundPanel{
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
 		setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
-		setLayout(new BorderLayout(20, 5));
+		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);		
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);

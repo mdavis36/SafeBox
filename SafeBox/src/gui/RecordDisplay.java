@@ -29,6 +29,7 @@ public class RecordDisplay extends BackgroundPanel {
 		setOpaque(true);
 		
 		
+		
 		JButton btnNewButton_1 = new JButton("record display");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));

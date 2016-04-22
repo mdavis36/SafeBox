@@ -49,7 +49,7 @@ public class FolderDisplay extends BackgroundPanel{
 		currentNode = sm.getESM().getFileSystemHandler().getRoot();
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
-		setLayout(new BorderLayout(10, 5));
+		setLayout(new BorderLayout(0, 0));
 		setBounds(0, 0, DISPLAY_WIDTH, DISPLAT_HEIGHT);
 		
 		
@@ -93,7 +93,7 @@ public class FolderDisplay extends BackgroundPanel{
 		toolBar.add(homeButton, BorderLayout.EAST);
 		//-------------------CENTERBOX---------------------
 		
-		
+		centerBox.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 5));
 		
 		//-------------------BOTTOMBAR---------------------
 		
@@ -140,8 +140,9 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 40, i, sm);
-						centerBox.add(fdb, BorderLayout.CENTER);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 50, i, sm);
+						setTransparentAdd(true);
+						centerBox.add(fdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
 					}
@@ -150,8 +151,8 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if(child.getData().isRecord()){
-						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 40, i, sm);
-						centerBox.add(rdb, BorderLayout.CENTER);
+						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 50, i, sm);
+						centerBox.add(rdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
 					}

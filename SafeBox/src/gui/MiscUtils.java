@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -27,6 +28,8 @@ public class MiscUtils {
 	protected static final Color ORANGE_PANEL_COLOUR_DARK = new Color(255, 217, 102);
 	protected static final Color ORANGE_PANEL_COLOUR_BORDER = new Color(215, 155, 0);
 	
+	protected static final Color TRANSPARENT = new Color(0, 0, 0, 0);
+	
 	protected static BufferedImage getBufferedGradImage(Color c1, Color c2, int w, int h, boolean d){
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = bi.createGraphics();
@@ -42,6 +45,17 @@ public class MiscUtils {
 		return bi;
 	}
 	
+	protected static BufferedImage getTransparentImage(int width, int height){
+		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = bi.createGraphics();
+		AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.CLEAR, 0.0f);
+		g2d.setComposite(ac);
+		g2d.setColor(new Color(0,0,0,0));
+		g2d.fillRect(0, 0, width, height);
+		g2d.drawRect(0, 0, width, height);
+		g2d.dispose();
+		return bi;
+	}
 	
 	protected static BufferedImage getBufferedImageFromFile(String fileName, int width){
 		
