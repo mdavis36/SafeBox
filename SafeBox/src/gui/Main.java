@@ -18,6 +18,7 @@ public class Main {
 		window.setSize(WIDTH, HEIGHT);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
-		new StateManager(window);
+		StateManager sm = new StateManager(window);
+		window.add(sm);
 	}
 }

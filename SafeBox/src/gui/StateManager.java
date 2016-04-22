@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
 
-public class StateManager{
+public class StateManager extends JPanel{
 	protected JFrame window;
 
 	protected final String PASSWORD_STATE = "passwordState";
@@ -40,13 +40,14 @@ public class StateManager{
 		this.window = window;
 		eSM = new EncryptedStorageManager();
 		//Initialize cards
-		cards = new JPanel(new CardLayout());
-		cl = (CardLayout) cards.getLayout();
+		//cards = new JPanel(new CardLayout());
+		setLayout(new CardLayout());
+		cl = (CardLayout) getLayout();
 		
 		populateStates();
 		
-		window.getContentPane().add(cards);
-		cl.show(cards, PASSWORD_STATE);
+		window.getContentPane().add(this);
+		cl.show(this, PASSWORD_STATE);
 		
 		if(!eSM.fileSystemExists()){
 			JOptionPane.showMessageDialog(window, "This is the first time running", null, JOptionPane.PLAIN_MESSAGE);
@@ -73,10 +74,13 @@ public class StateManager{
 		passwordState = new PasswordState(this);
 		mainScreenState = new MainScreenState(this);
 		
-		cards.add(mainScreenState, MAIN_SCREEN_STATE);
-		cards.add(passwordState, PASSWORD_STATE);
+		add(mainScreenState, MAIN_SCREEN_STATE);
+		add(passwordState, PASSWORD_STATE);
 	}
 	
+	protected void setState(String stateName){
+		cl.show(this, stateName);
+	}
 	
 	protected EncryptedStorageManager getESM(){
 		return eSM;

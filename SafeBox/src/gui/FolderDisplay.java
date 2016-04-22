@@ -40,6 +40,7 @@ public class FolderDisplay extends BackgroundPanel{
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
 		
+		sm.getESM().loadFileSystemHandler();
 		currentNode = sm.getESM().getFileSystemHandler().getRoot();
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
@@ -60,7 +61,7 @@ public class FolderDisplay extends BackgroundPanel{
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
+				sm.setState(sm.PASSWORD_STATE);
 			}
 		});
 		
@@ -103,7 +104,8 @@ public class FolderDisplay extends BackgroundPanel{
 	}
 	
 	protected void update(){
-		System.out.println(currentNode.toString());
+		System.out.println("FOLDERDISPLAY");
+		System.out.println(sm.getESM().getFileSystemHandler().getRoot().deepToString());
 		if(currentNode.hasChildren()){
 			clearCenter();
 			ArrayList<Node> children = currentNode.getChildren();
