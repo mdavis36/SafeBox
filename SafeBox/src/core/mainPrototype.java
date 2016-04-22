@@ -13,7 +13,6 @@ public class mainPrototype {
 		while (!back) {
 			if (size == 0) {
 				System.out.println("Nothing found.\n");
-				return current;
 			} else {
 				System.out.println("Results:");
 				for (int i = 0; i < size; i++) {
@@ -43,6 +42,27 @@ public class mainPrototype {
 		return current;
 	}
 
+	public static boolean deleteFolder(FileSystemHandler fsh, Node parent){
+		Scanner scan = new Scanner(System.in);
+		int pick;
+		do{
+			System.out.println("Enter the Record/Folder number you would like to delete.");
+			pick = scan.nextInt();
+		}while (!(pick > 0 && pick < parent.getChildren().size()));
+		System.out.println("Are you sure you want to delete " + parent.getChild(pick-1).getData().getName() + " and all of it's contents?\nY/N");
+		String choice = "";
+		while (!(choice.equalsIgnoreCase("n") || choice.equalsIgnoreCase("y"))){
+			choice = scan.nextLine();
+		}
+		if(choice.equalsIgnoreCase("y")){
+			fsh.deleteFolder(parent,pick-1);
+			scan.close();
+			return true;
+		}
+		scan.close();
+		return false;
+		
+	}
 	public static void main(String[] args) {
 		///////////////
 		//SETUP BEGIN//
@@ -54,9 +74,9 @@ public class mainPrototype {
 		String directoryPath;
 		EncryptedStorageManager esm = new EncryptedStorageManager();
 		do {
-			System.out.println("Enter a password: "); //user creates or enters existing password at startup
+			System.out.println("Enter a password: ");
 			choice = scan.nextLine();
-		} while (choice.isEmpty()); //in case user presses enter
+		} while (choice.isEmpty());
 		esm.setPassword(choice.toCharArray()); // this is used
 																// for all
 																// encryption/decryption
@@ -68,13 +88,9 @@ public class mainPrototype {
 												// filesystem
 				System.out.println("Successfully loaded FSH!");
 			} else {
-				while (!esm.loadFileSystemHandler()){
-				do {
-					System.out.println("WRONG! Enter different password: "); //user creates or enters existing password at startup
-					choice = scan.nextLine();
-				} while (choice.isEmpty()); //in case user presses enter
-				esm.setPassword(choice.toCharArray());
-				}
+				System.out.println("Error loading FSH!");
+				scan.close();
+				return; // abort if loading failed
 			}
 		}
 		Tree tree = esm.fileSystem.contents;
@@ -131,12 +147,12 @@ public class mainPrototype {
 				System.out.println("Directory: " + directoryPath);// +
 																	// current.toString());
 				System.out.println(current.toString());
-				System.out.println("\nSelect Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[S]earch\n[B]ack\n[E]xit");
+				System.out.println("\nSelect Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[S]earch\n[D]elete\n[B]ack\n[E]xit");
 				choice = scan.nextLine();
 				if (choice.equals("F") || choice.equals("f")) {
 					System.out.println("What would you like to call your Folder?");
 					String fName = scan.nextLine();
-					fsh.createFolder(fsh.getCurrent(), fName);
+					fsh.createFolder(current, fName);
 				} else if (choice.equalsIgnoreCase("R")) {
 					System.out.println("What would you like to call your Record?");
 					String rName = scan.nextLine();
@@ -162,8 +178,11 @@ public class mainPrototype {
 					exit = true;
 				} else if (choice.equalsIgnoreCase("S")) {
 					current = search(scan, fsh, current);
-				} else if (!choice.isEmpty() && 
-					choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
+				} 
+				else if (choice.equalsIgnoreCase("D")){
+					deleteFolder(fsh, current);
+				}
+				else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 					int index = Integer.parseInt(choice);
 					if (index <= current.getChildren().size() && index > 0) {
 						current = current.getChild(index - 1);
