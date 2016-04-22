@@ -32,7 +32,7 @@ public class PasswordState extends BackgroundPanel{
 			if (sm.getESM().loadFileSystemHandler()){
 				sm.setState(sm.MAIN_SCREEN_STATE);
 				sm.setSuccessfullyDecrypted(true);
-				//System.out.println(sm.getESM().getFileSystemHandler().getRoot().deepToString());
+				sm.init();
 				sm.update();
 			} else {
 				JOptionPane.showMessageDialog(sm.window, "Incorrect password, please try again.", null, JOptionPane.PLAIN_MESSAGE);

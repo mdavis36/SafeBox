@@ -86,6 +86,10 @@ public class StateManager extends JPanel{
 		return eSM;
 	}
 	
+	protected void init(){
+		mainScreenState.init();
+	}
+	
 	protected void update(){
 		mainScreenState.update();
 		passwordState.update();

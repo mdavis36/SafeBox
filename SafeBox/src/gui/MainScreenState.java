@@ -32,6 +32,10 @@ public class MainScreenState extends BackgroundPanel{
 		
 	}
 
+	protected void init(){
+		folderDisplay.init();
+	}
+	
 	protected void update() {
 		folderDisplay.update();
 	}

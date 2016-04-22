@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -63,5 +65,17 @@ public class MiscUtils {
 		
 		return bi;
 	}
+	
+	public static final int getComponentIndex(Component component) {
+	    if (component != null && component.getParent() != null) {
+	      Container c = component.getParent();
+	      for (int i = 0; i < c.getComponentCount(); i++) {
+	        if (c.getComponent(i) == component)
+	          return i;
+	      }
+	    }
+
+	    return -1;
+	  }
 	
 }

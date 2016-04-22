@@ -1,24 +1,24 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import com.sun.glass.events.MouseEvent;
-
+import core.FileSystemHandler;
 import core.Node;
 
 public class FolderDisplay extends BackgroundPanel{
@@ -33,14 +33,19 @@ public class FolderDisplay extends BackgroundPanel{
 	private JPanel centerBox = new JPanel(new FlowLayout(0));
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	
+	HashMap<Integer, Integer> hMap;
+	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
+	
+	FileSystemHandler fsh;
 	StateManager sm;
 	Node currentNode;
+	
+	protected JLabel directoryTitle;
 	
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
-		
-		sm.getESM().loadFileSystemHandler();
+
 		currentNode = sm.getESM().getFileSystemHandler().getRoot();
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
@@ -61,11 +66,15 @@ public class FolderDisplay extends BackgroundPanel{
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sm.setState(sm.PASSWORD_STATE);
+				currentNode = getCurrentNode();
+				if(sm.getESM().getFileSystemHandler().getRoot() != currentNode){
+					sm.getESM().getFileSystemHandler().setCurrentNode(currentNode.getParent());
+					update();
+				}
 			}
 		});
 		
-		JLabel directoryTitle = new JLabel(currentNode.getData().getName());
+		directoryTitle = new JLabel(currentNode.getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		directoryTitle.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		
@@ -73,7 +82,11 @@ public class FolderDisplay extends BackgroundPanel{
 		CustomButton homeButton = new CustomButton("", 0, 0, 50, 50);
 		homeButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
-		
+		homeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sm.setState(sm.PASSWORD_STATE);
+			}
+		});
 		
 		toolBar.add(backButton, BorderLayout.WEST);
 		toolBar.add(directoryTitle, BorderLayout.CENTER);
@@ -103,19 +116,31 @@ public class FolderDisplay extends BackgroundPanel{
 		
 	}
 	
+	private Node getCurrentNode(){
+		return sm.getESM().getFileSystemHandler().getCurrent();
+	}
+	
+	protected void init(){
+		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getRoot());
+	}
+	
 	protected void update(){
-		System.out.println("FOLDERDISPLAY");
-		System.out.println(sm.getESM().getFileSystemHandler().getRoot().deepToString());
+		centerBox.removeAll();
+		centerBox.repaint();
+		System.out.println(sm.getESM().getFileSystemHandler().getCurrent().deepToString());
+		currentNode = sm.getESM().getFileSystemHandler().getCurrent();
+		directoryTitle.setText(getCurrentNode().getData().getName());
 		if(currentNode.hasChildren()){
-			clearCenter();
+			
 			ArrayList<Node> children = currentNode.getChildren();
-			System.out.println(children.size());
-			for(int i = 0; i < currentNode.getChildren().size(); i++){
-				//JLabel l = new JLabel(children.get(i).toString());
-				System.out.println(children.get(i).getData().getName());
-				//centerBox.add(l, BorderLayout.CENTER);
-				
-				
+			
+			FolderDisplayButton fdb;
+			for(int i = 0; i < children.size(); i++){
+				Node child = children.get(i);
+				fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 40, i, sm);
+				centerBox.add(fdb, BorderLayout.CENTER);
+				centerBox.revalidate();
+				centerBox.repaint();		
 			}			
 		}		
 	}
@@ -123,6 +148,7 @@ public class FolderDisplay extends BackgroundPanel{
 	protected void clearCenter(){
 		int count = centerBox.getComponentCount();
 		for(int i = 0; i < count; i++){
+			centerBox.getComponent(i).setVisible(false);
 			centerBox.remove(i);
 		}
 	}
