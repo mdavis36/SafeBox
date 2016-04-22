@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,7 +19,8 @@ public class RecordDisplay extends BackgroundPanel {
 	private Border border;
 	private int boarderWidth = 3;
 	
-	
+	private JPanel toolBar = new JPanel(new BorderLayout(5,5));
+	private JPanel fieldViewver = new JPanel();
 	
 	protected RecordDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));

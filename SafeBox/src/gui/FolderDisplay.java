@@ -129,20 +129,35 @@ public class FolderDisplay extends BackgroundPanel{
 		centerBox.repaint();
 		System.out.println(sm.getESM().getFileSystemHandler().getCurrent().deepToString());
 		currentNode = sm.getESM().getFileSystemHandler().getCurrent();
-		directoryTitle.setText(getCurrentNode().getData().getName());
-		if(currentNode.hasChildren()){
+		
+		if(!currentNode.getData().isRecord()){
+			directoryTitle.setText(getCurrentNode().getData().getName());
+			if(currentNode.hasChildren()){
 			
-			ArrayList<Node> children = currentNode.getChildren();
+				ArrayList<Node> children = currentNode.getChildren();
 			
-			FolderDisplayButton fdb;
-			for(int i = 0; i < children.size(); i++){
-				Node child = children.get(i);
-				fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 40, i, sm);
-				centerBox.add(fdb, BorderLayout.CENTER);
-				centerBox.revalidate();
-				centerBox.repaint();		
-			}			
-		}		
+				FolderDisplayButton fdb;
+				for(int i = 0; i < children.size(); i++){
+					Node child = children.get(i);
+					if (!child.getData().isRecord()){
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 40, i, sm);
+						centerBox.add(fdb, BorderLayout.CENTER);
+						centerBox.revalidate();
+						centerBox.repaint();		
+					}
+				}	
+				RecordDisplayButton rdb;
+				for(int i = 0; i < children.size(); i++){
+					Node child = children.get(i);
+					if(child.getData().isRecord()){
+						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 40, i, sm);
+						centerBox.add(rdb, BorderLayout.CENTER);
+						centerBox.revalidate();
+						centerBox.repaint();		
+					}
+				}	
+			}
+		}
 	}
 	
 	protected void clearCenter(){
