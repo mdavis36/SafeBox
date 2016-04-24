@@ -42,13 +42,20 @@ public class mainPrototype {
 		return current;
 	}
 
-	public static boolean deleteFolder(FileSystemHandler fsh, Node parent){
+	public static  boolean deleteFolder(FileSystemHandler fsh, Node parent){
 		Scanner scan = new Scanner(System.in);
-		int pick;
-		do{
+		int pick = 0;
+		boolean exit = false;
+		while (!exit){
 			System.out.println("Enter the Record/Folder number you would like to delete.");
 			pick = scan.nextInt();
-		}while (!(pick > 0 && pick < parent.getChildren().size()));
+			System.out.println(pick);
+			System.out.println(parent.getChildren().size());
+			if(pick >0 && pick <= parent.getChildren().size()){
+				System.out.println(pick);
+				exit = true;
+			}
+		}
 		System.out.println("Are you sure you want to delete " + parent.getChild(pick-1).getData().getName() + " and all of it's contents?\nY/N");
 		String choice = "";
 		while (!(choice.equalsIgnoreCase("n") || choice.equalsIgnoreCase("y"))){
@@ -148,7 +155,7 @@ public class mainPrototype {
 																	// current.toString());
 				System.out.println(current.toString());
 				System.out.println("\nSelect Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[S]earch\n[D]elete\n[B]ack\n[E]xit");
-				choice = scan.nextLine();
+				choice = scan.next(); //TODO: FIX NoSuchElementException: No line found
 				if (choice.equals("F") || choice.equals("f")) {
 					System.out.println("What would you like to call your Folder?");
 					String fName = scan.nextLine();
@@ -180,7 +187,14 @@ public class mainPrototype {
 					current = search(scan, fsh, current);
 				} 
 				else if (choice.equalsIgnoreCase("D")){
-					deleteFolder(fsh, current);
+					if(current.hasChildren()){
+						if(deleteFolder(fsh, current)){
+							System.out.println("Deletion Success!");
+						}
+					}
+					else{
+						System.out.println("Nothing in this folder to delete!");
+					}
 				}
 				else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 					int index = Integer.parseInt(choice);

@@ -20,12 +20,14 @@ public class FileSystemHandler implements Serializable{
 		currentNode = contents.getRoot();
 	}
 
-	public void setCurrentNode(Node n){
-		currentNode = n;
-	}
+	
 	///////////
 	//GETTERS//
 	///////////
+	
+	public void setCurrentNode(Node n){
+		currentNode = n;
+	}
 	public Node getRoot(){
 		return contents.getRoot();
 	}
@@ -68,11 +70,6 @@ public class FileSystemHandler implements Serializable{
 		return nodeToAdd;
 	}
 	
-	/**
-	 * @param parent the node that is the parent of the node being deleted
-	 * @param index the index in the tree of the folder being deleted
-	 * @return
-	 */
 	public boolean deleteFolder(Node parent, int index){
 		//TODO: Start from last index, remove inward
 		//TODO: Set nodeList pointer to null
@@ -83,22 +80,19 @@ public class FileSystemHandler implements Serializable{
 			Node temp = parent.getChild(index);
 			parent.removeChild(index);
 			int size = temp.getChildren().size();
-			for(int i = size; i >= 0; i--){
-				if(temp.getChild(i).hasChildren()){
-					deleteFolder(temp, i);
+			if(temp.hasChildren()){
+				for(int i = size-1; i >= 0; i--){
+					if(temp.getChild(i).hasChildren()){
+						deleteFolder(temp, i);
+					}
+					contents.getNodeList().set(temp.getChild(i).getGlobalIndex(), null);
+					temp.getChildren().remove(i);
 				}
-				contents.getNodeList().set(temp.getChild(i).getGlobalIndex(), null);
-				temp.getChildren().remove(i);
 			}
 			return true;
 		}
 	}
 	
-	/**
-	 * @param query the name being searched for in the tree
-	 * @param startNode the node of the folder where the search starts in
-	 * @return
-	 */
 	public ArrayList<Node> search(String query, Node startNode){
 		ArrayList<Node> toReturn = new ArrayList<Node>();
 		int size = contents.getMaxGlobalIndex();
@@ -135,3 +129,4 @@ public class FileSystemHandler implements Serializable{
 		}
 	}
 }
+
