@@ -50,6 +50,15 @@ public class RecordDisplay extends BackgroundPanel {
 		add(recordToolBar, BorderLayout.NORTH);
 		
 	}
+	
+	protected void init(){
+		
+	}
+	
+	protected void update(){
+		recordToolBar.update();
+	}
+	
 }
 
 
