@@ -42,10 +42,10 @@ public class MainScreenState extends BackgroundPanel{
 		add(mainPanel, BorderLayout.CENTER);
 		
 	}
-	
 
 	protected void init(){
 		folderDisplay.init();
+		recordDisplay.init();
 	}
 	
 	protected void update() {

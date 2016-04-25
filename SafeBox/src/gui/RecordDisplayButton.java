@@ -35,7 +35,8 @@ public class RecordDisplayButton extends BackgroundPanel{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				sm.getESM().getFileSystemHandler().setCurrentRecord(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
+				sm.update();
 			}
 		});
 		

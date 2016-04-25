@@ -16,6 +16,8 @@ public class RecordToolBar extends BackgroundPanel{
 	private Border border;
 	private int boarderWidth = 3;
 	
+	private String title = "";
+	
 	private JPanel leftPanel = new JPanel(new FlowLayout(0));
 	private JPanel centerPanel = new JPanel(new FlowLayout(0));
 	private JPanel rightPanel = new JPanel(new FlowLayout(0));
@@ -43,7 +45,11 @@ public class RecordToolBar extends BackgroundPanel{
 		//-------------------------------------------
 			
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));		
-		JLabel recordTitle = new JLabel(sm.getESM().getFileSystemHandler().getCurrent().getData().getName());
+		
+		//if (sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName() != null)
+		//	title = sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName();
+		
+		JLabel recordTitle = new JLabel(title);
 		recordTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		recordTitle.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		centerPanel.add(recordTitle);
@@ -59,5 +65,9 @@ public class RecordToolBar extends BackgroundPanel{
 		add(centerPanel, BorderLayout.CENTER);
 		add(rightPanel, BorderLayout.EAST);
 				
+	}
+	
+	protected void update(){
+		repaint();
 	}
 }

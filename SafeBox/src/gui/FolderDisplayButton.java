@@ -16,8 +16,6 @@ import javax.swing.SwingConstants;
 public class FolderDisplayButton extends BackgroundPanel{
 	
 	private int index;
-	private static final int FOLDER = 0;
-	private static final int RECORD = 0;
 	
 	
 	/**
@@ -36,7 +34,6 @@ public class FolderDisplayButton extends BackgroundPanel{
 		setLayout(new FlowLayout(10));
 	
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
-	
 		
 		
 		button.setHorizontalAlignment(SwingConstants.LEFT);
