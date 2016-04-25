@@ -50,6 +50,7 @@ public class MainScreenState extends BackgroundPanel{
 	
 	protected void update() {
 		folderDisplay.update();
+		recordDisplay.update();
 	}
 	
 }
