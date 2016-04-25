@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -108,7 +110,11 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//newFolderDialogBox = new NewFolderBox();
+
+				newFolderDialogBox = new NewFolderBox(sm);
+				//JOptionPane.showConfirmDialog(sm.window,newFolderDialogBox, JOptionPane.MESSAGE_PROPERTY,JOptionPane.NO_OPTION);
+				//JOptionPane.showOptionDialog(null, newFolderDialogBox, "test", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new Image(null)), new Object[]{}, null);
+
 			}
 		});
 		

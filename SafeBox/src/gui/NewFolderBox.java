@@ -1,11 +1,13 @@
 package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog.ModalityType;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -23,7 +25,12 @@ public class NewFolderBox extends MessageBoxState{
 	private StateManager sm;
 	
 	public NewFolderBox(StateManager sm){
+<<<<<<< HEAD
 		frame = new JFrame("New Folder/Record");
+=======
+		setLayout(new BorderLayout());
+		//pane = new JOptionPane(frame);
+>>>>>>> branch 'master' of https://mdavis36@bitbucket.org/j_baizer/fatalerror.git
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
@@ -57,19 +64,28 @@ public class NewFolderBox extends MessageBoxState{
 		//Label End//
 		
 		//Setting Size Start//
-		frame.setSize(450,200);
+		//frame.setSize(450,200);
 		buttons.setPreferredSize(new Dimension(450,60));
 		userInput.setPreferredSize(new Dimension(450,60));
 		label.setPreferredSize(new Dimension(450,60));
 		//Settting Size End//
 		
+		//Lock Main Window Start//
+		sm.loseFocus();
+		//Lock Main Window End//
+		
 		//Setting Frame Start//
-		frame.getContentPane().add(label, BorderLayout.NORTH);
-		frame.getContentPane().add(userInput, BorderLayout.CENTER);
-		frame.getContentPane().add(buttons,BorderLayout.SOUTH);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.setResizable(false);
+		add(label, BorderLayout.NORTH);
+		add(userInput, BorderLayout.CENTER);
+		add(buttons,BorderLayout.SOUTH);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setLocationRelativeTo(null);
+//		frame.setVisible(true);
+//		frame.setResizable(false);
+//		frame.setAlwaysOnTop(true);
+		//pane.setModal(true);
+		//pane.setAlwaysOnTop(true);
+		//pane.setModalityType(ModalityType.APPLICATION_MODAL);
 		//Setting Frame End//
 		
 		nameField.addMouseListener(new MouseListener(){
@@ -113,6 +129,6 @@ public class NewFolderBox extends MessageBoxState{
 	public static void main(String[] args){
 		JFrame main = new JFrame();
 		//StateManager sm = new StateManager(main);
-		NewFolderBox test = new NewFolderBox();
+		//NewFolderBox test = new NewFolderBox();
 	}
 }

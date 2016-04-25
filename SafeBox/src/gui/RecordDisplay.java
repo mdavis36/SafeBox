@@ -37,7 +37,6 @@ public class RecordDisplay extends BackgroundPanel {
 		
 		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
 		
-		
 		JButton btnNewButton_1 = new JButton("record display");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
@@ -49,16 +48,21 @@ public class RecordDisplay extends BackgroundPanel {
 				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
 			}
 		});
-		add(recordToolBar, BorderLayout.NORTH);
+		
 		
 	}
 	
 	protected void init(){
 		recordToolBar.init();
+		removeAll();
 	}
 	
 	protected void update(){
-		recordToolBar.update();
+		if(sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
+			recordToolBar.update();
+			add(recordToolBar, BorderLayout.NORTH);
+			repaint();
+		}
 	}
 	
 }

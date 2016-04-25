@@ -69,20 +69,20 @@ public class RecordToolBar extends BackgroundPanel{
 		add(leftPanel, BorderLayout.WEST);
 		add(centerPanel, BorderLayout.CENTER);
 		add(rightPanel, BorderLayout.EAST);
-				
 	}
 	
 	protected void init(){
 		sm.getESM().getFileSystemHandler().setCurrentRecord(null);
+		recordTitle.setText("");
 	}
 	
 	
 	protected void update(){
-		if (sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName() != null){
+		
+		if (sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
 			recordTitle.setText(sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName()); 
-			System.out.print("record clicked1!!");
 		}
 		System.out.print("record clicked2!!");
-		repaint();
+		setVisible(true);
 	}
 }
