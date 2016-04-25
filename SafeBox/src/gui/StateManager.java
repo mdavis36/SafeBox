@@ -107,5 +107,7 @@ public class StateManager extends JPanel{
 		passwordState.update();
 	}
 	
-	
+	public void loseFocus(){
+		window.setFocusableWindowState(false);
+	}
 }
