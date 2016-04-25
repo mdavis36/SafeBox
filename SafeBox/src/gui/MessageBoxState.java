@@ -1,8 +1,10 @@
 package gui;
 import java.awt.Color;
 
+
 import javax.swing.*;
 public abstract class MessageBoxState{
+
 	private static final long serialVersionUID = 1L;
 	protected JLabel titleLabel;
 	final static String cancel = "Cancel";

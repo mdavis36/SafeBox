@@ -42,6 +42,9 @@ public class FolderDisplay extends BackgroundPanel{
 	
 	protected JLabel directoryTitle;
 	
+	/**
+	 * @param sm the state is is being added to
+	 */
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
@@ -124,6 +127,9 @@ public class FolderDisplay extends BackgroundPanel{
 		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getRoot());
 	}
 	
+	/**
+	 * updates which folder the display is on
+	 */
 	protected void update(){
 		centerBox.removeAll();
 		centerBox.repaint();
@@ -141,7 +147,6 @@ public class FolderDisplay extends BackgroundPanel{
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
 						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 50, i, sm);
-						setTransparentAdd(true);
 						centerBox.add(fdb);
 						centerBox.revalidate();
 						centerBox.repaint();		

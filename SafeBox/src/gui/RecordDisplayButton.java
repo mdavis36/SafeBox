@@ -9,25 +9,37 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RecordDisplayButton extends BackgroundPanel{
-
-	private int index;
 	
-	public RecordDisplayButton(String text, int x, int y, int width, int height, int index, final StateManager sm) {
+	private int index;
+	private static final int FOLDER = 0;
+	private static final int RECORD = 0;
+	
+	
+	public RecordDisplayButton(String text, int x, int y, int width, int height, final int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, width, height, true));
-		//super();
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
-		
+	
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
-		button.setImageFromFile("record.png", true);
+	
+		
+		
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
-		// TODO Auto-generated constructor stub
+		
+		button.setImageFromFile("record.png", true);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		
 		add(button, BorderLayout.CENTER);
 		addMouseListener(new MouseListener() {
 			
@@ -57,9 +69,21 @@ public class RecordDisplayButton extends BackgroundPanel{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 		});
+	}
+	
+	private void recordAction(){
+		
+	}
+	
+	protected int getIndex(){
+		return index;
+	}
+	
+	protected void setIndex(int i){
+		index = i;
 	}
 }

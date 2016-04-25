@@ -5,9 +5,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -36,6 +42,9 @@ public class StateManager extends JPanel{
 		this.successfullyDecrypted = successfullyDecrypted;
 	}
 
+	/**
+	 * @param window
+	 */
 	protected StateManager(JFrame window){
 		this.window = window;
 		eSM = new EncryptedStorageManager();
@@ -69,6 +78,9 @@ public class StateManager extends JPanel{
 		
 	}
 	
+	/**
+	 * adds all states
+	 */
 	private void populateStates(){
 		
 		passwordState = new PasswordState(this);
@@ -94,5 +106,6 @@ public class StateManager extends JPanel{
 		mainScreenState.update();
 		passwordState.update();
 	}
+	
 	
 }
