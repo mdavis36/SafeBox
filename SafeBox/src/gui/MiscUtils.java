@@ -26,10 +26,11 @@ public class MiscUtils {
 	
 	protected static final Color ORANGE_PANEL_COLOUR_LIGHT = new Color(255, 242, 204);
 	protected static final Color ORANGE_PANEL_COLOUR_DARK = new Color(255, 217, 102);
-	protected static final Color ORANGE_PANEL_COLOUR_BORDER = new Color(215, 155, 0);
+	protected static final Color ORANGE_PANEL_COLOUR_BORDER = new Color(215, 182, 86);
 	
 	protected static final Color ORANGE_PANEL_COLOUR_LIGHT2 = new Color(255, 205, 40);
 	protected static final Color ORANGE_PANEL_COLOUR_DARK2 = new Color(215, 165, 0);
+	protected static final Color ORANGE_PANEL_COLOUR_BORDER2 = new Color(215, 155, 0);
 	
 	protected static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 	

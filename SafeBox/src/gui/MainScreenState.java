@@ -22,16 +22,16 @@ public class MainScreenState extends BackgroundPanel{
 	
 	protected MainScreenState(final StateManager sm) {
 
-		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 		setTransparentAdd(true);
 		searchBar = new SearchBar(sm);
 		folderDisplay = new FolderDisplay(sm);
-		recordDisplay = new RecordDisplay(sm);
+		
 		
 		mainPanel.setLayout(new BorderLayout(0,0));		
 		mainPanel.add(folderDisplay, BorderLayout.WEST);
-		mainPanel.add(recordDisplay, BorderLayout.CENTER);
+		
 		
 		BorderLayout bl = new BorderLayout(0, 0);
 		bl.setVgap(0);
@@ -45,12 +45,18 @@ public class MainScreenState extends BackgroundPanel{
 
 	protected void init(){
 		folderDisplay.init();
-		recordDisplay.init();
+		sm.getESM().getFileSystemHandler().setCurrentRecord(null);
 	}
 	
 	protected void update() {
 		folderDisplay.update();
-		recordDisplay.update();
+		if(sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
+			
+			recordDisplay = new RecordDisplay(sm);
+			mainPanel.add(recordDisplay, BorderLayout.CENTER);
+			recordDisplay.update();
+		}
+		
 	}
 	
 }

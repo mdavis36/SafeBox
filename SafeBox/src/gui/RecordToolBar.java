@@ -35,7 +35,7 @@ public class RecordToolBar extends BackgroundPanel{
 		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, w, h);	
 		//----------------------Border---------------------
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
 		

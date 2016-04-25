@@ -27,14 +27,23 @@ public class FieldBox extends BackgroundPanel{
 	
 private int index;
 private int BAR_HEIGHT = 60;
+
+	private Border border;
+	private int boarderWidth = 2;
 	
 	public FieldBox( int x, int y, int width, int height, int index, final StateManager sm) {
-		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT2, MiscUtils.ORANGE_PANEL_COLOUR_DARK2, width, height, true));
+		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, width, height, true));
 		
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setPreferredSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
+		
+		//----------------------Border---------------------
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_BORDER);
+		setBorder(border);
+		setOpaque(true);
+		
 		
 		final JTextField fieldName = new JTextField("fieldName");
 		fieldName.setFont(new Font("Tahoma", Font.PLAIN, 13));
