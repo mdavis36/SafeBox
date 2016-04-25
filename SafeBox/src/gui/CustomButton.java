@@ -42,21 +42,37 @@ public class CustomButton extends JButton{
 		setFont(new Font("Arial", Font.PLAIN, (int)(getHeight() * FONT_MULTIPLIER)));
 	}
 	
+	/**
+	 * @param c color of border
+	 * @param w dimension of the border
+	 */
 	public void setBoarderDetails(Color c, int w){
 		setBorderPainted(true);
 		setBorder(BorderFactory.createMatteBorder(w, w, w, w, c));
 	}
 	
+	/**
+	 * @param fileName name of the image file
+	 * @param keepRatio whether the ratio needs to change
+	 */
 	public void setImageFromFile(String fileName, boolean keepRatio){
 		BufferedImage i = MiscUtils.getBufferedImageFromFile(PATH + fileName, getWidth());
 		setImageIcon(i, keepRatio);	
 	}
 		
+	/**
+	 * @param c1 starting color
+	 * @param c2 second color
+	 * @param down if the gradient goes up or down
+	 */
 	public void setGradientBackground(Color c1, Color c2, boolean down){
 		BufferedImage i = MiscUtils.getBufferedGradImage(c1, c2, getWidth(), getHeight(), down);
 		setImageIcon(i, true);
 	}
 	
+	/**
+	 * sets the image on the button
+	 */
 	public void setImageIcon(Image image, boolean keepRatio){
 		int tmp_height = getHeight();
 		if (keepRatio){

@@ -36,6 +36,9 @@ public class StateManager extends JPanel{
 		this.successfullyDecrypted = successfullyDecrypted;
 	}
 
+	/**
+	 * @param window
+	 */
 	protected StateManager(JFrame window){
 		this.window = window;
 		eSM = new EncryptedStorageManager();
@@ -69,6 +72,9 @@ public class StateManager extends JPanel{
 		
 	}
 	
+	/**
+	 * adds all states
+	 */
 	private void populateStates(){
 		
 		passwordState = new PasswordState(this);
