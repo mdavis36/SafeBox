@@ -28,26 +28,29 @@ public class FieldBox extends BackgroundPanel{
 private int index;
 private int BAR_HEIGHT = 60;
 	
-	public FieldBox(Field field, int x, int y, int width, int height, int index, final StateManager sm) {
+	public FieldBox( int x, int y, int width, int height, int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, width, height, true));
-		//super();
+		
 		this.index = index;
 		setSize(new Dimension(width, height));
+		setPreferredSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
 		
-		final JTextField fieldName = new JTextField(field.getName());
+		final JTextField fieldName = new JTextField("fieldName");
 		fieldName.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
 		fieldName.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
 		fieldName.setOpaque(true);
+		add(fieldName);
 		
-		final JTextField fieldData = new JTextField(field.getData());
+		final JTextField fieldData = new JTextField("fieldData");
 		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
 		fieldData.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
 		fieldData.setOpaque(true);
+		add(fieldData);
 		
 		CustomButton saveButton = new CustomButton("Save", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
 		saveButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
@@ -55,8 +58,6 @@ private int BAR_HEIGHT = 60;
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(sm.window, "Saved", null, JOptionPane.PLAIN_MESSAGE);
-				field.setName(fieldName.getText());
-				field.setData(fieldData.getText());
 			}
 		});
 		
