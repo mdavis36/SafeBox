@@ -10,11 +10,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class NewFolderBox extends MessageBoxState{
-	
 	static final String createRecord = "Create Record";
 	static final String createFolder = "Create Folder";
 	static final String initTextField = "Name of Record/Folder";
-	private JFrame frame = new JFrame("New Folder/Record");
 	private JPanel userInput = new JPanel();
 	private JPanel buttons = new JPanel();
 	private JPanel label = new JPanel();
@@ -23,8 +21,8 @@ public class NewFolderBox extends MessageBoxState{
 	private JTextField nameField = new JTextField("Name of Record/Folder");
 	private JLabel nameLabel = new JLabel("Name your folder/record");
 	
-	protected NewFolderBox(){
-		
+	public NewFolderBox(){
+		frame = new JFrame("New Folder/Record");
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
