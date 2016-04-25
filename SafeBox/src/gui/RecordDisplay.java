@@ -21,13 +21,19 @@ public class RecordDisplay extends BackgroundPanel {
 	
 	private JPanel toolBar = new JPanel(new BorderLayout(5,5));
 	private JPanel fieldViewver = new JPanel();
+	RecordToolBar recordToolBar;
 	
 	protected RecordDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		
+		setLayout(new BorderLayout(0,0));
+		
+		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
 		
+		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
 		
 		
 		JButton btnNewButton_1 = new JButton("record display");
@@ -41,7 +47,7 @@ public class RecordDisplay extends BackgroundPanel {
 				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
 			}
 		});
-		
+		add(recordToolBar, BorderLayout.NORTH);
 		
 	}
 }

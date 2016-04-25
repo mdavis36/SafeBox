@@ -141,7 +141,6 @@ public class FolderDisplay extends BackgroundPanel{
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
 						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 50, i, sm);
-						setTransparentAdd(true);
 						centerBox.add(fdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
