@@ -111,8 +111,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				newFolderDialogBox = new NewFolderBox(sm);
-				//JOptionPane.showConfirmDialog(sm.window,newFolderDialogBox, JOptionPane.MESSAGE_PROPERTY,JOptionPane.NO_OPTION);
-				JOptionPane.showOptionDialog(null, newFolderDialogBox, "test", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new Image(null)), new Object[]{}, null);
+				//JOptionPane.showOptionDialog(null, newFolderDialogBox, "test", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
 			}
 		});
 		

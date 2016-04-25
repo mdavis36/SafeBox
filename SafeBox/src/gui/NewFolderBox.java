@@ -24,8 +24,6 @@ public class NewFolderBox extends MessageBoxState{
 	private JLabel nameLabel = new JLabel("Name your folder/record");
 	
 	public NewFolderBox(StateManager sm){
-		setLayout(new BorderLayout());
-		//pane = new JOptionPane(frame);
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
@@ -59,28 +57,22 @@ public class NewFolderBox extends MessageBoxState{
 		//Label End//
 		
 		//Setting Size Start//
-		//frame.setSize(450,200);
 		buttons.setPreferredSize(new Dimension(450,60));
 		userInput.setPreferredSize(new Dimension(450,60));
 		label.setPreferredSize(new Dimension(450,60));
 		//Settting Size End//
 		
-		//Lock Main Window Start//
-		sm.loseFocus();
-		//Lock Main Window End//
-		
 		//Setting Frame Start//
-		add(label, BorderLayout.NORTH);
-		add(userInput, BorderLayout.CENTER);
-		add(buttons,BorderLayout.SOUTH);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setLocationRelativeTo(null);
-//		frame.setVisible(true);
-//		frame.setResizable(false);
-//		frame.setAlwaysOnTop(true);
-		//pane.setModal(true);
-		//pane.setAlwaysOnTop(true);
-		//pane.setModalityType(ModalityType.APPLICATION_MODAL);
+		panel.setLayout(new BorderLayout());
+		panel.add(label, BorderLayout.NORTH);
+		panel.add(userInput, BorderLayout.CENTER);
+		panel.add(buttons,BorderLayout.SOUTH);
+		add(panel);
+		setSize( new Dimension(450,180));
+		setModal(true);
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setResizable(false);
 		//Setting Frame End//
 		
 		nameField.addMouseListener(new MouseListener(){
