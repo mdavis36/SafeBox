@@ -13,10 +13,5 @@ public abstract class MessageBoxState extends JDialog{
 	protected int BAR_WIDTH = 400;
 	protected CustomButton cancelButton = new CustomButton("Cancel", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
 	protected JPanel panel = new JPanel();
-	protected abstract void close();
-	
-	
-	
-	
-
+	protected JPanel buttons = new JPanel();
 }

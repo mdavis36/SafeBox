@@ -16,18 +16,16 @@ public class NewFolderBox extends MessageBoxState {
 	static final String createFolder = "Create Folder";
 	static final String initTextField = "Name of Record/Folder";
 	private JPanel userInput = new JPanel();
-	private JPanel buttons = new JPanel();
 	private JPanel label = new JPanel();
 	private static CustomButton newFolderButton = new CustomButton(
-			"Create Folder", 0, 0, 150, (int) (BAR_HEIGHT * 0.6));
+			createFolder, 0, 0, 150, (int) (BAR_HEIGHT * 0.6));
 	private static CustomButton newRecordButton = new CustomButton(
-			"Create Record", 0, 0, 150, (int) (BAR_HEIGHT * 0.6));
+			createRecord, 0, 0, 150, (int) (BAR_HEIGHT * 0.6));
 	private JTextField nameField = new JTextField("Name of Record/Folder");
 	private JLabel nameLabel = new JLabel("Name your folder/record");
 
 	public NewFolderBox(final StateManager sm) {
 		// Buttons Start//
-
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
 		newFolderButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
@@ -213,13 +211,6 @@ public class NewFolderBox extends MessageBoxState {
 
 	}
 
-	public static void main(String[] args) {
-	}
 
-	@Override
-	protected void close() {
-		// TODO Auto-generated method stub
-		removeAll();
-		dispose();
-	}
+
 }

@@ -33,17 +33,21 @@ public class SearchBar extends BackgroundPanel{
 	
 	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
 	
+	ChangePasswordBox changePasswordDialogBox;
+
+	
 	protected SearchBar(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
 		setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 0));
-		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);		
+		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);	
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
-		
+		changePasswordDialogBox = new ChangePasswordBox(sm);
+		changePasswordDialogBox.setVisible(false);
 		
 		
 		//-----------------------------------------
@@ -59,7 +63,8 @@ public class SearchBar extends BackgroundPanel{
 		settingsButton.setImageFromFile("gear.png", true);
 		settingsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(sm.window, "//This is your settings", null, JOptionPane.PLAIN_MESSAGE);
+				//JOptionPane.showMessageDialog(sm.window, "//This is your settings", null, JOptionPane.PLAIN_MESSAGE);
+				changePasswordDialogBox.setVisible(true);
 			}
 		});
 		leftPanel.add(settingsButton);
