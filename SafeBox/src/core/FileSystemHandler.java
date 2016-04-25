@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class FileSystemHandler implements Serializable{
 	private static final long serialVersionUID = -5417133060210085474L;
 	private Node currentNode;
+	private Node currentRecord;
 	public Tree contents;
 	
 	@Override
@@ -18,6 +19,7 @@ public class FileSystemHandler implements Serializable{
 	public FileSystemHandler(){
 		contents = new Tree();
 		currentNode = contents.getRoot();
+		currentRecord = null;
 	}
 
 	
@@ -28,8 +30,17 @@ public class FileSystemHandler implements Serializable{
 	public void setCurrentNode(Node n){
 		currentNode = n;
 	}
+	
+	public void setCurrentRecord(Node n){
+		currentRecord = n;
+	}
+	
 	public Node getRoot(){
 		return contents.getRoot();
+	}
+	
+	public Node getCurrentRecord(){
+		return currentRecord;
 	}
 	
 	public Node getCurrent(){

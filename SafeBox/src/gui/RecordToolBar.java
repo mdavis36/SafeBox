@@ -22,6 +22,7 @@ public class RecordToolBar extends BackgroundPanel{
 	
 	protected RecordToolBar(StateManager sm, int w, int h){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_DARK2, MiscUtils.ORANGE_PANEL_COLOUR_LIGHT2, w, h, true));
+		
 		setSize(new Dimension(w, h));
 		setPreferredSize(new Dimension(w, h));
 		setLayout(new BorderLayout(20, 0));
@@ -35,8 +36,7 @@ public class RecordToolBar extends BackgroundPanel{
 		//------------- LEFT PANEL ----------------
 		//-----------------------------------------
 				
-		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
+		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));	
 		
 		//-------------------------------------------
 		//------------- CENTER PANEL ----------------
@@ -48,16 +48,11 @@ public class RecordToolBar extends BackgroundPanel{
 		recordTitle.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		centerPanel.add(recordTitle);
 		
-		
-		
 		//------------------------------------------
 		//------------- RIGHT PANEL ----------------
 		//------------------------------------------
 				
 		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		
-		
 		
 		setTransparentAdd(true);
 		add(leftPanel, BorderLayout.WEST);

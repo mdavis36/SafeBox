@@ -31,7 +31,7 @@ public class RecordDisplayButton extends BackgroundPanel{
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
 		
-		button.setImageFromFile("folder.png", true);
+		button.setImageFromFile("record.png", true);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
