@@ -55,6 +55,8 @@ private int BAR_HEIGHT = 60;
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(sm.window, "Saved", null, JOptionPane.PLAIN_MESSAGE);
+				field.setName(fieldName.getText());
+				field.setData(fieldData.getText());
 			}
 		});
 	}
