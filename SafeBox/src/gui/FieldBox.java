@@ -36,14 +36,14 @@ private int BAR_HEIGHT = 60;
 		setLayout(new FlowLayout(10));
 		
 		final JTextField fieldName = new JTextField(field.getName());
-		fieldName.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		fieldName.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
 		fieldName.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
 		fieldName.setOpaque(true);
 		
 		final JTextField fieldData = new JTextField(field.getData());
-		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
 		fieldData.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
@@ -55,7 +55,10 @@ private int BAR_HEIGHT = 60;
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(sm.window, "Saved", null, JOptionPane.PLAIN_MESSAGE);
+				field.setName(fieldName.getText());
+				field.setData(fieldData.getText());
 			}
 		});
+		
 	}
 }

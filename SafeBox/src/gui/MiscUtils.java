@@ -33,6 +33,14 @@ public class MiscUtils {
 	
 	protected static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 	
+	/**
+	 * @param c1 first color
+	 * @param c2 second color
+	 * @param w width of the image
+	 * @param h height of the image
+	 * @param d if the gradient goes up of down
+	 * @return
+	 */
 	protected static BufferedImage getBufferedGradImage(Color c1, Color c2, int w, int h, boolean d){
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = bi.createGraphics();
@@ -48,6 +56,11 @@ public class MiscUtils {
 		return bi;
 	}
 	
+	/**
+	 * @param width of the image
+	 * @param height of the image
+	 * @return the image
+	 */
 	protected static BufferedImage getTransparentImage(int width, int height){
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = bi.createGraphics();
@@ -60,6 +73,11 @@ public class MiscUtils {
 		return bi;
 	}
 	
+	/**
+	 * @param fileName name of the image file
+	 * @param width of the image desired
+	 * @return the image buffered to the width
+	 */
 	protected static BufferedImage getBufferedImageFromFile(String fileName, int width){
 		
 		float scale = 1f;
@@ -83,6 +101,10 @@ public class MiscUtils {
 		return bi;
 	}
 	
+	/**
+	 * @param component 
+	 * @return the index of the component
+	 */
 	public static final int getComponentIndex(Component component) {
 	    if (component != null && component.getParent() != null) {
 	      Container c = component.getParent();

@@ -20,6 +20,15 @@ public class FolderDisplayButton extends BackgroundPanel{
 	private static final int RECORD = 0;
 	
 	
+	/**
+	 * @param text name of the folder
+	 * @param x x coordinate of button
+	 * @param y y coordinate of button
+	 * @param width width of the button
+	 * @param height height of the button
+	 * @param index index of the folder
+	 * @param sm the state it is placed on
+	 */
 	public FolderDisplayButton(String text, int x, int y, int width, int height, final int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, width, height, true));
 		this.index = index;
