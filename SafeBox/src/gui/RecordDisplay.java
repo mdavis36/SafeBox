@@ -3,11 +3,10 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,9 +28,10 @@ public class RecordDisplay extends BackgroundPanel {
 	GridBagConstraints g = new GridBagConstraints();
 	
 	private JPanel toolBar = new JPanel(new BorderLayout(5,5));
+	JPanel fViewer = new JPanel(new BorderLayout());
 	
 	private JScrollPane scrollPane;
-	private JPanel fieldViewver = new JPanel();
+	private JPanel fieldPanel = new JPanel();
 	
 	
 	RecordToolBar recordToolBar;
@@ -51,22 +51,21 @@ public class RecordDisplay extends BackgroundPanel {
 		setBorder(border);
 		setOpaque(true);
 		
-		
-		
-		fieldViewver.setLayout(new GridBagLayout());
+		fieldPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		scrollPane = new JScrollPane(fieldViewver, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setAlignmentY(TOP_ALIGNMENT);
+		//scrollPane = new JScrollPane(fieldViewver, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
 		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
 		
 		test = new FieldBox(0, 0, 600, 100, 1, sm);
+		test.setAlignmentY(TOP_ALIGNMENT);
 		c.weightx = 1;
 		//c.weighty = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 0;
-		fieldViewver.add(test, c);
+		fieldPanel.add(test, c);
 		
 		
 		test2 = new FieldBox(0, 0, 600, 100, 1, sm);
@@ -76,14 +75,14 @@ public class RecordDisplay extends BackgroundPanel {
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 1;
-		fieldViewver.add(test2, c);
+		fieldPanel.add(test2, c);
 		
 		test3 = new FieldBox(0, 0, 600, 100, 1, sm);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 2;
-		//fieldViewver.add(test3, c);
+		fieldPanel.add(test3, c);
 		
 		
 		test4 = new FieldBox(0, 0, 600, 100, 1, sm);
@@ -91,14 +90,14 @@ public class RecordDisplay extends BackgroundPanel {
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 3;
-		//fieldViewver.add(test4, c);
+		fieldPanel.add(test4, c);
 		
 		test5 = new FieldBox(0, 0, 600, 100, 1, sm);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 4;
-		//fieldViewver.add(test5, c);
+		fieldPanel.add(test5, c);
 		
 		
 		test6 = new FieldBox(0, 0, 600, 100, 1, sm);
@@ -106,7 +105,7 @@ public class RecordDisplay extends BackgroundPanel {
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 5;
-		//fieldViewver.add(test6, c);
+		fieldPanel.add(test6, c);
 		
 		
 		JButton btnNewButton_1 = new JButton("record display");
@@ -121,7 +120,9 @@ public class RecordDisplay extends BackgroundPanel {
 			}
 		});
 		
-		
+		fViewer.add(fieldPanel, BorderLayout.NORTH);
+		scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
 	}
 	
 	protected void init(){
@@ -133,8 +134,19 @@ public class RecordDisplay extends BackgroundPanel {
 		if(sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
 			recordToolBar.update();
 			setTransparentAdd(true);
-			add(recordToolBar, BorderLayout.NORTH);
-			add(scrollPane);
+			g.weightx = 1;
+			//c.weighty = 1;
+			g.fill = GridBagConstraints.HORIZONTAL;
+			g.ipady = 10;
+			g.gridx = 0;
+			g.gridy = 0;
+			add(recordToolBar, g);
+			g.weightx = 1;
+			g.weighty = 1;
+			g.fill = GridBagConstraints.BOTH;
+			g.gridx = 0;
+			g.gridy = 1;
+			add(scrollPane, g);
 			repaint();
 		}
 	}

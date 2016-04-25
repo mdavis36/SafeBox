@@ -29,7 +29,7 @@ private int index;
 private int BAR_HEIGHT = 60;
 	
 	public FieldBox( int x, int y, int width, int height, int index, final StateManager sm) {
-		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, width, height, true));
+		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT2, MiscUtils.ORANGE_PANEL_COLOUR_DARK2, width, height, true));
 		
 		this.index = index;
 		setSize(new Dimension(width, height));
