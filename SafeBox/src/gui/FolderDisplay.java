@@ -52,7 +52,8 @@ public class FolderDisplay extends BackgroundPanel{
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
-
+		newFolderDialogBox = new NewFolderBox(sm);
+		newFolderDialogBox.setVisible(false);
 		currentNode = sm.getESM().getFileSystemHandler().getRoot();
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
@@ -110,8 +111,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				newFolderDialogBox = new NewFolderBox(sm);
-				//JOptionPane.showOptionDialog(null, newFolderDialogBox, "test", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+				newFolderDialogBox.setVisible(true);
 			}
 		});
 		
