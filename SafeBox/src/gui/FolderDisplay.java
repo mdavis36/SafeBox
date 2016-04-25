@@ -108,7 +108,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				newFolderDialogBox = new NewFolderBox();
+				//newFolderDialogBox = new NewFolderBox();
 			}
 		});
 		

@@ -20,8 +20,9 @@ public class NewFolderBox extends MessageBoxState{
 	private static CustomButton newRecordButton = new CustomButton("Create Record", 0, 0, 150, (int)(BAR_HEIGHT * 0.6));
 	private JTextField nameField = new JTextField("Name of Record/Folder");
 	private JLabel nameLabel = new JLabel("Name your folder/record");
+	private StateManager sm;
 	
-	public NewFolderBox(){
+	public NewFolderBox(StateManager sm){
 		frame = new JFrame("New Folder/Record");
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);

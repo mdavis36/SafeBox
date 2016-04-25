@@ -13,10 +13,14 @@ import javax.swing.border.Border;
 
 public class RecordToolBar extends BackgroundPanel{
 	
+	private StateManager sm;
+	
 	private Border border;
 	private int boarderWidth = 3;
 	
 	private String title = "";
+	JLabel recordTitle;
+	
 	
 	private JPanel leftPanel = new JPanel(new FlowLayout(0));
 	private JPanel centerPanel = new JPanel(new FlowLayout(0));
@@ -24,6 +28,7 @@ public class RecordToolBar extends BackgroundPanel{
 	
 	protected RecordToolBar(StateManager sm, int w, int h){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_DARK2, MiscUtils.ORANGE_PANEL_COLOUR_LIGHT2, w, h, true));
+		this.sm = sm;
 		
 		setSize(new Dimension(w, h));
 		setPreferredSize(new Dimension(w, h));
@@ -49,7 +54,7 @@ public class RecordToolBar extends BackgroundPanel{
 		//if (sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName() != null)
 		//	title = sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName();
 		
-		JLabel recordTitle = new JLabel(title);
+		recordTitle = new JLabel(title);
 		recordTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		recordTitle.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		centerPanel.add(recordTitle);
@@ -67,7 +72,17 @@ public class RecordToolBar extends BackgroundPanel{
 				
 	}
 	
+	protected void init(){
+		sm.getESM().getFileSystemHandler().setCurrentRecord(null);
+	}
+	
+	
 	protected void update(){
+		if (sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName() != null){
+			recordTitle.setText(sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName()); 
+			System.out.print("record clicked1!!");
+		}
+		System.out.print("record clicked2!!");
 		repaint();
 	}
 }
