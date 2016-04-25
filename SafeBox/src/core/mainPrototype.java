@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class mainPrototype {
-	public static Node search(Scanner scan, FileSystemHandler fsh, Node current) {
+	public static Node search(FileSystemHandler fsh, Node current) {
+		Scanner searchScan = new Scanner(System.in);
 		System.out.println("What would you like to search your Record/Folder names for?\n");
-		String query = scan.nextLine();
+		String query = searchScan.nextLine();
 		ArrayList<Node> results = fsh.search(query, fsh.getContents().getRoot());
 		int size = results.size();
 		boolean back = false;
@@ -27,28 +28,31 @@ public class mainPrototype {
 				System.out.println("Select Folder/Record Number or \n[B]ack");
 			}
 
-			String choice = scan.nextLine();
+			String choice = searchScan.nextLine();
 			if (choice.equalsIgnoreCase("B")) {
 				back = true;
+				searchScan.close();
 				return current;
 			} else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 				int index = Integer.parseInt(choice);
 				if (index <= results.size() && index > 0) {
+					searchScan.close();
 					return results.get(index - 1);
 				}
 				
 			}
 		}
+		searchScan.close();
 		return current;
 	}
 
 	public static  boolean deleteFolder(FileSystemHandler fsh, Node parent){
-		Scanner scan = new Scanner(System.in);
+		Scanner deleteScan = new Scanner(System.in);
 		int pick = 0;
 		boolean exit = false;
 		while (!exit){
 			System.out.println("Enter the Record/Folder number you would like to delete.");
-			pick = scan.nextInt();
+			pick = deleteScan.nextInt();
 			System.out.println(pick);
 			System.out.println(parent.getChildren().size());
 			if(pick >0 && pick <= parent.getChildren().size()){
@@ -59,14 +63,14 @@ public class mainPrototype {
 		System.out.println("Are you sure you want to delete " + parent.getChild(pick-1).getData().getName() + " and all of it's contents?\nY/N");
 		String choice = "";
 		while (!(choice.equalsIgnoreCase("n") || choice.equalsIgnoreCase("y"))){
-			choice = scan.nextLine();
+			choice = deleteScan.nextLine();
 		}
 		if(choice.equalsIgnoreCase("y")){
 			fsh.deleteFolder(parent,pick-1);
-			scan.close();
+			deleteScan.close();
 			return true;
 		}
-		scan.close();
+		deleteScan.close();
 		return false;
 		
 	}
@@ -154,8 +158,8 @@ public class mainPrototype {
 				System.out.println("Directory: " + directoryPath);// +
 																	// current.toString());
 				System.out.println(current.toString());
-				System.out.println("\nSelect Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[S]earch\n[D]elete\n[B]ack\n[E]xit");
-				choice = scan.next(); //TODO: FIX NoSuchElementException: No line found
+				System.out.println("\nSelect Folder/Record Number or \nNew [F]older\nNew [R]ecord\n[S]earch\n[D]elete\n[B]ack\n[E]xit\n");
+				choice = scan.nextLine(); //TODO: FIX NoSuchElementException: No line found
 				if (choice.equals("F") || choice.equals("f")) {
 					System.out.println("What would you like to call your Folder?");
 					String fName = scan.nextLine();
@@ -184,7 +188,7 @@ public class mainPrototype {
 				} else if (choice.equalsIgnoreCase("E")) {
 					exit = true;
 				} else if (choice.equalsIgnoreCase("S")) {
-					current = search(scan, fsh, current);
+					current = search(fsh, current);
 				} 
 				else if (choice.equalsIgnoreCase("D")){
 					if(current.hasChildren()){

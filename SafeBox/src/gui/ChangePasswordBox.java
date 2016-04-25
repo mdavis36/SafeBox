@@ -109,6 +109,7 @@ public class ChangePasswordBox extends MessageBoxState {
 		});
 		cancelButton.setBorder(new EmptyBorder(0,50,0,50));
 		saveButton.setBorder(new EmptyBorder(0,50,0,50));
+		buttons.setBorder( new EmptyBorder(0,0,20,0));
 		buttons.add(cancelButton, BorderLayout.WEST);
 		buttons.add(saveButton,BorderLayout.EAST);
 		//Buttons End//
@@ -125,13 +126,18 @@ public class ChangePasswordBox extends MessageBoxState {
 		userInput.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.VERTICAL;
+		c.gridwidth = 4;
 		c.gridy = 0;
+		currentPasswordField.setPreferredSize(new Dimension(350,40));
 		userInput.add(currentPasswordField, c);
 		c.gridy = 1;
+		newPasswordField.setPreferredSize(new Dimension(350,40));
 		userInput.add(newPasswordField,c);
 		c.gridy = 2;
+		confirmPasswordField.setPreferredSize(new Dimension(350,40));
 		userInput.add(confirmPasswordField,c);
 		c.gridy = 3;
+		hintField.setPreferredSize(new Dimension(350,40));
 		userInput.add(hintField,c);
 		//User Input End//
 		
@@ -141,7 +147,7 @@ public class ChangePasswordBox extends MessageBoxState {
 		panel.add(titlePanel, BorderLayout.NORTH);
 		panel.add(userInput,BorderLayout.CENTER);
 		add(panel);
-		setSize(new Dimension(450, 600));
+		setSize(new Dimension(450, 400));
 		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);

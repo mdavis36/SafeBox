@@ -138,8 +138,8 @@ public class NewFolderBox extends MessageBoxState {
 		// Buttons End//
 
 		// User Input Start//
-		nameField.setSize(300, 50);
-		userInput.setBorder(new EmptyBorder(0, 50, 20, 50));
+		nameField.setPreferredSize(new Dimension(300, 60));
+		userInput.setBorder(new EmptyBorder(0, 50, 10, 50));
 		userInput.setLayout(new BorderLayout(0, 50));
 		userInput.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		userInput.add(nameField, BorderLayout.CENTER);
