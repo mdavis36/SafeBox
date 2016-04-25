@@ -33,6 +33,8 @@ public class FolderDisplay extends BackgroundPanel{
 	private JPanel centerBox = new JPanel(new FlowLayout(0));
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	
+	private NewFolderBox newFolderDialogBox;
+	
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
@@ -106,7 +108,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(sm.window, "//Add record / folder", null, JOptionPane.PLAIN_MESSAGE);
+				newFolderDialogBox = new NewFolderBox();
 			}
 		});
 		
