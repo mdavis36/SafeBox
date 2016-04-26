@@ -26,7 +26,7 @@ public class RenameFolderBox extends MessageBoxState {
 	private final JLabel nameOfFolder = new JLabel("");
 	private final JPanel userInput = new JPanel(new BorderLayout());
 	private final CustomButton saveButton = new CustomButton(save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
-	private static JTextField renameField = new JTextField(initRenameField);
+	private  JTextField renameField = new JTextField(initRenameField);
 	//JObjects End//
 	
 	public RenameFolderBox(final StateManager sm, int i){
