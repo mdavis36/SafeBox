@@ -59,9 +59,9 @@ public class StateManager extends JPanel{
 		cl.show(this, PASSWORD_STATE);
 		
 		if(!eSM.fileSystemExists()){
-			JOptionPane.showMessageDialog(window, "This is the first time running", null, JOptionPane.PLAIN_MESSAGE);
+			System.out.println("This is the first time running");
 		}else{
-			JOptionPane.showMessageDialog(window, "A file system Exists", null, JOptionPane.PLAIN_MESSAGE);
+			System.out.println("A file system Exists");
 		}
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(){
