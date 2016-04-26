@@ -204,7 +204,7 @@ public class ChangePasswordBox extends MessageBoxState {
 					confirmPasswordField.setEchoChar((char)0);
 					confirmPasswordField.setText(initConfirmPasswordField);
 				}
-				if (hintField.getText().equals("")){
+				if ("".equals(hintField.getText())){
 					hintField.setText(initHintField);
 				}
 			}

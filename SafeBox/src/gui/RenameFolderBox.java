@@ -216,7 +216,7 @@ public class RenameFolderBox extends MessageBoxState {
 	}
 	
 	private boolean checkForValidText(String text){
-		if(text.equals(currentName) || text.equals("") || text.equals(" ")){
+		if(text.equals(currentName) || "".equals(text) || text.equals(" ")){
 			return false;
 		}
 		else{
