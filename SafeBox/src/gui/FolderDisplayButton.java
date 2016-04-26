@@ -17,7 +17,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 	
 	private int index;
 	
-	
+	RenameFolderBox renameDeleteBox;
 	/**
 	 * @param text name of the folder
 	 * @param x x coordinate of button
