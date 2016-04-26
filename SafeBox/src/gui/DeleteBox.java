@@ -74,7 +74,7 @@ public class DeleteBox extends MessageBoxState {
 		titleLabel = new JLabel(title);
 		titlePanel = new JPanel(new GridBagLayout());
 		titleLabel.setBorder(new EmptyBorder(EMPTY_BORDER_TOP, 0, 0, 0));
-		titleLabel.setFont(new Font(MiscUtils.FONT, Font.BOLD, FONT_SIZE));
+		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		titlePanel.add(titleLabel,c);
 		c.gridy = GRID_Y_2;
 		titlePanel.add(nameOfFolder,c);

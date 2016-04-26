@@ -99,7 +99,7 @@ public class ChangePasswordBox extends MessageBoxState {
 		//Title Start//
 		titlePanel = new JPanel(new FlowLayout());
 		titleLabel.setBorder(new EmptyBorder(10, 0, 0, 0));
-		titleLabel.setFont(new Font(MiscUtils.FONT, Font.BOLD, 24));
+		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));
 		titlePanel.add(titleLabel);
 		titlePanel.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 

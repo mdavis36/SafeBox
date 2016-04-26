@@ -39,7 +39,7 @@ public class CustomButton extends JButton{
 		setHorizontalTextPosition(JButton.CENTER);
 		setVerticalTextPosition(JButton.CENTER);
 		setForeground(Color.WHITE);
-		setFont(new Font(MiscUtils.FONT, Font.PLAIN, (int)(getHeight() * FONT_MULTIPLIER)));
+		setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, (int)(getHeight() * FONT_MULTIPLIER)));
 	}
 	
 	/**

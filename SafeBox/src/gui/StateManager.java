@@ -91,10 +91,6 @@ public class StateManager extends JPanel{
 	}
 	
 	protected void setState(String stateName){
-		if (stateName == PASSWORD_STATE)
-			window.setResizable(false);
-		else
-			window.setResizable(true);
 		cl.show(this, stateName);
 	}
 	

@@ -91,7 +91,7 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		directoryTitle = new JLabel(currentNode.getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		directoryTitle.setFont(new Font(MiscUtils.FONT, Font.BOLD, FONT_SIZE));
+		directoryTitle.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		
 		
 		CustomButton homeButton = setupToolBarButton(IMG_HOME);
@@ -196,14 +196,5 @@ public class FolderDisplay extends BackgroundPanel{
 	
 	private FileSystemHandler getFSH(){
 		return sm.getESM().getFileSystemHandler();
-	}
-	
-	protected void clearCenter(){
-		int count = centerBox.getComponentCount();
-		for(int i = 0; i < count; i++){
-			centerBox.getComponent(i).setVisible(false);
-			centerBox.remove(i);
-		}
-	}
-	
+	}	
 }
