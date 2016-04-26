@@ -17,7 +17,7 @@ public class ChangePasswordBox extends MessageBoxState {
 	
 	//numbers Start//
 	private static final double BUTTON_HEIGHT_RATIO = .6;
-	private static final int BUTTON_WIDTH = 0;
+	private static final int BUTTON_WIDTH = 80;
 	private static final int BUTTON_BORDER_WIDTH = 2;
 	//numbers End//
 	
@@ -158,7 +158,7 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
 				newPasswordField.setText("");
-				newPasswordField.setEchoChar('�');
+				newPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
 				
 			}
 		});
