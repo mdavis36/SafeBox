@@ -13,6 +13,10 @@ public class FolderDisplayButton extends BackgroundPanel{
 	private int index;
 	private int type;
 	private String imgName;
+	private static final int IMAGE_WIDTH = 20;
+	private static final int FOLDER_BUTTON_WIDTH = 40;
+	private static final int LAYOUT_ARG = 10;
+	
 	protected static final int RECORD = 0;
 	protected static final int FOLDER = 1;
 	
@@ -34,7 +38,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 		this.type = type;
 		this.index = index;
 		setSize(new Dimension(width, height));
-		setLayout(new FlowLayout(10));
+		setLayout(new FlowLayout(LAYOUT_ARG));
 		
 		renameDeleteBox = new RenameFolderBox(sm,index);
 		renameDeleteBox.setVisible(false);
@@ -46,7 +50,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 			imgName = "record.png";
 		}
 		
-		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
+		CustomButton button = new CustomButton(text, 0, 0, FOLDER_BUTTON_WIDTH, FOLDER_BUTTON_WIDTH);
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
 		button.setImageFromFile(imgName, true);
@@ -60,14 +64,14 @@ public class FolderDisplayButton extends BackgroundPanel{
 			}
 		});
 		
-		CustomButton edit = new CustomButton("", 0, 0, 20, 20);
+		CustomButton edit = new CustomButton("", 0, 0, IMAGE_WIDTH, IMAGE_WIDTH);
 		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, 
 																						MiscUtils.BLUE_PANEL_COLOUR_DARK, 
-																						20, 
-																						20, 
+																						IMAGE_WIDTH, 
+																						IMAGE_WIDTH, 
 																						true), 
-														MiscUtils.getBufferedImageFromFile("res/buttons/pen.png", 
-																						20)),
+														MiscUtils.getBufferedImageFromFile(MiscUtils.PEN_IMAGE, 
+																						IMAGE_WIDTH)),
 						true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
 		edit.addMouseListener(new MouseAdapter(){

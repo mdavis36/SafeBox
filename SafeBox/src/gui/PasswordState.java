@@ -30,6 +30,7 @@ public class PasswordState extends BackgroundPanel{
 	private static final int BUTTON_HEIGHT = BUTTON_WIDTH / 7;
 	private static final int PASSWORD_WIDTH = 330;
 	
+	private static final String TITLE = "SafeBox";
 	private static final String FORGOT_PASSWORD_TITLE = "ForgotPassword";
 	private static final String ENTER_SAFEBOX_TITLE = "Enter SafeBox";
 	
@@ -53,9 +54,9 @@ public class PasswordState extends BackgroundPanel{
 		
 		
 		setTransparentAdd(true);
-		JLabel titleLabel = new JLabel("SafeBox");
+		JLabel titleLabel = new JLabel(TITLE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));
 		titleLabel.setBounds(sm.window.getWidth()/2-50, 75, 100, 50);
 		centerPanel.add(titleLabel, c);
 		

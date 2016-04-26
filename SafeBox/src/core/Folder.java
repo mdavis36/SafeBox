@@ -10,6 +10,10 @@ public class Folder implements Serializable{
 		name = "";
 	}
 	
+	public Folder(String name) {
+		this.name = name;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -2,6 +2,11 @@ package gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+<<<<<<< HEAD
+=======
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+>>>>>>> branch 'master' of https://mdavis36@bitbucket.org/j_baizer/fatalerror.git
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -54,13 +59,30 @@ public class RecordDisplayButton extends BackgroundPanel{
 																						20)),
 						true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
+<<<<<<< HEAD
 		edit.addMouseListener(new MouseAdapter(){
+=======
+		
+		edit.addMouseListener(new MouseAdapter(){
+			@Override
+>>>>>>> branch 'master' of https://mdavis36@bitbucket.org/j_baizer/fatalerror.git
 			public void mouseClicked(MouseEvent e) {
 				renameDeleteBox.setVisible(true);
 			}
 		});
+		
 		add(button);//, BorderLayout.CENTER);
 		add(edit);
+<<<<<<< HEAD
+=======
+		button.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON3){
+					renameDeleteBox.setVisible(true);
+				}
+			}
+		});
+>>>>>>> branch 'master' of https://mdavis36@bitbucket.org/j_baizer/fatalerror.git
 	}
 	
 	private void recordAction(){

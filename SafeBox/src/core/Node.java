@@ -20,6 +20,11 @@ public class Node implements Serializable{
 		children = new ArrayList<Node>();
 	}
 	
+	public Node(Folder f, ArrayList<Node> children){
+		data = f;
+		this.children = children;
+	}
+	
 	///////////
 	//GETTERS//
 	///////////

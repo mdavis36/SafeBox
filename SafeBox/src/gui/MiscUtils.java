@@ -35,6 +35,7 @@ public class MiscUtils {
 	protected static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 	
 	protected static final String FONT_STYLE = "Arial";
+	protected static final String PEN_IMAGE = "res/buttons/pen.png";
 	
 	protected static final char ECHO_CHAR = '*'; 
 	
