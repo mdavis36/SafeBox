@@ -35,8 +35,7 @@ public class ChangePasswordBox extends MessageBoxState {
 	
 	//JObjects Start//
 	private static JLabel titleLabel = new JLabel(title);
-	private static CustomButton saveButton = new CustomButton(
-			save, 0, 0, BUTTON_WIDTH, (int) (BAR_HEIGHT * BUTTON_HEIGHT_RATIO));
+	private static CustomButton saveButton = new CustomButton(save, 0, 0, BUTTON_WIDTH, (int) (BAR_HEIGHT * BUTTON_HEIGHT_RATIO));
 	private JPanel userInput = new JPanel(new GridBagLayout());
 	private JPasswordField currentPasswordField = new JPasswordField(initCurrentPasswordField);
 	private JPasswordField newPasswordField = new JPasswordField(initNewPasswordField);
@@ -47,34 +46,18 @@ public class ChangePasswordBox extends MessageBoxState {
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
-		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
+		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
-		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
+		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
 		cancelButton.addMouseListener(new MouseListener(){
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				resetBox();
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			
+			public void mousePressed(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
 		});
 		saveButton.addMouseListener(new MouseListener(){
 
@@ -97,22 +80,10 @@ public class ChangePasswordBox extends MessageBoxState {
 					JOptionPane.showMessageDialog(sm.window, CURRENT_DIDNT_MATCH, null, JOptionPane.PLAIN_MESSAGE);
 				}
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
 			
 		});
 		cancelButton.setBorder(new EmptyBorder(0,50,0,50));
@@ -145,11 +116,17 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseExited(MouseEvent e) {}
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
-				currentPasswordField.setText("");
-				currentPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+				if (currentPasswordField.getEchoChar() != MiscUtils.ECHO_CHAR){
+					currentPasswordField.setText("");
+					currentPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+				}
 				
 			}
 		});
+		userInput.add(currentPasswordField, c);
+		
+		c.gridy = 1;
+		newPasswordField.setPreferredSize(new Dimension(350,40));
 		newPasswordField.setEchoChar((char)0);
 		newPasswordField.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {}
@@ -157,12 +134,16 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseExited(MouseEvent e) {}
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
-				newPasswordField.setText("");
-				newPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
-				
+				if (newPasswordField.getEchoChar() != MiscUtils.ECHO_CHAR){
+					newPasswordField.setText("");
+					newPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+				}
 			}
 		});
-
+		userInput.add(newPasswordField,c);
+		
+		c.gridy = 2;
+		confirmPasswordField.setPreferredSize(new Dimension(350,40));
 		confirmPasswordField.setEchoChar((char)0);
 		confirmPasswordField.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {}
@@ -170,15 +151,27 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseExited(MouseEvent e) {}
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
-				confirmPasswordField.setText("");
-				confirmPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
-				
+				if (confirmPasswordField.getEchoChar() != MiscUtils.ECHO_CHAR){
+					confirmPasswordField.setText("");
+					confirmPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+				}
 			}
 		});
 
 		userInput.add(confirmPasswordField,c);
 		c.gridy = 3;
 		hintField.setPreferredSize(new Dimension(350,40));
+		hintField.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				if (hintField.getText() != initHintField){
+					hintField.setText("");
+				}
+			}
+		});
 		userInput.add(hintField,c);
 		//User Input End//
 		
@@ -192,6 +185,30 @@ public class ChangePasswordBox extends MessageBoxState {
 		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		
+		addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {			}
+			public void mouseClicked(MouseEvent e) {
+				if (currentPasswordField.getPassword().length == 0) {
+					currentPasswordField.setEchoChar((char)0);
+					currentPasswordField.setText(initCurrentPasswordField);
+				}
+				if (newPasswordField.getPassword().length == 0) {
+					newPasswordField.setEchoChar((char)0);
+					newPasswordField.setText(initNewPasswordField);
+				}
+				if (confirmPasswordField.getPassword().length == 0) {
+					confirmPasswordField.setEchoChar((char)0);
+					confirmPasswordField.setText(initConfirmPasswordField);
+				}
+				if (hintField.getText().equals("")){
+					hintField.setText(initHintField);
+				}
+			}
+		});
 		//Frame End//
 	}
 
