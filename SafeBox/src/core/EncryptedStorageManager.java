@@ -1,5 +1,7 @@
 package core;
 
+import java.util.Arrays;
+
 import javax.crypto.BadPaddingException;
 
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
@@ -40,6 +42,25 @@ public class EncryptedStorageManager {
 	 */
 	public void initNewFileSystem(){
 		fileSystem = new FileSystemHandler();
+	}
+	
+	/**
+	 * @param passwordToTest
+	 * @return true if passwordToTest equals the current password, false otherwise. Note that the current password is the password in memory, NOT the password on the filesystem
+	 */
+	public boolean isCurrentPassword(char[] passwordToTest){
+		return Arrays.equals(this.password, passwordToTest);
+	}
+	
+	/**
+	 * @param password password to check
+	 * @return true if password meets minimum requirements, false otherwise
+	 */
+	public boolean passwordMeetsRequirements(char[] password){
+		if (password.length > 6){
+			return true;
+		}
+		return false;
 	}
 	
 	/**

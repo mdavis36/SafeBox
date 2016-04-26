@@ -3,9 +3,12 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import core.HintManager;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 public class ChangePasswordBox extends MessageBoxState {
 	//Strings Start//
@@ -23,8 +26,8 @@ public class ChangePasswordBox extends MessageBoxState {
 			save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
 	private JPanel userInput = new JPanel(new GridBagLayout());
 	private JPasswordField currentPasswordField = new JPasswordField(initCurrentPasswordField);
-	private JTextField newPasswordField = new JTextField(initNewPasswordField);
-	private JTextField confirmPasswordField = new JTextField(initConfirmPasswordField);
+	private JPasswordField newPasswordField = new JPasswordField(initNewPasswordField);
+	private JPasswordField confirmPasswordField = new JPasswordField(initConfirmPasswordField);
 	private JTextField hintField = new JTextField(initHintField);
 	
 	public ChangePasswordBox(final StateManager sm){
@@ -76,12 +79,29 @@ public class ChangePasswordBox extends MessageBoxState {
 		saveButton.addMouseListener(new MouseListener(){
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				currentPasswordField.setText(initCurrentPasswordField);
-				newPasswordField.setText(initNewPasswordField);
-				confirmPasswordField.setText(initConfirmPasswordField);
-				hintField.setText(initHintField);
+			public void mouseClicked(MouseEvent e) {				
+				if (sm.getESM().isCurrentPassword(currentPasswordField.getPassword())){
+					if (!sm.getESM().passwordMeetsRequirements(newPasswordField.getPassword())){
+						JOptionPane.showMessageDialog(sm.window, "Password must meet requirements", null, JOptionPane.PLAIN_MESSAGE);
+						return;
+					}
+					
+					if (Arrays.equals(newPasswordField.getPassword(), confirmPasswordField.getPassword())){
+						sm.getESM().setPassword(newPasswordField.getPassword());
+						
+						HintManager.setHint(hintField.getText());
+						
+						setVisible(false);
+						currentPasswordField.setText(initCurrentPasswordField);
+						newPasswordField.setText(initNewPasswordField);
+						confirmPasswordField.setText(initConfirmPasswordField);
+						hintField.setText(initHintField);
+					} else {
+						JOptionPane.showMessageDialog(sm.window, "Passwords and confirm password didn't match.", null, JOptionPane.PLAIN_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(sm.window, "Current password didn't match.", null, JOptionPane.PLAIN_MESSAGE);
+				}
 			}
 
 			@Override

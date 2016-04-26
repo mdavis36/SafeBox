@@ -19,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import core.HintManager;
+
 public class PasswordState extends BackgroundPanel{
 	private static final long serialVersionUID = 1L;
 	private final int buttonWidth = 270;
@@ -107,7 +109,7 @@ public class PasswordState extends BackgroundPanel{
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				JOptionPane.showMessageDialog(sm.window, "//This is your hint", null, JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(sm.window, HintManager.getHint(), null, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 		add(forgotPWButton);		
