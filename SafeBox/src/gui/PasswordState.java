@@ -23,10 +23,13 @@ import core.HintManager;
 
 public class PasswordState extends BackgroundPanel{
 	private static final long serialVersionUID = 1L;
+	private static final String initTextField = "Enter Password";
 	private final int buttonWidth = 270;
 	private final int buttonHeight = 270 / 7;
 	private final int textBoxWidth = 330;
 	private StateManager sm;
+	private final JPasswordField passWordField;
+	private final JTextField textField; 
 	
 	private void validatePasswordAndMoveForward(JPasswordField passwordField){
 		sm.getESM().setPassword(passwordField.getPassword());
@@ -72,7 +75,7 @@ public class PasswordState extends BackgroundPanel{
 		add(lblSafeboxLogo);
 		
 		setTransparentAdd(false);
-		final JPasswordField passWordField = new JPasswordField();
+		passWordField = new JPasswordField();
 		passWordField.setBounds((sm.window.getWidth() / 2) - (textBoxWidth / 2), 
 								(sm.window.getHeight() / 2) + 15, 
 								textBoxWidth,
@@ -114,7 +117,7 @@ public class PasswordState extends BackgroundPanel{
 		add(forgotPWButton);		
 		
 		setTransparentAdd(false);
-		final JTextField textField = new JTextField("Enter Password");
+		textField = new JTextField(initTextField);
 		textField.setFont(new Font("Arial", Font.PLAIN, 25));
 		textField.setForeground(Color.LIGHT_GRAY);
 		textField.setBounds((sm.window.getWidth() / 2) - (textBoxWidth / 2), 
@@ -159,6 +162,14 @@ public class PasswordState extends BackgroundPanel{
 
 	protected void update() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void init(){
+		passWordField.setText("");
+		passWordField.setVisible(false);
+		textField.setVisible(true);
+		textField.setText(initTextField);
 		
 	}
 

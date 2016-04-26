@@ -106,6 +106,7 @@ public class FolderDisplay extends BackgroundPanel{
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.setState(sm.PASSWORD_STATE);
+				sm.init();
 			}
 		});
 		

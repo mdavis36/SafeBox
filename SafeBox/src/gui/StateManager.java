@@ -104,6 +104,7 @@ public class StateManager extends JPanel{
 	
 	protected void init(){
 		mainScreenState.init();
+		passwordState.init();
 	}
 	
 	protected void update(){
