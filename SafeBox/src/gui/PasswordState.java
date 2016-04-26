@@ -164,9 +164,8 @@ public class PasswordState extends BackgroundPanel{
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("mouse click on screen");
-				if(new String(passWordField.getPassword()).equals("")){
-					System.out.println("field empty");
-					//passWordField.setVisible(false);
+				if(passWordField.getPassword().length == 0){
+					init();
 				}
 			}
 		});
