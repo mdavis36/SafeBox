@@ -7,10 +7,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -19,10 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
-import core.FileSystemHandler;
-import core.Folder;
-import core.Node;
 
 public class SearchBar extends BackgroundPanel{
 	
@@ -39,15 +35,6 @@ public class SearchBar extends BackgroundPanel{
 	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
 	
 	ChangePasswordBox changePasswordDialogBox;
-	
-	private void executeSearch(StateManager sm, String query){
-		FileSystemHandler fsh = sm.getESM().getFileSystemHandler();
-		ArrayList<Node> results = fsh.search(query, fsh.getCurrentRecord());
-		Node searchResults = new Node(new Folder("Search Results"), results);
-		searchResults.setParent(fsh.getRoot());
-		fsh.setCurrentNode(searchResults);
-		sm.update();
-	}
 
 	
 	protected SearchBar(final StateManager sm){
@@ -98,19 +85,15 @@ public class SearchBar extends BackgroundPanel{
 		searchBox.setOpaque(true);
 		searchBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				executeSearch(sm, searchBox.getText());
+				sm.cl.show(sm.cards, sm.PASSWORD_STATE);
 			}
 		});
-		searchBox.addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent e) {}
+		searchBox.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				if (searchBox.getText().equals(SEARCH_BAR_STARTING_VALUE)){
 					searchBox.setText("");
 				}
 			}
-			public void mouseExited(MouseEvent e) {}
-			public void mouseEntered(MouseEvent e) {}
-			public void mouseClicked(MouseEvent e) {}
 		});
 		
 		
@@ -120,7 +103,7 @@ public class SearchBar extends BackgroundPanel{
 		searchButton.setBoarderDetails(new Color(215, 155, 0), 2);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				executeSearch(sm, searchBox.getText());
+				JOptionPane.showMessageDialog(sm.window, "placeholder for search implementation", null, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 		centerPanel.add(searchBox);
