@@ -72,13 +72,13 @@ public class PasswordState extends BackgroundPanel{
 		lblSafeboxLogo.setSize(new Dimension(logo.getWidth(), logo.getHeight()));
 		lblSafeboxLogo.setLocation((sm.window.getWidth() / 2) - (logo.getWidth() / 2), (sm.window.getHeight() / 2) - (logo.getHeight() / 2) - 100);
 		add(lblSafeboxLogo);
-		
 		setTransparentAdd(false);
 		passWordField = new JPasswordField();
 		passWordField.setBounds((sm.window.getWidth() / 2) - (textBoxWidth / 2), 
 								(sm.window.getHeight() / 2) + 15, 
 								textBoxWidth,
 								40);
+		init();
 		passWordField.addMouseListener(new MouseListener() {
 
 			@Override
@@ -115,7 +115,6 @@ public class PasswordState extends BackgroundPanel{
 			
 		});
 		passWordField.setVisible(true);
-		init();
 		add(passWordField);
 		setTransparentAdd(true);
 		
@@ -129,6 +128,7 @@ public class PasswordState extends BackgroundPanel{
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validatePasswordAndMoveForward(passWordField);
+				init();
 			}
 				
 		});
@@ -145,8 +145,8 @@ public class PasswordState extends BackgroundPanel{
 		forgotPWButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				JOptionPane.showMessageDialog(sm.window, HintManager.getHint(), null, JOptionPane.PLAIN_MESSAGE);
+				init();
 			}
 		});
 		add(forgotPWButton);		
