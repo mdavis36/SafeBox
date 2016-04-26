@@ -34,6 +34,7 @@ public class SearchBar extends BackgroundPanel{
 	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
 	
 	ChangePasswordBox changePasswordDialogBox;
+	RenameFolderBox renameFolderDialog;//TODO: REMOVE ME LATER
 
 	
 	protected SearchBar(final StateManager sm){
@@ -42,6 +43,10 @@ public class SearchBar extends BackgroundPanel{
 		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);	
+		renameFolderDialog = new RenameFolderBox(sm);
+		renameFolderDialog.setVisible(false);//TODO: REMOVE ME AFTER TESTING
+		
+		
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		setBorder(border);
@@ -130,7 +135,8 @@ public class SearchBar extends BackgroundPanel{
 		searchButton.setBoarderDetails(new Color(215, 155, 0), 2);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(sm.window, "You", null, JOptionPane.PLAIN_MESSAGE);
+				//JOptionPane.showMessageDialog(sm.window, "You", null, JOptionPane.PLAIN_MESSAGE);
+				renameFolderDialog.setVisible(true);
 			}
 		});
 		

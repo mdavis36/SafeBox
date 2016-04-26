@@ -25,6 +25,7 @@ public class NewFolderBox extends MessageBoxState {
 	private JLabel nameLabel = new JLabel("Name your folder/record");
 
 	public NewFolderBox(final StateManager sm) {
+		
 		// Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());

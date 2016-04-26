@@ -8,6 +8,7 @@ public abstract class MessageBoxState extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	protected JLabel titleLabel;
+	protected JPanel titlePanel;
 	final static String cancel = "Cancel";
 	protected static int BAR_HEIGHT = 60;
 	protected int BAR_WIDTH = 400;

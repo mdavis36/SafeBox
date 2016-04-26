@@ -8,23 +8,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ChangePasswordBox extends MessageBoxState {
-	static final String save = "Save";
-	static final String initCurrentPasswordField = "Current Password";
+	//Strings Start//
+	private static final String save = "Save";
+	private static final String initCurrentPasswordField = "Current Password";
 	static final String initNewPasswordField = "New Password";
 	static final String initConfirmPasswordField = "Retype New Password";
 	static final String initHintField = "New password hint";
 	static final String title = "Change Password/Hint";
+	//Strings End//
 	
+	//JObjects Start//
 	private static JLabel titleLabel = new JLabel(title);
 	private static CustomButton saveButton = new CustomButton(
 			save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
-	private JPanel titlePanel = new JPanel(new FlowLayout());
 	private JPanel userInput = new JPanel(new GridBagLayout());
 	private JTextField currentPasswordField = new JTextField(initCurrentPasswordField);
 	private JTextField newPasswordField = new JTextField(initNewPasswordField);
 	private JTextField confirmPasswordField = new JTextField(initConfirmPasswordField);
 	private JTextField hintField = new JTextField(initHintField);
-
+	
 	public ChangePasswordBox(final StateManager sm){
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
@@ -115,6 +117,7 @@ public class ChangePasswordBox extends MessageBoxState {
 		//Buttons End//
 		
 		//Title Start//
+		titlePanel = new JPanel(new FlowLayout());
 		titleLabel.setBorder(new EmptyBorder(10, 0, 0, 0));
 		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
 		titlePanel.add(titleLabel);
