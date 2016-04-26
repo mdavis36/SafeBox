@@ -49,8 +49,19 @@ public class FolderDisplayButton extends BackgroundPanel{
 			}
 		});
 		
+		CustomButton edit = new CustomButton("", 0, 0, 20, 20);
+		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
+																						MiscUtils.BUTTON_COLOUR_DARK, 
+																						20, 
+																						20, 
+																						true), 
+														MiscUtils.getBufferedImageFromFile("res/buttons/pen.png", 
+																						20)),
+						true);
+		edit.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		add(button, BorderLayout.CENTER);
+		add(button);
+		add(edit);
 		addMouseListener(new MouseListener() {
 			
 			@Override

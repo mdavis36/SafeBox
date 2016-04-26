@@ -102,20 +102,29 @@ public class MiscUtils {
 		return bi;
 	}
 	
+	protected static BufferedImage layerBufferedImages(BufferedImage bottom, BufferedImage top){
+		BufferedImage bi = new BufferedImage(bottom.getWidth(), bottom.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = (Graphics2D) bi.getGraphics();
+		g2d.drawImage(bottom, 0, 0, null);
+		g2d.drawImage(top, 0, 0, null);
+		g2d.dispose();
+		return bi;
+	}
+	
 	/**
 	 * @param component 
 	 * @return the index of the component
 	 */
 	public static final int getComponentIndex(Component component) {
 	    if (component != null && component.getParent() != null) {
-	      Container c = component.getParent();
-	      for (int i = 0; i < c.getComponentCount(); i++) {
-	        if (c.getComponent(i) == component)
-	          return i;
-	      }
+	        Container c = component.getParent();
+	        for (int i = 0; i < c.getComponentCount(); i++) {
+	            if (c.getComponent(i) == component)
+	                return i;
+	        }
 	    }
 
 	    return -1;
-	  }
+	}
 	
 }

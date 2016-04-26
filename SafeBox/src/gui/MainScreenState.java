@@ -27,17 +27,13 @@ public class MainScreenState extends BackgroundPanel{
 		setTransparentAdd(true);
 		searchBar = new SearchBar(sm);
 		folderDisplay = new FolderDisplay(sm);
-		
+		recordDisplay = new RecordDisplay(sm);
 		
 		mainPanel.setLayout(new BorderLayout(0,0));		
 		mainPanel.add(folderDisplay, BorderLayout.WEST);
+		mainPanel.add(recordDisplay, BorderLayout.CENTER);
 		
-		
-		BorderLayout bl = new BorderLayout(0, 0);
-		bl.setVgap(0);
-		bl.setHgap(0);
-		
-		setLayout(bl);
+		setLayout(new BorderLayout(0,0));
 		add(searchBar, BorderLayout.NORTH);
 		add(mainPanel, BorderLayout.CENTER);
 		
@@ -51,9 +47,12 @@ public class MainScreenState extends BackgroundPanel{
 	protected void update() {
 		folderDisplay.update();
 		if(sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
+			if (recordDisplay != null){
+				remove(recordDisplay);
+				//recordDisplay = null;
+			}
 			
-			recordDisplay = new RecordDisplay(sm);
-			mainPanel.add(recordDisplay, BorderLayout.CENTER);
+			
 			recordDisplay.update();
 		}
 		

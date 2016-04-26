@@ -82,7 +82,6 @@ public class RecordToolBar extends BackgroundPanel{
 		if (sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
 			recordTitle.setText(sm.getESM().getFileSystemHandler().getCurrentRecord().getData().getName()); 
 		}
-		System.out.print("record clicked2!!");
 		setVisible(true);
 	}
 }

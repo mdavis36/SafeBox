@@ -21,59 +21,71 @@ public class RecordDisplay extends BackgroundPanel {
 	
 	private StateManager sm;
 	
-	GridBagConstraints g = new GridBagConstraints();
+	private GridBagConstraints c = new GridBagConstraints();
+	private GridBagConstraints g = new GridBagConstraints();
 	
 	private JPanel toolBar;
 	private JPanel fViewer;
-	
-	private JScrollPane scrollPane;
 	private JPanel fieldPanel;
-	
-	
+	private JScrollPane scrollPane;
 	private RecordToolBar recordToolBar;
 	private CustomButton addFieldButton;
 	
 	private Node currentRecord;
 	
-	FieldBox test;
-	FieldBox test2;
-	FieldBox test3;
-	FieldBox test4;
-	FieldBox test5;
-	FieldBox test6;
 	protected RecordDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
-		//setLayout(new BorderLayout(0,0));
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
 		
+		setLayout(new GridBagLayout());
+		
+		toolBar = new JPanel(new BorderLayout(5,5));
+		fViewer = new JPanel(new BorderLayout());
+		fieldPanel = new JPanel(new GridBagLayout());
+		scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
+		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
+		
+		
+		addFieldButton = new CustomButton("Add Field", 0, 0, 100, 30);
+		addFieldButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		addFieldButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		
+		fViewer.add(fieldPanel, BorderLayout.NORTH);
+		fViewer.add(addFieldButton, BorderLayout.CENTER);
+		
+		
+		
+		setTransparentAdd(true);
+		g.weightx = 1;
+		g.fill = GridBagConstraints.HORIZONTAL;
+		g.ipady = 10;
+		g.gridx = 0;
+		g.gridy = 0;
+		add(recordToolBar, g);
+		g.weightx = 1;
+		g.weighty = 1;
+		g.fill = GridBagConstraints.BOTH;
+		g.gridx = 0;
+		g.gridy = 1;
+		add(scrollPane, g);
+		
 	}
 	
 	protected void init(){
-		
-		removeAll();
+		setVisible(false);
 	}
 	
 	protected void update(){
 		currentRecord = sm.getESM().getFileSystemHandler().getCurrentRecord();
 		if(currentRecord != null){
-			if (recordToolBar != null)
-				recordToolBar.removeAll();
-			if (scrollPane != null)
-				scrollPane.removeAll();
-			removeAll();
-
-			toolBar = new JPanel(new BorderLayout(5,5));
-			fViewer = new JPanel(new BorderLayout());
-			fieldPanel = new JPanel();
-			
-			setLayout(new GridBagLayout());
-			fieldPanel.setLayout(new GridBagLayout());
-			GridBagConstraints c = new GridBagConstraints();
-
-			recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
+			setVisible(true);
+			recordToolBar.update();
+			fieldPanel.removeAll();
+			fieldPanel.repaint();
 			
 			///-------------------------------------------------------------
 			
@@ -89,37 +101,15 @@ public class RecordDisplay extends BackgroundPanel {
 					c.gridx = 0;
 					c.gridy = i;
 					fieldPanel.add(fb, c);
-					
+					fieldPanel.revalidate();
+					fieldPanel.repaint();
 				}
 			}
 
 			//-------------------------------------------------------------
 			
-			addFieldButton = new CustomButton("Add Field", 0, 0, 100, 30);
-			addFieldButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
-			addFieldButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
-			
-			
-			fViewer.add(fieldPanel, BorderLayout.NORTH);
-			fViewer.add(addFieldButton, BorderLayout.CENTER);
-			scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollPane.getVerticalScrollBar().setUnitIncrement(5);
-			
-			recordToolBar.update();
-			setTransparentAdd(true);
-			g.weightx = 1;
-			//c.weighty = 1;
-			g.fill = GridBagConstraints.HORIZONTAL;
-			g.ipady = 10;
-			g.gridx = 0;
-			g.gridy = 0;
-			add(recordToolBar, g);
-			g.weightx = 1;
-			g.weighty = 1;
-			g.fill = GridBagConstraints.BOTH;
-			g.gridx = 0;
-			g.gridy = 1;
-			add(scrollPane, g);
+			revalidate();
+			repaint();
 		}
 	}
 	

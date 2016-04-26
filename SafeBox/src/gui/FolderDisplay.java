@@ -69,7 +69,14 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		
 		CustomButton backButton = new CustomButton("", 0, 0, 50, 50);
-		backButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		backButton.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
+																							MiscUtils.BUTTON_COLOUR_DARK, 
+																							50, 
+																							50, 
+																							true), 
+															MiscUtils.getBufferedImageFromFile("res/buttons/back.png", 
+																							50)),
+								true);
 		backButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.addActionListener(new ActionListener() {
@@ -88,7 +95,14 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		
 		CustomButton homeButton = new CustomButton("", 0, 0, 50, 50);
-		homeButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		homeButton.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
+																							MiscUtils.BUTTON_COLOUR_DARK, 
+																							50, 
+																							50, 
+																							true), 
+															MiscUtils.getBufferedImageFromFile("res/buttons/home.png", 
+																							50)),
+								true);
 		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
