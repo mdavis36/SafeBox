@@ -222,7 +222,7 @@ public class NewFolderBox extends MessageBoxState {
 	}
 
 	private boolean checkForValidText(String text){
-		if(text.equals(initTextField) || text.equals("") || text.equals(" ")){
+		if(text.equals(initTextField) || "".equals(text) || text.equals(" ")){
 			return false;
 		}
 		else{
