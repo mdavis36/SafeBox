@@ -137,7 +137,9 @@ public class RecordDisplay extends BackgroundPanel {
 					f.setName("Name");
 					f.setData("content");
 					((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).addField(f);
+					init();
 					update();
+					//TO-DO:  update the Record display with new Record
 					
 				}
 			});
