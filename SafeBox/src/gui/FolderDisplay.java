@@ -31,6 +31,16 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final int DISPLAY_WIDTH = 250;
 	private static final int DISPLAT_HEIGHT = 500;
 	
+	private static final int BUTTON_WIDTH_HEIGHT = 50;
+	private static final int BORDER_WIDTH = 2;
+	private static final int FONT_SIZE = 18;
+	private static final int ADD_BUTTON_DIMENSION = 25;
+	
+	private static final String BACK_PIC = "res/buttons/back.png";
+	private static final String HOME_PIC = "res/buttons/home.png";
+	private static final String PLUS_PIC = "plus.png";
+	private static final String ADD_RECORD_FOLDER = "Add Record / Folder";
+	
 	private JPanel toolBar = new JPanel(new BorderLayout(15,0));
 	private JPanel centerBox = new JPanel(new FlowLayout(0));
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -67,16 +77,16 @@ public class FolderDisplay extends BackgroundPanel{
 		//-------------------TOOLBAR--------------------
 		
 		
-		CustomButton backButton = new CustomButton("", 0, 0, 50, 50);
+		CustomButton backButton = new CustomButton("", 0, 0, BUTTON_WIDTH_HEIGHT, BUTTON_WIDTH_HEIGHT);
 		backButton.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
 																							MiscUtils.BUTTON_COLOUR_DARK, 
-																							50, 
-																							50, 
+																							BUTTON_WIDTH_HEIGHT, 
+																							BUTTON_WIDTH_HEIGHT, 
 																							true), 
-															MiscUtils.getBufferedImageFromFile("res/buttons/back.png", 
-																							50)),
+															MiscUtils.getBufferedImageFromFile(BACK_PIC, 
+																							BUTTON_WIDTH_HEIGHT)),
 								true);
-		backButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		backButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,19 +100,19 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		directoryTitle = new JLabel(currentNode.getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		directoryTitle.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		directoryTitle.setFont(new Font(MiscUtils.FONT, Font.BOLD, FONT_SIZE));
 		
 		
-		CustomButton homeButton = new CustomButton("", 0, 0, 50, 50);
+		CustomButton homeButton = new CustomButton("", 0, 0, BUTTON_WIDTH_HEIGHT, BUTTON_WIDTH_HEIGHT);
 		homeButton.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
 																							MiscUtils.BUTTON_COLOUR_DARK, 
-																							50, 
-																							50, 
+																							BUTTON_WIDTH_HEIGHT, 
+																							BUTTON_WIDTH_HEIGHT, 
 																							true), 
-															MiscUtils.getBufferedImageFromFile("res/buttons/home.png", 
-																							50)),
+															MiscUtils.getBufferedImageFromFile(HOME_PIC, 
+																							BUTTON_WIDTH_HEIGHT)),
 								true);
-		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(sm.isSuccessfullyDecrypted()){
@@ -122,8 +132,8 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		//-------------------BOTTOMBAR---------------------
 		
-		CustomButton addRecordOrField = new CustomButton("Add Record / Folder", 0, 0, 25, 25);
-		addRecordOrField.setImageFromFile("plus.png", true);
+		CustomButton addRecordOrField = new CustomButton(ADD_RECORD_FOLDER, 0, 0, ADD_BUTTON_DIMENSION, ADD_BUTTON_DIMENSION);
+		addRecordOrField.setImageFromFile(PLUS_PIC, true);
 		addRecordOrField.setHorizontalAlignment(SwingConstants.LEFT);
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
@@ -168,7 +178,7 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 50, i, sm);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH_HEIGHT, i, sm);
 						centerBox.add(fdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
@@ -178,7 +188,7 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if(child.getData().isRecord()){
-						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, 50, i, sm);
+						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH_HEIGHT, i, sm);
 						centerBox.add(rdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
