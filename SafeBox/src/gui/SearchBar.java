@@ -33,7 +33,23 @@ public class SearchBar extends BackgroundPanel{
 	private JPanel rightPanel = new JPanel(new FlowLayout(0));
 	
 	private static final String SEARCH = "SearchBar";
+	private static final int SEARCH_FONT_SIZE = 11;
+	private static final int SEARCH_BOX_WIDTH = 400;
+	private static final int SEARCH_BUTTON_WIDTH = 80;
+	private static final String SEARCH_BUTTON_TEXT = "Search";
+	private static final String TITLE = "SafeBox";
+	private static final String GEAR_IMAGE = "gear.png";
+	private static final double HEIGHT_RATIO = .6;
+	private static final String LARGE_LOGO_IMAGE = "res/logos/largeLogo.png";
+	private static final int TITLE_FONT_SIZE = 32;
+	private static final int TITLE_LOCATION_X = 700;
+	private static final int TITLE_LOCATION_Y = 20;
+	private static final int LOGOUT_BUTTON_WIDTH_HEIGHT = 40;
 	
+	private static final Color SEARCH_BUTTON_COLOR_1 = new Color(255, 205, 40);
+	private static final Color SEARCH_BUTTON_COLOR_2 = new Color(255, 165, 0);
+	private static final Color SEARCH_BUTTON_COLOR_BORDER = new Color(215, 155, 0);
+	private static final int SEARCH_BUTTON_BORDER_WIDTH = 2;
 	ChangePasswordBox changePasswordDialogBox;
 
 	
@@ -61,7 +77,7 @@ public class SearchBar extends BackgroundPanel{
 		int buttonWidth = BAR_HEIGHT - 10;
 		int buttonHeight = BAR_HEIGHT - 10;
 		CustomButton settingsButton = new CustomButton("", 0, 0, buttonWidth, buttonHeight);
-		settingsButton.setImageFromFile("gear.png", true);
+		settingsButton.setImageFromFile(GEAR_IMAGE, true);
 		settingsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(sm.window, "//This is your settings", null, JOptionPane.PLAIN_MESSAGE);
@@ -78,10 +94,10 @@ public class SearchBar extends BackgroundPanel{
 		
 		//----------------------Search Box---------------------
 		final JTextField searchBox = new JTextField(SEARCH);
-		searchBox.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, 11));
+		searchBox.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, SEARCH_FONT_SIZE));
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);
-		searchBox.setPreferredSize(new Dimension(400, (int)(BAR_HEIGHT * 0.6)));
+		searchBox.setPreferredSize(new Dimension(SEARCH_BOX_WIDTH, (int)(BAR_HEIGHT * HEIGHT_RATIO)));
 		searchBox.setOpaque(true);
 		searchBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,9 +114,9 @@ public class SearchBar extends BackgroundPanel{
 		
 		
 		//------------------------Search Button -------------------------
-		CustomButton searchButton = new CustomButton("Search", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
-		searchButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
-		searchButton.setBoarderDetails(new Color(215, 155, 0), 2);
+		CustomButton searchButton = new CustomButton(SEARCH_BUTTON_TEXT, 0, 0, SEARCH_BUTTON_WIDTH, (int)(BAR_HEIGHT * HEIGHT_RATIO));
+		searchButton.setGradientBackground(SEARCH_BUTTON_COLOR_1, SEARCH_BUTTON_COLOR_2, true);
+		searchButton.setBoarderDetails(SEARCH_BUTTON_COLOR_BORDER, SEARCH_BUTTON_BORDER_WIDTH);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(sm.window, "placeholder for search implementation", null, JOptionPane.PLAIN_MESSAGE);
@@ -116,16 +132,16 @@ public class SearchBar extends BackgroundPanel{
 		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Title---------------------
-		JLabel titleLabel = new JLabel("SafeBox");
+		JLabel titleLabel = new JLabel(TITLE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
-		titleLabel.setLocation(700, 20);
+		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, TITLE_FONT_SIZE));
+		titleLabel.setLocation(TITLE_LOCATION_X, TITLE_LOCATION_Y);
 		rightPanel.add(titleLabel);
 		
 		
 		//-----------------------Log Out------------------------
-		CustomButton logOutButton = new CustomButton("", 0,0,40,40);
-		logOutButton.setImageIcon(MiscUtils.getBufferedImageFromFile("res/logos/largeLogo.png", logOutButton.getWidth()), false);
+		CustomButton logOutButton = new CustomButton("", 0,0,LOGOUT_BUTTON_WIDTH_HEIGHT,LOGOUT_BUTTON_WIDTH_HEIGHT);
+		logOutButton.setImageIcon(MiscUtils.getBufferedImageFromFile(LARGE_LOGO_IMAGE, logOutButton.getWidth()), false);
 		logOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(sm.isSuccessfullyDecrypted()){
