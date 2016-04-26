@@ -18,6 +18,7 @@ public class RenameFolderBox extends MessageBoxState {
 	private String currentName;
 	private static final String save = "Save";
 	private static final String initRenameField = "Rename here";
+	private static final String delete = "Delete";
 	//Strings End//
 	
 	int index;
@@ -26,6 +27,7 @@ public class RenameFolderBox extends MessageBoxState {
 	private final JLabel nameOfFolder = new JLabel("");
 	private final JPanel userInput = new JPanel(new BorderLayout());
 	private final CustomButton saveButton = new CustomButton(save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
+	private final CustomButton deleteButton = new CustomButton(delete, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
 	private  JTextField renameField = new JTextField(initRenameField);
 	//JObjects End//
 	
@@ -34,13 +36,16 @@ public class RenameFolderBox extends MessageBoxState {
 		this.index = i;
 		setName(index, sm);
 		//Buttons Start//
-		this.buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
-		this.cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
+		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
 				MiscUtils.BUTTON_COLOUR_DARK, true);
-		this.cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
 				MiscUtils.BUTTON_COLOUR_DARK, true);
 		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		deleteButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
+				MiscUtils.BUTTON_COLOUR_DARK, true);
+		deleteButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		this.cancelButton.addMouseListener(new MouseListener(){
 
 			@Override
@@ -98,6 +103,33 @@ public class RenameFolderBox extends MessageBoxState {
 			}
 			
 		});
+		this.deleteButton.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				deleteFolder(state, index);
+				resetBox();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+			
+		});
+
 		this.buttons.setLayout(new BorderLayout());
 		cancelButton.setBorder(new EmptyBorder(0,50,10,50));
 		this.saveButton.setBorder(new EmptyBorder(0,50,10,50));
@@ -115,9 +147,12 @@ public class RenameFolderBox extends MessageBoxState {
 		titleLabel = new JLabel(title);
 		titlePanel = new JPanel(new GridBagLayout());
 		titleLabel.setBorder(new EmptyBorder(10, 0, 0, 0));
+		deleteButton.setBorder(new EmptyBorder(20,0,0,0));
+		titlePanel.add(deleteButton,c);
 		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
-		titlePanel.add(titleLabel,c);
 		c.gridy = 1;
+		titlePanel.add(titleLabel,c);
+		c.gridy = 2;
 		titlePanel.add(nameOfFolder,c);
 		titlePanel.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		//Title End//
@@ -163,7 +198,7 @@ public class RenameFolderBox extends MessageBoxState {
 		panel.add(titlePanel, BorderLayout.NORTH);
 		panel.add(userInput,BorderLayout.CENTER);
 		add(panel);
-		setSize(new Dimension(450, 200));
+		setSize(new Dimension(450, 250));
 		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -202,5 +237,9 @@ public class RenameFolderBox extends MessageBoxState {
 	}
 	public String getName(){
 		return this.currentName;
+	}
+	private void deleteFolder(final StateManager sm, int i){
+		sm.getESM().getFileSystemHandler().deleteFolder(sm.getESM().getFileSystemHandler().getCurrent(), i);
+		sm.update();
 	}
 }
