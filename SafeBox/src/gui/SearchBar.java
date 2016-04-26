@@ -38,26 +38,24 @@ public class SearchBar extends BackgroundPanel{
 	
 	protected SearchBar(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
-		setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
-		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
+		//setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
+		//setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);	
-		
+		changePasswordDialogBox = new ChangePasswordBox(sm);
+		changePasswordDialogBox.setVisible(false);
 		
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
-		changePasswordDialogBox = new ChangePasswordBox(sm);
-		changePasswordDialogBox.setVisible(false);
 		
 		
 		//-----------------------------------------
 		//------------- LEFT PANEL ----------------
 		//-----------------------------------------
-		
 		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
+
 		//---------------------Settings button---------------------
 		int buttonWidth = BAR_HEIGHT - 10;
 		int buttonHeight = BAR_HEIGHT - 10;
@@ -75,7 +73,6 @@ public class SearchBar extends BackgroundPanel{
 		//-------------------------------------------
 		//------------- CENTER PANEL ----------------
 		//-------------------------------------------
-		
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Search Box---------------------
@@ -91,51 +88,27 @@ public class SearchBar extends BackgroundPanel{
 			}
 		});
 		searchBox.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
+			public void mouseReleased(MouseEvent e) {}
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				if (searchBox.getText().equals(SEARCH_BAR_STARTING_VALUE)){
 					searchBox.setText("");
 				}
-				
 			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		}
-		);
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {}
+		});
 		
+		
+		//------------------------Search Button -------------------------
 		CustomButton searchButton = new CustomButton("Search", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
 		searchButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
 		searchButton.setBoarderDetails(new Color(215, 155, 0), 2);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(sm.window, "You", null, JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(sm.window, "placeholder for search implementation", null, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
-		
 		centerPanel.add(searchBox);
 		centerPanel.add(searchButton);
 		
@@ -143,7 +116,6 @@ public class SearchBar extends BackgroundPanel{
 		//------------------------------------------
 		//------------- RIGHT PANEL ----------------
 		//------------------------------------------
-		
 		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Title---------------------
@@ -151,12 +123,25 @@ public class SearchBar extends BackgroundPanel{
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
 		titleLabel.setLocation(700, 20);
-		
-		
-		
 		rightPanel.add(titleLabel);
 		
 		
+		//-----------------------Log Out------------------------
+		CustomButton logOutButton = new CustomButton("", 0,0,40,40);
+		logOutButton.setImageIcon(MiscUtils.getBufferedImageFromFile("res/logos/largeLogo.png", logOutButton.getWidth()), false);
+		logOutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(sm.isSuccessfullyDecrypted()){
+					sm.getESM().saveFileSystemHandler();
+				}
+				sm.setState(sm.PASSWORD_STATE);
+				sm.init();
+			}
+		});
+		rightPanel.add(logOutButton);
+		//---------------------------------------------
+		//----------------- SEARCHBAR -----------------
+		//---------------------------------------------
 		setTransparentAdd(true);
 		add(leftPanel, BorderLayout.WEST);
 		add(centerPanel, BorderLayout.CENTER);

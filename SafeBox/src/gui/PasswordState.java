@@ -30,27 +30,6 @@ public class PasswordState extends BackgroundPanel{
 	private StateManager sm;
 	private final JPasswordField passWordField;
 	
-	private void validatePasswordAndMoveForward(JPasswordField passwordField){
-		sm.getESM().setPassword(passwordField.getPassword());
-		if (sm.getESM().fileSystemExists()){			
-			if (sm.getESM().loadFileSystemHandler()){
-				sm.setState(sm.MAIN_SCREEN_STATE);
-				sm.setSuccessfullyDecrypted(true);
-				sm.init();
-				sm.update();
-			} else {
-				JOptionPane.showMessageDialog(sm.window, "Incorrect password, please try again.", null, JOptionPane.PLAIN_MESSAGE);
-				passwordField.setText("");
-			}
-			
-		} else {
-			if (passwordField.getPassword().length > 1){
-				sm.setSuccessfullyDecrypted(true);
-				sm.setState(sm.MAIN_SCREEN_STATE);
-			}
-		}
-	}
-	
 	protected PasswordState(final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		
@@ -80,8 +59,6 @@ public class PasswordState extends BackgroundPanel{
 								textBoxWidth,
 								40);
 		passWordField.addMouseListener(new MouseListener() {
-
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(isInitTextField(passWordField.getPassword())){
 					passWordField.setText("");
@@ -173,6 +150,27 @@ public class PasswordState extends BackgroundPanel{
 		
 	}
 
+	private void validatePasswordAndMoveForward(JPasswordField passwordField){
+		sm.getESM().setPassword(passwordField.getPassword());
+		if (sm.getESM().fileSystemExists()){			
+			if (sm.getESM().loadFileSystemHandler()){
+				sm.setState(sm.MAIN_SCREEN_STATE);
+				sm.setSuccessfullyDecrypted(true);
+				sm.init();
+				sm.update();
+			} else {
+				JOptionPane.showMessageDialog(sm.window, "Incorrect password, please try again.", null, JOptionPane.PLAIN_MESSAGE);
+				passwordField.setText("");
+			}
+			
+		} else {
+			if (passwordField.getPassword().length > 1){
+				sm.setSuccessfullyDecrypted(true);
+				sm.setState(sm.MAIN_SCREEN_STATE);
+			}
+		}
+	}
+	
 	protected void update() {
 		// TODO Auto-generated method stub
 		
