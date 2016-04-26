@@ -22,7 +22,7 @@ public class ChangePasswordBox extends MessageBoxState {
 	private static CustomButton saveButton = new CustomButton(
 			save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
 	private JPanel userInput = new JPanel(new GridBagLayout());
-	private JTextField currentPasswordField = new JTextField(initCurrentPasswordField);
+	private JPasswordField currentPasswordField = new JPasswordField(initCurrentPasswordField);
 	private JTextField newPasswordField = new JTextField(initNewPasswordField);
 	private JTextField confirmPasswordField = new JTextField(initConfirmPasswordField);
 	private JTextField hintField = new JTextField(initHintField);
