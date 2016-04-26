@@ -30,7 +30,7 @@ public class DeleteBox extends MessageBoxState {
 	//JObjects End//
 	
 	public DeleteBox(final StateManager sm){
-		//final StateManager state = sm;
+		final StateManager state = sm;
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());

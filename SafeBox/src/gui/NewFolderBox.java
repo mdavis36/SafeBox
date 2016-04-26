@@ -212,6 +212,7 @@ public class NewFolderBox extends MessageBoxState {
 			}
 
 		});
+
 	}
 	
 	@Override
@@ -221,7 +222,7 @@ public class NewFolderBox extends MessageBoxState {
 	}
 
 	private boolean checkForValidText(String text){
-		if(text.equals(initTextField) || text.equals("") || text.equals(" ")){
+		if(text == initTextField || text == "" || text == " "){
 			return false;
 		}
 		else{
@@ -235,9 +236,11 @@ public class NewFolderBox extends MessageBoxState {
 
 	private void createRecord(String name, StateManager sm){
 		sm.getESM().getFileSystemHandler().createRecord(sm.getESM().getFileSystemHandler().getCurrent(), name);
+		sm.update();
 	}
 	
 	private void createFolder(String name, StateManager sm){
 		sm.getESM().getFileSystemHandler().createFolder(sm.getESM().getFileSystemHandler().getCurrent(), name);
+		sm.update();
 	}
 }

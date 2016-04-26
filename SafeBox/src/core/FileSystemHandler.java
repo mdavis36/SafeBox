@@ -80,6 +80,11 @@ public class FileSystemHandler implements Serializable{
 		contents.addNode(parent, nodeToAdd);
 		return nodeToAdd;
 	}
+	public void deleteFolder(Node n){
+		int localIndex = n.getLocalIndex();
+		Node parent = n.getParent();
+		deleteFolder(parent,localIndex);
+	}
 	
 	public boolean deleteFolder(Node parent, int index){
 		//TODO: Start from last index, remove inward

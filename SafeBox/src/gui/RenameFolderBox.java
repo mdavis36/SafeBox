@@ -73,7 +73,7 @@ public class RenameFolderBox extends MessageBoxState {
 					resetBox();
 				}
 				else{
-					notValidText(state);
+					return;
 				}
 			}
 
@@ -176,15 +176,11 @@ public class RenameFolderBox extends MessageBoxState {
 	}
 	
 	private boolean checkForValidText(String text){
-		if(text.equals(initRenameField) && text.equals("") && text.equals(" ")){
-			return false;
-		}
-		else{
+		if(text != initRenameField && text != "" && text != " "){
 			return true;
 		}
-	}
-	
-	private void notValidText(StateManager sm){
-		JOptionPane.showMessageDialog(sm.window, "Not a valid name.", null, JOptionPane.PLAIN_MESSAGE);
+		else{
+			return false;
+		}
 	}
 }
