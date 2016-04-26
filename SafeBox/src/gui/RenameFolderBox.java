@@ -15,9 +15,9 @@ public class RenameFolderBox extends MessageBoxState {
 	//Strings Start//
 	private static final String title = "Rename:";
 	private static final String renameText = "Rename";
-	private String currentName;
+	private String currentName = "";
 	private static final String save = "Save";
-	private static final String initRenameField = "Rename here";
+	//private static String initRenameField = currentName;
 	private static final String delete = "Delete";
 	//Strings End//
 	
@@ -28,13 +28,14 @@ public class RenameFolderBox extends MessageBoxState {
 	private final JPanel userInput = new JPanel(new BorderLayout());
 	private final CustomButton saveButton = new CustomButton(save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
 	private final CustomButton deleteButton = new CustomButton(delete, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
-	private  JTextField renameField = new JTextField(initRenameField);
+	private  JTextField renameField;
 	//JObjects End//
 	
 	public RenameFolderBox(final StateManager sm, int i){
 		final StateManager state = sm;
 		this.index = i;
 		setName(index, sm);
+		renameField = new JTextField(getName());
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
@@ -162,7 +163,7 @@ public class RenameFolderBox extends MessageBoxState {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(renameField.getText() == initRenameField){
+				if(renameField.getText().equals(currentName)){
 					renameField.setText("");
 				}				
 			}
@@ -211,11 +212,11 @@ public class RenameFolderBox extends MessageBoxState {
 	@Override
 	protected void resetBox() {
 		this.setVisible(false);
-		this.renameField.setText(initRenameField);
+		this.renameField.setText(currentName);
 	}
 	
 	private boolean checkForValidText(String text){
-		if(text.equals(initRenameField) || text.equals("") || text.equals(" ")){
+		if(text.equals(currentName) || text.equals("") || text.equals(" ")){
 			return false;
 		}
 		else{
