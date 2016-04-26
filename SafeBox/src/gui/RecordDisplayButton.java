@@ -86,7 +86,7 @@ public class RecordDisplayButton extends BackgroundPanel{
 		});
 		add(button);//, BorderLayout.CENTER);
 		add(edit);
-		addMouseListener(new MouseListener() {
+		button.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -96,8 +96,9 @@ public class RecordDisplayButton extends BackgroundPanel{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				if(e.getButton() == MouseEvent.BUTTON3){
+					renameDeleteBox.setVisible(true);
+				}
 			}
 			
 			@Override

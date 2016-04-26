@@ -94,7 +94,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 		});
 		add(button);
 		add(edit);
-		addMouseListener(new MouseListener() {
+		button.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -105,7 +105,8 @@ public class FolderDisplayButton extends BackgroundPanel{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON3){
-					
+					renameDeleteBox.setVisible(true);
+
 				}
 			}
 			
