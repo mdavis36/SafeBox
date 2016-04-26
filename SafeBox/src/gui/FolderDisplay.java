@@ -82,8 +82,8 @@ public class FolderDisplay extends BackgroundPanel{
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentNode = getCurrentNode();
-				if(sm.getESM().getFileSystemHandler().getRoot() != currentNode){
-					sm.getESM().getFileSystemHandler().setCurrentNode(currentNode.getParent());
+				if(getFSH().getRoot() != currentNode){
+					getFSH().setCurrentNode(currentNode.getParent());
 					update();
 				}
 			}
@@ -133,24 +133,6 @@ public class FolderDisplay extends BackgroundPanel{
 		
 	}
 	
-	private CustomButton setupToolBarButton(String imgPath){
-		CustomButton b = new CustomButton("", 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-		b.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
-																							MiscUtils.BUTTON_COLOUR_DARK, 
-																							BUTTON_WIDTH, 
-																							BUTTON_HEIGHT, 
-																							true), 
-															MiscUtils.getBufferedImageFromFile(imgPath, 
-																							BUTTON_WIDTH)),
-								true);
-		b.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
-		return b;
-	}
-	
-	private Node getCurrentNode(){
-		return sm.getESM().getFileSystemHandler().getCurrent();
-	}
-	
 	protected void init(){
 		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getRoot());
 	}
@@ -192,6 +174,28 @@ public class FolderDisplay extends BackgroundPanel{
 				}	
 			}
 		}
+	}
+	
+	private CustomButton setupToolBarButton(String imgPath){
+		CustomButton b = new CustomButton("", 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+		b.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
+																							MiscUtils.BUTTON_COLOUR_DARK, 
+																							BUTTON_WIDTH, 
+																							BUTTON_HEIGHT, 
+																							true), 
+															MiscUtils.getBufferedImageFromFile(imgPath, 
+																							BUTTON_WIDTH)),
+								true);
+		b.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
+		return b;
+	}
+	
+	private Node getCurrentNode(){
+		return getFSH().getCurrent();
+	}
+	
+	private FileSystemHandler getFSH(){
+		return sm.getESM().getFileSystemHandler();
 	}
 	
 	protected void clearCenter(){
