@@ -43,26 +43,13 @@ public class ChangePasswordBox extends MessageBoxState {
 		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		cancelButton.addMouseListener(new MouseListener(){
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				resetBox();
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
 			
 		});
 		saveButton.addMouseListener(new MouseListener(){
@@ -86,22 +73,10 @@ public class ChangePasswordBox extends MessageBoxState {
 					JOptionPane.showMessageDialog(sm.window, "Current password didn't match.", null, JOptionPane.PLAIN_MESSAGE);
 				}
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
 			
 		});
 		cancelButton.setBorder(new EmptyBorder(0,50,0,50));
@@ -221,7 +196,6 @@ public class ChangePasswordBox extends MessageBoxState {
 				}
 			}
 		});
-		
 		//Frame End//
 	}
 
