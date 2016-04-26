@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -45,70 +46,22 @@ public class DeleteBox extends MessageBoxState {
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
-		deleteButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
-		deleteButton.setBoarderDetails(MiscUtils.ORANGE_PANEL_COLOUR_BORDER,
-				BUTTON_BORDER_WIDTH);
-		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
+		deleteButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		deleteButton.setBoarderDetails(MiscUtils.ORANGE_PANEL_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
+		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
-		cancelButton.addMouseListener(new MouseListener() {
-
-			@Override
+		cancelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				resetBox();
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-
 		});
-		deleteButton.addMouseListener(new MouseListener() {
-
-			@Override
+		
+		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				//TODO: Finish implementation
 				//state.getESM().getFileSystemHandler().deleteFolder(state., index)
 				resetBox();
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-
 		});
 		//Buttons End//
 		

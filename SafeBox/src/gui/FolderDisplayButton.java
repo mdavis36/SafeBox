@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -38,13 +39,13 @@ public class FolderDisplayButton extends BackgroundPanel{
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
-		
 		button.setImageFromFile("folder.png", true);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+		button.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON3){
+					renameDeleteBox.setVisible(true);
+				}
 				sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
-				System.out.println("clicked child : " + index);
 				sm.update();
 			}
 		});
@@ -59,75 +60,15 @@ public class FolderDisplayButton extends BackgroundPanel{
 																						20)),
 						true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		edit.addMouseListener(new MouseListener(){
-
-			@Override
+		edit.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e) {
 				renameDeleteBox.setVisible(true);
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 		});
+		
+		
 		add(button);
 		add(edit);
-		button.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if(e.getButton() == MouseEvent.BUTTON3){
-					renameDeleteBox.setVisible(true);
-
-				}
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				
-			}
-		});
 	}
 	
 	private void folderAction(){
