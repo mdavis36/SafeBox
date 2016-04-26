@@ -34,6 +34,10 @@ public class MiscUtils {
 	
 	protected static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 	
+	protected static final String FONT = "Arial";
+	
+	protected static final char ECHO_CHAR = '*'; 
+	
 	/**
 	 * @param c1 first color
 	 * @param c2 second color
