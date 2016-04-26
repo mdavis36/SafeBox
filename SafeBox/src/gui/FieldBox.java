@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import core.Field;
+import core.Record;
 
 public class FieldBox extends BackgroundPanel{
 	
@@ -45,7 +46,7 @@ private int BAR_HEIGHT = 60;
 		setOpaque(true);
 		
 		
-		final JTextField fieldName = new JTextField("fieldName");
+		final JTextField fieldName = new JTextField(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getName());
 		fieldName.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
@@ -53,7 +54,7 @@ private int BAR_HEIGHT = 60;
 		fieldName.setOpaque(true);
 		add(fieldName);
 		
-		final JTextField fieldData = new JTextField("fieldData");
+		final JTextField fieldData = new JTextField(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
 		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
