@@ -31,7 +31,6 @@ public class mainPrototype {
 			String choice = scan.next();
 			if (choice.equalsIgnoreCase("B")) {
 				back = true;
-				scan.close();
 				return current;
 			} else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 				int index = Integer.parseInt(choice);

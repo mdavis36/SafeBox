@@ -32,10 +32,9 @@ public class FolderDisplayButton extends BackgroundPanel{
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
-		
-		renameDeleteBox = new RenameFolderBox(sm);
+		renameDeleteBox = new RenameFolderBox(sm,index);
 		renameDeleteBox.setVisible(false);
-		
+	
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
@@ -61,6 +60,38 @@ public class FolderDisplayButton extends BackgroundPanel{
 						true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
 		
+		edit.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				renameDeleteBox.setVisible(true);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		add(button);
 		add(edit);
 		addMouseListener(new MouseListener() {
@@ -74,8 +105,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON3){
-					//renameDeleteBox.setNode(sm.getESM().getFileSystemHandler().getCurrent());
-					renameDeleteBox.setVisible(true);
+					
 				}
 			}
 			

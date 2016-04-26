@@ -36,14 +36,12 @@ public class FolderDisplay extends BackgroundPanel{
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	
 	private NewFolderBox newFolderDialogBox;
-	
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
 	FileSystemHandler fsh;
 	StateManager sm;
 	Node currentNode;
-	
 	protected JLabel directoryTitle;
 	
 	/**
@@ -55,6 +53,7 @@ public class FolderDisplay extends BackgroundPanel{
 		newFolderDialogBox = new NewFolderBox(sm);
 		newFolderDialogBox.setVisible(false);
 		currentNode = sm.getESM().getFileSystemHandler().getRoot();
+
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
 		setLayout(new BorderLayout(0, 0));

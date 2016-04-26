@@ -16,14 +16,16 @@ public class RecordDisplayButton extends BackgroundPanel{
 	private int index;
 	private static final int FOLDER = 0;
 	private static final int RECORD = 0;
-	
+	RenameFolderBox renameDeleteBox;
+
 	
 	public RecordDisplayButton(String text, int x, int y, int width, int height, final int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, width, height, true));
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
-	
+		renameDeleteBox = new RenameFolderBox(sm,index);
+		renameDeleteBox.setVisible(false);
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
 	
 		
@@ -39,9 +41,51 @@ public class RecordDisplayButton extends BackgroundPanel{
 				sm.update();
 			}
 		});
+		CustomButton edit = new CustomButton("", 0, 0, 20, 20);
+		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
+																						MiscUtils.BUTTON_COLOUR_DARK, 
+																						20, 
+																						20, 
+																						true), 
+														MiscUtils.getBufferedImageFromFile("res/buttons/pen.png", 
+																						20)),
+						true);
+		edit.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		
-		add(button, BorderLayout.CENTER);
+		edit.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				renameDeleteBox.setVisible(true);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		add(button);//, BorderLayout.CENTER);
+		add(edit);
 		addMouseListener(new MouseListener() {
 			
 			@Override
