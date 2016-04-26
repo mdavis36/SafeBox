@@ -103,7 +103,6 @@ public class RecordDisplay extends BackgroundPanel {
 		fViewer.add(addFieldButton, BorderLayout.CENTER);
 		
 		
-		
 		setTransparentAdd(true);
 		g.weightx = 1;
 		g.fill = GridBagConstraints.HORIZONTAL;

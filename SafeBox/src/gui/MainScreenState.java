@@ -41,6 +41,7 @@ public class MainScreenState extends BackgroundPanel{
 
 	protected void init(){
 		folderDisplay.init();
+		recordDisplay.init();
 		sm.getESM().getFileSystemHandler().setCurrentRecord(null);
 	}
 	
