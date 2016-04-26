@@ -110,7 +110,7 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
 				currentPasswordField.setText("");
-				currentPasswordField.setEchoChar('•');
+				currentPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
 				
 			}
 		});
@@ -126,7 +126,7 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
 				newPasswordField.setText("");
-				newPasswordField.setEchoChar('•');
+				newPasswordField.setEchoChar('ï¿½');
 				
 			}
 		});
@@ -142,7 +142,7 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseClicked(MouseEvent e) {
 				confirmPasswordField.setText("");
-				confirmPasswordField.setEchoChar('•');
+				confirmPasswordField.setEchoChar('ï¿½');
 				
 			}
 		});

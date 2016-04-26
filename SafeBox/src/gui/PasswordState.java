@@ -29,7 +29,6 @@ public class PasswordState extends BackgroundPanel{
 	private final int textBoxWidth = 330;
 	private StateManager sm;
 	private final JPasswordField passWordField;
-	private final JTextField textField; 
 	
 	private void validatePasswordAndMoveForward(JPasswordField passwordField){
 		sm.getESM().setPassword(passwordField.getPassword());
@@ -80,7 +79,43 @@ public class PasswordState extends BackgroundPanel{
 								(sm.window.getHeight() / 2) + 15, 
 								textBoxWidth,
 								40);
-		passWordField.setVisible(false);
+		passWordField.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(isInitTextField(passWordField.getPassword())){
+					passWordField.setText("");
+					passWordField.setEchoChar(MiscUtils.ECHO_CHAR);
+				}
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		passWordField.setVisible(true);
+		init();
 		add(passWordField);
 		setTransparentAdd(true);
 		
@@ -117,27 +152,6 @@ public class PasswordState extends BackgroundPanel{
 		add(forgotPWButton);		
 		
 		setTransparentAdd(false);
-		textField = new JTextField(initTextField);
-		textField.setFont(new Font("Arial", Font.PLAIN, 25));
-		textField.setForeground(Color.LIGHT_GRAY);
-		textField.setBounds((sm.window.getWidth() / 2) - (textBoxWidth / 2), 
-							(sm.window.getHeight() / 2) + 15, 
-							textBoxWidth,
-							40);
-		textField.setHorizontalAlignment(JTextField.CENTER);
-		textField.setEditable(false);
-		textField.addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent e) {
-				textField.setText("");
-				passWordField.setVisible(true);
-				textField.setVisible(false);
-			}
-			public void mouseEntered(MouseEvent e) {}
-			public void mouseExited(MouseEvent e) {}
-			public void mousePressed(MouseEvent e) {}
-			public void mouseReleased(MouseEvent e) {}
-		});
-		add(textField);
 		setTransparentAdd(true);
 		
 		
@@ -152,8 +166,7 @@ public class PasswordState extends BackgroundPanel{
 				System.out.println("mouse click on screen");
 				if(new String(passWordField.getPassword()).equals("")){
 					System.out.println("field empty");
-					textField.setVisible(true);
-					passWordField.setVisible(false);
+					//passWordField.setVisible(false);
 				}
 			}
 		});
@@ -166,11 +179,16 @@ public class PasswordState extends BackgroundPanel{
 	}
 	
 	public void init(){
-		passWordField.setText("");
-		passWordField.setVisible(false);
-		textField.setVisible(true);
-		textField.setText(initTextField);
-		
+		passWordField.setText(initTextField);
+		passWordField.setEchoChar((char)0);
 	}
-
+	
+	private boolean isInitTextField(char[] cs){
+		if(initTextField.equals(new String(cs))){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
