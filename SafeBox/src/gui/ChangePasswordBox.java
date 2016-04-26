@@ -5,6 +5,8 @@ import javax.swing.border.EmptyBorder;
 import core.HintManager;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
@@ -25,8 +27,7 @@ public class ChangePasswordBox extends MessageBoxState {
 	
 	//JObjects Start//
 	private static JLabel titleLabel = new JLabel(title);
-	private static CustomButton saveButton = new CustomButton(
-			save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
+	private static CustomButton saveButton = new CustomButton(save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
 	private JPanel userInput = new JPanel(new GridBagLayout());
 	private JPasswordField currentPasswordField = new JPasswordField(initCurrentPasswordField);
 	private JPasswordField newPasswordField = new JPasswordField(initNewPasswordField);
@@ -37,11 +38,9 @@ public class ChangePasswordBox extends MessageBoxState {
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
-		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
+		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
-		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
+		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
 		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		cancelButton.addMouseListener(new MouseListener(){
 			@Override
@@ -128,15 +127,63 @@ public class ChangePasswordBox extends MessageBoxState {
 		c.gridwidth = 4;
 		c.gridy = 0;
 		currentPasswordField.setPreferredSize(new Dimension(350,40));
+		currentPasswordField.setEchoChar((char)0);
+		currentPasswordField.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				currentPasswordField.setText("");
+				currentPasswordField.setEchoChar('•');
+				
+			}
+		});
 		userInput.add(currentPasswordField, c);
+		
 		c.gridy = 1;
 		newPasswordField.setPreferredSize(new Dimension(350,40));
+		newPasswordField.setEchoChar((char)0);
+		newPasswordField.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				newPasswordField.setText("");
+				newPasswordField.setEchoChar('•');
+				
+			}
+		});
 		userInput.add(newPasswordField,c);
+		
 		c.gridy = 2;
 		confirmPasswordField.setPreferredSize(new Dimension(350,40));
+		confirmPasswordField.setEchoChar((char)0);
+		confirmPasswordField.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				confirmPasswordField.setText("");
+				confirmPasswordField.setEchoChar('•');
+				
+			}
+		});
 		userInput.add(confirmPasswordField,c);
+		
 		c.gridy = 3;
 		hintField.setPreferredSize(new Dimension(350,40));
+		hintField.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				hintField.setText("");				
+			}
+		});
 		userInput.add(hintField,c);
 		//User Input End//
 		
@@ -150,6 +197,31 @@ public class ChangePasswordBox extends MessageBoxState {
 		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		
+		addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {			}
+			public void mouseClicked(MouseEvent e) {
+				if (currentPasswordField.getPassword().length == 0) {
+					currentPasswordField.setEchoChar((char)0);
+					currentPasswordField.setText(initCurrentPasswordField);
+				}
+				if (newPasswordField.getPassword().length == 0) {
+					newPasswordField.setEchoChar((char)0);
+					newPasswordField.setText(initNewPasswordField);
+				}
+				if (confirmPasswordField.getPassword().length == 0) {
+					confirmPasswordField.setEchoChar((char)0);
+					confirmPasswordField.setText(initConfirmPasswordField);
+				}
+				if (hintField.getText().equals("")){
+					hintField.setText(initHintField);
+				}
+			}
+		});
+		
 		//Frame End//
 	}
 
