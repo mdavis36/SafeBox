@@ -32,7 +32,7 @@ public class SearchBar extends BackgroundPanel{
 	private JPanel centerPanel = new JPanel(new FlowLayout(0));
 	private JPanel rightPanel = new JPanel(new FlowLayout(0));
 	
-	private static final String SEARCH_BAR_STARTING_VALUE = "SearchBar";
+	private static final String SEARCH = "SearchBar";
 	
 	ChangePasswordBox changePasswordDialogBox;
 
@@ -77,8 +77,8 @@ public class SearchBar extends BackgroundPanel{
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Search Box---------------------
-		final JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
-		searchBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		final JTextField searchBox = new JTextField(SEARCH);
+		searchBox.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, 11));
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);
 		searchBox.setPreferredSize(new Dimension(400, (int)(BAR_HEIGHT * 0.6)));
@@ -90,7 +90,7 @@ public class SearchBar extends BackgroundPanel{
 		});
 		searchBox.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				if (searchBox.getText().equals(SEARCH_BAR_STARTING_VALUE)){
+				if (searchBox.getText().equals(SEARCH)){
 					searchBox.setText("");
 				}
 			}
