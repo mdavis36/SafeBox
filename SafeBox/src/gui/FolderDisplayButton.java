@@ -1,22 +1,22 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class FolderDisplayButton extends BackgroundPanel{
 	
 	private int index;
+	private int type;
+	private String imgName;
+	protected static final int RECORD = 0;
+	protected static final int FOLDER = 1;
+	
+	private StateManager sm;
 	
 	RenameFolderBox renameDeleteBox;
 	/**
@@ -28,31 +28,41 @@ public class FolderDisplayButton extends BackgroundPanel{
 	 * @param index index of the folder
 	 * @param sm the state it is placed on
 	 */
-	public FolderDisplayButton(String text, int x, int y, int width, int height, final int index, final StateManager sm) {
+	public FolderDisplayButton(String text, int x, int y, int width, int height, final int index, final StateManager sm, final int type) {
 		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, width, height, true));
+		this.sm = sm;
+		this.type = type;
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
+		
 		renameDeleteBox = new RenameFolderBox(sm,index);
 		renameDeleteBox.setVisible(false);
 	
+		
+		if (type == FOLDER){
+			imgName = "folder.png";
+		} else {
+			imgName = "record.png";
+		}
+		
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
-		button.setImageFromFile("folder.png", true);
+		button.setImageFromFile(imgName, true);
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				if(e.getButton() == MouseEvent.BUTTON3){
-					renameDeleteBox.setVisible(true);
-				}
-				sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
-				sm.update();
+				if (type == FOLDER)
+					folderAction(e.getButton());
+				else
+					recordAction();
+				
 			}
 		});
 		
 		CustomButton edit = new CustomButton("", 0, 0, 20, 20);
-		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
-																						MiscUtils.BUTTON_COLOUR_DARK, 
+		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, 
+																						MiscUtils.BLUE_PANEL_COLOUR_DARK, 
 																						20, 
 																						20, 
 																						true), 
@@ -71,8 +81,17 @@ public class FolderDisplayButton extends BackgroundPanel{
 		add(edit);
 	}
 	
-	private void folderAction(){
-		
+	private void folderAction(int b){
+		if(b == MouseEvent.BUTTON3){
+			renameDeleteBox.setVisible(true);
+		}
+		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
+		sm.update();
+	}
+	
+	private void recordAction(){
+		sm.getESM().getFileSystemHandler().setCurrentRecord(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
+		sm.update();
 	}
 	
 	protected int getIndex(){

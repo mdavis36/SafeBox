@@ -156,22 +156,15 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm, FolderDisplayButton.FOLDER);
+						centerBox.add(fdb, 0);	
+					}else{
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm, FolderDisplayButton.RECORD);
 						centerBox.add(fdb);
-						centerBox.revalidate();
-						centerBox.repaint();		
 					}
-				}	
-				RecordDisplayButton rdb;
-				for(int i = 0; i < children.size(); i++){
-					Node child = children.get(i);
-					if(child.getData().isRecord()){
-						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm);
-						centerBox.add(rdb);
-						centerBox.revalidate();
-						centerBox.repaint();		
-					}
-				}	
+					centerBox.revalidate();
+					centerBox.repaint();	
+				}		
 			}
 		}
 	}
