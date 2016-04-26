@@ -105,6 +105,9 @@ public class FolderDisplay extends BackgroundPanel{
 		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(sm.isSuccessfullyDecrypted()){
+					sm.getESM().saveFileSystemHandler();
+				}
 				sm.setState(sm.PASSWORD_STATE);
 				sm.init();
 			}
