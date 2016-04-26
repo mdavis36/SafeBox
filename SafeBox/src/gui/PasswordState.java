@@ -58,7 +58,7 @@ public class PasswordState extends BackgroundPanel{
 		JLabel titleLabel = new JLabel("SafeBox");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
-		titleLabel.setBounds(321, 75, 100, 50);
+		titleLabel.setBounds(sm.window.getWidth()/2-50, 75, 100, 50);
 		add(titleLabel);
 		
 		
