@@ -29,17 +29,18 @@ public class FolderDisplay extends BackgroundPanel{
 	private int boarderWidth = 3;
 	
 	private static final int DISPLAY_WIDTH = 250;
-	private static final int DISPLAT_HEIGHT = 500;
+	private static final int DISPLAY_HEIGHT = 500;
 	
-	private static final int BUTTON_WIDTH_HEIGHT = 50;
+	private static final int BUTTON_WIDTH = 50;
+	private static final int BUTTON_HEIGHT = 50;
 	private static final int BORDER_WIDTH = 2;
 	private static final int FONT_SIZE = 18;
 	private static final int ADD_BUTTON_DIMENSION = 25;
 	
-	private static final String BACK_PIC = "res/buttons/back.png";
-	private static final String HOME_PIC = "res/buttons/home.png";
-	private static final String PLUS_PIC = "plus.png";
-	private static final String ADD_RECORD_FOLDER = "Add Record / Folder";
+	private static final String IMG_BACK = "res/buttons/back.png";
+	private static final String IMG_HOME = "res/buttons/home.png";
+	private static final String IMG_PLUS = "plus.png";
+	private static final String ADD_RECORD_FOLDER_TITLE = "Add Record / Folder";
 	
 	private JPanel toolBar = new JPanel(new BorderLayout(15,0));
 	private JPanel centerBox = new JPanel(new FlowLayout(0));
@@ -65,9 +66,9 @@ public class FolderDisplay extends BackgroundPanel{
 		currentNode = sm.getESM().getFileSystemHandler().getRoot();
 
 		
-		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAT_HEIGHT));
+		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
 		setLayout(new BorderLayout(0, 0));
-		setBounds(0, 0, DISPLAY_WIDTH, DISPLAT_HEIGHT);
+		setBounds(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 		
 		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_BORDER);
@@ -77,17 +78,7 @@ public class FolderDisplay extends BackgroundPanel{
 		//-------------------TOOLBAR--------------------
 		
 		
-		CustomButton backButton = new CustomButton("", 0, 0, BUTTON_WIDTH_HEIGHT, BUTTON_WIDTH_HEIGHT);
-		backButton.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
-																							MiscUtils.BUTTON_COLOUR_DARK, 
-																							BUTTON_WIDTH_HEIGHT, 
-																							BUTTON_WIDTH_HEIGHT, 
-																							true), 
-															MiscUtils.getBufferedImageFromFile(BACK_PIC, 
-																							BUTTON_WIDTH_HEIGHT)),
-								true);
-		backButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
-		backButton.setHorizontalAlignment(SwingConstants.CENTER);
+		CustomButton backButton = setupToolBarButton(IMG_BACK);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentNode = getCurrentNode();
@@ -103,16 +94,7 @@ public class FolderDisplay extends BackgroundPanel{
 		directoryTitle.setFont(new Font(MiscUtils.FONT, Font.BOLD, FONT_SIZE));
 		
 		
-		CustomButton homeButton = new CustomButton("", 0, 0, BUTTON_WIDTH_HEIGHT, BUTTON_WIDTH_HEIGHT);
-		homeButton.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
-																							MiscUtils.BUTTON_COLOUR_DARK, 
-																							BUTTON_WIDTH_HEIGHT, 
-																							BUTTON_WIDTH_HEIGHT, 
-																							true), 
-															MiscUtils.getBufferedImageFromFile(HOME_PIC, 
-																							BUTTON_WIDTH_HEIGHT)),
-								true);
-		homeButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
+		CustomButton homeButton = setupToolBarButton(IMG_HOME);
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(sm.isSuccessfullyDecrypted()){
@@ -132,8 +114,8 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		//-------------------BOTTOMBAR---------------------
 		
-		CustomButton addRecordOrField = new CustomButton(ADD_RECORD_FOLDER, 0, 0, ADD_BUTTON_DIMENSION, ADD_BUTTON_DIMENSION);
-		addRecordOrField.setImageFromFile(PLUS_PIC, true);
+		CustomButton addRecordOrField = new CustomButton(ADD_RECORD_FOLDER_TITLE, 0, 0, ADD_BUTTON_DIMENSION, ADD_BUTTON_DIMENSION);
+		addRecordOrField.setImageFromFile(IMG_PLUS, true);
 		addRecordOrField.setHorizontalAlignment(SwingConstants.LEFT);
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
@@ -149,6 +131,20 @@ public class FolderDisplay extends BackgroundPanel{
 		add(bottomBar, BorderLayout.SOUTH);
 		add(centerBox, BorderLayout.CENTER);
 		
+	}
+	
+	private CustomButton setupToolBarButton(String imgPath){
+		CustomButton b = new CustomButton("", 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+		b.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
+																							MiscUtils.BUTTON_COLOUR_DARK, 
+																							BUTTON_WIDTH, 
+																							BUTTON_HEIGHT, 
+																							true), 
+															MiscUtils.getBufferedImageFromFile(imgPath, 
+																							BUTTON_WIDTH)),
+								true);
+		b.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
+		return b;
 	}
 	
 	private Node getCurrentNode(){
@@ -178,7 +174,7 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH_HEIGHT, i, sm);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm);
 						centerBox.add(fdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
@@ -188,7 +184,7 @@ public class FolderDisplay extends BackgroundPanel{
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
 					if(child.getData().isRecord()){
-						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH_HEIGHT, i, sm);
+						rdb = new RecordDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm);
 						centerBox.add(rdb);
 						centerBox.revalidate();
 						centerBox.repaint();		
