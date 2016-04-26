@@ -32,7 +32,10 @@ public class FolderDisplayButton extends BackgroundPanel{
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setLayout(new FlowLayout(10));
-	
+		
+		renameDeleteBox = new RenameFolderBox(sm);
+		renameDeleteBox.setVisible(false);
+		
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
 		
 		
@@ -72,8 +75,10 @@ public class FolderDisplayButton extends BackgroundPanel{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				if(e.getButton() == MouseEvent.BUTTON3){
+					//renameDeleteBox.setNode(sm.getESM().getFileSystemHandler().getCurrent());
+					renameDeleteBox.setVisible(true);
+				}
 			}
 			
 			@Override

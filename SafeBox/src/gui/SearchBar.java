@@ -42,6 +42,8 @@ public class SearchBar extends BackgroundPanel{
 		setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);	
+		
+		
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		setBorder(border);

@@ -3,12 +3,17 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
+import core.Field;
 import core.Node;
 import core.Record;
 
@@ -108,8 +113,77 @@ public class RecordDisplay extends BackgroundPanel {
 
 			//-------------------------------------------------------------
 			
+<<<<<<< HEAD
 			revalidate();
 			repaint();
+=======
+			addFieldButton = new CustomButton("Add Field", 0, 0, 100, 30);
+			addFieldButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+			addFieldButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+			addFieldButton.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					System.out.println("you just clicked addField");
+					Field f = new Field();
+					f.setName("Name");
+					f.setData("content");
+					((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).addField(f);
+					init();
+					update();
+					//TO-DO:  update the Record display with new Record
+					
+				}
+			});
+			
+			
+			fViewer.add(fieldPanel, BorderLayout.NORTH);
+			fViewer.add(addFieldButton, BorderLayout.CENTER);
+			scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollPane.getVerticalScrollBar().setUnitIncrement(5);
+			
+			recordToolBar.update();
+			setTransparentAdd(true);
+			g.weightx = 1;
+			//c.weighty = 1;
+			g.fill = GridBagConstraints.HORIZONTAL;
+			g.ipady = 10;
+			g.gridx = 0;
+			g.gridy = 0;
+			add(recordToolBar, g);
+			g.weightx = 1;
+			g.weighty = 1;
+			g.fill = GridBagConstraints.BOTH;
+			g.gridx = 0;
+			g.gridy = 1;
+			add(scrollPane, g);
+			
+>>>>>>> branch 'master' of https://mdavis36@bitbucket.org/j_baizer/fatalerror.git
 		}
 	}
 	
