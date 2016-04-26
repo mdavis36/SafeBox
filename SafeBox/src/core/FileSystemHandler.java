@@ -91,13 +91,13 @@ public class FileSystemHandler implements Serializable{
 			Node temp = parent.getChild(index);
 			parent.removeChild(index);
 			int size = temp.getChildren().size();
-			if(temp.hasChildren()){
+			if(temp.hasChildren()){	
 				for(int i = size-1; i >= 0; i--){
-					if(temp.getChild(i).hasChildren()){
-						deleteFolder(temp, i);
+					if(temp.getChild(0).hasChildren()){
+						deleteFolder(temp, 0);
 					}
-					contents.getNodeList().set(temp.getChild(i).getGlobalIndex(), null);
-					temp.getChildren().remove(i);
+					contents.getNodeList().set(temp.getChild(0).getGlobalIndex(), null);
+					temp.getChildren().remove(0);
 				}
 			}
 			return true;
