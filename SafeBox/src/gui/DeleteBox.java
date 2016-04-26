@@ -14,6 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class DeleteBox extends MessageBoxState {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7795604581523451482L;
 	//Strings Start//
 	static final String delete = "Delete";
 	static final String title = "Delete:";
@@ -25,7 +29,8 @@ public class DeleteBox extends MessageBoxState {
 	private JLabel nameOfFolder;
 	//JObjects End//
 	
-	public DeleteBox(){
+	public DeleteBox(final StateManager sm){
+		//final StateManager state = sm;
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
@@ -40,7 +45,7 @@ public class DeleteBox extends MessageBoxState {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
+				resetBox();
 			}
 
 			@Override
@@ -68,8 +73,9 @@ public class DeleteBox extends MessageBoxState {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-
+				//TODO: Finish implementation
+				//state.getESM().getFileSystemHandler().deleteFolder(state., index)
+				resetBox();
 			}
 
 			@Override
@@ -121,5 +127,10 @@ public class DeleteBox extends MessageBoxState {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		// Setting Frame End//
+	}
+
+	@Override
+	protected void resetBox() {
+		this.setVisible(false);
 	}
 }

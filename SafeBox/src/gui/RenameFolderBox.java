@@ -8,6 +8,10 @@ import javax.swing.border.EmptyBorder;
 
 import core.*;
 public class RenameFolderBox extends MessageBoxState {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5787629861094186120L;
 	//Strings Start//
 	private static final String title = "Rename:";
 	private static final String renameText = "Rename";
@@ -24,7 +28,8 @@ public class RenameFolderBox extends MessageBoxState {
 	//JObjects End//
 	
 	public RenameFolderBox(StateManager sm){
-		currentName = sm.getESM().getFileSystemHandler().getCurrent().getData().getName();//Gets name of folder you are in
+		final StateManager state = sm;
+		currentName = state.getESM().getFileSystemHandler().getCurrent().getData().getName();//Gets name of folder you are in
 		//Buttons Start//
 		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
@@ -38,31 +43,23 @@ public class RenameFolderBox extends MessageBoxState {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
+				resetBox();
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
@@ -70,31 +67,31 @@ public class RenameFolderBox extends MessageBoxState {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
+				//TODO: Change depending on how implementing renaming button
+				if(checkForValidText(renameField.getText())){
+					state.getESM().getFileSystemHandler().getCurrent().getData().setName(renameField.getText());
+					resetBox();
+				}
+				else{
+					notValidText(state);
+				}
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseReleased(MouseEvent e) {				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
@@ -127,36 +124,26 @@ public class RenameFolderBox extends MessageBoxState {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				if(renameField.getText() == initRenameField){
 					renameField.setText("");
 					renameField.setForeground(Color.BLACK);
-				}
-				
+				}				
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
@@ -181,5 +168,23 @@ public class RenameFolderBox extends MessageBoxState {
 	}
 	public void setName(String name){
 		
+	}
+	@Override
+	protected void resetBox() {
+		this.setVisible(false);
+		this.renameField.setText(initRenameField);
+	}
+	
+	private boolean checkForValidText(String text){
+		if(text.equals(initRenameField) && text.equals("") && text.equals(" ")){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	private void notValidText(StateManager sm){
+		JOptionPane.showMessageDialog(sm.window, "Not a valid name.", null, JOptionPane.PLAIN_MESSAGE);
 	}
 }

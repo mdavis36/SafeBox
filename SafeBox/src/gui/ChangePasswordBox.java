@@ -1,6 +1,5 @@
 package gui;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import core.HintManager;
@@ -11,6 +10,10 @@ import java.awt.event.MouseListener;
 import java.util.Arrays;
 
 public class ChangePasswordBox extends MessageBoxState {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4219722141628883742L;
 	//Strings Start//
 	private static final String save = "Save";
 	private static final String initCurrentPasswordField = "Current Password";
@@ -41,38 +44,25 @@ public class ChangePasswordBox extends MessageBoxState {
 				MiscUtils.BUTTON_COLOUR_DARK, true);
 		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
 		cancelButton.addMouseListener(new MouseListener(){
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				currentPasswordField.setText(initCurrentPasswordField);
-				newPasswordField.setText(initNewPasswordField);
-				confirmPasswordField.setText(initConfirmPasswordField);
-				hintField.setText(initHintField);
+				resetBox();
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
@@ -88,14 +78,8 @@ public class ChangePasswordBox extends MessageBoxState {
 					
 					if (Arrays.equals(newPasswordField.getPassword(), confirmPasswordField.getPassword())){
 						sm.getESM().setPassword(newPasswordField.getPassword());
-						
 						HintManager.setHint(hintField.getText());
-						
-						setVisible(false);
-						currentPasswordField.setText(initCurrentPasswordField);
-						newPasswordField.setText(initNewPasswordField);
-						confirmPasswordField.setText(initConfirmPasswordField);
-						hintField.setText(initHintField);
+						resetBox();
 					} else {
 						JOptionPane.showMessageDialog(sm.window, "Passwords and confirm password didn't match.", null, JOptionPane.PLAIN_MESSAGE);
 					}
@@ -106,26 +90,18 @@ public class ChangePasswordBox extends MessageBoxState {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
@@ -175,6 +151,16 @@ public class ChangePasswordBox extends MessageBoxState {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		//Frame End//
+	}
+
+	@Override
+	protected void resetBox() {
+		this.setVisible(false);
+		this.currentPasswordField.setText(initCurrentPasswordField);
+		this.newPasswordField.setText(initNewPasswordField);
+		this.confirmPasswordField.setText(initConfirmPasswordField);
+		this.hintField.setText(initHintField);
+		
 	}
 	
 	
