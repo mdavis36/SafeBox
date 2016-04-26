@@ -137,7 +137,7 @@ public class RecordDisplay extends BackgroundPanel {
 			if (recordData.isRecord()){
 				FieldBox fb;
 				for(int i = 0; i < recordData.getFields().size(); i ++){
-					fb = new FieldBox(0,0,600, 100, i, sm);
+					fb = new FieldBox(0,0, 10, 100, i, sm);
 					fb.setAlignmentY(TOP_ALIGNMENT);
 					c.weightx = 1;
 					c.fill = GridBagConstraints.HORIZONTAL;
@@ -155,6 +155,11 @@ public class RecordDisplay extends BackgroundPanel {
 			revalidate();
 			repaint();
 
+		} else {
+			recordToolBar.update();
+			fieldPanel.removeAll();
+			fieldPanel.repaint();
+			setVisible(false);
 		}
 	}
 	

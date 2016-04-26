@@ -37,8 +37,6 @@ public class FolderDisplayButton extends BackgroundPanel{
 		renameDeleteBox.setVisible(false);
 		
 		CustomButton button = new CustomButton(text, 0, 0, 40, 40);
-		
-		
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
 		

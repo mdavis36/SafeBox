@@ -3,31 +3,22 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
-import core.Field;
 import core.Record;
 
 public class FieldBox extends BackgroundPanel{
 	
-private int index;
-private int BAR_HEIGHT = 60;
+	private int index;
+	private int BAR_HEIGHT = 60;
 
 	private Border border;
 	private int boarderWidth = 2;
@@ -38,38 +29,44 @@ private int BAR_HEIGHT = 60;
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setPreferredSize(new Dimension(width, height));
-		setLayout(new FlowLayout(10));
+		setLayout(new BorderLayout(0,0));
+		this.setBorder(new EmptyBorder(10, 20, 10, 20));
 		
+		JPanel dataPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
+		setTransparentAdd(true);
 		
-		
-		final JTextField fieldName = new JTextField(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getName());
-		fieldName.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		JLabel fieldName = new JLabel(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getName() + " :");
+		fieldName.setFont(new Font("Tahoma", Font.BOLD, 24));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
 		fieldName.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
-		fieldName.setOpaque(true);
-		add(fieldName);
+		fieldName.setOpaque(false);
+		c.weightx = 0.25;
+		c.gridx = 0;
+		c.gridy = 0;
+		dataPanel.add(fieldName, c);
 		
-		final JTextField fieldData = new JTextField(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
-		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		JLabel fieldData = new JLabel("    " + ((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
+		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
 		fieldData.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
-		fieldData.setOpaque(true);
-		add(fieldData);
+		fieldData.setOpaque(false);
+		c.weighty = 0.25;
+		c.gridx = 0;
+		c.gridy = 1;
+		dataPanel.add(fieldData, c);
 		
-		CustomButton saveButton = new CustomButton("Save", 0, 0, 80, (int)(BAR_HEIGHT * 0.6));
-		saveButton.setGradientBackground(new Color(255, 205, 40), new Color(255, 165, 0), true);
-		saveButton.setBoarderDetails(new Color(215, 155, 0), 2);
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(sm.window, "Saved", null, JOptionPane.PLAIN_MESSAGE);
-			}
-		});
+		CustomButton editButton = new CustomButton("", 0, 0, 40, 40);
+		editButton.setImageFromFile("pen.png", true);
+		
+		add(editButton, BorderLayout.EAST);
+		add(dataPanel, BorderLayout.WEST);
 		
 	}
 }
