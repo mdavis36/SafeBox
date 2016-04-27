@@ -14,8 +14,8 @@ public class RenameFolderBox extends ModifyFolderBox {
 	 */
 	private static final long serialVersionUID = -7808736537984137344L;
 	private final String titleString = "Rename:";
-	private final String button1String = "Save";
-	private final String button2String = "Delete";
+	private final String button1String = "Delete";
+	private final String button2String = "Save";
 	private String currentName;
 	int index;
 	private final JLabel nameOfFolder = new JLabel();
@@ -73,7 +73,7 @@ public class RenameFolderBox extends ModifyFolderBox {
 		sm.update();
 	}
 	@Override
-	protected void button1Action(){
+	protected void button2Action(){
 		if(checkForValidText(textField.getText())){
 			renameFolder(textField.getText(),state);
 			resetBox();
@@ -84,7 +84,7 @@ public class RenameFolderBox extends ModifyFolderBox {
 		}
 	}
 	@Override
-	protected void button2Action() {
+	protected void button1Action() {
 		deleteFolder(state, index);
 		resetBox();
 	}
