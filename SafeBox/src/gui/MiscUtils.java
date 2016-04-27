@@ -8,6 +8,9 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -108,5 +111,9 @@ public class MiscUtils {
 
 	    return -1;
 	}
-	
+	public static void setClipboard(String value){
+		StringSelection stringSelection = new StringSelection(value);
+		Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+		clpbrd.setContents(stringSelection, null);
+	}
 }
