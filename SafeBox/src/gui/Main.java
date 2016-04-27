@@ -16,6 +16,7 @@ public class Main {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
 		window.setSize(WIDTH, HEIGHT);
+		window.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		StateManager sm = new StateManager(window);
