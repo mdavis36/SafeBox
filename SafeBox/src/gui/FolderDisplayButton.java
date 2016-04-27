@@ -86,9 +86,6 @@ public class FolderDisplayButton extends BackgroundPanel{
 	}
 	
 	private void folderAction(int b){
-		if(b == MouseEvent.BUTTON3){
-			renameDeleteBox.setVisible(true);
-		}
 		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
 		sm.update();
 	}
