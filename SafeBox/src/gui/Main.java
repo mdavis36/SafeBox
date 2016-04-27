@@ -10,7 +10,7 @@ public class Main {
 
 	private static final String TITLE = "SafeBox";
 	private static final int DEFAULT_HEIGHT = 600;
-	private static final int DEFAULT_WIDTH = 800;
+	private static final int DEFAULT_WIDTH = 816;
 	
 	
 	public static void main(String[] args){		
