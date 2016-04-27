@@ -43,7 +43,7 @@ public class NewFolderBox extends ModifyFolderBox {
 	}
 
 	private boolean checkForValidText(String text){
-		if(text.equals(titleString) || "".equals(text) || text.equals(" ")){
+		if(text.equals(titleText) || "".equals(text) || text.equals(" ")){
 			return false;
 		}
 		else{

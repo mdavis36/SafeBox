@@ -3,7 +3,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
+import core.Field;
 import core.Record;
 public class ModifyRecordBox extends ModifyFolderBox {
 
@@ -14,15 +16,18 @@ public class ModifyRecordBox extends ModifyFolderBox {
 	private final String titleString = "Modify Field";
 	private final String button1String = "Delete";
 	private final String button2String = "Save";
+	private static String fieldName;
+	private static String fieldContent;
+	private static Record rec;
 	int index;
 	private final JTextField fieldNameField = new JTextField();
 	public ModifyRecordBox(final StateManager sm,int i){
 		super();
 		//super textField is the field content
-		Record recordToEdit = (Record)sm.getESM().getFileSystemHandler().getCurrentRecord().getData();
-		String fieldName = recordToEdit.getField(i).getName();
+		rec = (Record)sm.getESM().getFileSystemHandler().getCurrentRecord().getData();
+		fieldName = rec.getField(i).getName();
 		fieldNameField.setText(fieldName);
-		String fieldContent = recordToEdit.getField(i).getData();
+		fieldContent = rec.getField(i).getData();
 		titleText = titleString;
 		button1Text = button1String;
 		button2Text = button2String;
@@ -33,41 +38,61 @@ public class ModifyRecordBox extends ModifyFolderBox {
 	}
 	@Override
 	protected void init(){
+		//textField is content
+		userInput.setBorder(new EmptyBorder(20,20,20,20));
+		setSize(new Dimension(450,250));
 		createDrawCommon();
 		panel.setPreferredSize(new Dimension(450,220));
-		userInput.setSize(new Dimension(450,100));
+		userInput.setSize(new Dimension(450,100));//Latest change
 		userInput.add(textField, BorderLayout.SOUTH);
-		fieldNameField.setPreferredSize(new  Dimension(300,40));
+		fieldNameField.setSize(new Dimension(300,40));
+		fieldNameField.setBorder(new EmptyBorder(0,20,20,20));
 		userInput.add(fieldNameField, BorderLayout.NORTH);
 		panel.add(buttons, BorderLayout.SOUTH);
 		panel.add(title,BorderLayout.NORTH);
 		panel.add(userInput, BorderLayout.CENTER);
 		panel.setPreferredSize(new Dimension(450,250));
-		setSize(new Dimension(450,250));
 		add(panel);
 	}
 	@Override
 	protected void resetBox() {
-		// TODO Auto-generated method stub
-		
+		setVisible(false);
 	}
 
 	@Override
 	protected void button1Action() {
-		// TODO Auto-generated method stub
-		
+		rec.deleteField(index);
+		state.update();
+		setVisible(false);
 	}
 
 	@Override
 	protected void button2Action() {
-		// TODO Auto-generated method stub
-		
+		if(checkForValidText(fieldNameField.getText()) && checkForValidText(textField.getText())){
+			fieldName = fieldNameField.getText();
+			fieldContent = textField.getText();
+			rec.getField(index).setData(fieldContent);
+			rec.getField(index).setName(fieldName);
+		}
+		state.update();
+		setVisible(false);
 	}
 
 	@Override
 	protected void textFieldAction() {
-		// TODO Auto-generated method stub
 		
+	}
+	protected void fieldNameFieldAction(){
+		
+	}
+	
+	private boolean checkForValidText(String newText){
+		if("".equals(newText) || newText.equals(" ")){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 
 }

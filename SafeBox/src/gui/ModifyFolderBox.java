@@ -73,6 +73,7 @@ public abstract class ModifyFolderBox extends MessageBoxState {
 		panel.setPreferredSize(new Dimension(450,180));
 		userInput.setPreferredSize(new Dimension(450, 60));
 		userInput.add(textField, BorderLayout.SOUTH);
+		userInput.setBorder(new EmptyBorder(0,20,20,20));
 		panel.add(buttons,BorderLayout.SOUTH);
 		panel.add(userInput, BorderLayout.CENTER);
 		panel.add(title, BorderLayout.NORTH);
@@ -82,10 +83,11 @@ public abstract class ModifyFolderBox extends MessageBoxState {
 	}
 	
 	protected void createDrawCommon(){
+		userInput.setLayout(new BorderLayout());
 		title.add(titleLabel, BorderLayout.CENTER);
 		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
 		textField.setSize(new Dimension(300, 40));
-		textField.setBorder(new EmptyBorder(0,0,20,0));
+		textField.setBorder(new EmptyBorder(0,20,20,20));
 		textField.setText(initTextField);
 		userInput.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		panel.setLayout(new BorderLayout());
