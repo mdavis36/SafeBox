@@ -1,5 +1,6 @@
 package gui;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -7,212 +8,40 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import core.*;
-public class RenameFolderBox extends MessageBoxState {
+public class RenameFolderBox extends ModifyFolderBox {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5787629861094186120L;
-	//Strings Start//
-	private static final String title = "Rename:";
-	private static final String renameText = "Rename";
-	private String currentName = "";
-	private static final String save = "Save";
-	//private static String initRenameField = currentName;
-	private static final String delete = "Delete";
-	//Strings End//
-	
+	private static final long serialVersionUID = -7808736537984137344L;
+	private final String titleString = "Rename:";
+	private final String button1String = "Delete";
+	private final String button2String = "Save";
+	private String currentName;
 	int index;
-	
-	//JObjects Start//
-	private final JLabel nameOfFolder = new JLabel("");
-	private final JPanel userInput = new JPanel(new BorderLayout());
-	private final CustomButton saveButton = new CustomButton(save, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
-	private final CustomButton deleteButton = new CustomButton(delete, 0, 0, 80, (int) (BAR_HEIGHT * 0.6));
-	private  JTextField renameField;
-	//JObjects End//
+	private final JLabel nameOfFolder = new JLabel();
 	
 	public RenameFolderBox(final StateManager sm, int i){
-		final StateManager state = sm;
+		super();
+		titleText = titleString;
+		button1Text = button1String;
+		button2Text = button2String;
+		nameOfFolder.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));//TODO: Change to constant
+		state = sm;
 		this.index = i;
 		setName(index, sm);
-		renameField = new JTextField(getName());
-		//Buttons Start//
-		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
-		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
-		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
-		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
-		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
-		deleteButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
-		deleteButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
-		this.cancelButton.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				resetBox();
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			
-		});
-		this.saveButton.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//TODO: Change depending on how implementing renaming button
-				if(checkForValidText(renameField.getText())){
-					renameFolder(renameField.getText(),state);
-					resetBox();
-				}
-				else{
-					JOptionPane.showMessageDialog(sm.window, "Not a valid name.", null, JOptionPane.PLAIN_MESSAGE);
-					return;
-				}
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			
-		});
-		this.deleteButton.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				deleteFolder(state, index);
-				resetBox();
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			
-		});
-
-		this.buttons.setLayout(new BorderLayout());
-		cancelButton.setBorder(new EmptyBorder(0,50,10,50));
-		this.saveButton.setBorder(new EmptyBorder(0,50,10,50));
-		buttons.setBorder( new EmptyBorder(0,0,20,0));
-		buttons.add(cancelButton, BorderLayout.WEST);
-		buttons.add(saveButton,BorderLayout.EAST);
-		//Buttons End//
-		
-		//Title Start//
-		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.VERTICAL;
-		c.gridwidth = 4;
-		c.gridy = 0;
 		nameOfFolder.setText(currentName);
-		titleLabel = new JLabel(title);
-		titlePanel = new JPanel(new GridBagLayout());
-		titleLabel.setBorder(new EmptyBorder(10, 0, 0, 0));
-		deleteButton.setBorder(new EmptyBorder(20,0,0,0));
-		titlePanel.add(deleteButton,c);
-		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
-		c.gridy = 1;
-		titlePanel.add(titleLabel,c);
-		c.gridy = 2;
-		titlePanel.add(nameOfFolder,c);
-		titlePanel.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
-		//Title End//
-		
-		// User Input Start//
-		renameField.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(renameField.getText().equals(currentName)){
-					renameField.setText("");
-				}				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			
-		});
-		renameField.setPreferredSize(new Dimension(300, 60));
-		userInput.setBorder(new EmptyBorder(0, 50, 10, 50));
-		//userInput.setLayout(new BorderLayout(0, 50));
-		userInput.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
-		userInput.add(renameField, BorderLayout.CENTER);
-		
-		//Frame Start//
-		panel.setLayout(new BorderLayout());
-		panel.setPreferredSize(new Dimension(450,200));
-		userInput.setPreferredSize(new Dimension(450, 60));
-		panel.add(buttons, BorderLayout.SOUTH);
-		panel.add(titlePanel, BorderLayout.NORTH);
-		panel.add(userInput,BorderLayout.CENTER);
-		add(panel);
-		setSize(new Dimension(450, 250));
-		setModal(true);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		//Frame End//
-		
+		setStrings(button1Text, button2Text, currentName, titleText);
+		init();
+		title.add(nameOfFolder,BorderLayout.WEST);		
 	}
 	public void setName(String name){
-		
+		currentName = name;
+		nameOfFolder.setText(currentName);
 	}
 	@Override
 	protected void resetBox() {
-		this.setVisible(false);
-		this.renameField.setText(currentName);
+		setVisible(false);
+		textField.setText(currentName);
 	}
 	
 	private boolean checkForValidText(String text){
@@ -233,14 +62,36 @@ public class RenameFolderBox extends MessageBoxState {
 	}
 	
 	public void setName(int i , final StateManager state){
-		this.currentName = state.getESM().getFileSystemHandler().getCurrent().getChild(i).getData().getName();
-		this.nameOfFolder.setText(currentName);
+		currentName = state.getESM().getFileSystemHandler().getCurrent().getChild(i).getData().getName();
+		nameOfFolder.setText(currentName);
 	}
 	public String getName(){
-		return this.currentName;
+		return currentName;
 	}
 	private void deleteFolder(final StateManager sm, int i){
 		sm.getESM().getFileSystemHandler().deleteFolder(sm.getESM().getFileSystemHandler().getCurrent(), i);
 		sm.update();
+	}
+	@Override
+	protected void button2Action(){
+		if(checkForValidText(textField.getText())){
+			renameFolder(textField.getText(),state);
+			resetBox();
+		}
+		else{
+			JOptionPane.showMessageDialog(state.window, "Not a valid name.", null, JOptionPane.PLAIN_MESSAGE);
+			return;
+		}
+	}
+	@Override
+	protected void button1Action() {
+		deleteFolder(state, index);
+		resetBox();
+	}
+	@Override
+	protected void textFieldAction() {
+		if(textField.getText().equals(currentName)){
+			textField.setText("");
+		}	
 	}
 }

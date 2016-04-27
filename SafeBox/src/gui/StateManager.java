@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
+import core.WindowSizeManager;
 
 public class StateManager extends JPanel{
 	protected JFrame window;
@@ -45,7 +46,7 @@ public class StateManager extends JPanel{
 	/**
 	 * @param window
 	 */
-	protected StateManager(JFrame window){
+	protected StateManager(final JFrame window){
 		this.window = window;
 		eSM = new EncryptedStorageManager();
 		//Initialize cards
@@ -70,6 +71,7 @@ public class StateManager extends JPanel{
 		    	if (successfullyDecrypted){
 			    	System.out.println("Saving...");
 			        eSM.saveFileSystemHandler();
+			        WindowSizeManager.setSize(window.getWidth(), window.getHeight());
 			        System.out.println("Saved.");
 		    	}
 		    }
