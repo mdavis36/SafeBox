@@ -48,11 +48,15 @@ public class PasswordState extends BackgroundPanel{
 	
 	private final JPasswordField passWordField;
 	
+	PlainMessageBox hintMessageBox;
+	
 	
 	protected PasswordState(final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 	
+		hintMessageBox = new PlainMessageBox(sm, HintManager.getHint());
+		
 		setLayout(new BorderLayout());
 		centerPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -123,7 +127,8 @@ public class PasswordState extends BackgroundPanel{
 		CustomButton forgotPWButton = setupButton(FORGOT_PASSWORD_TITLE);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(sm.window, HintManager.getHint(), null, JOptionPane.PLAIN_MESSAGE);
+				hintMessageBox.setText(HintManager.getHint());
+				hintMessageBox.setVisible(true);
 				init();
 			}
 		});

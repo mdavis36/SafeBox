@@ -55,6 +55,8 @@ public class SearchBar extends BackgroundPanel{
 	private static final Color SEARCH_BUTTON_COLOR_2 = new Color(255, 165, 0);
 	private static final Color SEARCH_BUTTON_COLOR_BORDER = new Color(215, 155, 0);
 	private static final int SEARCH_BUTTON_BORDER_WIDTH = 2;
+	
+	
 	ChangePasswordBox changePasswordDialogBox;
 	
 	private void executeSearch(StateManager sm, String query){
