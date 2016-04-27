@@ -13,7 +13,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 	private int index;
 	private int type;
 	private String imgName;
-	private static final int IMAGE_WIDTH = 20;
+	private static final int EDIT_BUTTON_WIDTH = 20;
 	private static final int FOLDER_BUTTON_WIDTH = 40;
 	private static final int LAYOUT_ARG = 10;
 	
@@ -64,14 +64,14 @@ public class FolderDisplayButton extends BackgroundPanel{
 			}
 		});
 		
-		CustomButton edit = new CustomButton("", 0, 0, IMAGE_WIDTH, IMAGE_WIDTH);
+		CustomButton edit = new CustomButton("", 0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_WIDTH);
 		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, 
 																						MiscUtils.BLUE_PANEL_COLOUR_DARK, 
-																						IMAGE_WIDTH, 
-																						IMAGE_WIDTH, 
+																						EDIT_BUTTON_WIDTH, 
+																						EDIT_BUTTON_WIDTH, 
 																						true), 
 														MiscUtils.getBufferedImageFromFile(MiscUtils.PEN_IMAGE, 
-																						IMAGE_WIDTH)),
+																						EDIT_BUTTON_WIDTH)),
 						true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
 		edit.addMouseListener(new MouseAdapter(){

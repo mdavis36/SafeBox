@@ -28,7 +28,7 @@ public class FolderDisplay extends BackgroundPanel{
 	private Border border;
 	private int boarderWidth = 3;
 	
-	private static final int DISPLAY_WIDTH = 300;
+	private static int DISPLAY_WIDTH = 30;
 	private static final int DISPLAY_HEIGHT = 500;
 	
 	private static final int BUTTON_WIDTH = 50;
@@ -50,6 +50,8 @@ public class FolderDisplay extends BackgroundPanel{
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
+	ArrayList<Node> children;
+	
 	FileSystemHandler fsh;
 	StateManager sm;
 	Node currentNode;
@@ -66,9 +68,9 @@ public class FolderDisplay extends BackgroundPanel{
 		currentNode = getFSH().getRoot();
 
 		
-		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
+		//setSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
 		setLayout(new BorderLayout(0, 0));
-		setBounds(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		//setBounds(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 		
 		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_BORDER);
@@ -147,10 +149,9 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		if(!currentNode.getData().isRecord()){
 			directoryTitle.setText(getCurrentNode().getData().getName());
+			children = currentNode.getChildren();
+			resizeDisplay();
 			if(currentNode.hasChildren()){
-			
-				ArrayList<Node> children = currentNode.getChildren();
-			
 				FolderDisplayButton fdb;
 				for(int i = 0; i < children.size(); i++){
 					Node child = children.get(i);
@@ -166,6 +167,24 @@ public class FolderDisplay extends BackgroundPanel{
 				}		
 			}
 		}
+		
+	}
+	
+	private void resizeDisplay(){
+		JLabel l = new JLabel();
+		l.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, FONT_SIZE));
+		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 150);
+		l.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, FONT_SIZE));
+		int temp = 0;
+		for(int i = 0; i < children.size(); i++){
+			l.setText(children.get(i).getData().getName());
+			temp = (int) (l.getPreferredSize().getWidth() + 200);
+			if(temp > maxLength){
+				maxLength = temp;
+			}
+		}
+		DISPLAY_WIDTH = maxLength;
+		setImage(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 	}
 	
 	private CustomButton setupToolBarButton(String imgPath){
