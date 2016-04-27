@@ -87,13 +87,12 @@ public class FileSystemHandler implements Serializable{
 	}
 	
 	public boolean deleteFolder(Node parent, int index){
-		//TODO: Start from last index, remove inward
-		//TODO: Set nodeList pointer to null
 		if (parent == null){
 			return false;
 		}
 		else{
 			Node temp = parent.getChild(index);
+			removeFromList(temp.getGlobalIndex());
 			parent.removeChild(index);
 			int size = temp.getChildren().size();
 			if(temp.hasChildren()){	
@@ -143,6 +142,11 @@ public class FileSystemHandler implements Serializable{
 		for(int i = 0; i < temp.size(); i++){
 			System.out.println(temp.get(i));
 		}
+	}
+	
+	public void removeFromList(int gIndex){
+		ArrayList<Node> list = contents.getNodeList();
+		list.set(gIndex,  null);
 	}
 }
 
