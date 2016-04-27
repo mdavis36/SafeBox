@@ -37,8 +37,7 @@ public class SearchBar extends BackgroundPanel{
 	private JPanel rightPanel = new JPanel(new FlowLayout(0));
 	
 	private static final String SEARCH_BAR_STARTING_VALUE = "Search";
-	
-	private static final String SEARCH = "SearchBar";
+
 	private static final int SEARCH_FONT_SIZE = 11;
 	private static final int SEARCH_BOX_WIDTH = 400;
 	private static final int SEARCH_BUTTON_WIDTH = 80;
@@ -109,7 +108,7 @@ public class SearchBar extends BackgroundPanel{
 		
 		//----------------------Search Box---------------------
 
-		final JTextField searchBox = new JTextField(SEARCH);
+		final JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
 		searchBox.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, SEARCH_FONT_SIZE));
 
 		searchBox.setForeground(Color.BLACK);
