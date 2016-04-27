@@ -28,7 +28,7 @@ public class RenameFolderBox extends ModifyFolderBox {
 	
 	public RenameFolderBox(final StateManager sm, int i){
 		super();
-		state = sm;
+		this.sm = sm;
 		titleText = titleString;
 		button1Text = button1String;
 		button2Text = button2String;
@@ -43,12 +43,15 @@ public class RenameFolderBox extends ModifyFolderBox {
 		init();
 		title.add(nameOfFolder,BorderLayout.WEST);		
 	}
+	
 	public void setName(String name){
 		currentName = name;
 		nameOfFolder.setText(currentName);
 	}
+	
 	@Override
 	protected void resetBox() {
+		sm.update();
 		setVisible(false);
 		textField.setText(currentName);
 	}
@@ -74,17 +77,20 @@ public class RenameFolderBox extends ModifyFolderBox {
 		currentName = state.getESM().getFileSystemHandler().getCurrent().getChild(i).getData().getName();
 		nameOfFolder.setText(currentName);
 	}
+	
 	public String getName(){
 		return currentName;
 	}
+	
 	private void deleteFolder(final StateManager sm, int i){
 		sm.getESM().getFileSystemHandler().deleteFolder(sm.getESM().getFileSystemHandler().getCurrent(), i);
 		sm.update();
 	}
+	
 	@Override
 	protected void button2Action(){
 		if(checkForValidText(textField.getText())){
-			renameFolder(textField.getText(),state);
+			renameFolder(textField.getText(),sm);
 			resetBox();
 		}
 		else{
@@ -93,11 +99,13 @@ public class RenameFolderBox extends ModifyFolderBox {
 			return;
 		}
 	}
+	
 	@Override
 	protected void button1Action() {
-		deleteFolder(state, index);
+		deleteFolder(sm, index);
 		resetBox();
 	}
+	
 	@Override
 	protected void textFieldAction() {
 		if(textField.getText().equals(currentName)){

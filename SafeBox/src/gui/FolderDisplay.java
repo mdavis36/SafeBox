@@ -77,7 +77,7 @@ public class FolderDisplay extends BackgroundPanel{
 		setOpaque(true);
 		
 		
-		top = new BackgroundPanel(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH + 10, sm.window.getHeight(), true));
+		top = new BackgroundPanel(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		top.setTransparentAdd(true);
 		top.setLayout(new GridBagLayout());
 		top.setOpaque(false);

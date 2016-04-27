@@ -56,13 +56,10 @@ public class FolderDisplayButton extends BackgroundPanel{
 		button.setImageFromFile(imgName, true);
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				if (type == FOLDER)
-					folderAction(e.getButton());
-				else
-					recordAction();
-				
+				pressed(e);
 			}
 		});
+		
 		
 		CustomButton edit = new CustomButton("", 0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_WIDTH);
 		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, 
@@ -80,8 +77,23 @@ public class FolderDisplayButton extends BackgroundPanel{
 			}
 		});
 		
+		addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				pressed(e);
+			}
+		});
+		
+		
 		add(edit);
 		add(button);
+		
+	}
+	
+	private void pressed(MouseEvent e){
+		if (type == FOLDER)
+			folderAction(e.getButton());
+		else
+			recordAction();
 		
 	}
 	

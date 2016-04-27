@@ -22,12 +22,14 @@ public abstract class ModifyFolderBox extends MessageBoxState {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				button1Action();
+				sm.update();
 			}
 		});
 		button2.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				button2Action();
+				sm.update();
 			}
 		});
 		textField.addMouseListener(new MouseAdapter() {

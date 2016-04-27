@@ -24,7 +24,7 @@ public abstract class MessageBoxState extends JDialog{
 	protected JPanel title = new JPanel();
 	protected JPanel panel = new JPanel();
 	protected JPanel buttons = new JPanel();
-	protected static StateManager state;
+	protected static StateManager sm;
 	
 	protected void drawButton(CustomButton b){
 		b.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT,

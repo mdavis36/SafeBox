@@ -3,11 +3,6 @@ package gui;
 import java.awt.Color;
 
 public class Consts {
-	//private static final int FONT_SIZE_LARGE
-	
-	
-	
-	
 
 	protected static final Color BUTTON_COLOUR_LIGHT = new Color(255, 205, 40);
 	protected static final Color BUTTON_COLOUR_DARK = new Color(255, 165, 0);

@@ -33,9 +33,9 @@ public class ModifyRecordBox extends ModifyFolderBox {
 		titleText = titleString;
 		button1Text = button1String;
 		button2Text = button2String;
-		state = sm;
+		this.sm = sm;
 		index = i;
-		errorMessage = new PlainMessageBox(state, errorMessageText);
+		errorMessage = new PlainMessageBox(sm, errorMessageText);
 		errorMessage.setVisible(false);
 		setStrings(button1Text, button2Text, fieldContent, titleText);
 		init();
@@ -68,7 +68,7 @@ public class ModifyRecordBox extends ModifyFolderBox {
 	@Override
 	protected void button1Action() {
 		rec.deleteField(index);
-		state.update();
+		sm.update();
 		setVisible(false);
 	}
 
@@ -79,7 +79,7 @@ public class ModifyRecordBox extends ModifyFolderBox {
 			fieldContent = textField.getText();
 			rec.getField(index).setData(fieldContent);
 			rec.getField(index).setName(fieldName);
-			state.update();
+			sm.update();
 			setVisible(false);
 		}
 		else{

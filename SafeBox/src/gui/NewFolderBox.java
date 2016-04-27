@@ -27,7 +27,7 @@ public class NewFolderBox extends ModifyFolderBox {
 	
 	public NewFolderBox(final StateManager sm) {
 		super();
-		state = sm;
+		this.sm = sm;
 		titleText = "Name your folder/record";
 		button1Text = createFolder;
 		button2Text = createRecord;
@@ -69,11 +69,11 @@ public class NewFolderBox extends ModifyFolderBox {
 	@Override
 	protected void button1Action() {
 		if(checkForValidText(textField.getText())){
-			createFolder(textField.getText(), state);
+			createFolder(textField.getText(), sm);
 			resetBox();
 		}
 		else{
-			notValidText(state);
+			notValidText(sm);
 			return;
 		}
 	}
@@ -81,11 +81,11 @@ public class NewFolderBox extends ModifyFolderBox {
 	@Override
 	protected void button2Action() {
 		if(checkForValidText(textField.getText())){
-			createRecord(textField.getText(), state);
+			createRecord(textField.getText(), sm);
 			resetBox();
 		}
 		else{
-			notValidText(state);
+			notValidText(sm);
 			return;
 		}
 	}
