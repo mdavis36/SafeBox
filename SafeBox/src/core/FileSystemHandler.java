@@ -114,7 +114,7 @@ public class FileSystemHandler implements Serializable{
 		String lowercaseQuery = query.toLowerCase();
 		Node node;
 		
-		for (int i = 0; i <=size; i++){
+		for (int i = 1; i <=size; i++){
 			node = contents.getNodeByGlobalIndex(i);
 			
 			if (node == null){
