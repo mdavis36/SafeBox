@@ -13,20 +13,29 @@ public class RenameFolderBox extends ModifyFolderBox {
 	 * 
 	 */
 	private static final long serialVersionUID = -7808736537984137344L;
+	
+	private static final String NOT_VALID_MESSAGE = "Not a valid name.";
+	
 	private final String titleString = "Rename:";
 	private final String button1String = "Delete";
 	private final String button2String = "Save";
 	private String currentName;
 	int index;
+	
+	private PlainMessageBox messageBox;
+	
 	private final JLabel nameOfFolder = new JLabel();
 	
 	public RenameFolderBox(final StateManager sm, int i){
 		super();
+		state = sm;
 		titleText = titleString;
 		button1Text = button1String;
 		button2Text = button2String;
 		nameOfFolder.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));//TODO: Change to constant
-		state = sm;
+		
+		messageBox = new PlainMessageBox(sm, NOT_VALID_MESSAGE);
+		
 		this.index = i;
 		setName(index, sm);
 		nameOfFolder.setText(currentName);
@@ -79,7 +88,8 @@ public class RenameFolderBox extends ModifyFolderBox {
 			resetBox();
 		}
 		else{
-			JOptionPane.showMessageDialog(state.window, "Not a valid name.", null, JOptionPane.PLAIN_MESSAGE);
+			messageBox.setText(NOT_VALID_MESSAGE);
+			messageBox.setVisible(true);
 			return;
 		}
 	}

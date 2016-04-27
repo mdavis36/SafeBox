@@ -16,17 +16,22 @@ public class NewFolderBox extends ModifyFolderBox {
 	 * 
 	 */
 	private static final long serialVersionUID = 7873243537744491713L;
+	
+	private static final String NOT_VALID_MESSAGE = "Not a valid name.";
+	
 	private final String createRecord = "Create Record";
 	private final String createFolder = "Create Folder";
 	private final String titleString = "Name of Record/Folder";
 	
+	private PlainMessageBox messageBox;
 	
 	public NewFolderBox(final StateManager sm) {
 		super();
+		state = sm;
 		titleText = "Name your folder/record";
 		button1Text = createFolder;
 		button2Text = createRecord;
-		state = sm;
+		messageBox = new PlainMessageBox(sm, NOT_VALID_MESSAGE);
 		setStrings(button1Text,button2Text,titleText, titleText);
 		init();
 	}
@@ -47,7 +52,8 @@ public class NewFolderBox extends ModifyFolderBox {
 	}
 	
 	private void notValidText(StateManager sm){
-		JOptionPane.showMessageDialog(sm.window, "Not a valid name.", null, JOptionPane.PLAIN_MESSAGE);
+		messageBox.setText(NOT_VALID_MESSAGE);
+		messageBox.setVisible(true);
 	}
 
 	private void createRecord(String name, StateManager sm){

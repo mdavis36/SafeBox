@@ -8,11 +8,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class PlainMessageBox extends MessageBoxState {
 	/**
@@ -37,6 +40,7 @@ public class PlainMessageBox extends MessageBoxState {
 	
 	//JObjects Start//
 	private JLabel nameOfFolder;
+	JTextArea messageArea;
 	//JObjects End//
 	
 	public PlainMessageBox(final StateManager sm, String message){
@@ -71,10 +75,16 @@ public class PlainMessageBox extends MessageBoxState {
 		titlePanel = new JPanel(new GridBagLayout());
 		titlePanel.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		
-		titleLabel = new JLabel(message);
-		titleLabel.setBorder(new EmptyBorder(EMPTY_BORDER_TOP, 0, 0, 0));
-		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, FONT_SIZE));
-		titlePanel.add(titleLabel,c);
+		messageArea = new JTextArea(message);
+		messageArea.setBorder(new EmptyBorder(EMPTY_BORDER_TOP, 0, 0, 0));
+		messageArea.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, FONT_SIZE));
+		messageArea.setSize(new Dimension(350, 100));
+		messageArea.setWrapStyleWord(true);
+		messageArea.setLineWrap(true);
+		messageArea.setOpaque(false);
+		messageArea.setEditable(false);
+		titlePanel.add(messageArea,c);
+
 		//Title End//
 		
 		// Setting Frame Start//
@@ -87,7 +97,7 @@ public class PlainMessageBox extends MessageBoxState {
 	}
 	
 	protected void setText(String text){
-		titleLabel.setText(text);
+		messageArea.setText(text);
 	}
 
 	@Override
