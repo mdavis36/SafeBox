@@ -29,8 +29,8 @@ public class FolderDisplay extends BackgroundPanel{
 	private static int DISPLAY_WIDTH = 30;
 	private static final int DISPLAY_HEIGHT = 500;
 	
-	private static final int BUTTON_WIDTH = 50;
-	private static final int BUTTON_HEIGHT = 50;
+	private static final int BUTTON_WIDTH = 40;
+	private static final int BUTTON_HEIGHT = 40;
 	private static final int BORDER_WIDTH = 2;
 	private static final int FONT_SIZE = 18;
 	private static final int ADD_BUTTON_DIMENSION = 25;
@@ -195,11 +195,11 @@ public class FolderDisplay extends BackgroundPanel{
 					c.fill = GridBagConstraints.HORIZONTAL;
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH + 50, BUTTON_WIDTH, i, sm, FolderDisplayButton.FOLDER);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH + 50, BUTTON_HEIGHT, i, sm, FolderDisplayButton.FOLDER);
 						//fdb.setAlignmentX(TOP_ALIGNMENT);
 						folderPanel.add(fdb, c);	
 					}else{
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm, FolderDisplayButton.RECORD);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_HEIGHT, i, sm, FolderDisplayButton.RECORD);
 						//fdb.setAlignmentX(TOP_ALIGNMENT);
 						folderPanel.add(fdb, c);
 					}
@@ -216,17 +216,18 @@ public class FolderDisplay extends BackgroundPanel{
 	private void resizeDisplay(){
 		JLabel l = new JLabel();
 		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
-		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 150);
-		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, FONT_SIZE));
+		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 130);
+		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
 		for(int i = 0; i < children.size(); i++){
 			l.setText(children.get(i).getData().getName());
-			temp = (int) (l.getPreferredSize().getWidth() + 250);
+			temp = (int) (l.getPreferredSize().getWidth() + 100);
 			if(temp > maxLength){
 				maxLength = temp;
 			}
 		}
 		DISPLAY_WIDTH = maxLength;
+		
 		setImage(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 	}
 	
@@ -240,7 +241,6 @@ public class FolderDisplay extends BackgroundPanel{
 															MiscUtils.getBufferedImageFromFile(imgPath, 
 																							BUTTON_WIDTH)),
 								true);
-		b.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
 		return b;
 	}
 	

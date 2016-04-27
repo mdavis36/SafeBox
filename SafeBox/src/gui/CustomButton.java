@@ -24,7 +24,7 @@ import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
 public class CustomButton extends JButton{
 
 	private final static String PATH = "res/buttons/";
-	private final static float FONT_MULTIPLIER = 0.6f;
+	private final static float FONT_MULTIPLIER = 0.5f;
 	
 	
 	public CustomButton(String text, int x, int y, int width, int height){
@@ -80,6 +80,7 @@ public class CustomButton extends JButton{
 			tmp_height =(int) (getWidth() / ratio);
 		}
 		Image small = image.getScaledInstance(getWidth(), tmp_height, Image.SCALE_SMOOTH);
+		setSize(getWidth(), tmp_height);
 		setIcon(new ImageIcon(small));
 		setSize(getWidth(),tmp_height);
 	}

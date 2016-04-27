@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 
@@ -30,6 +32,7 @@ public class Main {
 		window.setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
+		
 		StateManager sm = new StateManager(window);
 		window.add(sm);
 	}
