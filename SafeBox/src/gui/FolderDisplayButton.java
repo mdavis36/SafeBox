@@ -22,7 +22,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 	
 	private StateManager sm;
 	
-	RenameFolderBox renameDeleteBox;
+	private RenameFolderBox renameDeleteBox;
 	/**
 	 * @param text name of the folder
 	 * @param x x coordinate of button

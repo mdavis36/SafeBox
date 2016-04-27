@@ -1,5 +1,6 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JTextField;
 
@@ -21,7 +22,6 @@ public class ModifyRecordBox extends ModifyFolderBox {
 		Record recordToEdit = (Record)sm.getESM().getFileSystemHandler().getCurrentRecord().getData();
 		String fieldName = recordToEdit.getField(i).getName();
 		fieldNameField.setText(fieldName);
-		userInput.add(fieldNameField, BorderLayout.NORTH);
 		String fieldContent = recordToEdit.getField(i).getData();
 		titleText = titleString;
 		button1Text = button1String;
@@ -32,21 +32,42 @@ public class ModifyRecordBox extends ModifyFolderBox {
 		init();
 	}
 	@Override
+	protected void init(){
+		createDrawCommon();
+		panel.setPreferredSize(new Dimension(450,220));
+		userInput.setSize(new Dimension(450,100));
+		userInput.add(textField, BorderLayout.SOUTH);
+		fieldNameField.setPreferredSize(new  Dimension(300,40));
+		userInput.add(fieldNameField, BorderLayout.NORTH);
+		panel.add(buttons, BorderLayout.SOUTH);
+		panel.add(title,BorderLayout.NORTH);
+		panel.add(userInput, BorderLayout.CENTER);
+		panel.setPreferredSize(new Dimension(450,250));
+		setSize(new Dimension(450,250));
+		add(panel);
+	}
+	@Override
+	protected void resetBox() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	protected void button1Action() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	protected void button2Action() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	protected void textFieldAction() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

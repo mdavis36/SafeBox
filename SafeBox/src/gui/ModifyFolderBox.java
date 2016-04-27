@@ -69,39 +69,42 @@ public abstract class ModifyFolderBox extends MessageBoxState {
 	}
 	
 	protected void init(){
-		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
-		panel.setLayout(new BorderLayout());
+		createDrawCommon();
 		panel.setPreferredSize(new Dimension(450,180));
 		userInput.setPreferredSize(new Dimension(450, 60));
-		textField.setPreferredSize(new Dimension(300, 40));
+		userInput.add(textField, BorderLayout.SOUTH);
+		panel.add(buttons,BorderLayout.SOUTH);
+		panel.add(userInput, BorderLayout.CENTER);
+		panel.add(title, BorderLayout.NORTH);
+		panel.setVisible(true);
+		setSize(new Dimension(450, 180));
+		add(panel);
+	}
+	
+	protected void createDrawCommon(){
+		title.add(titleLabel, BorderLayout.CENTER);
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
+		textField.setSize(new Dimension(300, 40));
 		textField.setBorder(new EmptyBorder(0,0,20,0));
+		textField.setText(initTextField);
+		userInput.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
+		panel.setLayout(new BorderLayout());
 		buttons.setPreferredSize(new Dimension(450, 60));
 		title.setPreferredSize(new Dimension(450, 40));
 		title.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setBorder(new EmptyBorder(0,10,20,10));
-		title.add(titleLabel, BorderLayout.CENTER);
-		textField.setText(initTextField);
-		userInput.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
-		userInput.add(textField, BorderLayout.CENTER);
 		drawButton(cancelButton);
 		drawButton(button1);
 		drawButton(button2);
 		buttons.add(cancelButton, BorderLayout.WEST);
 		buttons.add(button1, BorderLayout.CENTER);
 		buttons.add(button2, BorderLayout.EAST);
-		panel.add(buttons,BorderLayout.SOUTH);
-		panel.add(userInput, BorderLayout.CENTER);
-		panel.add(title, BorderLayout.NORTH);
-		panel.setVisible(true);
-		setSize(new Dimension(450, 180));
 		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(panel);
 		setVisible(false);
 	}
-
 	protected abstract void button1Action();
 	protected abstract void button2Action();
 	protected abstract void textFieldAction();

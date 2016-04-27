@@ -31,6 +31,5 @@ public abstract class MessageBoxState extends JDialog{
 				Consts.BUTTON_COLOUR_DARK, true);
 		b.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
 	}
-	//protected void init();
 	protected abstract void resetBox();
 }

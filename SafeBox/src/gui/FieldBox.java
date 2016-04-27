@@ -24,11 +24,13 @@ public class FieldBox extends BackgroundPanel{
 
 	private Border border;
 	private int boarderWidth = 2;
+	private ModifyRecordBox editBox;
 	
 	public FieldBox( int x, int y, int width, int height, int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.ORANGE_PANEL_COLOUR_LIGHT, Consts.ORANGE_PANEL_COLOUR_DARK, width, height, true));
-		
 		this.index = index;
+		editBox = new ModifyRecordBox(sm, index);
+		editBox.setVisible(false);
 		setSize(new Dimension(width, height));
 		setPreferredSize(new Dimension(width, height));
 		setLayout(new BorderLayout(0,0));
@@ -69,7 +71,7 @@ public class FieldBox extends BackgroundPanel{
 		editButton.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				editBox.setVisible(true);
 			}
 		});
 		
