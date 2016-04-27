@@ -22,6 +22,14 @@ import javax.swing.SwingConstants;
 
 import core.HintManager;
 
+/**
+ * @author micha
+ *
+ */
+/**
+ * @author micha
+ *
+ */
 public class PasswordState extends BackgroundPanel{
 	private static final long serialVersionUID = 1L;
 	private static final String PASSWORD_TITLE = "           Enter Password           ";
@@ -167,6 +175,10 @@ public class PasswordState extends BackgroundPanel{
 		p.setEditable(false);
 	}
 	
+	/**
+	 * @param text
+	 * @return
+	 */
 	private CustomButton setupButton(String text){
 		CustomButton b = new CustomButton(text,
 											0, 

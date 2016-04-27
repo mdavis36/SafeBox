@@ -80,9 +80,9 @@ public class FolderDisplayButton extends BackgroundPanel{
 			}
 		});
 		
-		
-		add(button);
 		add(edit);
+		add(button);
+		
 	}
 	
 	private void folderAction(int b){

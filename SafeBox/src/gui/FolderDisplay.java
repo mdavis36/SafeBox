@@ -28,7 +28,7 @@ public class FolderDisplay extends BackgroundPanel{
 	private Border border;
 	private int boarderWidth = 3;
 	
-	private static final int DISPLAY_WIDTH = 250;
+	private static final int DISPLAY_WIDTH = 300;
 	private static final int DISPLAY_HEIGHT = 500;
 	
 	private static final int BUTTON_WIDTH = 50;
@@ -63,7 +63,7 @@ public class FolderDisplay extends BackgroundPanel{
 		this.sm = sm;
 		newFolderDialogBox = new NewFolderBox(sm);
 		newFolderDialogBox.setVisible(false);
-		currentNode = sm.getESM().getFileSystemHandler().getRoot();
+		currentNode = getFSH().getRoot();
 
 		
 		setPreferredSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
@@ -97,11 +97,11 @@ public class FolderDisplay extends BackgroundPanel{
 		CustomButton homeButton = setupToolBarButton(IMG_HOME);
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sm.isSuccessfullyDecrypted()){
-					sm.getESM().saveFileSystemHandler();
+				currentNode = getCurrentNode();
+				if(getFSH().getRoot() != currentNode){
+					getFSH().setCurrentNode(getFSH().getRoot());
+					update();
 				}
-				sm.setState(sm.PASSWORD_STATE);
-				sm.init();
 			}
 		});
 		
@@ -134,7 +134,7 @@ public class FolderDisplay extends BackgroundPanel{
 	}
 	
 	protected void init(){
-		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getRoot());
+		getFSH().setCurrentNode(getFSH().getRoot());
 	}
 	
 	/**
@@ -143,8 +143,7 @@ public class FolderDisplay extends BackgroundPanel{
 	protected void update(){
 		centerBox.removeAll();
 		centerBox.repaint();
-		System.out.println(sm.getESM().getFileSystemHandler().getCurrent().deepToString());
-		currentNode = sm.getESM().getFileSystemHandler().getCurrent();
+		currentNode = getCurrentNode();
 		
 		if(!currentNode.getData().isRecord()){
 			directoryTitle.setText(getCurrentNode().getData().getName());
