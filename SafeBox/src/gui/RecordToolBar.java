@@ -56,7 +56,7 @@ public class RecordToolBar extends BackgroundPanel{
 		
 		recordTitle = new JLabel(title);
 		recordTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		recordTitle.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, 24));
+		recordTitle.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, 24));
 		centerPanel.add(recordTitle);
 		
 		//------------------------------------------
