@@ -16,10 +16,12 @@ public class ModifyRecordBox extends ModifyFolderBox {
 	private final String titleString = "Modify Field";
 	private final String button1String = "Delete";
 	private final String button2String = "Save";
+	private final String errorMessageText = "Not valid Field name/content";
 	private static String fieldName;
 	private static String fieldContent;
 	private static Record rec;
 	int index;
+	private static PlainMessageBox errorMessage;
 	private final JTextField fieldNameField = new JTextField();
 	public ModifyRecordBox(final StateManager sm,int i){
 		super();
@@ -33,6 +35,8 @@ public class ModifyRecordBox extends ModifyFolderBox {
 		button2Text = button2String;
 		state = sm;
 		index = i;
+		errorMessage = new PlainMessageBox(state, errorMessageText);
+		errorMessage.setVisible(false);
 		setStrings(button1Text, button2Text, fieldContent, titleText);
 		init();
 	}
@@ -56,6 +60,8 @@ public class ModifyRecordBox extends ModifyFolderBox {
 	}
 	@Override
 	protected void resetBox() {
+		textField.setText(fieldContent);
+		fieldNameField.setText(fieldName);
 		setVisible(false);
 	}
 
@@ -73,9 +79,14 @@ public class ModifyRecordBox extends ModifyFolderBox {
 			fieldContent = textField.getText();
 			rec.getField(index).setData(fieldContent);
 			rec.getField(index).setName(fieldName);
+			state.update();
+			setVisible(false);
 		}
-		state.update();
-		setVisible(false);
+		else{
+			textField.setText(fieldContent);
+			fieldNameField.setText(fieldName);
+			errorMessage.setVisible(true);
+		}
 	}
 
 	@Override
