@@ -44,12 +44,12 @@ public class DeleteBox extends MessageBoxState {
 	public DeleteBox(final StateManager sm){
 		final StateManager state = sm;
 		//Buttons Start//
-		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		buttons.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
-		deleteButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
-		deleteButton.setBoarderDetails(MiscUtils.ORANGE_PANEL_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
-		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
-		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
+		deleteButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		deleteButton.setBoarderDetails(Consts.ORANGE_PANEL_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
+		cancelButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		cancelButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
 		cancelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				resetBox();
@@ -74,11 +74,11 @@ public class DeleteBox extends MessageBoxState {
 		titleLabel = new JLabel(title);
 		titlePanel = new JPanel(new GridBagLayout());
 		titleLabel.setBorder(new EmptyBorder(EMPTY_BORDER_TOP, 0, 0, 0));
-		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, FONT_SIZE));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		titlePanel.add(titleLabel,c);
 		c.gridy = GRID_Y_2;
 		titlePanel.add(nameOfFolder,c);
-		titlePanel.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		titlePanel.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		//Title End//
 		
 		// Setting Frame Start//

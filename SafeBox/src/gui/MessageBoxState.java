@@ -27,9 +27,9 @@ public abstract class MessageBoxState extends JDialog{
 	protected static StateManager state;
 	
 	protected void drawButton(CustomButton b){
-		b.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT,
-				MiscUtils.BUTTON_COLOUR_DARK, true);
-		b.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		b.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT,
+				Consts.BUTTON_COLOUR_DARK, true);
+		b.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
 	}
 	//protected void init();
 	protected abstract void resetBox();

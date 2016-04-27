@@ -22,7 +22,7 @@ public class MainScreenState extends BackgroundPanel{
 	
 	protected MainScreenState(final StateManager sm) {
 
-		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(Consts.ORANGE_PANEL_COLOUR_LIGHT, Consts.ORANGE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 		setTransparentAdd(true);
 		searchBar = new SearchBar(sm);

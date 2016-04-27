@@ -50,7 +50,7 @@ public class PasswordState extends BackgroundPanel{
 	
 	
 	protected PasswordState(final StateManager sm) {
-		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 	
 		setLayout(new BorderLayout());
@@ -64,7 +64,7 @@ public class PasswordState extends BackgroundPanel{
 		setTransparentAdd(true);
 		JLabel titleLabel = new JLabel(TITLE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
 		titleLabel.setBounds(sm.window.getWidth()/2-50, 75, 100, 50);
 		centerPanel.add(titleLabel, c);
 		
@@ -85,13 +85,13 @@ public class PasswordState extends BackgroundPanel{
 		passWordField = new JPasswordField();
 		passWordField.setLocation(0, 0);
 		passWordField.setSize(new Dimension (PASSWORD_WIDTH, 40));
-		passWordField.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, 24));
+		passWordField.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, 24));
 		resetPasswordField(passWordField);
 		passWordField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if(isInitTextField(passWordField.getPassword())){
 					passWordField.setText("");
-					passWordField.setEchoChar(MiscUtils.ECHO_CHAR);
+					passWordField.setEchoChar(Consts.ECHO_CHAR);
 					passWordField.setEditable(true);
 				}
 			}
@@ -185,7 +185,7 @@ public class PasswordState extends BackgroundPanel{
 											0, 
 											BUTTON_WIDTH,
 											BUTTON_HEIGHT);
-		b.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
+		b.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
 		return b;
 	}
 	

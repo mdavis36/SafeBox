@@ -69,7 +69,7 @@ public abstract class ModifyFolderBox extends MessageBoxState {
 	}
 	
 	protected void init(){
-		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
 		panel.setLayout(new BorderLayout());
 		panel.setPreferredSize(new Dimension(450,180));
 		userInput.setPreferredSize(new Dimension(450, 60));
@@ -77,12 +77,12 @@ public abstract class ModifyFolderBox extends MessageBoxState {
 		textField.setBorder(new EmptyBorder(0,0,20,0));
 		buttons.setPreferredSize(new Dimension(450, 60));
 		title.setPreferredSize(new Dimension(450, 40));
-		title.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
-		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		title.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
+		buttons.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setBorder(new EmptyBorder(0,10,20,10));
 		title.add(titleLabel, BorderLayout.CENTER);
 		textField.setText(initTextField);
-		userInput.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		userInput.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		userInput.add(textField, BorderLayout.CENTER);
 		drawButton(cancelButton);
 		drawButton(button1);
