@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -64,6 +66,12 @@ public class FieldBox extends BackgroundPanel{
 		
 		CustomButton editButton = new CustomButton("", 0, 0, 40, 40);
 		editButton.setImageFromFile("pen.png", true);
+		editButton.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		
 		add(editButton, BorderLayout.EAST);
 		add(dataPanel, BorderLayout.WEST);

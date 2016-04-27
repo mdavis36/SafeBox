@@ -36,7 +36,7 @@ public class RecordDisplay extends BackgroundPanel {
 	private JScrollPane scrollPane;
 	private RecordToolBar recordToolBar;
 	private CustomButton addFieldButton;
-	
+	private ModifyRecordBox modifyRecord;
 	private Node currentRecord;
 	
 	protected RecordDisplay(final StateManager sm){
