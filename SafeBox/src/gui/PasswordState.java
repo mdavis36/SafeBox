@@ -51,7 +51,6 @@ public class PasswordState extends BackgroundPanel{
 	
 	PlainMessageBox theMessageBox;
 	
-	
 	protected PasswordState(final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;

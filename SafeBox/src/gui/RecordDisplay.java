@@ -30,10 +30,11 @@ public class RecordDisplay extends BackgroundPanel {
 	private GridBagConstraints c = new GridBagConstraints();
 	private GridBagConstraints g = new GridBagConstraints();
 	
-	private JPanel toolBar;
 	private JPanel fViewer;
 	private JPanel fieldPanel;
 	private JScrollPane scrollPane;
+	
+	
 	private RecordToolBar recordToolBar;
 	private CustomButton addFieldButton;
 	private ModifyRecordBox modifyRecord;
@@ -48,11 +49,13 @@ public class RecordDisplay extends BackgroundPanel {
 		
 		setLayout(new GridBagLayout());
 		
-		toolBar = new JPanel(new BorderLayout(5,5));
+
 		fViewer = new JPanel(new BorderLayout());
 		fieldPanel = new JPanel(new GridBagLayout());
 		scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
+		
+		
 		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
 		
 		

@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -38,11 +40,15 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final String IMG_PLUS = "plus.png";
 	private static final String ADD_RECORD_FOLDER_TITLE = "Add Record / Folder";
 	
-	private JScrollPane scrollPane;
-	private JPanel toolBar = new JPanel(new BorderLayout(15,0));
-	private JPanel centerBox = new JPanel(new FlowLayout(0));
-	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	private JPanel toolBar;
 	
+	private JPanel fViewer;
+	private JPanel folderPanel;
+	private JScrollPane scrollPane;
+	private JPanel bottomBar;
+	private BackgroundPanel top;
+	
+	GridBagConstraints c = new GridBagConstraints();
 	private NewFolderBox newFolderDialogBox;
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
@@ -58,21 +64,37 @@ public class FolderDisplay extends BackgroundPanel{
 	 * @param sm the state is is being added to
 	 */
 	protected FolderDisplay(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH , sm.window.getHeight(), true));
 		this.sm = sm;
 		newFolderDialogBox = new NewFolderBox(sm);
 		newFolderDialogBox.setVisible(false);
 		currentNode = getFSH().getRoot();
-
-		
-		//setSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
-		setLayout(new BorderLayout(0, 0));
-		//setBounds(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		setLayout(new BorderLayout(0, 0));	
 		
 		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
+		
+		
+		top = new BackgroundPanel(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH + 10, sm.window.getHeight(), true));
+		top.setTransparentAdd(true);
+		top.setLayout(new GridBagLayout());
+		top.setOpaque(false);
+		top.setBorder(border);
+		
+		toolBar = new JPanel(new BorderLayout(15,0));
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
+		
+		
+		fViewer = new JPanel(new BorderLayout());
+		folderPanel = new JPanel(new GridBagLayout());
+		scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
+		scrollPane.setBorder(null);
+		bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
 		
 		//-------------------TOOLBAR--------------------
 		
@@ -91,6 +113,7 @@ public class FolderDisplay extends BackgroundPanel{
 		directoryTitle = new JLabel(currentNode.getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		directoryTitle.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
+		directoryTitle.setOpaque(false);
 		
 		
 		CustomButton homeButton = setupToolBarButton(IMG_HOME);
@@ -103,15 +126,11 @@ public class FolderDisplay extends BackgroundPanel{
 				}
 			}
 		});
-		
+		setTransparentAdd(true);
 		toolBar.add(backButton, BorderLayout.WEST);
 		toolBar.add(directoryTitle, BorderLayout.CENTER);
 		toolBar.add(homeButton, BorderLayout.EAST);
 		//-------------------CENTERBOX---------------------
-		
-		centerBox.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 5));
-		//scrollPane = new JScrollPane(centerBox, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		//scrollPane.getVerticalScrollBar().setUnitIncrement(5);
 		
 		
 		//-------------------BOTTOMBAR---------------------
@@ -126,13 +145,29 @@ public class FolderDisplay extends BackgroundPanel{
 			}
 		});
 		
-		bottomBar.add(addRecordOrField);
+		fViewer.add(folderPanel, BorderLayout.NORTH);
 		
 		setTransparentAdd(true);
-		add(toolBar, BorderLayout.NORTH);
+		bottomBar.add(addRecordOrField);
+		c.weightx = 1;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.ipady = 10;
+		c.gridx = 0;
+		c.gridy = 0;
+		top.add(toolBar, c);
+		c.weightx = 1;
+		c.weighty = 1;
+		c.fill = GridBagConstraints.BOTH;
+		c.ipady = 10;
+		c.gridx = 0;
+		c.gridy = 1;
+		top.add(scrollPane, c);
+		
+		
+		
+		add(top, BorderLayout.CENTER);
 		add(bottomBar, BorderLayout.SOUTH);
-		//add(scrollPane, BorderLayout.CENTER);
-		add(centerBox, BorderLayout.CENTER);
+		//add(fViewer, BorderLayout.CENTER);
 	}
 	
 	protected void init(){
@@ -143,8 +178,8 @@ public class FolderDisplay extends BackgroundPanel{
 	 * updates which folder the display is on
 	 */
 	protected void update(){
-		centerBox.removeAll();
-		centerBox.repaint();
+		folderPanel.removeAll();
+		folderPanel.repaint();
 		currentNode = getCurrentNode();
 		
 		if(!currentNode.getData().isRecord()){
@@ -152,22 +187,30 @@ public class FolderDisplay extends BackgroundPanel{
 			children = currentNode.getChildren();
 			resizeDisplay();
 			if(currentNode.hasChildren()){
+				folderPanel.setVisible(true);
 				FolderDisplayButton fdb;
 				for(int i = 0; i < children.size(); i++){
+					c.gridy = i;
+					c.anchor = GridBagConstraints.NORTHWEST;
+					c.fill = GridBagConstraints.HORIZONTAL;
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm, FolderDisplayButton.FOLDER);
-						centerBox.add(fdb, 0);	
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH + 50, BUTTON_WIDTH, i, sm, FolderDisplayButton.FOLDER);
+						//fdb.setAlignmentX(TOP_ALIGNMENT);
+						folderPanel.add(fdb, c);	
 					}else{
 						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_WIDTH, i, sm, FolderDisplayButton.RECORD);
-						centerBox.add(fdb);
+						//fdb.setAlignmentX(TOP_ALIGNMENT);
+						folderPanel.add(fdb, c);
 					}
-					centerBox.revalidate();
-					centerBox.repaint();	
+					folderPanel.revalidate();
+					folderPanel.repaint();	
 				}		
+			} else{
+				folderPanel.setVisible(false);
 			}
 		}
-		
+		fViewer.repaint();
 	}
 	
 	private void resizeDisplay(){
@@ -178,7 +221,7 @@ public class FolderDisplay extends BackgroundPanel{
 		int temp = 0;
 		for(int i = 0; i < children.size(); i++){
 			l.setText(children.get(i).getData().getName());
-			temp = (int) (l.getPreferredSize().getWidth() + 200);
+			temp = (int) (l.getPreferredSize().getWidth() + 250);
 			if(temp > maxLength){
 				maxLength = temp;
 			}
