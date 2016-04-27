@@ -18,12 +18,11 @@ public class Record extends Folder{
 	/**
 	 * @param field the field being removed
 	 */
-	public void deleteField(Field field) {
-		fields.remove(field);
+	public void deleteField(int index) {
+		fields.remove(index);
 	}
 	
 	public Field getField(int field) {
-		
 		return fields.get(field);
 		
 	}
@@ -75,7 +74,7 @@ public class Record extends Folder{
 		System.out.println(rec.toString());
 		rec.swap(1, 0);
 		System.out.println(rec.toString());
-		rec.deleteField(f1);
+		//rec.deleteField(f1);
 		System.out.println(rec.toString());
 		
 		
