@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class DeleteBox extends MessageBoxState {
+public class PlainMessageBox extends MessageBoxState {
 	/**
 	 * 
 	 */
@@ -25,7 +25,6 @@ public class DeleteBox extends MessageBoxState {
 	private static final int FONT_SIZE = 24;
 	private static final int GRID_WIDTH = 4;
 	private static final int GRID_Y_1 = 0;
-	private static final int GRID_Y_2 = 1;
 	private static final int EMPTY_BORDER_TOP = 10;
 	private static final int DELETE_BOX_WIDTH = 450;
 	private static final int DELETE_BOX_HEIGHT = 180;
@@ -37,17 +36,22 @@ public class DeleteBox extends MessageBoxState {
 	//Strings End//
 	
 	//JObjects Start//
-	private static CustomButton deleteButton = new CustomButton(delete, 0, 0, BUTTON_WIDTH, (int) (BAR_HEIGHT * BUTTON_HEIGHT_RATIO));
 	private JLabel nameOfFolder;
 	//JObjects End//
 	
-	public DeleteBox(final StateManager sm){
+	public PlainMessageBox(final StateManager sm, String message){
 		final StateManager state = sm;
+		
+		setSize(new Dimension(DELETE_BOX_WIDTH, DELETE_BOX_HEIGHT));
+		setModal(true);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		
 		//Buttons Start//
 		buttons.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
-		deleteButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
-		deleteButton.setBoarderDetails(Consts.ORANGE_PANEL_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
+		
+		cancelButton.setText("OK");
 		cancelButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
 		cancelButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
 		cancelButton.addMouseListener(new MouseAdapter() {
@@ -55,14 +59,7 @@ public class DeleteBox extends MessageBoxState {
 				resetBox();
 			}
 		});
-		
-		deleteButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				//TODO: Finish implementation
-				//state.getESM().getFileSystemHandler().deleteFolder(state., index)
-				resetBox();
-			}
-		});
+		buttons.add(cancelButton);
 		//Buttons End//
 		
 		//Title Start//
@@ -70,27 +67,27 @@ public class DeleteBox extends MessageBoxState {
 		c.fill = GridBagConstraints.VERTICAL;
 		c.gridwidth = GRID_WIDTH;
 		c.gridy = GRID_Y_1;
-		nameOfFolder = new JLabel(currentName);
-		titleLabel = new JLabel(title);
+		
 		titlePanel = new JPanel(new GridBagLayout());
-		titleLabel.setBorder(new EmptyBorder(EMPTY_BORDER_TOP, 0, 0, 0));
-		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
-		titlePanel.add(titleLabel,c);
-		c.gridy = GRID_Y_2;
-		titlePanel.add(nameOfFolder,c);
 		titlePanel.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
+		
+		titleLabel = new JLabel(message);
+		titleLabel.setBorder(new EmptyBorder(EMPTY_BORDER_TOP, 0, 0, 0));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, FONT_SIZE));
+		titlePanel.add(titleLabel,c);
 		//Title End//
 		
 		// Setting Frame Start//
 		panel.setLayout(new BorderLayout());
-		add(panel);
-		panel.add(titlePanel, BorderLayout.NORTH);
+		panel.add(titlePanel, BorderLayout.CENTER);
 		panel.add(buttons, BorderLayout.SOUTH);
-		setSize(new Dimension(DELETE_BOX_WIDTH, DELETE_BOX_HEIGHT));
-		setModal(true);
-		setLocationRelativeTo(null);
-		setResizable(false);
+		
+		add(panel);
 		// Setting Frame End//
+	}
+	
+	protected void setText(String text){
+		titleLabel.setText(text);
 	}
 
 	@Override
