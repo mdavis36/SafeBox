@@ -48,7 +48,6 @@ public class FieldBox extends BackgroundPanel{
 		fieldName.setFont(new Font("Tahoma", Font.BOLD, 24));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
-		fieldName.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
 		fieldName.setOpaque(false);
 		c.weightx = 0.25;
 		c.gridx = 0;
@@ -59,7 +58,6 @@ public class FieldBox extends BackgroundPanel{
 		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
-		fieldData.setPreferredSize(new Dimension(100, (int)(BAR_HEIGHT * 0.6)));
 		fieldData.setOpaque(false);
 		c.weighty = 0.25;
 		c.gridx = 0;

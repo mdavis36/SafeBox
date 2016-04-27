@@ -1,22 +1,18 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
@@ -42,6 +38,7 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final String IMG_PLUS = "plus.png";
 	private static final String ADD_RECORD_FOLDER_TITLE = "Add Record / Folder";
 	
+	private JScrollPane scrollPane;
 	private JPanel toolBar = new JPanel(new BorderLayout(15,0));
 	private JPanel centerBox = new JPanel(new FlowLayout(0));
 	private JPanel bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -113,6 +110,9 @@ public class FolderDisplay extends BackgroundPanel{
 		//-------------------CENTERBOX---------------------
 		
 		centerBox.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 5));
+		//scrollPane = new JScrollPane(centerBox, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		//scrollPane.getVerticalScrollBar().setUnitIncrement(5);
+		
 		
 		//-------------------BOTTOMBAR---------------------
 		
@@ -131,8 +131,8 @@ public class FolderDisplay extends BackgroundPanel{
 		setTransparentAdd(true);
 		add(toolBar, BorderLayout.NORTH);
 		add(bottomBar, BorderLayout.SOUTH);
+		//add(scrollPane, BorderLayout.CENTER);
 		add(centerBox, BorderLayout.CENTER);
-		
 	}
 	
 	protected void init(){
