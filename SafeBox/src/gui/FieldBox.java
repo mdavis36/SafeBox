@@ -49,8 +49,8 @@ public class FieldBox extends BackgroundPanel{
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
 		fieldName.setOpaque(false);
-		c.weightx = 0.25;
-		c.gridx = 0;
+		c.anchor = GridBagConstraints.WEST;
+		c.weightx = 1.0;
 		c.gridy = 0;
 		dataPanel.add(fieldName, c);
 		
@@ -59,8 +59,7 @@ public class FieldBox extends BackgroundPanel{
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
 		fieldData.setOpaque(false);
-		c.weighty = 0.25;
-		c.gridx = 0;
+
 		c.gridy = 1;
 		dataPanel.add(fieldData, c);
 		
