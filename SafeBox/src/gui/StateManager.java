@@ -46,7 +46,7 @@ public class StateManager extends JPanel{
 	/**
 	 * @param window
 	 */
-	protected StateManager(JFrame window){
+	protected StateManager(final JFrame window){
 		this.window = window;
 		eSM = new EncryptedStorageManager();
 		//Initialize cards
