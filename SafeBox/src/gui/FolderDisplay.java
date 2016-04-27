@@ -61,7 +61,7 @@ public class FolderDisplay extends BackgroundPanel{
 	 * @param sm the state is is being added to
 	 */
 	protected FolderDisplay(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
 		newFolderDialogBox = new NewFolderBox(sm);
 		newFolderDialogBox.setVisible(false);
@@ -73,7 +73,7 @@ public class FolderDisplay extends BackgroundPanel{
 		//setBounds(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 		
 		
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_BORDER);
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
 		
@@ -93,7 +93,7 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		directoryTitle = new JLabel(currentNode.getData().getName());
 		directoryTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		directoryTitle.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, FONT_SIZE));
+		directoryTitle.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		
 		
 		CustomButton homeButton = setupToolBarButton(IMG_HOME);
@@ -172,9 +172,9 @@ public class FolderDisplay extends BackgroundPanel{
 	
 	private void resizeDisplay(){
 		JLabel l = new JLabel();
-		l.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, FONT_SIZE));
+		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 150);
-		l.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, FONT_SIZE));
+		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, FONT_SIZE));
 		int temp = 0;
 		for(int i = 0; i < children.size(); i++){
 			l.setText(children.get(i).getData().getName());
@@ -184,20 +184,20 @@ public class FolderDisplay extends BackgroundPanel{
 			}
 		}
 		DISPLAY_WIDTH = maxLength;
-		setImage(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		setImage(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 	}
 	
 	private CustomButton setupToolBarButton(String imgPath){
 		CustomButton b = new CustomButton("", 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-		b.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(MiscUtils.BUTTON_COLOUR_LIGHT, 
-																							MiscUtils.BUTTON_COLOUR_DARK, 
+		b.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(Consts.BUTTON_COLOUR_LIGHT, 
+																							Consts.BUTTON_COLOUR_DARK, 
 																							BUTTON_WIDTH, 
 																							BUTTON_HEIGHT, 
 																							true), 
 															MiscUtils.getBufferedImageFromFile(imgPath, 
 																							BUTTON_WIDTH)),
 								true);
-		b.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
+		b.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, BORDER_WIDTH);
 		return b;
 	}
 	

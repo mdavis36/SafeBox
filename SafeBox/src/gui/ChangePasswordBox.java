@@ -54,12 +54,12 @@ public class ChangePasswordBox extends MessageBoxState {
 	
 	public ChangePasswordBox(final StateManager sm){
 		//Buttons Start//
-		buttons.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		buttons.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
-		cancelButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
-		cancelButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
-		saveButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
-		saveButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
+		cancelButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		cancelButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
+		saveButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		saveButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, BUTTON_BORDER_WIDTH);
 		cancelButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e) {
 				resetBox();
@@ -99,14 +99,14 @@ public class ChangePasswordBox extends MessageBoxState {
 		//Title Start//
 		titlePanel = new JPanel(new FlowLayout());
 		titleLabel.setBorder(new EmptyBorder(10, 0, 0, 0));
-		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
 		titlePanel.add(titleLabel);
-		titlePanel.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		titlePanel.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 
 		//Title End//
 		
 		//User Input Start//
-		userInput.setBackground(MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		userInput.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.VERTICAL;
 		c.gridwidth = 4;
@@ -115,9 +115,9 @@ public class ChangePasswordBox extends MessageBoxState {
 		currentPasswordField.setEchoChar((char)0);
 		currentPasswordField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (currentPasswordField.getEchoChar() != MiscUtils.ECHO_CHAR){
+				if (currentPasswordField.getEchoChar() != Consts.ECHO_CHAR){
 					currentPasswordField.setText("");
-					currentPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+					currentPasswordField.setEchoChar(Consts.ECHO_CHAR);
 				}
 				
 			}
@@ -129,9 +129,9 @@ public class ChangePasswordBox extends MessageBoxState {
 		newPasswordField.setEchoChar((char)0);
 		newPasswordField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (newPasswordField.getEchoChar() != MiscUtils.ECHO_CHAR){
+				if (newPasswordField.getEchoChar() != Consts.ECHO_CHAR){
 					newPasswordField.setText("");
-					newPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+					newPasswordField.setEchoChar(Consts.ECHO_CHAR);
 				}
 			}
 		});
@@ -142,9 +142,9 @@ public class ChangePasswordBox extends MessageBoxState {
 		confirmPasswordField.setEchoChar((char)0);
 		confirmPasswordField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (confirmPasswordField.getEchoChar() != MiscUtils.ECHO_CHAR){
+				if (confirmPasswordField.getEchoChar() != Consts.ECHO_CHAR){
 					confirmPasswordField.setText("");
-					confirmPasswordField.setEchoChar(MiscUtils.ECHO_CHAR);
+					confirmPasswordField.setEchoChar(Consts.ECHO_CHAR);
 				}
 			}
 		});

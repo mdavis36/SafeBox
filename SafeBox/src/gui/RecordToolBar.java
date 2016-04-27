@@ -27,7 +27,7 @@ public class RecordToolBar extends BackgroundPanel{
 	private JPanel rightPanel = new JPanel(new FlowLayout(0));
 	
 	protected RecordToolBar(StateManager sm, int w, int h){
-		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_DARK2, MiscUtils.ORANGE_PANEL_COLOUR_LIGHT2, w, h, true));
+		super(MiscUtils.getBufferedGradImage(Consts.ORANGE_PANEL_COLOUR_DARK2, Consts.ORANGE_PANEL_COLOUR_LIGHT2, w, h, true));
 		this.sm = sm;
 		
 		setSize(new Dimension(w, h));
@@ -35,7 +35,7 @@ public class RecordToolBar extends BackgroundPanel{
 		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, w, h);	
 		//----------------------Border---------------------
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_BORDER);
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.ORANGE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
 		

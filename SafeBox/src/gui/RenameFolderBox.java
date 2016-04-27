@@ -25,7 +25,7 @@ public class RenameFolderBox extends ModifyFolderBox {
 		titleText = titleString;
 		button1Text = button1String;
 		button2Text = button2String;
-		nameOfFolder.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, 24));//TODO: Change to constant
+		nameOfFolder.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));//TODO: Change to constant
 		state = sm;
 		this.index = i;
 		setName(index, sm);

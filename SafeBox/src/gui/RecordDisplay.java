@@ -40,9 +40,9 @@ public class RecordDisplay extends BackgroundPanel {
 	private Node currentRecord;
 	
 	protected RecordDisplay(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(MiscUtils.ORANGE_PANEL_COLOUR_LIGHT, MiscUtils.ORANGE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		super(MiscUtils.getBufferedGradImage(Consts.ORANGE_PANEL_COLOUR_LIGHT, Consts.ORANGE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		this.sm = sm;
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.ORANGE_PANEL_COLOUR_DARK);
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.ORANGE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
 		
@@ -57,8 +57,8 @@ public class RecordDisplay extends BackgroundPanel {
 		
 		
 		addFieldButton = new CustomButton("Add Field", 0, 0, 100, 30);
-		addFieldButton.setGradientBackground(MiscUtils.BUTTON_COLOUR_LIGHT, MiscUtils.BUTTON_COLOUR_DARK, true);
-		addFieldButton.setBoarderDetails(MiscUtils.BUTTON_COLOUR_BORDER, 2);
+		addFieldButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		addFieldButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
 		addFieldButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub

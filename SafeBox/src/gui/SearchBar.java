@@ -68,7 +68,7 @@ public class SearchBar extends BackgroundPanel{
 
 	
 	protected SearchBar(final StateManager sm){
-		super(MiscUtils.getBufferedGradImage(MiscUtils.BLUE_PANEL_COLOUR_LIGHT, MiscUtils.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
+		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
 		//setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		//setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 0));
@@ -77,7 +77,7 @@ public class SearchBar extends BackgroundPanel{
 		changePasswordDialogBox.setVisible(false);
 		
 		//----------------------Border---------------------
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, MiscUtils.BLUE_PANEL_COLOUR_DARK);
+		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_DARK);
 		setBorder(border);
 		setOpaque(true);
 		
@@ -109,7 +109,7 @@ public class SearchBar extends BackgroundPanel{
 		//----------------------Search Box---------------------
 
 		final JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
-		searchBox.setFont(new Font(MiscUtils.FONT_STYLE, Font.PLAIN, SEARCH_FONT_SIZE));
+		searchBox.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, SEARCH_FONT_SIZE));
 
 		searchBox.setForeground(Color.BLACK);
 		searchBox.setBackground(Color.WHITE);
@@ -154,7 +154,7 @@ public class SearchBar extends BackgroundPanel{
 		//----------------------Title---------------------
 		JLabel titleLabel = new JLabel(TITLE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font(MiscUtils.FONT_STYLE, Font.BOLD, TITLE_FONT_SIZE));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, TITLE_FONT_SIZE));
 		titleLabel.setLocation(TITLE_LOCATION_X, TITLE_LOCATION_Y);
 		rightPanel.add(titleLabel);
 		
