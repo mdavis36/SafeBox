@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
@@ -23,6 +24,7 @@ public class DeleteConfirmDialog extends CustomDialog {
 	private CustomButton cancelButton;
 	private JLabel confirmationText;
 	private boolean confirm;
+	private static JDialog snapTo;
 	
 	public DeleteConfirmDialog(StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
@@ -51,6 +53,7 @@ public class DeleteConfirmDialog extends CustomDialog {
 			}
 		});
 	}
+
 	
 	public boolean getConfirmation(){
 		return confirm;

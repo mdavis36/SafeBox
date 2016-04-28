@@ -70,7 +70,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 				}
 			}
 		});
-		addFolderButton = setupButton(ADD_FOLDER, BUTTON_HEIGHT, BUTTON_HEIGHT);
+		addFolderButton = setupButton(ADD_FOLDER, BUTTON_WIDTH, BUTTON_HEIGHT);
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
