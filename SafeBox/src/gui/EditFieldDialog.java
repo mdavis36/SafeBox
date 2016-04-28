@@ -25,11 +25,11 @@ public class EditFieldDialog extends CustomDialog {
 	private final String title = "Edit Field: ";
 	private final String cancel = "Cancel";
 	private final String delete = "Delete";
-	private final String rename = "Rename";
+	private final String rename = "Save";
 	private static String fieldName;
 	private static String fieldContent;
 	private static Record rec;
-	private static int index;
+	private  int index;
 	
 	private JLabel titleLabel;
 	private JTextField nameTextField;
@@ -49,10 +49,9 @@ public class EditFieldDialog extends CustomDialog {
 		
 		// --------------------Center panel----------------------------------
 		rec = (Record)sm.getESM().getFileSystemHandler().getCurrentRecord().getData();
-		index = i;
-		fieldName = rec.getField(i).getName();
-		System.out.println("Child " + i);
-		fieldContent = rec.getField(i).getData();
+		this.index = i;
+		fieldName = rec.getField(index).getName();
+		fieldContent = rec.getField(index).getData();
 		centerPanel.setLayout(new BorderLayout());
 		nameTextField = new JTextField(fieldName);
 		contentTextField = new JTextField(fieldContent);
@@ -82,6 +81,7 @@ public class EditFieldDialog extends CustomDialog {
 			public void mouseClicked(MouseEvent e){
 				sm.deleteDialog.open();
 				if(sm.deleteDialog.getConfirmation()){
+					System.out.println("Index in button:" + index);
 					rec.deleteField(index);
 					sm.update();				
 					close();
@@ -93,8 +93,7 @@ public class EditFieldDialog extends CustomDialog {
 				if(checkForValidText(nameTextField.getText()) && checkForValidText(nameTextField.getText())){
 					fieldName = nameTextField.getText();
 					fieldContent = contentTextField.getText();
-					rec.getField(index).setData(fieldContent);
-					rec.getField(index).setName(fieldName);
+					editField(fieldName,fieldContent);
 					sm.update();
 					close();
 				}
@@ -140,10 +139,17 @@ public class EditFieldDialog extends CustomDialog {
 		}
 	}
 	
+	private void editField(String name, String content){
+		System.out.println("The index being changed: " + index);
+		rec.getField(index).setName(name);
+		rec.getField(index).setData(content);
+	}
 	@Override
 	protected void init() {
 			// TODO Auto-generated method stub
 			
 	}
+	
+	
 	
 }

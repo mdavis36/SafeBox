@@ -36,7 +36,7 @@ public class FieldBox extends BackgroundPanel{
 	public FieldBox( int x, int y, int width, int height, final int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.ORANGE_PANEL_COLOUR_LIGHT, Consts.ORANGE_PANEL_COLOUR_DARK, width, height, true));
 		this.index = index;
-		final EditFieldDialog b = new EditFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, FIELD_DIALOGUE_WIDTH, FIELD_DIALOGUE_HEIGHT, index);
+		final EditFieldDialog b = new EditFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, FIELD_DIALOGUE_WIDTH, FIELD_DIALOGUE_HEIGHT, this.index);
 		b.setVisible(false);
 		setSize(new Dimension(width, height));
 		setPreferredSize(new Dimension(width, height));
@@ -80,6 +80,7 @@ public class FieldBox extends BackgroundPanel{
 		editButton.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				System.out.println("This Field is index: " + index);
 				b.open();
 			}
 		});

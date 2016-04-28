@@ -44,7 +44,6 @@ public class EditRecordFolderDialog extends CustomDialog {
 		northPanel.setLayout(new BorderLayout());
 		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
 		nameLabel.setFont(new Font(Consts.FONT_STYLE, Font.ITALIC, 20));
-		//northPanel.setPreferredSize
 		northPanel.add(titleLabel, BorderLayout.WEST);
 		northPanel.add(nameLabel, BorderLayout.CENTER);
 
@@ -75,6 +74,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 				sm.deleteDialog.open();
 				if(sm.deleteDialog.getConfirmation()){
 					deleteFolder(sm, index);
+					sm.update();
 					close();
 				}
 			}
@@ -83,6 +83,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 			public void mouseClicked(MouseEvent e){
 				if(isValidText(textField.getText())){
 					renameFolder(textField.getText(),sm);
+					sm.update();
 					close();
 				}
 				else{
