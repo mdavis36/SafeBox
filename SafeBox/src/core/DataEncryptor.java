@@ -14,7 +14,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * @author Dominic
+ * @author 
  *
  */
 class DataEncryptor {
