@@ -88,7 +88,7 @@ public class FolderDisplay extends BackgroundPanel{
 		top.setOpaque(false);
 		top.setBorder(border);
 		
-		toolBar = new JPanel(new BorderLayout(15,0));
+		toolBar = new JPanel(new BorderLayout(5,0));
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		
@@ -221,14 +221,14 @@ public class FolderDisplay extends BackgroundPanel{
 	private void resizeDisplay(){
 		JLabel l = new JLabel();
 		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
-		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 130);
+		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 140);
 		
 		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
 		
 		for(int i = 0; i < children.size(); i++){
 			l.setText(children.get(i).getData().getName());
-			temp = (int) (l.getPreferredSize().getWidth() + 100);
+			temp = (int) (l.getPreferredSize().getWidth() + 110);
 			if(temp > maxLength){
 				maxLength = temp;
 			}
