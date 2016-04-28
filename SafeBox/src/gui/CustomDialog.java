@@ -15,6 +15,7 @@ public class CustomDialog extends JDialog{
 	protected JPanel centerPanel = new JPanel();
 	protected JPanel southPanel = new JPanel();
 	protected BackgroundPanel contentPane;
+	protected static final int BORDER_WIDTH = 15;
 	
 	protected StateManager sm;
 	
@@ -24,7 +25,7 @@ public class CustomDialog extends JDialog{
 		contentPane = new BackgroundPanel(MiscUtils.getBufferedGradImage(c1, c2, w, h, true));
 		contentPane.setLayout(new BorderLayout(10,10));
 		contentPane.setTransparentAdd(true);
-		contentPane.setBorder(new EmptyBorder(15, 15, 15, 15));
+		contentPane.setBorder(new EmptyBorder(BORDER_WIDTH, BORDER_WIDTH, BORDER_WIDTH, BORDER_WIDTH));
 		
 		northPanel.setOpaque(false);
 		centerPanel.setOpaque(false);
