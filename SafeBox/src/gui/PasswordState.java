@@ -38,6 +38,13 @@ public class PasswordState extends BackgroundPanel{
 	private static final int BUTTON_HEIGHT = BUTTON_WIDTH / 7;
 	private static final int PASSWORD_WIDTH = 330;
 	private static final Dimension PASSWORD_FIELD_DIMENSION = new Dimension (PASSWORD_WIDTH, 40);
+	private static final int STARTUP_WIDTH = 600;
+	private static final int STARTUP_HEIGHT = 250;
+	private static final int TITLE_LABEL_Y = 75;
+	private static final int TITLE_LABEL_WIDTH = 100;
+	private static final int TITLE_LABEL_HEIGHT = 50;
+	private static final int LOGO_HEIGHT = 20;
+	private static final int PASSWORD_FIELD_FONT_SIZE = 24;
 	
 	private static final String TITLE = "SafeBox";
 	private static final String FORGOT_PASSWORD_TITLE = "ForgotPassword";
@@ -56,7 +63,7 @@ public class PasswordState extends BackgroundPanel{
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 		
-		startup = new StartUpDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 600, 250);
+		startup = new StartUpDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, STARTUP_WIDTH, STARTUP_HEIGHT);
 		
 		setLayout(new BorderLayout());
 		centerPanel = new JPanel(new GridBagLayout());
@@ -69,16 +76,16 @@ public class PasswordState extends BackgroundPanel{
 		setTransparentAdd(true);
 		JLabel titleLabel = new JLabel(TITLE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
-		titleLabel.setBounds(sm.window.getWidth()/2-50, 75, 100, 50);
+		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, Consts.DIALOGUE_BOX_TITLE_FONT_SIZE));
+		titleLabel.setBounds(sm.window.getWidth()/2-50, TITLE_LABEL_Y, TITLE_LABEL_WIDTH, TITLE_LABEL_HEIGHT);
 		centerPanel.add(titleLabel, c);
 		
 		
 		c.gridy += 1;
 		JLabel lblSafeboxLogo = new JLabel();
 		int logoWidth = 160;
-		lblSafeboxLogo.setSize(new Dimension(logoWidth, 20));
-		BufferedImage logo = MiscUtils.getBufferedImageFromFile("res/logos/largeLogo.png", lblSafeboxLogo.getWidth());
+		lblSafeboxLogo.setSize(new Dimension(logoWidth, LOGO_HEIGHT));
+		BufferedImage logo = MiscUtils.getBufferedImageFromFile(Consts.LOGO_PATH+Consts.BIG_LOGO_NAME, lblSafeboxLogo.getWidth());
 		lblSafeboxLogo.setIcon(new ImageIcon(logo));
 		lblSafeboxLogo.setSize(new Dimension(logo.getWidth(), logo.getHeight()));
 		centerPanel.add(lblSafeboxLogo, c);
@@ -88,7 +95,7 @@ public class PasswordState extends BackgroundPanel{
 		setTransparentAdd(false);
 		passWordField = new JPasswordField();
 		passWordField.setPreferredSize(PASSWORD_FIELD_DIMENSION);
-		passWordField.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, 24));
+		passWordField.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, PASSWORD_FIELD_FONT_SIZE));
 		resetPasswordField(passWordField);
 		passWordField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {

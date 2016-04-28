@@ -46,7 +46,7 @@ public class CustomButton extends JButton{
 	 * @param keepRatio whether the ratio needs to change
 	 */
 	public void setImageFromFile(String fileName, boolean keepRatio){
-		BufferedImage i = MiscUtils.getBufferedImageFromFile(Consts.PATH + fileName, getWidth());
+		BufferedImage i = MiscUtils.getBufferedImageFromFile(Consts.BUTTON_PATH + fileName, getWidth());
 		setImageIcon(i, keepRatio);	
 	}
 		
