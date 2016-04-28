@@ -39,7 +39,8 @@ public class FolderDisplayButton extends BackgroundPanel{
 		this.index = index;
 		setSize(new Dimension(width, height));
 		setLayout(new FlowLayout(LAYOUT_ARG));
-		
+		final EditRecordFolderDialog b = new EditRecordFolderDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, index);
+		b.setVisible(false);
 		renameDeleteBox = new RenameFolderBox(sm,index);
 		renameDeleteBox.setVisible(false);
 	
@@ -73,7 +74,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
 		edit.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e) {
-				renameDeleteBox.setVisible(true);
+				b.setVisible(true);
 			}
 		});
 		
