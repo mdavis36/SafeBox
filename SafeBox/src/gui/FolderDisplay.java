@@ -195,7 +195,7 @@ public class FolderDisplay extends BackgroundPanel{
 					c.fill = GridBagConstraints.HORIZONTAL;
 					Node child = children.get(i);
 					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH + 50, BUTTON_HEIGHT, i, sm, FolderDisplayButton.FOLDER);
+						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_HEIGHT, i, sm, FolderDisplayButton.FOLDER);
 						//fdb.setAlignmentX(TOP_ALIGNMENT);
 						folderPanel.add(fdb, c);	
 					}else{
