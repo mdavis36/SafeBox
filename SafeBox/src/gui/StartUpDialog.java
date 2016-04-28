@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
@@ -26,6 +28,7 @@ public class StartUpDialog extends CustomDialog{
 	private static final String CON_PASSWORD_TEXT = "Confirm Password";
 	private static final String HINT_TEXT = "Hint";
 	private static final String DONE_TEXT = "Done";
+	private static final String EXIT_TEXT = "Exit";
 	
 	private static final String PASSWORDS_DID_NOT_MATCH_ERROR = "Error, password and confirm password did not match.";
 	private static final String PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR = "Error, password did not meet minimum requirements.";
@@ -41,6 +44,7 @@ public class StartUpDialog extends CustomDialog{
 	private JTextField hint;
 	
 	private CustomButton done;
+	private CustomButton exit;
 
 	private void configureNewPasswordAndClose(char[] password, char[] confirmPassword, String hint){
 		EncryptedStorageManager esm = sm.getESM();
@@ -87,28 +91,32 @@ public class StartUpDialog extends CustomDialog{
 		c.fill = GridBagConstraints.VERTICAL;
 		
 		password = new JPasswordField(PASSWORD_TEXT);
-		password.setEchoChar((char)0);
-		password.setPreferredSize(new Dimension(350,30));
-		password.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				if (password.getEchoChar() != Consts.ECHO_CHAR){ // if we're displaying something other than the obfuscated password
-					password.setText("");
-				}
-				password.setEchoChar(Consts.ECHO_CHAR);
+		initPasswordField(password, PASSWORD_TEXT);
+		password.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				resetPasswordField(password, PASSWORD_TEXT);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				passwordFieldClick(password);
 			}
 		});
 		c.gridy = 0;
 		centerPanel.add(password, c);
 		
 		confirmPassword = new JPasswordField(CON_PASSWORD_TEXT);
-		confirmPassword.setEchoChar((char)0);
-		confirmPassword.setPreferredSize(new Dimension(350,30));
-		confirmPassword.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				if (confirmPassword.getEchoChar() != Consts.ECHO_CHAR){ // if we're displaying something other than the obfuscated password
-					confirmPassword.setText("");
-				}
-				confirmPassword.setEchoChar(Consts.ECHO_CHAR);
+		initPasswordField(confirmPassword, CON_PASSWORD_TEXT);
+		confirmPassword.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				resetPasswordField(confirmPassword, CON_PASSWORD_TEXT);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				passwordFieldClick(confirmPassword);
 			}
 		});
 		c.gridy = 1;
@@ -116,11 +124,25 @@ public class StartUpDialog extends CustomDialog{
 		
 		hint = new JTextField(HINT_TEXT);
 		hint.setPreferredSize(new Dimension(350,30));
-		hint.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
+		hint.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if ("".equals(hint.getText())){
+					hint.setText(HINT_TEXT);
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
 				if (hint.getText().equals(HINT_TEXT)){
 					hint.setText("");
 				}
+			}
+		});
+		hint.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				
 			}
 		});
 		c.gridy = 2;
@@ -136,12 +158,21 @@ public class StartUpDialog extends CustomDialog{
 			}
 		});
 		
-		southPanel.add(done);
+		exit = setupButton(EXIT_TEXT, 120, 36);
+		exit.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e){
+				System.exit(0);
+			}
+		});
 		
+		southPanel.add(done);
+		southPanel.add(exit);
 	}
 
 	@Override
 	protected void init() {
+		title.setFocusable(true);
+		title.requestFocus();
 		// TODO Auto-generated method stub
 		
 	}

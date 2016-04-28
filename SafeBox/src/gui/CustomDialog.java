@@ -8,6 +8,7 @@ import java.awt.Point;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 public abstract class CustomDialog extends JDialog{
@@ -55,6 +56,25 @@ public abstract class CustomDialog extends JDialog{
 		sm.update();
 		setVisible(false);
 		
+	}
+	
+	protected void passwordFieldClick(JPasswordField p){
+		if(p.getEchoChar() != Consts.ECHO_CHAR){
+			p.setText("");
+			p.setEchoChar(Consts.ECHO_CHAR);
+		}
+	}
+	
+	protected void resetPasswordField(JPasswordField p, String text){
+		if(p.getPassword().length == 0){
+			initPasswordField(p, text);
+		}
+	}
+	
+	protected void initPasswordField(JPasswordField p, String text){
+		p.setPreferredSize(new Dimension(350,30));
+		p.setText(text);
+		p.setEchoChar((char)0);
 	}
 	
 	protected CustomButton setupButton(String text, int w, int h){

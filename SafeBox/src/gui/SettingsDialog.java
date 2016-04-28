@@ -59,20 +59,20 @@ public class SettingsDialog extends CustomDialog {
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.VERTICAL;
 		c.gridy = 0;
-		currentPasswordField = new JPasswordField(initCurrentPasswordField);
-		currentPasswordField.setPreferredSize(new Dimension(350,30));
-		currentPasswordField.setEchoChar((char)0);
+		currentPasswordField = new JPasswordField();
+		initPasswordField(currentPasswordField, initCurrentPasswordField);
 		centerPanel.add(currentPasswordField,c);
+		
 		c.gridy++;
-		newPasswordField = new JPasswordField(initNewPasswordField);
-		newPasswordField.setPreferredSize(new Dimension(350,30));
-		newPasswordField.setEchoChar((char)0);
+		newPasswordField = new JPasswordField();
+		initPasswordField(newPasswordField, initNewPasswordField);
 		centerPanel.add(newPasswordField,c);
+		
 		c.gridy++;
-		confirmPasswordField = new JPasswordField(initConfirmPasswordField);
-		confirmPasswordField.setPreferredSize(new Dimension(350,30));
-		confirmPasswordField.setEchoChar((char)0);
+		confirmPasswordField = new JPasswordField();
+		initPasswordField(confirmPasswordField, initConfirmPasswordField);
 		centerPanel.add(confirmPasswordField,c);
+		
 		c.gridy++;
 		hintField = new JTextField(initHintField);
 		hintField.setPreferredSize(new Dimension(350,30));
@@ -92,7 +92,7 @@ public class SettingsDialog extends CustomDialog {
 		currentPasswordField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				initPasswordField(currentPasswordField, initCurrentPasswordField);
+				resetPasswordField(currentPasswordField, initCurrentPasswordField);
 			}
 			
 			@Override
@@ -104,7 +104,7 @@ public class SettingsDialog extends CustomDialog {
 		newPasswordField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				initPasswordField(newPasswordField, initNewPasswordField);
+				resetPasswordField(newPasswordField, initNewPasswordField);
 			}
 			
 			@Override
@@ -116,7 +116,7 @@ public class SettingsDialog extends CustomDialog {
 		confirmPasswordField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				initPasswordField(confirmPasswordField, initConfirmPasswordField);
+				resetPasswordField(confirmPasswordField, initConfirmPasswordField);
 			}
 			
 			@Override
@@ -181,23 +181,6 @@ public class SettingsDialog extends CustomDialog {
 		
 	}
 	
-	private void passwordFieldClick(JPasswordField p){
-		if(p.getEchoChar() != Consts.ECHO_CHAR){
-			p.setText("");
-			p.setEchoChar(Consts.ECHO_CHAR);
-		}
-	}
-
-	private void resetPasswordField(JPasswordField p, String text){
-		if(p.getPassword().length == 0){
-			initPasswordField(p, text);
-		}
-	}
-	
-	private void initPasswordField(JPasswordField p, String text){
-		p.setText(text);
-		p.setEchoChar((char)0);
-	}
 
 	@Override
 	protected void init() {
