@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class MiscUtils {
 	
@@ -125,5 +127,14 @@ public class MiscUtils {
 	 */
 	public static float clamp(float val, float min, float max) {
 	    return Math.max(min, Math.min(max, val));
+	}
+	
+	/**
+	 * @param window the window to change the icon in
+	 * @param path the path to the new icon
+	 */
+	public static void setIcon(JFrame window, String path){
+		ImageIcon img = new ImageIcon(path);
+		window.setIconImage(img.getImage());
 	}
 }

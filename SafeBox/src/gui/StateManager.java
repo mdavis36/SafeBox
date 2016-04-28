@@ -1,24 +1,12 @@
 package gui;
 
 import java.awt.CardLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
-import core.HintManager;
 import core.WindowSizeManager;
 
 public class StateManager extends JPanel{
@@ -76,6 +64,9 @@ public class StateManager extends JPanel{
 		
 		plainMessageDialog = new PlainMessageDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, "");
 		deleteDialog = new DeleteConfirmDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 220);
+		
+		MiscUtils.setIcon(window, Consts.LOGO_PATH + Consts.ICON_NAME);
+		
 		init();
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(){
