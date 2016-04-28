@@ -65,7 +65,7 @@ public class FolderDisplayButton extends BackgroundPanel{
 																						EDIT_BUTTON_WIDTH, 
 																						EDIT_BUTTON_WIDTH, 
 																						true), 
-														MiscUtils.getBufferedImageFromFile(Consts.PEN_IMAGE, 
+														MiscUtils.getBufferedImageFromFile(Consts.PATH + Consts.PEN_IMAGE, 
 																						EDIT_BUTTON_WIDTH)),
 						true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);

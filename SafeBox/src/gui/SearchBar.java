@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import core.FileSystemHandler;
 import core.Folder;
@@ -49,6 +50,7 @@ public class SearchBar extends BackgroundPanel{
 	private static final int TITLE_FONT_SIZE = 32;
 	private static final int TITLE_LOCATION_X = 700;
 	private static final int TITLE_LOCATION_Y = 20;
+	private static final int LOGOUT_BUTTON_WIDTH_WIDTH = 30;
 	private static final int LOGOUT_BUTTON_WIDTH_HEIGHT = 40;
 	
 	private static final Color SEARCH_BUTTON_COLOR_1 = new Color(255, 205, 40);
@@ -88,10 +90,10 @@ public class SearchBar extends BackgroundPanel{
 		//------------- LEFT PANEL ----------------
 		//-----------------------------------------
 		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
+		leftPanel.setBorder(new EmptyBorder(0, 4, 4, 4));
 		//---------------------Settings button---------------------
-		int buttonWidth = BAR_HEIGHT - 10;
-		int buttonHeight = BAR_HEIGHT - 10;
+		int buttonWidth = BAR_HEIGHT - 15;
+		int buttonHeight = BAR_HEIGHT - 15;
 		CustomButton settingsButton = new CustomButton("", 0, 0, buttonWidth, buttonHeight);
 		settingsButton.setImageFromFile(GEAR_IMAGE, true);
 		settingsButton.addActionListener(new ActionListener() {
@@ -161,7 +163,7 @@ public class SearchBar extends BackgroundPanel{
 		
 		
 		//-----------------------Log Out------------------------
-		CustomButton logOutButton = new CustomButton("", 0,0,LOGOUT_BUTTON_WIDTH_HEIGHT,LOGOUT_BUTTON_WIDTH_HEIGHT);
+		CustomButton logOutButton = new CustomButton("", 0,0,LOGOUT_BUTTON_WIDTH_WIDTH,LOGOUT_BUTTON_WIDTH_HEIGHT);
 		logOutButton.setImageIcon(MiscUtils.getBufferedImageFromFile(LARGE_LOGO_IMAGE, logOutButton.getWidth()), false);
 		logOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
