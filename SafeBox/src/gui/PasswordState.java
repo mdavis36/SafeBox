@@ -37,6 +37,7 @@ public class PasswordState extends BackgroundPanel{
 	private static final int BUTTON_WIDTH = 270;
 	private static final int BUTTON_HEIGHT = BUTTON_WIDTH / 7;
 	private static final int PASSWORD_WIDTH = 330;
+	private static final Dimension PASSWORD_FIELD_DIMENSION = new Dimension (PASSWORD_WIDTH, 40);
 	
 	private static final String TITLE = "SafeBox";
 	private static final String FORGOT_PASSWORD_TITLE = "ForgotPassword";
@@ -87,7 +88,7 @@ public class PasswordState extends BackgroundPanel{
 		c.gridy += 1;
 		setTransparentAdd(false);
 		passWordField = new JPasswordField();
-		passWordField.setPreferredSize(new Dimension (PASSWORD_WIDTH, 40));
+		passWordField.setPreferredSize(PASSWORD_FIELD_DIMENSION);
 		passWordField.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, 24));
 		resetPasswordField(passWordField);
 		passWordField.addMouseListener(new MouseAdapter() {

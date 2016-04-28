@@ -22,6 +22,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	
 	private static final int BUTTON_WIDTH = 120; 
 	private static final int BUTTON_HEIGHT = 36;
+	private static final int FONT_SIZE = 22;
 
 	private JLabel title;
 	
@@ -36,7 +37,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		title = new JLabel(ADD_A_RECORD_FOLDER);
-		title.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, 22));
+		title.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, FONT_SIZE));
 		northPanel.add(title);
 		
 		

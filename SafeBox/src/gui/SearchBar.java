@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 
 import core.FileSystemHandler;
 import core.Folder;
@@ -47,16 +46,21 @@ public class SearchBar extends BackgroundPanel{
 	private static final String GEAR_IMAGE = "gear.png";
 	private static final double HEIGHT_RATIO = .6;
 	private static final String LARGE_LOGO_IMAGE = "res/logos/largeLogo.png";
+	private static final String SEARCH_RESULTS = "Search Results";
 	private static final int TITLE_FONT_SIZE = 32;
 	private static final int TITLE_LOCATION_X = 700;
 	private static final int TITLE_LOCATION_Y = 20;
-	private static final int LOGOUT_BUTTON_WIDTH_WIDTH = 30;
-	private static final int LOGOUT_BUTTON_WIDTH_HEIGHT = 40;
+	private static final int LOGOUT_BUTTON_WIDTH = 30;
+	private static final int LOGOUT_BUTTON_HEIGHT = 40;
+	private static final int BUTTON_MINUS = 15;
+	private static final int LAYOUT_HGAP = 20;
 	
 	private static final Color SEARCH_BUTTON_COLOR_1 = new Color(255, 205, 40);
 	private static final Color SEARCH_BUTTON_COLOR_2 = new Color(255, 165, 0);
 	private static final Color SEARCH_BUTTON_COLOR_BORDER = new Color(215, 155, 0);
 	private static final int SEARCH_BUTTON_BORDER_WIDTH = 2;
+	private static final int SETTINGS_WIDTH = 450;
+	private static final int SETTINGS_HEIGHT = 300;
 	
 	
 	SettingsDialog settingsBox;
@@ -64,7 +68,7 @@ public class SearchBar extends BackgroundPanel{
 	private void executeSearch(StateManager sm, String query){
 		FileSystemHandler fsh = sm.getESM().getFileSystemHandler();
 		ArrayList<Node> results = fsh.search(query, fsh.getCurrentRecord());
-		Node searchResults = new Node(new Folder("Search Results"), results);
+		Node searchResults = new Node(new Folder(SEARCH_RESULTS), results);
 		searchResults.setParent(fsh.getRoot());
 		fsh.setCurrentNode(searchResults);
 		sm.update();
@@ -75,9 +79,9 @@ public class SearchBar extends BackgroundPanel{
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, BAR_WIDTH, BAR_HEIGHT, true));
 		//setSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		//setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
-		setLayout(new BorderLayout(20, 0));
+		setLayout(new BorderLayout(LAYOUT_HGAP, 0));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);	
-		settingsBox = new SettingsDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 300);
+		settingsBox = new SettingsDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, SETTINGS_WIDTH, SETTINGS_HEIGHT);
 		settingsBox.setVisible(false);
 		
 		//----------------------Border---------------------
@@ -90,10 +94,10 @@ public class SearchBar extends BackgroundPanel{
 		//------------- LEFT PANEL ----------------
 		//-----------------------------------------
 		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		leftPanel.setBorder(new EmptyBorder(0, 4, 4, 4));
+
 		//---------------------Settings button---------------------
-		int buttonWidth = BAR_HEIGHT - 15;
-		int buttonHeight = BAR_HEIGHT - 15;
+		int buttonWidth = BAR_HEIGHT - BUTTON_MINUS;
+		int buttonHeight = BAR_HEIGHT - BUTTON_MINUS;
 		CustomButton settingsButton = new CustomButton("", 0, 0, buttonWidth, buttonHeight);
 		settingsButton.setImageFromFile(GEAR_IMAGE, true);
 		settingsButton.addActionListener(new ActionListener() {
@@ -163,7 +167,7 @@ public class SearchBar extends BackgroundPanel{
 		
 		
 		//-----------------------Log Out------------------------
-		CustomButton logOutButton = new CustomButton("", 0,0,LOGOUT_BUTTON_WIDTH_WIDTH,LOGOUT_BUTTON_WIDTH_HEIGHT);
+		CustomButton logOutButton = new CustomButton("", 0,0,LOGOUT_BUTTON_WIDTH,LOGOUT_BUTTON_HEIGHT);
 		logOutButton.setImageIcon(MiscUtils.getBufferedImageFromFile(LARGE_LOGO_IMAGE, logOutButton.getWidth()), false);
 		logOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -17,6 +17,8 @@ public class RecordToolBar extends BackgroundPanel{
 	
 	private Border border;
 	private int boarderWidth = 3;
+	private static final int BORDER_LAYOUT = 20;
+	private static final int FONT_SIZE = 24;
 	
 	private String title = "";
 	JLabel recordTitle;
@@ -32,7 +34,7 @@ public class RecordToolBar extends BackgroundPanel{
 		
 		setSize(new Dimension(w, h));
 		setPreferredSize(new Dimension(w, h));
-		setLayout(new BorderLayout(20, 0));
+		setLayout(new BorderLayout(BORDER_LAYOUT, 0));
 		setBounds(0, 0, w, h);	
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.ORANGE_PANEL_COLOUR_BORDER);
@@ -56,7 +58,7 @@ public class RecordToolBar extends BackgroundPanel{
 		
 		recordTitle = new JLabel(title);
 		recordTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		recordTitle.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, 24));
+		recordTitle.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, FONT_SIZE));
 		centerPanel.add(recordTitle);
 		
 		//------------------------------------------
