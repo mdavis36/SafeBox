@@ -23,6 +23,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private static final int BUTTON_WIDTH = 120; 
 	private static final int BUTTON_HEIGHT = 36;
 	private static final int FONT_SIZE = 22;
+	private static final int SOUTH_PANEL_LAYOUT_HGAP = 10;
 
 	private JLabel title;
 	
@@ -50,7 +51,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 		
 		
 		//--------------------South panel----------------------------------
-		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
+		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_LAYOUT_HGAP, 0));
 		
 		cancelButton = setupButton(CANCEL, BUTTON_WIDTH, BUTTON_HEIGHT);
 		cancelButton.addMouseListener(new MouseAdapter() {
