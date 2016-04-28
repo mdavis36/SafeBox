@@ -118,4 +118,11 @@ public class AddRecordFieldDialog extends CustomDialog{
 			return true;
 		}
 	}
+	
+	@Override
+	protected void init() {
+		textField.setText(initTextField);
+	}
 }
+
+
