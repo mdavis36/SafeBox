@@ -141,7 +141,9 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				newFolderDialogBox.setVisible(true);
+				//newFolderDialogBox.setVisible(true);
+				AddRecordFieldDialog b = new AddRecordFieldDialog(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200);
+				b.setVisible(true);
 			}
 		});
 		
