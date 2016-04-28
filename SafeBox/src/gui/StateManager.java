@@ -63,7 +63,7 @@ public class StateManager extends JPanel{
 		}
 		
 		plainMessageDialog = new PlainMessageDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, "");
-		deleteDialog = new DeleteConfirmDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 220);
+		deleteDialog = new DeleteConfirmDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 220, null);
 		
 		MiscUtils.setIcon(window, Consts.LOGO_PATH + Consts.ICON_NAME);
 		

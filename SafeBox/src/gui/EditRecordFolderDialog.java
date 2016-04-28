@@ -25,6 +25,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 	private final String initTextField = "New Name";
 	private static String name;
 	private final String error = "Not a valid name";
+	private final String DELETE_MESSAGE = "Delete this record/folder?";
 	private int index;
 	
 	private JLabel titleLabel;
@@ -76,6 +77,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				sm.deleteDialog.setMessage(DELETE_MESSAGE);
 				sm.deleteDialog.open();
 				if(sm.deleteDialog.getConfirmation()){
 					deleteFolder(sm, index);
