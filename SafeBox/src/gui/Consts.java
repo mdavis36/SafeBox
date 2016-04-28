@@ -20,7 +20,6 @@ public class Consts {
 	protected static final Color ORANGE_PANEL_COLOUR_DARK2 = new Color(215, 165, 0);
 	protected static final Color ORANGE_PANEL_COLOUR_BORDER2 = new Color(215, 155, 0);
 	
-	protected static final 
 	
 	protected static final String FONT_STYLE = "Arial";
 	
