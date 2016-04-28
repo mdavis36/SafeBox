@@ -223,8 +223,6 @@ public class FolderDisplay extends BackgroundPanel{
 		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 130);
 		
-		System.out.println("children coutn :" + children.size() + "DisplayWidth : " + maxLength);
-		
 		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
 		
@@ -236,7 +234,6 @@ public class FolderDisplay extends BackgroundPanel{
 			}
 		}
 		DISPLAY_WIDTH = maxLength;
-		System.out.println("children coutn :" + children.size() + "DisplayWidth : " + DISPLAY_WIDTH);
 		setImage(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 		setSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
 		revalidate();
