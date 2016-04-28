@@ -26,6 +26,7 @@ public class EditFieldDialog extends CustomDialog {
 	private final String cancel = "Cancel";
 	private final String delete = "Delete";
 	private final String rename = "Save";
+	private final String DELETE_MESSAGE = "Are you sure you want to delete this field?";
 	private static final int CENTER_PANEL_BOTTOM = 20;
 	private static final int CENTER_PANEL_TOP = 10;
 	private static final int SOUTH_PANEL_HGAP = 10;
@@ -40,6 +41,7 @@ public class EditFieldDialog extends CustomDialog {
 	private CustomButton cancelButton;
 	private CustomButton deleteButton;
 	private CustomButton renameButton;
+
 	
 	public EditFieldDialog(final StateManager sm, Color c1, Color c2, int w, int h, int i) {
 		super(sm, c1, c2, w, h);
@@ -82,6 +84,7 @@ public class EditFieldDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				sm.deleteDialog.setMessage(DELETE_MESSAGE);
 				sm.deleteDialog.open();
 				if(sm.deleteDialog.getConfirmation()){
 					System.out.println("Index in button:" + index);

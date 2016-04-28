@@ -17,7 +17,7 @@ public class DeleteConfirmDialog extends CustomDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -4807039006822180146L;
-	private final String confirmText = "Are you sure you want to delete?";
+	private String confirmText;
 	private final String cancel = "Cancel";
 	private final String delete = "Delete";
 	private CustomButton deleteButton;
@@ -29,8 +29,9 @@ public class DeleteConfirmDialog extends CustomDialog {
 	private static final int CONFIRM_TEXT_FONT_SIZE = 22;
 	private static final int SOUTH_PANEL_HGAP = 10;
 	
-	public DeleteConfirmDialog(StateManager sm, Color c1, Color c2, int w, int h) {
+	public DeleteConfirmDialog(StateManager sm, Color c1, Color c2, int w, int h, String message) {
 		super(sm, c1, c2, w, h);
+		confirmText = message;
 		//--------------------Center panel----------------------------------
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		confirmationText = new JLabel(confirmText);
@@ -62,6 +63,10 @@ public class DeleteConfirmDialog extends CustomDialog {
 		return confirm;
 	}
 	
+	public void setMessage(String message){
+		confirmText = message;
+		confirmationText.setText(confirmText);
+	}
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
