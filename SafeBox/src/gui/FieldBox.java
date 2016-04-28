@@ -6,12 +6,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
@@ -31,6 +34,14 @@ public class FieldBox extends BackgroundPanel{
 	private static final int EDIT_BUTTON_WIDTH_HEIGHT = 30;
 	private static final int FIELD_BORDER_TOP_BOTTOM = 10;
 	private static final int FIELD_BORDER_LEFT_RIGHT = 20;
+	private final String CLIPBOARD_NOTICE = "Copied to clipboard.";
+	private final int TIMER = 500;//time to show copied to clipboard in ms
+	private JLabel fieldName;
+	private JLabel fieldData;
+	
+	private int time = 0;
+	private final int duration = 2000; 
+	private String placeholder;
 	
 	
 	public FieldBox( int x, int y, int width, int height, final int index, final StateManager sm) {
@@ -51,7 +62,7 @@ public class FieldBox extends BackgroundPanel{
 		setOpaque(true);
 		setTransparentAdd(true);
 		
-		JLabel fieldName = new JLabel(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getName() + " :");
+		fieldName = new JLabel(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getName() + " :");
 		fieldName.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, TEXT_SIZE));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
@@ -61,7 +72,7 @@ public class FieldBox extends BackgroundPanel{
 		c.gridy = 0;
 		dataPanel.add(fieldName, c);
 		
-		JLabel fieldData = new JLabel("    " + ((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
+		fieldData = new JLabel("    " + ((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
 		fieldData.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, TEXT_SIZE));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
@@ -69,7 +80,11 @@ public class FieldBox extends BackgroundPanel{
 		fieldData.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				placeholder = fieldData.getText();
+				fieldData.setText(CLIPBOARD_NOTICE);
 				MiscUtils.setClipboard(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
+				clipboardNotice();
+				
 			}
 		});
 		c.gridy = 1;
@@ -88,5 +103,16 @@ public class FieldBox extends BackgroundPanel{
 		add(editButton, BorderLayout.EAST);
 		add(dataPanel, BorderLayout.WEST);
 		
+	}
+	
+	private void clipboardNotice(){
+		Timer t = new Timer(TIMER, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fieldData.setText(placeholder);
+            }
+        });
+		t.setRepeats(false);
+		t.start();
 	}
 }
