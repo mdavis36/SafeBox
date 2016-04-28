@@ -49,35 +49,43 @@ public class RecordDisplay extends BackgroundPanel {
 		setLayout(new GridBagLayout());
 		
 
+		
+		
+		//-------------------TOOLBAR--------------------
+		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
+		
+		//-------------------CENTERBOX---------------------
+		
 		fViewer = new JPanel(new BorderLayout());
 		fieldPanel = new JPanel(new GridBagLayout());
 		scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
 		
 		
-		recordToolBar = new RecordToolBar(sm, DISPLAY_WIDTH, 40);
+		
+		//-------------------BOTTOMBAR---------------------
+		
 		
 		
 		addFieldButton = new CustomButton("Add Field", 0, 0, 100, 30);
 		addFieldButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
 		addFieldButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
+
+		
 		addFieldButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("you just clicked addField");
 				Field f = new Field();
 				f.setName("Name");
 				f.setData("content");
 				((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).addField(f);
 				init();
 				update();
-				//TO-DO:  update the Record display with new Record
 				
 			}
 		});
 		
 		fViewer.add(fieldPanel, BorderLayout.NORTH);
-		fViewer.add(addFieldButton, BorderLayout.CENTER);
+		fViewer.add(addFieldButton, BorderLayout.PAGE_END);
 		
 		
 		setTransparentAdd(true);

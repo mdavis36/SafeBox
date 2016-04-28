@@ -92,9 +92,7 @@ public class FolderDisplay extends BackgroundPanel{
 		top.setOpaque(false);
 		top.setBorder(border);
 		
-		toolBar = new JPanel(new BorderLayout(TOOLBAR_LAYOUT_HGAP, 0));
-		toolBar.setOpaque(false);
-		toolBar.setBorder(null);
+		
 		
 		
 		fViewer = new JPanel(new BorderLayout());
@@ -105,8 +103,10 @@ public class FolderDisplay extends BackgroundPanel{
 		bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		
-		//-------------------TOOLBAR--------------------
 		
+		toolBar = new JPanel(new BorderLayout(TOOLBAR_LAYOUT_HGAP, 0));
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		
 		CustomButton backButton = setupToolBarButton(IMG_BACK);
 		backButton.addActionListener(new ActionListener() {
