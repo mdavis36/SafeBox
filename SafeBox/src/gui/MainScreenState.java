@@ -50,10 +50,7 @@ public class MainScreenState extends BackgroundPanel{
 		if(sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
 			if (recordDisplay != null){
 				remove(recordDisplay);
-				//recordDisplay = null;
 			}
-			
-			
 			recordDisplay.update();
 		}
 		

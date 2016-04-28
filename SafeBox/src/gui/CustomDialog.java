@@ -17,7 +17,7 @@ public class CustomDialog extends JDialog{
 	
 	protected StateManager sm;
 	
-	public CustomDialog(StateManager sm, Color c1, Color c2, int w, int h){
+	public CustomDialog(final StateManager sm, Color c1, Color c2, int w, int h){
 		this.sm = sm;
 		BackgroundPanel contentPane = new BackgroundPanel(MiscUtils.getBufferedGradImage(c1, c2, w, h, true));
 		contentPane.setLayout(new BorderLayout());

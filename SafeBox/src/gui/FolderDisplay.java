@@ -188,10 +188,9 @@ public class FolderDisplay extends BackgroundPanel{
 		folderPanel.repaint();
 		currentNode = getCurrentNode();
 		children = currentNode.getChildren();
-		resizeDisplay();
 		if(!currentNode.getData().isRecord()){
 			directoryTitle.setText(getCurrentNode().getData().getName());
-			
+			resizeDisplay();
 			if(currentNode.hasChildren()){
 				folderPanel.setVisible(true);
 				FolderDisplayButton fdb;
@@ -223,6 +222,7 @@ public class FolderDisplay extends BackgroundPanel{
 		JLabel l = new JLabel();
 		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 130);
+		System.out.println("children coutn :" + children.size() + "DisplayWidth : " + maxLength);
 		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
 		
