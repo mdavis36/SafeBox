@@ -80,9 +80,12 @@ public class EditFieldDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				rec.deleteField(index);
-				sm.update();
-				close();
+				sm.deleteDialog.open();
+				if(sm.deleteDialog.getConfirmation()){
+					rec.deleteField(index);
+					sm.update();				
+					close();
+				}
 			}
 		});
 		renameButton.addMouseListener(new MouseAdapter() {

@@ -31,7 +31,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private CustomButton addRecordButton;
 	private CustomButton addFolderButton;
 	
-	public AddRecordFieldDialog(StateManager sm, Color c1, Color c2, int w, int h) {
+	public AddRecordFieldDialog(final StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
