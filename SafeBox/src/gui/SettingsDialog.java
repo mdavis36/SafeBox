@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
@@ -86,38 +88,59 @@ public class SettingsDialog extends CustomDialog {
 		//--------------------Listeners----------------------------------
 		titleLabel.setFocusable(true);
 		titleLabel.requestFocus();
-		currentPasswordField.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (currentPasswordField.getEchoChar() != Consts.ECHO_CHAR){
-					currentPasswordField.setText("");
-					currentPasswordField.setEchoChar(Consts.ECHO_CHAR);
-				}
-				
+		
+		currentPasswordField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				initPasswordField(currentPasswordField, initCurrentPasswordField);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				passwordFieldClick(currentPasswordField);
 			}
 		});
-		newPasswordField.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (newPasswordField.getEchoChar() != Consts.ECHO_CHAR){
-					newPasswordField.setText("");
-					newPasswordField.setEchoChar(Consts.ECHO_CHAR);
-				}
+		
+		newPasswordField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				initPasswordField(newPasswordField, initNewPasswordField);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				passwordFieldClick(newPasswordField);
 			}
 		});
-		confirmPasswordField.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (confirmPasswordField.getEchoChar() != Consts.ECHO_CHAR){
-					confirmPasswordField.setText("");
-					confirmPasswordField.setEchoChar(Consts.ECHO_CHAR);
-				}
+		
+		confirmPasswordField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				initPasswordField(confirmPasswordField, initConfirmPasswordField);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				passwordFieldClick(confirmPasswordField);
 			}
 		});
-		hintField.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		
+		hintField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if ("".equals(hintField.getText())){
+					hintField.setText(initHintField);
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
 				if (hintField.getText() != initHintField){
 					hintField.setText("");
 				}
 			}
 		});
+	
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				resetPasswordField(currentPasswordField, initCurrentPasswordField);
@@ -156,6 +179,13 @@ public class SettingsDialog extends CustomDialog {
 			}			
 		});
 		
+	}
+	
+	private void passwordFieldClick(JPasswordField p){
+		if(p.getEchoChar() != Consts.ECHO_CHAR){
+			p.setText("");
+			p.setEchoChar(Consts.ECHO_CHAR);
+		}
 	}
 
 	private void resetPasswordField(JPasswordField p, String text){
