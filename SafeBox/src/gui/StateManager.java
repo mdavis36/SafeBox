@@ -65,6 +65,8 @@ public class StateManager extends JPanel{
 			System.out.println("A file system Exists");
 		}
 		
+		init();
+		
 		Runtime.getRuntime().addShutdownHook(new Thread(){
 		    @Override
 		    public void run(){

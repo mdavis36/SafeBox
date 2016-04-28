@@ -14,13 +14,15 @@ public class CustomDialog extends JDialog{
 	protected JPanel northPanel = new JPanel();
 	protected JPanel centerPanel = new JPanel();
 	protected JPanel southPanel = new JPanel();
+	protected BackgroundPanel contentPane;
 	
 	protected StateManager sm;
 	
 	public CustomDialog(final StateManager sm, Color c1, Color c2, int w, int h){
 		this.sm = sm;
-		BackgroundPanel contentPane = new BackgroundPanel(MiscUtils.getBufferedGradImage(c1, c2, w, h, true));
-		contentPane.setLayout(new BorderLayout());
+		
+		contentPane = new BackgroundPanel(MiscUtils.getBufferedGradImage(c1, c2, w, h, true));
+		contentPane.setLayout(new BorderLayout(10,10));
 		contentPane.setTransparentAdd(true);
 		contentPane.setBorder(new EmptyBorder(15, 15, 15, 15));
 		
@@ -32,6 +34,8 @@ public class CustomDialog extends JDialog{
 		contentPane.add(centerPanel, BorderLayout.CENTER);
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		
+		JDialog.setDefaultLookAndFeelDecorated(false);
+		this.setUndecorated(true);
 		this.setSize(new Dimension(w, h));
 		this.setResizable(false);
 		this.setModal(true);

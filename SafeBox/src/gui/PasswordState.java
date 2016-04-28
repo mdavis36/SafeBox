@@ -50,12 +50,14 @@ public class PasswordState extends BackgroundPanel{
 	private final JPasswordField passWordField;
 	
 	PlainMessageDialog theMessageBox;
+	StartUpDialog startup;
 	
 	protected PasswordState(final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 	
 		theMessageBox = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, HintManager.getHint());
+		startup = new StartUpDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 600, 250);
 		
 		setLayout(new BorderLayout());
 		centerPanel = new JPanel(new GridBagLayout());
@@ -172,6 +174,7 @@ public class PasswordState extends BackgroundPanel{
 	
 	public void init(){
 		resetPasswordField(passWordField);
+		startup.open();
 	}
 	
 	private void resetPasswordField(JPasswordField p){
