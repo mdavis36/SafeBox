@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -15,7 +16,7 @@ public class CustomDialog extends JDialog{
 	protected JPanel centerPanel = new JPanel();
 	protected JPanel southPanel = new JPanel();
 	protected BackgroundPanel contentPane;
-	
+	protected Point location;
 	protected StateManager sm;
 	
 	public CustomDialog(final StateManager sm, Color c1, Color c2, int w, int h){
@@ -39,13 +40,13 @@ public class CustomDialog extends JDialog{
 		this.setSize(new Dimension(w, h));
 		this.setResizable(false);
 		this.setModal(true);
-		this.setLocationRelativeTo(null);
 		this.setContentPane(contentPane);
 	}
 	
 	
 	
 	public void open(){
+		this.setLocationRelativeTo(sm.getWindow());
 		setVisible(true);
 	}
 	
@@ -60,6 +61,10 @@ public class CustomDialog extends JDialog{
 		b.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
 		b.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
 		return b;
+	}
+	
+	protected void setLocationOfWindow(final StateManager sm,int w, int h){
+		location.setLocation(sm.getWindow().getWidth()/2,sm.getWindow().getHeight()/2);
 	}
 	
 	
