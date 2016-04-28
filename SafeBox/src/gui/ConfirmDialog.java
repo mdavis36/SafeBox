@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
-public class DeleteConfirmDialog extends CustomDialog {
+public class ConfirmDialog extends CustomDialog {
 
 	
 	/**
@@ -29,7 +29,7 @@ public class DeleteConfirmDialog extends CustomDialog {
 	private static final int CONFIRM_TEXT_FONT_SIZE = 22;
 	private static final int SOUTH_PANEL_HGAP = 10;
 	
-	public DeleteConfirmDialog(StateManager sm, Color c1, Color c2, int w, int h, String message) {
+	public ConfirmDialog(StateManager sm, Color c1, Color c2, int w, int h, String message) {
 		super(sm, c1, c2, w, h);
 		confirmText = message;
 		//--------------------Center panel----------------------------------
