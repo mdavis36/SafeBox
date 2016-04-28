@@ -15,6 +15,7 @@ public class BackgroundPanel extends JPanel
 	private float alignmentX = 0.5f;
 	private float alignmentY = 0.5f;
 	private boolean isTransparentAdd = false;
+	private static final int MAX_SIZE = 1;
 
 
 	public BackgroundPanel(Image image){
@@ -77,7 +78,7 @@ public class BackgroundPanel extends JPanel
 	 *  Specify the horizontal alignment of the image when using ACTUAL style
 	 */
 	public void setImageAlignmentX(float alignmentX){
-		this.alignmentX = MiscUtils.clamp(alignmentX, 0, 1);
+		this.alignmentX = MiscUtils.clamp(alignmentX, 0, MAX_SIZE);
 		repaint();
 	}
 
@@ -85,7 +86,7 @@ public class BackgroundPanel extends JPanel
 	 *  Specify the horizontal alignment of the image when using ACTUAL style
 	 */
 	public void setImageAlignmentY(float alignmentY){
-		this.alignmentY = MiscUtils.clamp(alignmentY, 0, 1);
+		this.alignmentY = MiscUtils.clamp(alignmentY, 0, MAX_SIZE);
 		repaint();
 	}
 
