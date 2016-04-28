@@ -58,6 +58,7 @@ public class SearchBar extends BackgroundPanel{
 	
 	
 	ChangePasswordBox changePasswordDialogBox;
+	SettingsDialog settingsBox;
 	
 	private void executeSearch(StateManager sm, String query){
 		FileSystemHandler fsh = sm.getESM().getFileSystemHandler();
@@ -75,8 +76,8 @@ public class SearchBar extends BackgroundPanel{
 		//setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
 		setLayout(new BorderLayout(20, 0));
 		setBounds(0, 0, BAR_WIDTH, BAR_HEIGHT);	
-		changePasswordDialogBox = new ChangePasswordBox(sm);
-		changePasswordDialogBox.setVisible(false);
+		settingsBox = new SettingsDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 300);
+		settingsBox.setVisible(false);
 		
 		//----------------------Border---------------------
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_DARK);
@@ -97,7 +98,7 @@ public class SearchBar extends BackgroundPanel{
 		settingsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(sm.window, "//This is your settings", null, JOptionPane.PLAIN_MESSAGE);
-				changePasswordDialogBox.setVisible(true);
+				settingsBox.setVisible(true);
 			}
 		});
 		leftPanel.add(settingsButton);
