@@ -26,12 +26,9 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private CustomButton cancelButton;
 	private CustomButton addRecordButton;
 	private CustomButton addFolderButton;
-	private PlainMessageDialog errorMessage;
 	
 	public AddRecordFieldDialog(StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
-		errorMessage = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 180,error);
-		errorMessage.setVisible(false);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		title = new JLabel(TITLE);
@@ -65,7 +62,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					errorMessage.setVisible(true);
+					sm.showPlainMessage(error);
 				}
 			}
 		});
@@ -77,7 +74,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					errorMessage.setVisible(true);
+					sm.showPlainMessage(error);
 				}
 			}
 		});
