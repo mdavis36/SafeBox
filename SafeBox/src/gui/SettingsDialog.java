@@ -160,14 +160,21 @@ public class SettingsDialog extends CustomDialog {
 
 	private void resetPasswordField(JPasswordField p, String text){
 		if(p.getPassword().length == 0){
-			p.setEchoChar((char)0);
-			p.setText(text);
+			initPasswordField(p, text);
 		}
+	}
+	
+	private void initPasswordField(JPasswordField p, String text){
+		p.setText(text);
+		p.setEchoChar((char)0);
 	}
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
+		initPasswordField(currentPasswordField, initCurrentPasswordField);
+		initPasswordField(newPasswordField, initNewPasswordField);
+		initPasswordField(confirmPasswordField, initConfirmPasswordField);
+		hintField.setText(initHintField);
 		
 	}
 

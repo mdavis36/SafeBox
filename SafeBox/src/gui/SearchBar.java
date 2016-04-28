@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import core.FileSystemHandler;
 import core.Folder;
@@ -45,7 +46,7 @@ public class SearchBar extends BackgroundPanel{
 	private static final String TITLE = "SafeBox";
 	private static final String GEAR_IMAGE = "gear.png";
 	private static final double HEIGHT_RATIO = .6;
-	private static final String LARGE_LOGO_IMAGE = "res/logos/largeLogo.png";
+	private static final String LARGE_LOGO_IMAGE = "res/logos/smallButtonLogo.png";
 	private static final String SEARCH_RESULTS = "Search Results";
 	private static final int TITLE_FONT_SIZE = 32;
 	private static final int TITLE_LOCATION_X = 700;

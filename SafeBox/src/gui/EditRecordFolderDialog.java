@@ -72,8 +72,11 @@ public class EditRecordFolderDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				deleteFolder(sm, index);
-				close();
+				sm.deleteDialog.open();
+				if(sm.deleteDialog.getConfirmation()){
+					deleteFolder(sm, index);
+					close();
+				}
 			}
 		});
 		renameButton.addMouseListener(new MouseAdapter() {

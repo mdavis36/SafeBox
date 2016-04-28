@@ -81,7 +81,6 @@ public class PasswordState extends BackgroundPanel{
 		BufferedImage logo = MiscUtils.getBufferedImageFromFile("res/logos/largeLogo.png", lblSafeboxLogo.getWidth());
 		lblSafeboxLogo.setIcon(new ImageIcon(logo));
 		lblSafeboxLogo.setSize(new Dimension(logo.getWidth(), logo.getHeight()));
-		lblSafeboxLogo.setLocation((sm.window.getWidth() / 2) - (logo.getWidth() / 2), (sm.window.getHeight() / 2) - (logo.getHeight() / 2) - 100);
 		centerPanel.add(lblSafeboxLogo, c);
 		
 		
