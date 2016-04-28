@@ -22,7 +22,6 @@ public class FolderDisplayButton extends BackgroundPanel{
 	
 	private StateManager sm;
 	
-	private RenameFolderBox renameDeleteBox;
 	/**
 	 * @param text name of the folder
 	 * @param x x coordinate of button
@@ -41,8 +40,6 @@ public class FolderDisplayButton extends BackgroundPanel{
 		setLayout(new FlowLayout(LAYOUT_ARG));
 		final EditRecordFolderDialog b = new EditRecordFolderDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, index);
 		b.setVisible(false);
-		renameDeleteBox = new RenameFolderBox(sm,index);
-		renameDeleteBox.setVisible(false);
 	
 		
 		if (type == FOLDER){

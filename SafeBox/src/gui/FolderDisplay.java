@@ -50,7 +50,6 @@ public class FolderDisplay extends BackgroundPanel{
 	private BackgroundPanel top;
 	
 	GridBagConstraints c = new GridBagConstraints();
-	private NewFolderBox newFolderDialogBox;
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
@@ -69,8 +68,6 @@ public class FolderDisplay extends BackgroundPanel{
 	protected FolderDisplay(final StateManager sm){
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH , sm.window.getHeight(), true));
 		this.sm = sm;
-		newFolderDialogBox = new NewFolderBox(sm);
-		newFolderDialogBox.setVisible(false);
 		currentNode = getFSH().getRoot();
 		setLayout(new BorderLayout(0, 0));	
 		
