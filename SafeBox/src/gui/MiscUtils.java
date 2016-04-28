@@ -116,4 +116,14 @@ public class MiscUtils {
 		Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clpbrd.setContents(stringSelection, null);
 	}
+	
+	/**
+	 * @param val the input value
+	 * @param min the minimum value to return
+	 * @param max the maximum value to return
+	 * @return returns val if min<val<max, min if val<min, and max if val>max
+	 */
+	public static float clamp(float val, float min, float max) {
+	    return Math.max(min, Math.min(max, val));
+	}
 }

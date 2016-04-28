@@ -77,7 +77,7 @@ public class BackgroundPanel extends JPanel
 	 *  Specify the horizontal alignment of the image when using ACTUAL style
 	 */
 	public void setImageAlignmentX(float alignmentX){
-		this.alignmentX = alignmentX > 1.0f ? 1.0f : alignmentX < 0.0f ? 0.0f : alignmentX;
+		this.alignmentX = MiscUtils.clamp(alignmentX, 0, 1);
 		repaint();
 	}
 
@@ -85,7 +85,7 @@ public class BackgroundPanel extends JPanel
 	 *  Specify the horizontal alignment of the image when using ACTUAL style
 	 */
 	public void setImageAlignmentY(float alignmentY){
-		this.alignmentY = alignmentY > 1.0f ? 1.0f : alignmentY < 0.0f ? 0.0f : alignmentY;
+		this.alignmentY = MiscUtils.clamp(alignmentY, 0, 1);
 		repaint();
 	}
 
