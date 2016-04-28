@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -185,29 +186,27 @@ public class FolderDisplay extends BackgroundPanel{
 	 */
 	protected void update(){
 		folderPanel.removeAll();
-		folderPanel.repaint();
+		
 		currentNode = getCurrentNode();
+		
 		children = currentNode.getChildren();
-		if(!currentNode.getData().isRecord()){
+		if(true){
 			directoryTitle.setText(getCurrentNode().getData().getName());
 			resizeDisplay();
 			if(currentNode.hasChildren()){
 				folderPanel.setVisible(true);
-				FolderDisplayButton fdb;
 				for(int i = 0; i < children.size(); i++){
+					FolderDisplayButton fdb;
 					c.gridy = i;
 					c.anchor = GridBagConstraints.NORTHWEST;
 					c.fill = GridBagConstraints.HORIZONTAL;
-					Node child = children.get(i);
-					if (!child.getData().isRecord()){
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_HEIGHT, i, sm, FolderDisplayButton.FOLDER);
-						//fdb.setAlignmentX(TOP_ALIGNMENT);
-						folderPanel.add(fdb, c);	
+
+					if (!children.get(i).getData().isRecord()){
+						fdb = new FolderDisplayButton(children.get(i).getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_HEIGHT, i, sm, FolderDisplayButton.FOLDER);
 					}else{
-						fdb = new FolderDisplayButton(child.getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_HEIGHT, i, sm, FolderDisplayButton.RECORD);
-						//fdb.setAlignmentX(TOP_ALIGNMENT);
-						folderPanel.add(fdb, c);
+						fdb = new FolderDisplayButton(children.get(i).getData().getName(), 0, 0, DISPLAY_WIDTH, BUTTON_HEIGHT, i, sm, FolderDisplayButton.RECORD);
 					}
+					folderPanel.add(fdb, c);
 					folderPanel.revalidate();
 					folderPanel.repaint();	
 				}		
@@ -215,6 +214,7 @@ public class FolderDisplay extends BackgroundPanel{
 				folderPanel.setVisible(false);
 			}
 		}
+		fViewer.revalidate();
 		fViewer.repaint();
 	}
 	
@@ -222,7 +222,9 @@ public class FolderDisplay extends BackgroundPanel{
 		JLabel l = new JLabel();
 		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
 		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 130);
+		
 		System.out.println("children coutn :" + children.size() + "DisplayWidth : " + maxLength);
+		
 		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
 		
@@ -236,6 +238,9 @@ public class FolderDisplay extends BackgroundPanel{
 		DISPLAY_WIDTH = maxLength;
 		System.out.println("children coutn :" + children.size() + "DisplayWidth : " + DISPLAY_WIDTH);
 		setImage(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
+		setSize(new Dimension(DISPLAY_WIDTH, DISPLAY_HEIGHT));
+		revalidate();
+		repaint();
 	}
 	
 	private CustomButton setupToolBarButton(String imgPath){

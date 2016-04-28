@@ -46,14 +46,15 @@ public class MainScreenState extends BackgroundPanel{
 	}
 	
 	protected void update() {
-		folderDisplay.update();
+		
 		if(sm.getESM().getFileSystemHandler().getCurrentRecord() != null){
 			if (recordDisplay != null){
 				remove(recordDisplay);
 			}
 			recordDisplay.update();
 		}
-		
+		//recordDisplay.update();
+		folderDisplay.update();
 	}
 	
 }
