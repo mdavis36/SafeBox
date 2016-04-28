@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,7 +20,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private static final String CANCEL = "Cancel";
 	private static final String ADD_RECORD = "Add Record";
 	private static final String ADD_FOLDER = "Add Folder";
-	private static final String initTextField = "Folder/Record Name";
+	private static final String initTextField = "";
 	
 	private static final int SOUTH_PANEL_LAYOUT_HGAP = 10;
 
@@ -81,13 +83,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 				}
 			}
 		});
-		textField.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				if(textField.getText().equals(initTextField)){
-					textField.setText(null);
-				}
-			}
-		});
+
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if ("".equals(textField.getText())){
