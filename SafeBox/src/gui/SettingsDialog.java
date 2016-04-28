@@ -48,6 +48,8 @@ public class SettingsDialog extends CustomDialog {
 	
 	public SettingsDialog(final StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
+		passwordFailure = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200,null);
+		passwordFailure.setVisible(false);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		titleLabel = new JLabel(settings);
@@ -85,7 +87,6 @@ public class SettingsDialog extends CustomDialog {
 		southPanel.add(saveButton);
 		
 		//--------------------Listeners----------------------------------
-		passwordFailure = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200,null);
 		titleLabel.setFocusable(true);
 		titleLabel.requestFocus();
 		currentPasswordField.addMouseListener(new MouseAdapter() {

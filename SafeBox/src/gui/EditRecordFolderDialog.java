@@ -24,6 +24,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 	private final String rename = "Rename";
 	private final String initTextField = "New Name";
 	private static String name;
+	private final String error = "Not a valid name";
 	private int index;
 	
 	private JLabel titleLabel;
@@ -32,9 +33,12 @@ public class EditRecordFolderDialog extends CustomDialog {
 	private CustomButton cancelButton;
 	private CustomButton deleteButton;
 	private CustomButton renameButton;
+	private PlainMessageDialog errorMessage;
 
 	public EditRecordFolderDialog(final StateManager sm, Color c1, Color c2, int w, int h, int i) {
 		super(sm, c1, c2, w, h);
+		errorMessage = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 180,error);
+		errorMessage.setVisible(false); 
 		// --------------------north panel----------------------------------
 		index = i;
 		name = getName(index, sm);
@@ -77,8 +81,27 @@ public class EditRecordFolderDialog extends CustomDialog {
 		});
 		renameButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				renameFolder(textField.getText(),sm);
-				close();
+				if(isValidText(textField.getText())){
+					renameFolder(textField.getText(),sm);
+					close();
+				}
+				else{
+					errorMessage.setVisible(true);
+				}
+			}
+		});
+		textField.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				if(textField.getText().equals(initTextField)){
+					textField.setText("");
+				}
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				if("".equals(textField.getText())){
+					textField.setText(initTextField);
+				}
 			}
 		});
 	}
@@ -96,6 +119,15 @@ public class EditRecordFolderDialog extends CustomDialog {
 
 	private String getName(int i, StateManager sm){
 		return sm.getESM().getFileSystemHandler().getCurrent().getChild(i).getData().getName();
+	}
+	
+	private boolean isValidText(String text){
+		if(text.equals(initTextField) || "".equals(text) || text.equals(" ")){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 
 }
