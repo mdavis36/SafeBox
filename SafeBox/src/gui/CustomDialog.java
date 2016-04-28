@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class CustomDialog extends JDialog{
+public abstract class CustomDialog extends JDialog{
 
 	protected JPanel northPanel = new JPanel();
 	protected JPanel centerPanel = new JPanel();
@@ -44,15 +44,14 @@ public class CustomDialog extends JDialog{
 		this.setModal(true);
 		this.setContentPane(contentPane);
 	}
-	
-	
-	
+
 	public void open(){
+		init();
 		this.setLocationRelativeTo(sm.getWindow());
 		setVisible(true);
 	}
 	
-	public void close(){
+	protected void close(){
 		sm.update();
 		setVisible(false);
 		
@@ -65,5 +64,6 @@ public class CustomDialog extends JDialog{
 		return b;
 	}
 	
+	protected abstract void init();
 	
 }

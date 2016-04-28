@@ -150,7 +150,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addRecordField.open();
+				addRecordField.open();		
 			}
 		});
 		

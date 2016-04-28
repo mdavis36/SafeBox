@@ -136,5 +136,11 @@ public class EditFieldDialog extends CustomDialog {
 			return true;
 		}
 	}
+
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
