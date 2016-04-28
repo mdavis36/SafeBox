@@ -87,8 +87,7 @@ public class PasswordState extends BackgroundPanel{
 		c.gridy += 1;
 		setTransparentAdd(false);
 		passWordField = new JPasswordField();
-		passWordField.setLocation(0, 0);
-		passWordField.setSize(new Dimension (PASSWORD_WIDTH, 40));
+		passWordField.setPreferredSize(new Dimension (PASSWORD_WIDTH, 40));
 		passWordField.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, 24));
 		resetPasswordField(passWordField);
 		passWordField.addMouseListener(new MouseAdapter() {
