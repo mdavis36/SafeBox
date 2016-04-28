@@ -6,16 +6,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.xml.internal.ws.client.ContentNegotiation;
 
 import core.Record;
 
@@ -30,6 +26,9 @@ public class EditFieldDialog extends CustomDialog {
 	private final String cancel = "Cancel";
 	private final String delete = "Delete";
 	private final String rename = "Save";
+	private static final int CENTER_PANEL_BOTTOM = 20;
+	private static final int CENTER_PANEL_TOP = 10;
+	private static final int SOUTH_PANEL_HGAP = 10;
 	private static String fieldName;
 	private static String fieldContent;
 	private static Record rec;
@@ -47,7 +46,7 @@ public class EditFieldDialog extends CustomDialog {
 		// --------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		titleLabel = new JLabel(title);
-		titleLabel.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, 22));
+		titleLabel.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, Consts.DIALOGUE_BOX_TITLE_FONT_SIZE));
 		northPanel.add(titleLabel);
 		
 		
@@ -56,27 +55,21 @@ public class EditFieldDialog extends CustomDialog {
 		this.index = i;
 		fieldName = rec.getField(index).getName();
 		fieldContent = rec.getField(index).getData();
-		
 		centerPanel.setLayout(new BorderLayout());
-		centerPanel.setBorder(new EmptyBorder(10,0,20,0));
-		
 		nameTextField = new JTextField(fieldName);
-		nameTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
-		
 		contentTextField = new JTextField(fieldContent);
+		centerPanel.setBorder(new EmptyBorder(CENTER_PANEL_TOP,0,CENTER_PANEL_BOTTOM,0));
+		nameTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		contentTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
-		
 		centerPanel.add(nameTextField, BorderLayout.NORTH);
 		centerPanel.add(contentTextField, BorderLayout.SOUTH);
 		
 		
 		// --------------------South panel----------------------------------
-		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
-		
-		cancelButton = setupButton(cancel, 120, 36);
-		deleteButton = setupButton(delete, 120, 36);
-		renameButton = setupButton(rename, 120, 36);
-		
+		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_HGAP, 0));
+		cancelButton = setupButton(cancel, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		deleteButton = setupButton(delete, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		renameButton = setupButton(rename, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		southPanel.add(cancelButton);
 		southPanel.add(deleteButton);
 		southPanel.add(renameButton);
@@ -98,7 +91,6 @@ public class EditFieldDialog extends CustomDialog {
 				}
 			}
 		});
-		
 		renameButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(checkForValidText(nameTextField.getText()) && checkForValidText(nameTextField.getText())){
@@ -115,38 +107,27 @@ public class EditFieldDialog extends CustomDialog {
 				}
 			}
 		});
-		
-		nameTextField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if("".equals(nameTextField.getText())){
-					nameTextField.setText(fieldName);
-				}
-				
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
+		nameTextField.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
 				if (nameTextField.getText().equals(fieldName)) {
 					nameTextField.setText("");
 				}
 			}
 		});
-		
-		contentTextField.addFocusListener(new FocusListener() {
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				if("".equals(contentTextField.getText())){
-					contentTextField.setText(fieldContent);
-				}
-				
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
+		contentTextField.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
 				if (contentTextField.getText().equals(fieldContent)) {
 					contentTextField.setText("");
+				}
+			}
+		});
+		addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				if (contentTextField.getText().equals("")) {
+					contentTextField.setText(fieldContent);
+				}
+				if (nameTextField.getText().equals("")) {
+					nameTextField.setText(fieldName);
 				}
 			}
 		});
@@ -168,8 +149,6 @@ public class EditFieldDialog extends CustomDialog {
 	}
 	@Override
 	protected void init() {
-		titleLabel.setFocusable(true);
-		titleLabel.requestFocus();
 			// TODO Auto-generated method stub
 			
 	}

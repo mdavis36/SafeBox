@@ -21,6 +21,8 @@ import javax.swing.JFrame;
 
 public class MiscUtils {
 	
+	private static final float ALPHA = 0.0f;
+	
 	/**
 	 * @param c1 first color
 	 * @param c2 second color
@@ -52,7 +54,7 @@ public class MiscUtils {
 	protected static BufferedImage getTransparentImage(int width, int height){
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = bi.createGraphics();
-		AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.CLEAR, 0.0f);
+		AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.CLEAR, ALPHA);
 		g2d.setComposite(ac);
 		g2d.setColor(new Color(0,0,0,0));
 		g2d.fillRect(0, 0, width, height);
