@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
+import core.HintManager;
 import core.WindowSizeManager;
 
 public class StateManager extends JPanel{
@@ -35,12 +36,19 @@ public class StateManager extends JPanel{
 	
 	private boolean successfullyDecrypted = false;
 	
+	PlainMessageDialog plainMessageDialog;
+	
 	boolean isSuccessfullyDecrypted() {
 		return successfullyDecrypted;
 	}
 
 	void setSuccessfullyDecrypted(boolean successfullyDecrypted) {
 		this.successfullyDecrypted = successfullyDecrypted;
+	}
+	
+	void showPlainMessage(String message){
+		plainMessageDialog.setMessage(message);
+		plainMessageDialog.open();
 	}
 
 	/**
@@ -64,6 +72,8 @@ public class StateManager extends JPanel{
 		}else{
 			System.out.println("A file system Exists");
 		}
+		
+		plainMessageDialog = new PlainMessageDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, "");
 		
 		init();
 		
@@ -112,5 +122,8 @@ public class StateManager extends JPanel{
 		passwordState.update();
 	}
 	
+	public JFrame getWindow(){
+		return window;
+	}
 
 }

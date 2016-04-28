@@ -40,6 +40,13 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final String IMG_HOME = "res/buttons/home.png";
 	private static final String IMG_PLUS = "plus.png";
 	private static final String ADD_RECORD_FOLDER_TITLE = "Add Record / Folder";
+	private static final int RECORD_FIELD_DIALOGUE_WIDTH = 450;
+	private static final int RECORD_FIELD_DIALOGUE_HEIGHT = 200;
+	private static final int MAX_LENGTH_ADD = 140;
+	private static final int TEMP_LENGTH_ADD = 110;
+	private static final int IPADY = 10;
+	private static final int TOOLBAR_LAYOUT_HGAP = 5;
+	private static final int UNIT_INCREMENT = 5;
 	
 	private JPanel toolBar;
 	
@@ -71,7 +78,7 @@ public class FolderDisplay extends BackgroundPanel{
 		currentNode = getFSH().getRoot();
 		setLayout(new BorderLayout(0, 0));	
 		
-		b = new AddRecordFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200);
+		b = new AddRecordFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, RECORD_FIELD_DIALOGUE_WIDTH, RECORD_FIELD_DIALOGUE_HEIGHT);
 		
 		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_BORDER);
@@ -85,7 +92,7 @@ public class FolderDisplay extends BackgroundPanel{
 		top.setOpaque(false);
 		top.setBorder(border);
 		
-		toolBar = new JPanel(new BorderLayout(5,0));
+		toolBar = new JPanel(new BorderLayout(TOOLBAR_LAYOUT_HGAP, 0));
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		
@@ -93,7 +100,7 @@ public class FolderDisplay extends BackgroundPanel{
 		fViewer = new JPanel(new BorderLayout());
 		folderPanel = new JPanel(new GridBagLayout());
 		scrollPane = new JScrollPane(fViewer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(UNIT_INCREMENT);
 		scrollPane.setBorder(null);
 		bottomBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
@@ -155,14 +162,14 @@ public class FolderDisplay extends BackgroundPanel{
 		bottomBar.add(addRecordOrField);
 		c.weightx = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipady = 10;
+		c.ipady = IPADY;
 		c.gridx = 0;
 		c.gridy = 0;
 		top.add(toolBar, c);
 		c.weightx = 1;
 		c.weighty = 1;
 		c.fill = GridBagConstraints.BOTH;
-		c.ipady = 10;
+		c.ipady = IPADY;
 		c.gridx = 0;
 		c.gridy = 1;
 		top.add(scrollPane, c);
@@ -218,14 +225,14 @@ public class FolderDisplay extends BackgroundPanel{
 	private void resizeDisplay(){
 		JLabel l = new JLabel();
 		l.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, FONT_SIZE));
-		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 140);
+		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + MAX_LENGTH_ADD);
 		
 		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
 		
 		for(int i = 0; i < children.size(); i++){
 			l.setText(children.get(i).getData().getName());
-			temp = (int) (l.getPreferredSize().getWidth() + 110);
+			temp = (int) (l.getPreferredSize().getWidth() + TEMP_LENGTH_ADD);
 			if(temp > maxLength){
 				maxLength = temp;
 			}

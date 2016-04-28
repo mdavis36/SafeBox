@@ -44,12 +44,9 @@ public class SettingsDialog extends CustomDialog {
 	private JPasswordField newPasswordField;
 	private JPasswordField confirmPasswordField;
 	private JTextField hintField;
-	private PlainMessageDialog passwordFailure;
 	
 	public SettingsDialog(final StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
-		passwordFailure = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200,null);
-		passwordFailure.setVisible(false);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		titleLabel = new JLabel(settings);
@@ -142,8 +139,7 @@ public class SettingsDialog extends CustomDialog {
 			public void mouseClicked(MouseEvent e) {				
 				if (sm.getESM().isCurrentPassword(currentPasswordField.getPassword())){
 					if (!sm.getESM().passwordMeetsRequirements(newPasswordField.getPassword())){
-						passwordFailure.setMessage(PASSWORD_MEETS);
-						passwordFailure.setVisible(true);
+						sm.showPlainMessage(PASSWORD_MEETS);
 						return;
 					}
 					
@@ -152,12 +148,10 @@ public class SettingsDialog extends CustomDialog {
 						HintManager.setHint(hintField.getText());
 						close();
 					} else {
-						passwordFailure.setMessage(PASSWORDS_DONT_MATCH);
-						passwordFailure.setVisible(true);
+						sm.showPlainMessage(PASSWORDS_DONT_MATCH);
 					}
 				} else {
-					passwordFailure.setMessage(CURRENT_DIDNT_MATCH);
-					passwordFailure.setVisible(true);
+					sm.showPlainMessage(CURRENT_DIDNT_MATCH);
 				}
 			}			
 		});

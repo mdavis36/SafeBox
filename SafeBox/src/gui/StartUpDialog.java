@@ -42,22 +42,18 @@ public class StartUpDialog extends CustomDialog{
 	
 	private CustomButton done;
 
-	PlainMessageDialog theMessageBox;
-	
 	private void configureNewPasswordAndClose(char[] password, char[] confirmPassword, String hint){
 		EncryptedStorageManager esm = sm.getESM();
 		
 		if (!esm.passwordMeetsRequirements(password)){
 			// too short
-			theMessageBox.setMessage(PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR);
-			theMessageBox.open();
+			sm.showPlainMessage(PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR);
 			return;
 		}
 		
 		if (!Arrays.equals(password, confirmPassword)){
 			// not equal
-			theMessageBox.setMessage(PASSWORDS_DID_NOT_MATCH_ERROR);
-			theMessageBox.open();
+			sm.showPlainMessage(PASSWORDS_DID_NOT_MATCH_ERROR);
 			return;
 		}
 		
@@ -70,8 +66,6 @@ public class StartUpDialog extends CustomDialog{
 	public StartUpDialog(StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
 		
-		theMessageBox = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, HintManager.getHint());
-
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

@@ -16,10 +16,11 @@ import javax.swing.JTextField;
 public class AddRecordFieldDialog extends CustomDialog{
 
 	private final String error = "Not a valid name.";
-	private static final String TITLE = "Add a Record / Folder";
-	private static final String CANCEL_TEXT = "Cancel";
-	private static final String ADD_RECORD_TEXT = "Add Record";
-	private static final String ADD_FOLDER_TEXT = "Add Folder";
+
+	private static final String ADD_A_RECORD_FOLDER = "Add a Record / Folder";
+	private static final String CANCEL = "Cancel";
+	private static final String ADD_RECORD = "Add Record";
+	private static final String ADD_FOLDER = "Add Folder";
 	private static final String initTextField = "";
 	private JLabel title;
 	
@@ -28,15 +29,12 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private CustomButton cancelButton;
 	private CustomButton addRecordButton;
 	private CustomButton addFolderButton;
-	private PlainMessageDialog errorMessage;
 	
-	public AddRecordFieldDialog(StateManager sm, Color c1, Color c2, int w, int h) {
+	public AddRecordFieldDialog(final StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
-		errorMessage = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 180,error);
-		errorMessage.setVisible(false);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		title = new JLabel(TITLE);
+		title = new JLabel(ADD_A_RECORD_FOLDER);
 		title.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, 22));
 		northPanel.add(title);
 		
@@ -52,14 +50,14 @@ public class AddRecordFieldDialog extends CustomDialog{
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 		
-		cancelButton = setupButton(CANCEL_TEXT, 120, 36);
+		cancelButton = setupButton(CANCEL, 120, 36);
 		cancelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				close();
 			}
 		});
 		
-		addRecordButton = setupButton(ADD_RECORD_TEXT, 120, 36);
+		addRecordButton = setupButton(ADD_RECORD, 120, 36);
 		addRecordButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
@@ -67,12 +65,12 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					errorMessage.setVisible(true);
+					sm.showPlainMessage(error);
 				}
 			}
 		});
-		
-		addFolderButton = setupButton(ADD_FOLDER_TEXT, 120, 36);
+
+		addFolderButton = setupButton(ADD_FOLDER, 120, 36);
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
@@ -80,7 +78,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					errorMessage.setVisible(true);
+					sm.showPlainMessage(error);
 				}
 			}
 		});
