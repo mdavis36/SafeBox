@@ -65,9 +65,5 @@ public class CustomDialog extends JDialog{
 		return b;
 	}
 	
-	protected void setLocationOfWindow(final StateManager sm,int w, int h){
-		location.setLocation(sm.getWindow().getWidth()/2,sm.getWindow().getHeight()/2);
-	}
-	
 	
 }
