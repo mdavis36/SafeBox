@@ -21,7 +21,7 @@ public class ModifyRecordBox extends ModifyFolderBox {
 	private static String fieldContent;
 	private static Record rec;
 	int index;
-	private static PlainMessageBox errorMessage;
+	private static PlainMessageDialog errorMessage;
 	private final JTextField fieldNameField = new JTextField();
 	public ModifyRecordBox(final StateManager sm,int i){
 		super();
@@ -35,8 +35,8 @@ public class ModifyRecordBox extends ModifyFolderBox {
 		button2Text = button2String;
 		this.sm = sm;
 		index = i;
-		errorMessage = new PlainMessageBox(sm, errorMessageText);
-		errorMessage.setVisible(false);
+		//errorMessage = new PlainMessageDialog(sm, errorMessageText);
+		//errorMessage.setVisible(false);
 		setStrings(button1Text, button2Text, fieldContent, titleText);
 		init();
 	}

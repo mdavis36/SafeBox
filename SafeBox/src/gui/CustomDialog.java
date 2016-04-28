@@ -28,8 +28,6 @@ public class CustomDialog extends JDialog{
 		centerPanel.setOpaque(false);
 		southPanel.setOpaque(false);
 		
-		northPanel.add(new JLabel("Test"));
-		
 		contentPane.add(northPanel, BorderLayout.NORTH);
 		contentPane.add(centerPanel, BorderLayout.CENTER);
 		contentPane.add(southPanel, BorderLayout.SOUTH);

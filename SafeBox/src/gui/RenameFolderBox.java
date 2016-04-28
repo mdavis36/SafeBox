@@ -22,7 +22,7 @@ public class RenameFolderBox extends ModifyFolderBox {
 	private String currentName;
 	int index;
 	
-	private PlainMessageBox messageBox;
+	private PlainMessageDialog messageBox;
 	
 	private final JLabel nameOfFolder = new JLabel();
 	
@@ -34,7 +34,7 @@ public class RenameFolderBox extends ModifyFolderBox {
 		button2Text = button2String;
 		nameOfFolder.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));//TODO: Change to constant
 		
-		messageBox = new PlainMessageBox(sm, NOT_VALID_MESSAGE);
+		//messageBox = new PlainMessageDialog(sm, NOT_VALID_MESSAGE);
 		
 		this.index = i;
 		setName(index, sm);
@@ -94,8 +94,8 @@ public class RenameFolderBox extends ModifyFolderBox {
 			resetBox();
 		}
 		else{
-			messageBox.setText(NOT_VALID_MESSAGE);
-			messageBox.setVisible(true);
+			//messageBox.setText(NOT_VALID_MESSAGE);
+			//messageBox.setVisible(true);
 			return;
 		}
 	}

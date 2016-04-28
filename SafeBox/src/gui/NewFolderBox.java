@@ -23,7 +23,7 @@ public class NewFolderBox extends ModifyFolderBox {
 	private final String createFolder = "Create Folder";
 	private final String titleString = "Name of Record/Folder";
 	
-	private PlainMessageBox messageBox;
+	private PlainMessageDialog messageBox;
 	
 	public NewFolderBox(final StateManager sm) {
 		super();
@@ -31,7 +31,7 @@ public class NewFolderBox extends ModifyFolderBox {
 		titleText = "Name your folder/record";
 		button1Text = createFolder;
 		button2Text = createRecord;
-		messageBox = new PlainMessageBox(sm, NOT_VALID_MESSAGE);
+		//messageBox = new PlainMessageDialog(sm, NOT_VALID_MESSAGE);
 		setStrings(button1Text,button2Text,titleText, titleText);
 		init();
 	}
@@ -52,8 +52,8 @@ public class NewFolderBox extends ModifyFolderBox {
 	}
 	
 	private void notValidText(StateManager sm){
-		messageBox.setText(NOT_VALID_MESSAGE);
-		messageBox.setVisible(true);
+		//messageBox.setText(NOT_VALID_MESSAGE);
+		//messageBox.setVisible(true);
 	}
 
 	private void createRecord(String name, StateManager sm){

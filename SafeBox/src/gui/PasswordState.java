@@ -49,13 +49,13 @@ public class PasswordState extends BackgroundPanel{
 	
 	private final JPasswordField passWordField;
 	
-	PlainMessageBox theMessageBox;
+	PlainMessageDialog theMessageBox;
 	
 	protected PasswordState(final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, sm.window.getWidth(), sm.window.getHeight(), true));
 		this.sm = sm;
 	
-		theMessageBox = new PlainMessageBox(sm, HintManager.getHint());
+		theMessageBox = new PlainMessageDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, HintManager.getHint());
 		
 		setLayout(new BorderLayout());
 		centerPanel = new JPanel(new GridBagLayout());
@@ -127,7 +127,7 @@ public class PasswordState extends BackgroundPanel{
 		CustomButton forgotPWButton = setupButton(FORGOT_PASSWORD_TITLE);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				theMessageBox.setText(HintManager.getHint());
+				theMessageBox.setMessage(HintManager.getHint());
 				theMessageBox.setVisible(true);
 				init();
 			}
@@ -154,8 +154,8 @@ public class PasswordState extends BackgroundPanel{
 				sm.init();
 				sm.update();
 			} else {
-				theMessageBox.setText(INCORRECT_PASSWORD_MESSAGE);
-				theMessageBox.setVisible(true);
+				theMessageBox.setMessage(INCORRECT_PASSWORD_MESSAGE);
+				theMessageBox.open();
 				passwordField.setText("");
 			}
 			

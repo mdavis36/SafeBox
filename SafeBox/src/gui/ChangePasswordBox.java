@@ -52,11 +52,11 @@ public class ChangePasswordBox extends MessageBoxState {
 	private JPasswordField confirmPasswordField = new JPasswordField(initConfirmPasswordField);
 	private JTextField hintField = new JTextField(initHintField);
 	
-	private PlainMessageBox passwordFailure;
+	private PlainMessageDialog passwordFailure;
 	
 	public ChangePasswordBox(final StateManager sm){
 		//Buttons Start//
-		passwordFailure = new PlainMessageBox(sm, PASSWORD_MEETS);
+		//passwordFailure = new PlainMessageDialog(sm, PASSWORD_MEETS);
 		buttons.setBackground(Consts.BLUE_PANEL_COLOUR_DARK);
 		buttons.setLayout(new FlowLayout());
 		cancelButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
@@ -74,8 +74,8 @@ public class ChangePasswordBox extends MessageBoxState {
 			public void mouseClicked(MouseEvent e) {				
 				if (sm.getESM().isCurrentPassword(currentPasswordField.getPassword())){
 					if (!sm.getESM().passwordMeetsRequirements(newPasswordField.getPassword())){
-						passwordFailure.setText(PASSWORD_MEETS);
-						passwordFailure.setVisible(true);
+						//passwordFailure.setText(PASSWORD_MEETS);
+						//passwordFailure.setVisible(true);
 						return;
 					}
 					
@@ -84,12 +84,12 @@ public class ChangePasswordBox extends MessageBoxState {
 						HintManager.setHint(hintField.getText());
 						resetBox();
 					} else {
-						passwordFailure.setText(PASSWORDS_DONT_MATCH);
-						passwordFailure.setVisible(true);
+						//passwordFailure.setText(PASSWORDS_DONT_MATCH);
+						//passwordFailure.setVisible(true);
 					}
 				} else {
-					passwordFailure.setText(CURRENT_DIDNT_MATCH);
-					passwordFailure.setVisible(true);
+					//passwordFailure.setText(CURRENT_DIDNT_MATCH);
+					//passwordFailure.setVisible(true);
 				}
 			}			
 		});
