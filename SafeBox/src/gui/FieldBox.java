@@ -38,9 +38,6 @@ public class FieldBox extends BackgroundPanel{
 	private final int TIMER = 500;//time to show copied to clipboard in ms
 	private JLabel fieldName;
 	private JLabel fieldData;
-	
-	private int time = 0;
-	private final int duration = 2000; 
 	private String placeholder;
 	
 	

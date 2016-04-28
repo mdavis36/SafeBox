@@ -48,6 +48,8 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final int TOOLBAR_LAYOUT_HGAP = 5;
 	private static final int UNIT_INCREMENT = 5;
 	
+	private final String ADD_TO_SEARCH_ERROR = "Cannot add a record/folder when searching.";
+	
 	private JPanel toolBar;
 	
 	private JPanel fViewer;
@@ -150,7 +152,11 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addRecordField.open();		
+				if(currentNode.getGlobalIndex() != -1)
+					addRecordField.open();
+				else{
+					sm.showPlainMessage(ADD_TO_SEARCH_ERROR);
+				}
 			}
 		});
 		

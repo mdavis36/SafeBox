@@ -70,6 +70,7 @@ public class SearchBar extends BackgroundPanel{
 		FileSystemHandler fsh = sm.getESM().getFileSystemHandler();
 		ArrayList<Node> results = fsh.search(query, fsh.getCurrentRecord());
 		Node searchResults = new Node(new Folder(SEARCH_RESULTS), results);
+		searchResults.setGlobalIndex(-1);
 		searchResults.setParent(fsh.getRoot());
 		fsh.setCurrentNode(searchResults);
 		sm.update();
