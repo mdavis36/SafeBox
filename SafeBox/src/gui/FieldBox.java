@@ -80,7 +80,7 @@ public class FieldBox extends BackgroundPanel{
 		editButton.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				b.setVisible(true);
+				b.open();
 			}
 		});
 		
