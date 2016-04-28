@@ -57,7 +57,6 @@ public class SearchBar extends BackgroundPanel{
 	private static final int SEARCH_BUTTON_BORDER_WIDTH = 2;
 	
 	
-	ChangePasswordBox changePasswordDialogBox;
 	SettingsDialog settingsBox;
 	
 	private void executeSearch(StateManager sm, String query){
