@@ -122,5 +122,8 @@ public class StateManager extends JPanel{
 		passwordState.update();
 	}
 	
+	public JFrame getWindow(){
+		return window;
+	}
 
 }
