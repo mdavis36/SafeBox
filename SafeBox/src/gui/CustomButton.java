@@ -13,7 +13,6 @@ import javax.swing.JButton;
 
 public class CustomButton extends JButton{
 
-	private final static String PATH = "res/buttons/";
 	private final static float FONT_MULTIPLIER = 0.5f;
 	
 	
@@ -47,7 +46,7 @@ public class CustomButton extends JButton{
 	 * @param keepRatio whether the ratio needs to change
 	 */
 	public void setImageFromFile(String fileName, boolean keepRatio){
-		BufferedImage i = MiscUtils.getBufferedImageFromFile(PATH + fileName, getWidth());
+		BufferedImage i = MiscUtils.getBufferedImageFromFile(Consts.PATH + fileName, getWidth());
 		setImageIcon(i, keepRatio);	
 	}
 		

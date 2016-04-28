@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class Consts {
 
@@ -20,13 +21,14 @@ public class Consts {
 	protected static final Color ORANGE_PANEL_COLOUR_DARK2 = new Color(215, 165, 0);
 	protected static final Color ORANGE_PANEL_COLOUR_BORDER2 = new Color(215, 155, 0);
 	
-	
+	protected static final Dimension DIALOGUE_TEXT_FIELD_DIMENSION = new Dimension(300, 30);
 	protected static final String FONT_STYLE = "Arial";
-	
-	protected static final String PEN_IMAGE = "res/buttons/pen.png";
-	
+	protected static final String PEN_IMAGE = "pen.png";
+	protected static final String FOLDER = "folder.png";
+	protected static final String Record = "record.png";
 	
 	
 	protected static final char ECHO_CHAR = '*';
+	protected final static String PATH = "res/buttons/";
 
 }

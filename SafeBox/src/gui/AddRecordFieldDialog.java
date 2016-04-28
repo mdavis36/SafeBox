@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -16,12 +14,15 @@ import javax.swing.JTextField;
 public class AddRecordFieldDialog extends CustomDialog{
 
 	private final String error = "Not a valid name.";
-
 	private static final String ADD_A_RECORD_FOLDER = "Add a Record / Folder";
 	private static final String CANCEL = "Cancel";
 	private static final String ADD_RECORD = "Add Record";
 	private static final String ADD_FOLDER = "Add Folder";
-	private static final String initTextField = "";
+	private static final String initTextField = "Folder/Record Name";
+	
+	private static final int BUTTON_WIDTH = 120; 
+	private static final int BUTTON_HEIGHT = 36;
+
 	private JLabel title;
 	
 	private JTextField textField;
@@ -30,7 +31,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private CustomButton addRecordButton;
 	private CustomButton addFolderButton;
 	
-	public AddRecordFieldDialog(final StateManager sm, Color c1, Color c2, int w, int h) {
+	public AddRecordFieldDialog(StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -43,21 +44,21 @@ public class AddRecordFieldDialog extends CustomDialog{
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		textField = new JTextField();
 		textField.setText(initTextField);
-		textField.setPreferredSize(new Dimension(300, 30));
+		textField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		centerPanel.add(textField);
 		
 		
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 		
-		cancelButton = setupButton(CANCEL, 120, 36);
+		cancelButton = setupButton(CANCEL, BUTTON_WIDTH, BUTTON_HEIGHT);
 		cancelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				close();
 			}
 		});
 		
-		addRecordButton = setupButton(ADD_RECORD, 120, 36);
+		addRecordButton = setupButton(ADD_RECORD, BUTTON_WIDTH, BUTTON_HEIGHT);
 		addRecordButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
@@ -69,8 +70,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 				}
 			}
 		});
-
-		addFolderButton = setupButton(ADD_FOLDER, 120, 36);
+		addFolderButton = setupButton(ADD_FOLDER, BUTTON_HEIGHT, BUTTON_HEIGHT);
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
@@ -82,7 +82,21 @@ public class AddRecordFieldDialog extends CustomDialog{
 				}
 			}
 		});
-				
+		textField.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				if(textField.getText().equals(initTextField)){
+					textField.setText(null);
+				}
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if ("".equals(textField.getText())){
+					textField.setText(initTextField);
+				}
+			}
+		});
+		
 		southPanel.add(cancelButton);
 		southPanel.add(addRecordButton);
 		southPanel.add(addFolderButton);
@@ -103,10 +117,5 @@ public class AddRecordFieldDialog extends CustomDialog{
 		else{
 			return true;
 		}
-	}
-
-	@Override
-	protected void init() {
-		textField.setText(initTextField);
 	}
 }

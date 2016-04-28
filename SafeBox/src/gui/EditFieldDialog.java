@@ -57,8 +57,8 @@ public class EditFieldDialog extends CustomDialog {
 		nameTextField = new JTextField(fieldName);
 		contentTextField = new JTextField(fieldContent);
 		centerPanel.setBorder(new EmptyBorder(10,0,20,0));
-		nameTextField.setPreferredSize(new Dimension(300, 30));
-		contentTextField.setPreferredSize(new Dimension(300, 30));
+		nameTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
+		contentTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		centerPanel.add(nameTextField, BorderLayout.NORTH);
 		centerPanel.add(contentTextField, BorderLayout.SOUTH);
 		
@@ -135,12 +135,6 @@ public class EditFieldDialog extends CustomDialog {
 		else{
 			return true;
 		}
-	}
-
-	@Override
-	protected void init() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
