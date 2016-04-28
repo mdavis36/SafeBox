@@ -1,25 +1,15 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.border.Border;
-
-import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
 
 public class CustomButton extends JButton{
 
@@ -41,6 +31,7 @@ public class CustomButton extends JButton{
 		setForeground(Color.WHITE);
 		setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, (int)(getHeight() * FONT_MULTIPLIER)));
 	}
+
 	
 	/**
 	 * @param c color of border

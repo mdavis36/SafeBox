@@ -26,6 +26,9 @@ public class FieldBox extends BackgroundPanel{
 	private int boarderWidth = 2;
 	private ModifyRecordBox editBox;
 	
+	private static final int TEXT_SIZE = 20;
+	
+	
 	public FieldBox( int x, int y, int width, int height, final int index, final StateManager sm) {
 		super(MiscUtils.getBufferedGradImage(Consts.ORANGE_PANEL_COLOUR_LIGHT, Consts.ORANGE_PANEL_COLOUR_DARK, width, height, true));
 		this.index = index;
@@ -45,7 +48,7 @@ public class FieldBox extends BackgroundPanel{
 		setTransparentAdd(true);
 		
 		JLabel fieldName = new JLabel(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getName() + " :");
-		fieldName.setFont(new Font("Tahoma", Font.BOLD, 24));
+		fieldName.setFont(new Font("Tahoma", Font.BOLD, TEXT_SIZE));
 		fieldName.setForeground(Color.BLACK);
 		fieldName.setBackground(Color.WHITE);
 		fieldName.setOpaque(false);
@@ -55,7 +58,7 @@ public class FieldBox extends BackgroundPanel{
 		dataPanel.add(fieldName, c);
 		
 		JLabel fieldData = new JLabel("    " + ((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
-		fieldData.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		fieldData.setFont(new Font("Tahoma", Font.PLAIN, TEXT_SIZE));
 		fieldData.setForeground(Color.BLACK);
 		fieldData.setBackground(Color.WHITE);
 		fieldData.setOpaque(false);
@@ -68,7 +71,7 @@ public class FieldBox extends BackgroundPanel{
 		c.gridy = 1;
 		dataPanel.add(fieldData, c);
 		
-		CustomButton editButton = new CustomButton("", 0, 0, 40, 40);
+		CustomButton editButton = new CustomButton("", 0, 0, 30, 30);
 		editButton.setImageFromFile("pen.png", true);
 		editButton.addMouseListener(new MouseAdapter(){
 			@Override
