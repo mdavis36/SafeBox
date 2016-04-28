@@ -146,4 +146,10 @@ public class StartUpDialog extends CustomDialog{
 		
 	}
 
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

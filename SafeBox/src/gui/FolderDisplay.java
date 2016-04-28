@@ -145,7 +145,7 @@ public class FolderDisplay extends BackgroundPanel{
 			public void actionPerformed(ActionEvent e) {
 				//newFolderDialogBox.setVisible(true);
 				
-				b.setVisible(true);
+				b.open();
 			}
 		});
 		

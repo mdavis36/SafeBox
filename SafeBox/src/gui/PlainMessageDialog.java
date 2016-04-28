@@ -85,5 +85,11 @@ public class PlainMessageDialog extends CustomDialog {
 	public void setMessage(String message){
 		messageArea.setText(message);
 	}
+
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
