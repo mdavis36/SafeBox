@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class CustomDialog extends JDialog{
 
@@ -19,6 +20,7 @@ public class CustomDialog extends JDialog{
 		BackgroundPanel contentPane = new BackgroundPanel(MiscUtils.getBufferedGradImage(c1, c2, w, h, true));
 		contentPane.setLayout(new BorderLayout());
 		contentPane.setTransparentAdd(true);
+		contentPane.setBorder(new EmptyBorder(15, 15, 15, 15));
 		
 		northPanel.setOpaque(false);
 		centerPanel.setOpaque(false);
@@ -46,6 +48,13 @@ public class CustomDialog extends JDialog{
 	public void close(){
 		
 		setVisible(false);
+	}
+	
+	protected CustomButton setupButton(String text, int w, int h){
+		CustomButton b = new CustomButton(text, 0, 0, w, h);
+		b.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		b.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
+		return b;
 	}
 	
 	
