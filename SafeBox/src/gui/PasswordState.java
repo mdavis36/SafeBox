@@ -146,25 +146,22 @@ public class PasswordState extends BackgroundPanel{
 		});		
 	}
 
-	private void validatePasswordAndMoveForward(JPasswordField passwordField){
+	private void validatePasswordAndMoveForward(JPasswordField passwordField) {
 		sm.getESM().setPassword(passwordField.getPassword());
-		if (sm.getESM().fileSystemExists()){			
-			if (sm.getESM().loadFileSystemHandler()){
-				sm.setState(sm.MAIN_SCREEN_STATE);
-				sm.setSuccessfullyDecrypted(true);
-				sm.init();
-				sm.update();
-			} else {
-				theMessageBox.setMessage(INCORRECT_PASSWORD_MESSAGE);
-				theMessageBox.open();
-				passwordField.setText("");
-			}
-			
+		
+		if (!sm.getESM().fileSystemExists()) { // this should never happen
+			return;
+		}
+		
+		if (sm.getESM().loadFileSystemHandler()) {
+			sm.setState(sm.MAIN_SCREEN_STATE);
+			sm.setSuccessfullyDecrypted(true);
+			sm.init();
+			sm.update();
 		} else {
-			if (passwordField.getPassword().length > 1){
-				sm.setSuccessfullyDecrypted(true);
-				sm.setState(sm.MAIN_SCREEN_STATE);
-			}
+			theMessageBox.setMessage(INCORRECT_PASSWORD_MESSAGE);
+			theMessageBox.open();
+			passwordField.setText("");
 		}
 	}
 	
@@ -174,7 +171,9 @@ public class PasswordState extends BackgroundPanel{
 	
 	public void init(){
 		resetPasswordField(passWordField);
-		startup.open();
+		if (!sm.getESM().fileSystemExists()){
+			startup.open();
+		}
 	}
 	
 	private void resetPasswordField(JPasswordField p){
