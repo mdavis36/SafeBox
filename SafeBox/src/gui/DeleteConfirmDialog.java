@@ -26,17 +26,20 @@ public class DeleteConfirmDialog extends CustomDialog {
 	private boolean confirm;
 	private static JDialog snapTo;
 	
+	private static final int CONFIRM_TEXT_FONT_SIZE = 22;
+	private static final int SOUTH_PANEL_HGAP = 10;
+	
 	public DeleteConfirmDialog(StateManager sm, Color c1, Color c2, int w, int h) {
 		super(sm, c1, c2, w, h);
 		//--------------------Center panel----------------------------------
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		confirmationText = new JLabel(confirmText);
-		confirmationText.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, 22));
+		confirmationText.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, CONFIRM_TEXT_FONT_SIZE));
 		centerPanel.add(confirmationText);
 		//--------------------South panel----------------------------------
-		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
-		cancelButton = setupButton(cancel, 120, 36);
-		deleteButton = setupButton(delete, 120, 36);
+		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_HGAP, 0));
+		cancelButton = setupButton(cancel, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		deleteButton = setupButton(delete, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		southPanel.add(cancelButton);
 		southPanel.add(deleteButton);
 		// --------------------Listeners----------------------------------
