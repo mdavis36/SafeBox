@@ -32,7 +32,7 @@ import core.HintManager;
  */
 public class PasswordState extends BackgroundPanel{
 	private static final long serialVersionUID = 1L;
-	private static final String PASSWORD_TITLE = "           Enter Password           ";
+	private static final String PASSWORD_TITLE = "Enter Password";
 	
 	private static final int BUTTON_WIDTH = 270;
 	private static final int BUTTON_HEIGHT = BUTTON_WIDTH / 7;

@@ -96,8 +96,7 @@ public class SearchBar extends BackgroundPanel{
 		settingsButton.setImageFromFile(GEAR_IMAGE, true);
 		settingsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//JOptionPane.showMessageDialog(sm.window, "//This is your settings", null, JOptionPane.PLAIN_MESSAGE);
-				settingsBox.setVisible(true);
+				settingsBox.open();
 			}
 		});
 		leftPanel.add(settingsButton);

@@ -60,7 +60,7 @@ public class FolderDisplay extends BackgroundPanel{
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
-	AddRecordFieldDialog b;
+	AddRecordFieldDialog addRecordField;
 	
 	ArrayList<Node> children;
 	
@@ -78,7 +78,7 @@ public class FolderDisplay extends BackgroundPanel{
 		currentNode = getFSH().getRoot();
 		setLayout(new BorderLayout(0, 0));	
 		
-		b = new AddRecordFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, RECORD_FIELD_DIALOGUE_WIDTH, RECORD_FIELD_DIALOGUE_HEIGHT);
+		addRecordField = new AddRecordFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, RECORD_FIELD_DIALOGUE_WIDTH, RECORD_FIELD_DIALOGUE_HEIGHT);
 		
 		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_BORDER);
@@ -150,9 +150,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//newFolderDialogBox.setVisible(true);
-				
-				b.setVisible(true);
+				addRecordField.open();
 			}
 		});
 		
