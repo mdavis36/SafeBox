@@ -89,7 +89,6 @@ public class StartUpDialog extends CustomDialog{
 		//--------------------Center panel----------------------------------
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.VERTICAL;
-		
 		password = new JPasswordField(PASSWORD_TEXT);
 		initPasswordField(password, PASSWORD_TEXT);
 		password.addFocusListener(new FocusListener() {
