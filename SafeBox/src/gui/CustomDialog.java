@@ -15,8 +15,10 @@ public class CustomDialog extends JDialog{
 	protected JPanel centerPanel = new JPanel();
 	protected JPanel southPanel = new JPanel();
 	
+	protected StateManager sm;
 	
-	public CustomDialog(Color c1, Color c2, int w, int h){
+	public CustomDialog(StateManager sm, Color c1, Color c2, int w, int h){
+		this.sm = sm;
 		BackgroundPanel contentPane = new BackgroundPanel(MiscUtils.getBufferedGradImage(c1, c2, w, h, true));
 		contentPane.setLayout(new BorderLayout());
 		contentPane.setTransparentAdd(true);
@@ -46,8 +48,9 @@ public class CustomDialog extends JDialog{
 	}
 	
 	public void close(){
-		
+		sm.update();
 		setVisible(false);
+		
 	}
 	
 	protected CustomButton setupButton(String text, int w, int h){

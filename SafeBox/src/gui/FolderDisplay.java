@@ -53,6 +53,8 @@ public class FolderDisplay extends BackgroundPanel{
 	HashMap<Integer, Integer> hMap;
 	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
+	AddRecordFieldDialog b;
+	
 	ArrayList<Node> children;
 	
 	FileSystemHandler fsh;
@@ -70,6 +72,8 @@ public class FolderDisplay extends BackgroundPanel{
 		newFolderDialogBox.setVisible(false);
 		currentNode = getFSH().getRoot();
 		setLayout(new BorderLayout(0, 0));	
+		
+		b = new AddRecordFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200);
 		
 		
 		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_BORDER);
@@ -142,7 +146,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordOrField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//newFolderDialogBox.setVisible(true);
-				AddRecordFieldDialog b = new AddRecordFieldDialog(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200);
+				
 				b.setVisible(true);
 			}
 		});
@@ -183,11 +187,11 @@ public class FolderDisplay extends BackgroundPanel{
 		folderPanel.removeAll();
 		folderPanel.repaint();
 		currentNode = getCurrentNode();
-		
+		children = currentNode.getChildren();
+		resizeDisplay();
 		if(!currentNode.getData().isRecord()){
 			directoryTitle.setText(getCurrentNode().getData().getName());
-			children = currentNode.getChildren();
-			resizeDisplay();
+			
 			if(currentNode.hasChildren()){
 				folderPanel.setVisible(true);
 				FolderDisplayButton fdb;
@@ -221,6 +225,7 @@ public class FolderDisplay extends BackgroundPanel{
 		int maxLength = (int) (directoryTitle.getPreferredSize().getWidth() + 130);
 		l.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, BUTTON_HEIGHT / 2));
 		int temp = 0;
+		
 		for(int i = 0; i < children.size(); i++){
 			l.setText(children.get(i).getData().getName());
 			temp = (int) (l.getPreferredSize().getWidth() + 100);
@@ -229,7 +234,7 @@ public class FolderDisplay extends BackgroundPanel{
 			}
 		}
 		DISPLAY_WIDTH = maxLength;
-		
+		System.out.println("children coutn :" + children.size() + "DisplayWidth : " + DISPLAY_WIDTH);
 		setImage(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, DISPLAY_WIDTH, sm.window.getHeight(), true));
 	}
 	

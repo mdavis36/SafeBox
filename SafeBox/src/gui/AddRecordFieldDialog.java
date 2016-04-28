@@ -3,6 +3,9 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -23,8 +26,8 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private CustomButton addRecordButton;
 	private CustomButton addFolderButton;
 	
-	public AddRecordFieldDialog(Color c1, Color c2, int w, int h) {
-		super(c1, c2, w, h);
+	public AddRecordFieldDialog(StateManager sm, Color c1, Color c2, int w, int h) {
+		super(sm, c1, c2, w, h);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		title = new JLabel(TITLE);
@@ -42,12 +45,37 @@ public class AddRecordFieldDialog extends CustomDialog{
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 		
 		cancelButton = setupButton(CANCEL_TEXT, 120, 36);
-		addRecordButton = setupButton(ADD_RECORD_TEXT, 120, 36);
-		addFolderButton = setupButton(ADD_FOLDER_TEXT, 120, 36);
+		cancelButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				close();
+			}
+		});
 		
+		addRecordButton = setupButton(ADD_RECORD_TEXT, 120, 36);
+		addRecordButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				addRecord();
+				close();
+			}
+		});
+		addFolderButton = setupButton(ADD_FOLDER_TEXT, 120, 36);
+		addFolderButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				addFolder();
+				close();
+			}
+		});
 		southPanel.add(cancelButton);
 		southPanel.add(addRecordButton);
 		southPanel.add(addFolderButton);
 	}
-
+	
+	private void addRecord(){
+		sm.getESM().getFileSystemHandler().createRecord(sm.getESM().getFileSystemHandler().getCurrent(), textField.getText());
+	}
+	
+	private void addFolder(){
+		sm.getESM().getFileSystemHandler().createFolder(sm.getESM().getFileSystemHandler().getCurrent(), textField.getText());
+	}
+	
 }
