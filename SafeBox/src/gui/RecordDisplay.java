@@ -34,9 +34,7 @@ public class RecordDisplay extends BackgroundPanel {
 	private JPanel fieldPanel;
 	private JScrollPane scrollPane;
 	
-	private static final String ADD_FIELD = "Add Field";
-	private static final String DEFAULT_NAME = "Name";
-	private static final String DEFAULT_DATA = "Content";
+	
 	
 	private static final int RECORD_TOOL_BAR_HEIGHT = 40;
 	private static final int UNIT_INCREMENT = 5;
@@ -73,7 +71,7 @@ public class RecordDisplay extends BackgroundPanel {
 		
 		
 		
-		addFieldButton = new CustomButton(ADD_FIELD, 0, 0, 100, 30);
+		addFieldButton = new CustomButton(English.ADD_FIELD, 0, 0, 100, 30);
 		addFieldButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
 		addFieldButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, 2);
 
@@ -81,8 +79,8 @@ public class RecordDisplay extends BackgroundPanel {
 		addFieldButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				Field f = new Field();
-				f.setName(DEFAULT_NAME);
-				f.setData(DEFAULT_DATA);
+				f.setName(English.NAME);
+				f.setData(English.CONTENT);
 				((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).addField(f);
 				init();
 				update();
