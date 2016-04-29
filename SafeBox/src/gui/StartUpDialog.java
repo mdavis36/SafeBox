@@ -22,16 +22,7 @@ import core.PlainDataManager;
 
 public class StartUpDialog extends CustomDialog{
 	
-	private static final String TITLE = "Welcome to SafeBox!";
-	private static final String MESSAGE = "Please create a password and a hint in case you forget.";
-	private static final String PASSWORD_TEXT = "Password";
-	private static final String CON_PASSWORD_TEXT = "Confirm Password";
-	private static final String HINT_TEXT = "Hint";
-	private static final String DONE_TEXT = "Done";
-	private static final String EXIT_TEXT = "Exit";
 	
-	private static final String PASSWORDS_DID_NOT_MATCH_ERROR = "Error, password and confirm password did not match.";
-	private static final String PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR = "Error, password did not meet minimum requirements.";
 	
 	private static final int TITLE_TEXT_SIZE = 28;
 	private static final int MESSAGE_TEXT_SIZE = 16;
@@ -51,13 +42,13 @@ public class StartUpDialog extends CustomDialog{
 		
 		if (!esm.passwordMeetsRequirements(password)){
 			// too short
-			sm.showPlainMessage(PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR);
+			sm.showPlainMessage(English.PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR);
 			return;
 		}
 		
 		if (!Arrays.equals(password, confirmPassword)){
 			// not equal
-			sm.showPlainMessage(PASSWORDS_DID_NOT_MATCH_ERROR);
+			sm.showPlainMessage(English.PASSWORDS_DID_NOT_MATCH_ERROR);
 			return;
 		}
 		
@@ -74,10 +65,10 @@ public class StartUpDialog extends CustomDialog{
 		northPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		title = new JLabel(TITLE);
+		title = new JLabel(English.WELCOME_TO_SAFEBOX);
 		title.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, TITLE_TEXT_SIZE));
 		
-		message = new JLabel(MESSAGE);
+		message = new JLabel(English.CREATE_PASSWORD_HINT);
 		message.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, MESSAGE_TEXT_SIZE));
 		
 		c.gridy = 0;
@@ -89,12 +80,12 @@ public class StartUpDialog extends CustomDialog{
 		//--------------------Center panel----------------------------------
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.VERTICAL;
-		password = new JPasswordField(PASSWORD_TEXT);
-		initPasswordField(password, PASSWORD_TEXT);
+		password = new JPasswordField(English.PASSWORD);
+		initPasswordField(password, English.PASSWORD);
 		password.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				resetPasswordField(password, PASSWORD_TEXT);
+				resetPasswordField(password, English.PASSWORD);
 			}
 			
 			@Override
@@ -105,12 +96,12 @@ public class StartUpDialog extends CustomDialog{
 		c.gridy = 0;
 		centerPanel.add(password, c);
 		
-		confirmPassword = new JPasswordField(CON_PASSWORD_TEXT);
-		initPasswordField(confirmPassword, CON_PASSWORD_TEXT);
+		confirmPassword = new JPasswordField(English.CONFIRM_PASSWORD);
+		initPasswordField(confirmPassword, English.CONFIRM_PASSWORD);
 		confirmPassword.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				resetPasswordField(confirmPassword, CON_PASSWORD_TEXT);
+				resetPasswordField(confirmPassword, English.CONFIRM_PASSWORD);
 			}
 			
 			@Override
@@ -121,20 +112,20 @@ public class StartUpDialog extends CustomDialog{
 		c.gridy = 1;
 		centerPanel.add(confirmPassword, c);
 		
-		hint = new JTextField(HINT_TEXT);
+		hint = new JTextField(English.HINT);
 		hint.setPreferredSize(new Dimension(350,30));
 		hint.addFocusListener(new FocusListener() {
 			
 			@Override
 			public void focusLost(FocusEvent e) {
 				if ("".equals(hint.getText())){
-					hint.setText(HINT_TEXT);
+					hint.setText(English.HINT);
 				}
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (hint.getText().equals(HINT_TEXT)){
+				if (hint.getText().equals(English.HINT)){
 					hint.setText("");
 				}
 			}
@@ -150,14 +141,14 @@ public class StartUpDialog extends CustomDialog{
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 		
-		done = setupButton(DONE_TEXT, 120, 36);
+		done = setupButton(English.DONE, 120, 36);
 		done.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e){
 				configureNewPasswordAndClose(password.getPassword(), confirmPassword.getPassword(), hint.getText());
 			}
 		});
 		
-		exit = setupButton(EXIT_TEXT, 120, 36);
+		exit = setupButton(English.EXIT, 120, 36);
 		exit.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e){
 				System.exit(0);

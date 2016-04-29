@@ -79,7 +79,7 @@ public class FolderDisplay extends BackgroundPanel{
 		addRecordField = new AddRecordFieldDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, RECORD_FIELD_DIALOGUE_WIDTH, RECORD_FIELD_DIALOGUE_HEIGHT);
 		
 		
-		border = BorderFactory.createMatteBorder(boarderWidth, boarderWidth, boarderWidth, boarderWidth, Consts.BLUE_PANEL_COLOUR_BORDER);
+		border = BorderFactory.createMatteBorder(BORDER_WIDTH, BORDER_WIDTH, BORDER_WIDTH, BORDER_WIDTH, Consts.BLUE_PANEL_COLOUR_BORDER);
 		setBorder(border);
 		setOpaque(true);
 		

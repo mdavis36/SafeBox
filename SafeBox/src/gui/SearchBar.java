@@ -42,23 +42,16 @@ public class SearchBar extends BackgroundPanel{
 	private static final int SEARCH_FONT_SIZE = 11;
 	private static final int SEARCH_BOX_WIDTH = 400;
 	private static final int SEARCH_BUTTON_WIDTH = 80;
-	private static final String SEARCH_BUTTON_TEXT = "Search";
 	private static final String TITLE = "SafeBox";
-	private static final String GEAR_IMAGE = "gear.png";
+	
 	private static final double HEIGHT_RATIO = .6;
 	private static final String LARGE_LOGO_IMAGE = "res/logos/smallButtonLogo.png";
-	private static final String SEARCH_RESULTS = "Search Results";
 	private static final int TITLE_FONT_SIZE = 32;
-	private static final int TITLE_LOCATION_X = 700;
-	private static final int TITLE_LOCATION_Y = 20;
 	private static final int LOGOUT_BUTTON_WIDTH = 30;
 	private static final int LOGOUT_BUTTON_HEIGHT = 40;
 	private static final int BUTTON_MINUS = 15;
 	private static final int LAYOUT_HGAP = 20;
 	
-	private static final Color SEARCH_BUTTON_COLOR_1 = new Color(255, 205, 40);
-	private static final Color SEARCH_BUTTON_COLOR_2 = new Color(255, 165, 0);
-	private static final Color SEARCH_BUTTON_COLOR_BORDER = new Color(215, 155, 0);
 	private static final int SEARCH_BUTTON_BORDER_WIDTH = 2;
 	private static final int SETTINGS_WIDTH = 450;
 	private static final int SETTINGS_HEIGHT = 300;
@@ -69,7 +62,7 @@ public class SearchBar extends BackgroundPanel{
 	private void executeSearch(StateManager sm, String query){
 		FileSystemHandler fsh = sm.getESM().getFileSystemHandler();
 		ArrayList<Node> results = fsh.search(query, fsh.getCurrentRecord());
-		Node searchResults = new Node(new Folder(SEARCH_RESULTS), results);
+		Node searchResults = new Node(new Folder(English.SEARCH_RESULTS), results);
 		searchResults.setGlobalIndex(-1);
 		searchResults.setParent(fsh.getRoot());
 		fsh.setCurrentNode(searchResults);
@@ -101,7 +94,7 @@ public class SearchBar extends BackgroundPanel{
 		int buttonWidth = BAR_HEIGHT - BUTTON_MINUS;
 		int buttonHeight = BAR_HEIGHT - BUTTON_MINUS;
 		CustomButton settingsButton = new CustomButton("", 0, 0, buttonWidth, buttonHeight);
-		settingsButton.setImageFromFile(GEAR_IMAGE, true);
+		settingsButton.setImageFromFile(Consts.GEAR_IMAGE, true);
 		settingsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				settingsBox.open();
@@ -143,9 +136,9 @@ public class SearchBar extends BackgroundPanel{
 		
 		
 		//------------------------Search Button -------------------------
-		CustomButton searchButton = new CustomButton(SEARCH_BUTTON_TEXT, 0, 0, SEARCH_BUTTON_WIDTH, (int)(BAR_HEIGHT * HEIGHT_RATIO));
-		searchButton.setGradientBackground(SEARCH_BUTTON_COLOR_1, SEARCH_BUTTON_COLOR_2, true);
-		searchButton.setBoarderDetails(SEARCH_BUTTON_COLOR_BORDER, SEARCH_BUTTON_BORDER_WIDTH);
+		CustomButton searchButton = new CustomButton(English.SEARCH, 0, 0, SEARCH_BUTTON_WIDTH, (int)(BAR_HEIGHT * HEIGHT_RATIO));
+		searchButton.setGradientBackground(Consts.BUTTON_COLOUR_DARK, Consts.BUTTON_COLOUR_LIGHT, true);
+		searchButton.setBoarderDetails(Consts.BLUE_PANEL_COLOUR_BORDER, SEARCH_BUTTON_BORDER_WIDTH);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				executeSearch(sm, searchBox.getText());
@@ -164,7 +157,6 @@ public class SearchBar extends BackgroundPanel{
 		JLabel titleLabel = new JLabel(TITLE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, TITLE_FONT_SIZE));
-		titleLabel.setLocation(TITLE_LOCATION_X, TITLE_LOCATION_Y);
 		rightPanel.add(titleLabel);
 		
 		

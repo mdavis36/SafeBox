@@ -57,12 +57,6 @@ public class StateManager extends JPanel{
 		window.getContentPane().add(this);
 		cl.show(this, PASSWORD_STATE);
 		
-		if(!eSM.fileSystemExists()){
-			System.out.println("This is the first time running");
-		}else{
-			System.out.println("A file system Exists");
-		}
-		
 		plainMessageDialog = new PlainMessageDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, "");
 		confirmDialog = new ConfirmDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 220, null);
 		
@@ -70,7 +64,7 @@ public class StateManager extends JPanel{
 		
 		if (!LockManager.requestLock()){
 			confirmDialog.setMessage(English.MULTIPLE_INSTANCES_OPEN);
-			confirmDialog.setButtonText(English.EXIT_TEXT, English.CONTINUE_TEXT);
+			confirmDialog.setButtonText(English.EXIT, English.CONTINUE_TEXT);
 			confirmDialog.open();
 			
 			if (!confirmDialog.getConfirmation()){
@@ -91,9 +85,7 @@ public class StateManager extends JPanel{
 			        System.out.println("Saved.");
 		    	}
 		    }
-		});
-		
-		
+		});	
 	}
 	
 	/**

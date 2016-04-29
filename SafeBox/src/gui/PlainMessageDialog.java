@@ -26,17 +26,8 @@ public class PlainMessageDialog extends CustomDialog {
 	 */
 	private static final long serialVersionUID = 7795604581523451482L;
 
-	private static final int BUTTON_BORDER_WIDTH = 2;
 	private static final int FONT_SIZE = 18;
-	private static final int GRID_WIDTH = 4;
-	private static final int GRID_Y_1 = 0;
 	private static final int EMPTY_BORDER_TOP = 10;
-	private static final int DELETE_BOX_WIDTH = 450;
-	private static final int DELETE_BOX_HEIGHT = 180;
-	private static final String OK_TEXT = "Ok";
-	//Strings Start//
-
-	//Strings End//
 	
 	//JObjects Start//
 	private CustomButton okButton;
@@ -64,7 +55,7 @@ public class PlainMessageDialog extends CustomDialog {
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 		
-		okButton = setupButton(OK_TEXT, 120, 36);
+		okButton = setupButton(English.OK, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		okButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				close();
