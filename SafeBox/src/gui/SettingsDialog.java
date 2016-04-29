@@ -25,20 +25,6 @@ public class SettingsDialog extends CustomDialog {
 	 */
 	private static final long serialVersionUID = 5922831387720313076L;
 	
-	private static final String save = "Save";
-	private static final String cancel = "Cancel";
-	private static final String settings = "Settings";
-	
-	private static final String initCurrentPasswordField = "Current Password";
-	private static final String initNewPasswordField = "New Password";
-	private static final String initConfirmPasswordField = "Retype New Password";
-	private static final String initHintField = "New password hint";
-	
-	static final String PASSWORD_MEETS = "Password must meet requirements";
-	static final String PASSWORDS_DONT_MATCH = "New password and confirm password didn't match.";
-	static final String CURRENT_DIDNT_MATCH = "Current password didn't match.";
-	
-	
 	private static JLabel titleLabel;
 	private static CustomButton saveButton;
 	private static CustomButton cancelButton;
@@ -51,7 +37,7 @@ public class SettingsDialog extends CustomDialog {
 		super(sm, c1, c2, w, h);
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		titleLabel = new JLabel(settings);
+		titleLabel = new JLabel(English.SETTINGS);
 		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, 24));
 		northPanel.add(titleLabel);
 		
@@ -60,28 +46,28 @@ public class SettingsDialog extends CustomDialog {
 		c.fill = GridBagConstraints.VERTICAL;
 		c.gridy = 0;
 		currentPasswordField = new JPasswordField();
-		initPasswordField(currentPasswordField, initCurrentPasswordField);
+		initPasswordField(currentPasswordField, English.CURRENT_PASSWORD);
 		centerPanel.add(currentPasswordField,c);
 		
 		c.gridy++;
 		newPasswordField = new JPasswordField();
-		initPasswordField(newPasswordField, initNewPasswordField);
+		initPasswordField(newPasswordField, English.NEW_PASSWORD);
 		centerPanel.add(newPasswordField,c);
 		
 		c.gridy++;
 		confirmPasswordField = new JPasswordField();
-		initPasswordField(confirmPasswordField, initConfirmPasswordField);
+		initPasswordField(confirmPasswordField, English.RETYPE_NEW_PASSWORD);
 		centerPanel.add(confirmPasswordField,c);
 		
 		c.gridy++;
-		hintField = new JTextField(initHintField);
+		hintField = new JTextField(English.NEW_PASSWORD_HINT);
 		hintField.setPreferredSize(new Dimension(350,30));
 		centerPanel.add(hintField,c);
 		
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
-		cancelButton = setupButton(cancel, 120, 36);
-		saveButton = setupButton(save, 120, 36);
+		cancelButton = setupButton(English.CANCEL, 120, 36);
+		saveButton = setupButton(English.SAVE, 120, 36);
 		southPanel.add(cancelButton);
 		southPanel.add(saveButton);
 		
@@ -92,7 +78,7 @@ public class SettingsDialog extends CustomDialog {
 		currentPasswordField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				resetPasswordField(currentPasswordField, initCurrentPasswordField);
+				resetPasswordField(currentPasswordField, English.CURRENT_PASSWORD);
 			}
 			
 			@Override
@@ -104,7 +90,7 @@ public class SettingsDialog extends CustomDialog {
 		newPasswordField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				resetPasswordField(newPasswordField, initNewPasswordField);
+				resetPasswordField(newPasswordField, English.NEW_PASSWORD);
 			}
 			
 			@Override
@@ -116,7 +102,7 @@ public class SettingsDialog extends CustomDialog {
 		confirmPasswordField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				resetPasswordField(confirmPasswordField, initConfirmPasswordField);
+				resetPasswordField(confirmPasswordField, English.RETYPE_NEW_PASSWORD);
 			}
 			
 			@Override
@@ -129,13 +115,13 @@ public class SettingsDialog extends CustomDialog {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if ("".equals(hintField.getText())){
-					hintField.setText(initHintField);
+					hintField.setText(English.NEW_PASSWORD_HINT);
 				}
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (hintField.getText() != initHintField){
+				if (hintField.getText() != English.NEW_PASSWORD_HINT){
 					hintField.setText("");
 				}
 			}
@@ -143,11 +129,11 @@ public class SettingsDialog extends CustomDialog {
 	
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				resetPasswordField(currentPasswordField, initCurrentPasswordField);
-				resetPasswordField(newPasswordField, initNewPasswordField);
-				resetPasswordField(confirmPasswordField, initConfirmPasswordField);
+				resetPasswordField(currentPasswordField, English.CURRENT_PASSWORD);
+				resetPasswordField(newPasswordField, English.NEW_PASSWORD);
+				resetPasswordField(confirmPasswordField, English.RETYPE_NEW_PASSWORD);
 				if ("".equals(hintField.getText())){
-					hintField.setText(initHintField);
+					hintField.setText(English.NEW_PASSWORD_HINT);
 				}
 			}
 		});
@@ -162,7 +148,7 @@ public class SettingsDialog extends CustomDialog {
 			public void mouseClicked(MouseEvent e) {				
 				if (sm.getESM().isCurrentPassword(currentPasswordField.getPassword())){
 					if (!sm.getESM().passwordMeetsRequirements(newPasswordField.getPassword())){
-						sm.showPlainMessage(PASSWORD_MEETS);
+						sm.showPlainMessage(English.PASSWORD_MEETS);
 						return;
 					}
 					
@@ -171,10 +157,10 @@ public class SettingsDialog extends CustomDialog {
 						HintManager.setHint(hintField.getText());
 						close();
 					} else {
-						sm.showPlainMessage(PASSWORDS_DONT_MATCH);
+						sm.showPlainMessage(English.PASSWORDS_DONT_MATCH);
 					}
 				} else {
-					sm.showPlainMessage(CURRENT_DIDNT_MATCH);
+					sm.showPlainMessage(English.CURRENT_DIDNT_MATCH);
 				}
 			}			
 		});
@@ -184,10 +170,10 @@ public class SettingsDialog extends CustomDialog {
 
 	@Override
 	protected void init() {
-		initPasswordField(currentPasswordField, initCurrentPasswordField);
-		initPasswordField(newPasswordField, initNewPasswordField);
-		initPasswordField(confirmPasswordField, initConfirmPasswordField);
-		hintField.setText(initHintField);
+		initPasswordField(currentPasswordField, English.CURRENT_PASSWORD);
+		initPasswordField(newPasswordField, English.NEW_PASSWORD);
+		initPasswordField(confirmPasswordField, English.RETYPE_NEW_PASSWORD);
+		hintField.setText(English.NEW_PASSWORD_HINT);
 		
 	}
 

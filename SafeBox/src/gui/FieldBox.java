@@ -34,7 +34,6 @@ public class FieldBox extends BackgroundPanel{
 	private static final int EDIT_BUTTON_WIDTH_HEIGHT = 30;
 	private static final int FIELD_BORDER_TOP_BOTTOM = 10;
 	private static final int FIELD_BORDER_LEFT_RIGHT = 20;
-	private final String CLIPBOARD_NOTICE = "Copied to clipboard.";
 	private final int TIMER = 500;//time to show copied to clipboard in ms
 	private JLabel fieldName;
 	private JLabel fieldData;
@@ -78,7 +77,7 @@ public class FieldBox extends BackgroundPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				placeholder = fieldData.getText();
-				fieldData.setText(CLIPBOARD_NOTICE);
+				fieldData.setText(English.CLIPBOARD_NOTICE);
 				MiscUtils.setClipboard(((Record) sm.getESM().getFileSystemHandler().getCurrentRecord().getData()).getField(index).getData());
 				clipboardNotice();
 				

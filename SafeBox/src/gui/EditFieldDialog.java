@@ -21,15 +21,6 @@ public class EditFieldDialog extends CustomDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -2200655084486626161L;
-	private final String error = "No Changes Detected.";
-	private final String title = "Edit Field: ";
-	private final String cancel = "Cancel";
-	private final String delete = "Delete";
-	private final String rename = "Save";
-	private final String DELETE_MESSAGE = "Are you sure you want to delete this field?";
-	private static final int CENTER_PANEL_BOTTOM = 20;
-	private static final int CENTER_PANEL_TOP = 10;
-	private static final int SOUTH_PANEL_HGAP = 10;
 	private static String fieldName;
 	private static String fieldContent;
 	private static Record rec;
@@ -47,7 +38,7 @@ public class EditFieldDialog extends CustomDialog {
 		super(sm, c1, c2, w, h);
 		// --------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		titleLabel = new JLabel(title);
+		titleLabel = new JLabel(English.EDIT_FIELD);
 		titleLabel.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, Consts.DIALOGUE_BOX_TITLE_FONT_SIZE));
 		northPanel.add(titleLabel);
 		
@@ -60,7 +51,7 @@ public class EditFieldDialog extends CustomDialog {
 		centerPanel.setLayout(new BorderLayout());
 		nameTextField = new JTextField(fieldName);
 		contentTextField = new JTextField(fieldContent);
-		centerPanel.setBorder(new EmptyBorder(CENTER_PANEL_TOP,0,CENTER_PANEL_BOTTOM,0));
+		centerPanel.setBorder(new EmptyBorder(Consts.CENTER_PANEL_TOP,0,Consts.CENTER_PANEL_BOTTOM,0));
 		nameTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		contentTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		centerPanel.add(nameTextField, BorderLayout.NORTH);
@@ -68,10 +59,10 @@ public class EditFieldDialog extends CustomDialog {
 		
 		
 		// --------------------South panel----------------------------------
-		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_HGAP, 0));
-		cancelButton = setupButton(cancel, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
-		deleteButton = setupButton(delete, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
-		renameButton = setupButton(rename, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, Consts.SOUTH_PANEL_HGAP, 0));
+		cancelButton = setupButton(English.CANCEL, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		deleteButton = setupButton(English.DELETE, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		renameButton = setupButton(English.SAVE, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		southPanel.add(cancelButton);
 		southPanel.add(deleteButton);
 		southPanel.add(renameButton);
@@ -84,7 +75,7 @@ public class EditFieldDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				sm.confirmDialog.setMessage(DELETE_MESSAGE);
+				sm.confirmDialog.setMessage(English.DELETE_MESSAGE);
 				sm.confirmDialog.open();
 				if(sm.confirmDialog.getConfirmation()){
 					System.out.println("Index in button:" + index);
@@ -106,7 +97,7 @@ public class EditFieldDialog extends CustomDialog {
 				else{
 					contentTextField.setText(fieldContent);
 					nameTextField.setText(fieldName);
-					sm.showPlainMessage(error);
+					sm.showPlainMessage(English.NO_CHANGES_DETECTED);
 				}
 			}
 		});

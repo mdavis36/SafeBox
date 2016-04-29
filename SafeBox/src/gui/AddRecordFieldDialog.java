@@ -60,7 +60,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					sm.showPlainMessage(English.error);
+					sm.showPlainMessage(English.NOT_A_VALID_NAME);
 				}
 			}
 		});
@@ -72,7 +72,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					sm.showPlainMessage(English.error);
+					sm.showPlainMessage(English.NOT_A_VALID_NAME);
 				}
 			}
 		});

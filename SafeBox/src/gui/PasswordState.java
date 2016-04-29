@@ -32,8 +32,6 @@ import core.HintManager;
  */
 public class PasswordState extends BackgroundPanel{
 	private static final long serialVersionUID = 1L;
-	private static final String PASSWORD_TITLE = "Enter Password";
-	
 	private static final int BUTTON_WIDTH = 270;
 	private static final int BUTTON_HEIGHT = BUTTON_WIDTH / 7;
 	private static final int PASSWORD_WIDTH = 330;
@@ -47,10 +45,6 @@ public class PasswordState extends BackgroundPanel{
 	private static final int PASSWORD_FIELD_FONT_SIZE = 24;
 	
 	private static final String TITLE = "SafeBox";
-	private static final String FORGOT_PASSWORD_TITLE = "Forgot Password";
-	private static final String ENTER_SAFEBOX_TITLE = "Enter SafeBox";
-	private static final String INCORRECT_PASSWORD_MESSAGE = "Incorrect password, please try again.";
-	
 	private StateManager sm;
 	
 	private JPanel centerPanel;
@@ -119,7 +113,7 @@ public class PasswordState extends BackgroundPanel{
 		
 		c.gridy += 1;
 		setTransparentAdd(true);
-		CustomButton enterSBButton = setupButton(ENTER_SAFEBOX_TITLE);
+		CustomButton enterSBButton = setupButton(English.ENTER_SAFEBOX_TITLE);
 		enterSBButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validatePasswordAndMoveForward(passWordField);
@@ -131,7 +125,7 @@ public class PasswordState extends BackgroundPanel{
 		
 		
 		c.gridy += 1;
-		CustomButton forgotPWButton = setupButton(FORGOT_PASSWORD_TITLE);
+		CustomButton forgotPWButton = setupButton(English.FORGOT_PASSWORD_TITLE);
 		forgotPWButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.showPlainMessage(HintManager.getHint());
@@ -164,7 +158,7 @@ public class PasswordState extends BackgroundPanel{
 			sm.init();
 			sm.update();
 		} else {
-			sm.showPlainMessage(INCORRECT_PASSWORD_MESSAGE);
+			sm.showPlainMessage(English.INCORRECT_PASSWORD_MESSAGE);
 			passwordField.setText("");
 		}
 	}
@@ -182,7 +176,7 @@ public class PasswordState extends BackgroundPanel{
 	
 	private void resetPasswordField(JPasswordField p){
 		p.setHorizontalAlignment(SwingConstants.CENTER);
-		p.setText(PASSWORD_TITLE);
+		p.setText(English.PASSWORD_TITLE);
 		p.setEchoChar((char)0);
 		p.setEditable(false);
 	}
@@ -202,7 +196,7 @@ public class PasswordState extends BackgroundPanel{
 	}
 	
 	private boolean isInitTextField(char[] cs){
-		if(PASSWORD_TITLE.equals(new String(cs))){
+		if(English.PASSWORD_TITLE.equals(new String(cs))){
 			return true;
 		}
 		else{

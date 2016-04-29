@@ -40,5 +40,11 @@ public class Consts {
 	protected final static String BUTTON_PATH = "res/buttons/"; // this should be called something like BUTTON_PATH, please rename when it won't case massive conflicts
 	protected final static String LOGO_PATH = "res/logos/";
 	protected static final int DIALOGUE_BOX_TITLE_FONT_SIZE = 22;
+	static final int CENTER_PANEL_BOTTOM = 20;
+	static final int CENTER_PANEL_TOP = 10;
+	static final int SOUTH_PANEL_HGAP = 10;
+	static final String IMG_BACK = "res/buttons/back.png";
+	static final String IMG_HOME = "res/buttons/home.png";
+	static final String IMG_PLUS = "plus.png";
 
 }

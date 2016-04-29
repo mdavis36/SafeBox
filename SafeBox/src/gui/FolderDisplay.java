@@ -36,10 +36,6 @@ public class FolderDisplay extends BackgroundPanel{
 	private static final int FONT_SIZE = 18;
 	private static final int ADD_BUTTON_DIMENSION = 25;
 	
-	private static final String IMG_BACK = "res/buttons/back.png";
-	private static final String IMG_HOME = "res/buttons/home.png";
-	private static final String IMG_PLUS = "plus.png";
-	private static final String ADD_RECORD_FOLDER_TITLE = "Add Record / Folder";
 	private static final int RECORD_FIELD_DIALOGUE_WIDTH = 450;
 	private static final int RECORD_FIELD_DIALOGUE_HEIGHT = 200;
 	private static final int MAX_LENGTH_ADD = 140;
@@ -110,7 +106,7 @@ public class FolderDisplay extends BackgroundPanel{
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		
-		CustomButton backButton = setupToolBarButton(IMG_BACK);
+		CustomButton backButton = setupToolBarButton(Consts.IMG_BACK);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentNode = getCurrentNode();
@@ -127,7 +123,7 @@ public class FolderDisplay extends BackgroundPanel{
 		directoryTitle.setOpaque(false);
 		
 		
-		CustomButton homeButton = setupToolBarButton(IMG_HOME);
+		CustomButton homeButton = setupToolBarButton(Consts.IMG_HOME);
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentNode = getCurrentNode();
@@ -146,8 +142,8 @@ public class FolderDisplay extends BackgroundPanel{
 		
 		//-------------------BOTTOMBAR---------------------
 		
-		CustomButton addRecordOrField = new CustomButton(ADD_RECORD_FOLDER_TITLE, 0, 0, ADD_BUTTON_DIMENSION, ADD_BUTTON_DIMENSION);
-		addRecordOrField.setImageFromFile(IMG_PLUS, true);
+		CustomButton addRecordOrField = new CustomButton(English.ADD_RECORD_FOLDER_TITLE, 0, 0, ADD_BUTTON_DIMENSION, ADD_BUTTON_DIMENSION);
+		addRecordOrField.setImageFromFile(Consts.IMG_PLUS, true);
 		addRecordOrField.setHorizontalAlignment(SwingConstants.LEFT);
 		addRecordOrField.setHorizontalTextPosition(JButton.RIGHT);
 		addRecordOrField.addActionListener(new ActionListener() {
