@@ -37,7 +37,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 		//--------------------Center panel----------------------------------
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		textField = new JTextField();
-		textField.setText(English.initTextField);
+		textField.setText(English.EMPTY);
 		textField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		centerPanel.add(textField);
 		
@@ -60,7 +60,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					sm.showPlainMessage(English.error);
+					sm.showPlainMessage(English.NOT_A_VALID_NAME);
 				}
 			}
 		});
@@ -72,7 +72,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 					close();
 				}
 				else{
-					sm.showPlainMessage(English.error);
+					sm.showPlainMessage(English.NOT_A_VALID_NAME);
 				}
 			}
 		});
@@ -80,7 +80,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if ("".equals(textField.getText())){
-					textField.setText(English.initTextField);
+					textField.setText(English.EMPTY);
 				}
 			}
 		});
@@ -99,7 +99,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	}
 	
 	private boolean isValidName(String text){
-		if(text.equals(English.initTextField) || "".equals(text)|| text.equals(" ")){
+		if(text.equals(English.EMPTY) || "".equals(text)|| text.equals(" ")){
 			return false;
 		}
 		else{
@@ -109,7 +109,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 	
 	@Override
 	protected void init() {
-		textField.setText(English.initTextField);
+		textField.setText(English.EMPTY);
 	}
 }
 

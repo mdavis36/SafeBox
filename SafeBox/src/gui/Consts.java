@@ -27,6 +27,7 @@ public class Consts {
 	protected static final String PEN_IMAGE = "pen.png";
 	protected static final String FOLDER = "folder.png";
 	protected static final String RECORD = "record.png";
+	protected static final String GEAR_IMAGE = "gear.png";
 	
 	protected static final int DIALOGUE_BOX_BUTTON_WIDTH = 120;
 	protected static final int DIALOGUE_BOX_BUTTON_HEIGHT = 36;
