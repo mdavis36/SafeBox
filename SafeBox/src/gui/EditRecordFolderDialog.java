@@ -18,14 +18,8 @@ public class EditRecordFolderDialog extends CustomDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -3569511422230983023L;
-	private final String title = "Edit: ";
-	private final String cancel = "Cancel";
-	private final String delete = "Delete";
-	private final String rename = "Rename";
-	private final String initTextField = "New Name";
+	
 	private static String name;
-	private final String error = "Not a valid name";
-	private final String DELETE_MESSAGE = "Are you sure you want to delete this record/folder?";
 	private int index;
 	
 	private JLabel titleLabel;
@@ -45,7 +39,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 		// --------------------north panel----------------------------------
 		index = i;
 		name = getName(index, sm);
-		titleLabel = new JLabel(title);
+		titleLabel = new JLabel(English.EDIT);
 		nameLabel = new JLabel(name);
 		northPanel.setLayout(new BorderLayout());
 		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, Consts.DIALOGUE_BOX_TITLE_FONT_SIZE));
@@ -62,9 +56,9 @@ public class EditRecordFolderDialog extends CustomDialog {
 
 		// --------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_HGAP, 0));
-		cancelButton = setupButton(cancel, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
-		deleteButton = setupButton(delete, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
-		renameButton = setupButton(rename, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		cancelButton = setupButton(English.CANCEL, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		deleteButton = setupButton(English.DELETE, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		renameButton = setupButton(English.RENAME, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		southPanel.add(cancelButton);
 		southPanel.add(deleteButton);
 		southPanel.add(renameButton);
@@ -77,7 +71,8 @@ public class EditRecordFolderDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				sm.confirmDialog.setMessage(DELETE_MESSAGE);
+				sm.confirmDialog.setMessage(English.DELETE_RF_MESSAGE);
+				sm.confirmDialog.setButtonText(English.CANCEL, English.DELETE);
 				sm.confirmDialog.open();
 				if(sm.confirmDialog.getConfirmation()){
 					deleteFolder(sm, index);
@@ -94,13 +89,13 @@ public class EditRecordFolderDialog extends CustomDialog {
 					close();
 				}
 				else{
-					sm.showPlainMessage(error);
+					sm.showPlainMessage(English.NOT_VALID_NAME);
 				}
 			}
 		});
 		textField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				if(textField.getText().equals(initTextField)){
+				if(textField.getText().equals(English.NEW_NAME)){
 					textField.setText("");
 				}
 			}
@@ -108,7 +103,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if("".equals(textField.getText())){
-					textField.setText(initTextField);
+					textField.setText(English.NEW_NAME);
 				}
 			}
 		});
@@ -130,7 +125,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 	}
 	
 	private boolean isValidText(String text){
-		if(text.equals(initTextField) || "".equals(text) || text.equals(" ")){
+		if(text.equals(English.NEW_NAME) || "".equals(text) || text.equals(" ")){
 			return false;
 		}
 		else{

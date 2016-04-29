@@ -91,9 +91,7 @@ public class StateManager extends JPanel{
 			        System.out.println("Saved.");
 		    	}
 		    }
-		});
-		
-		
+		});	
 	}
 	
 	/**
