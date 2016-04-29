@@ -14,4 +14,5 @@ public class English {
 	static final String OK = "Ok";
 	static final String SEARCH = "Search";
 	static final String SEARCH_RESULTS = "Search Results";
+	static final String SAFE_BOX = "SafeBox";
 }

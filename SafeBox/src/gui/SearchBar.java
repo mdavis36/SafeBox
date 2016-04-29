@@ -29,20 +29,16 @@ public class SearchBar extends BackgroundPanel{
 	
 	private static final int BAR_HEIGHT = 60;
 	private static final int BAR_WIDTH = 800;
-	private BufferedImage bImage;
 	private Border border;
 	private int boarderWidth = 3;
 	
 	private JPanel leftPanel = new JPanel(new FlowLayout(0));
 	private JPanel centerPanel = new JPanel(new FlowLayout(0));
 	private JPanel rightPanel = new JPanel(new FlowLayout(0));
-	
-	private static final String SEARCH_BAR_STARTING_VALUE = "Search";
 
 	private static final int SEARCH_FONT_SIZE = 11;
 	private static final int SEARCH_BOX_WIDTH = 400;
 	private static final int SEARCH_BUTTON_WIDTH = 80;
-	private static final String TITLE = "SafeBox";
 	
 	private static final double HEIGHT_RATIO = .6;
 	private static final String LARGE_LOGO_IMAGE = "res/logos/smallButtonLogo.png";
@@ -110,7 +106,7 @@ public class SearchBar extends BackgroundPanel{
 		
 		//----------------------Search Box---------------------
 
-		final JTextField searchBox = new JTextField(SEARCH_BAR_STARTING_VALUE);
+		final JTextField searchBox = new JTextField(English.SEARCH);
 		searchBox.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, SEARCH_FONT_SIZE));
 
 		searchBox.setForeground(Color.BLACK);
@@ -125,7 +121,7 @@ public class SearchBar extends BackgroundPanel{
 		searchBox.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {}
 			public void mousePressed(MouseEvent e) {
-				if (searchBox.getText().equals(SEARCH_BAR_STARTING_VALUE)){
+				if (searchBox.getText().equals(English.SEARCH)){
 					searchBox.setText("");
 				}
 			}
@@ -154,7 +150,7 @@ public class SearchBar extends BackgroundPanel{
 		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		//----------------------Title---------------------
-		JLabel titleLabel = new JLabel(TITLE);
+		JLabel titleLabel = new JLabel(English.SAFE_BOX);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font(Consts.FONT_STYLE, Font.BOLD, TITLE_FONT_SIZE));
 		rightPanel.add(titleLabel);
