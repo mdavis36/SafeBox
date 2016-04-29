@@ -28,7 +28,6 @@ public class FolderDisplay extends BackgroundPanel {
 	 */
 	private static final long serialVersionUID = 4095435087994523978L;
 	private Border border;
-	private int boarderWidth = 3;
 
 	private static int DISPLAY_WIDTH = 30;
 	private static final int DISPLAY_HEIGHT = 500;

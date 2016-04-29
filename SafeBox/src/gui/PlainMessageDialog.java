@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
@@ -24,7 +23,6 @@ public class PlainMessageDialog extends CustomDialog {
 
 	//JObjects Start//
 	private CustomButton okButton;
-	private JLabel nameOfFolder;
 	JTextArea messageArea;
 	//JObjects End//
 

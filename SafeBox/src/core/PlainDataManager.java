@@ -42,6 +42,7 @@ public class PlainDataManager {
 		StorageManager.saveToFile(dataSerialized, Consts.PLAIN_FILE_NAME);
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void loadFromFile() {
 		dataSerialized = StorageManager.readFromFile(Consts.PLAIN_FILE_NAME);
 		data = (HashMap<String, String>) SerializationUtils.byteArrayToObject(dataSerialized);

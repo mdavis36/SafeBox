@@ -27,7 +27,6 @@ public class FieldBox extends BackgroundPanel {
 	 */
 	private static final long serialVersionUID = 4657486320326798845L;
 	private int index;
-	private int BAR_HEIGHT = 60;
 
 	private Border border;
 	private int boarderWidth = 2;

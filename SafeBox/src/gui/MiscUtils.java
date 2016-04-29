@@ -18,8 +18,6 @@ import javax.swing.JFrame;
 
 public class MiscUtils {
 
-	private static final float ALPHA = 0.0f;
-
 	/**
 	 * @param c1 first color
 	 * @param c2 second color

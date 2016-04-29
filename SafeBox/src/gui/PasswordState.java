@@ -21,14 +21,6 @@ import javax.swing.SwingConstants;
 
 import core.HintManager;
 
-/**
- * @author micha
- *
- */
-/**
- * @author micha
- *
- */
 public class PasswordState extends BackgroundPanel {
 	private static final long serialVersionUID = 1L;
 	private static final int BUTTON_WIDTH = 270;
@@ -101,7 +93,7 @@ public class PasswordState extends BackgroundPanel {
 		passWordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == e.VK_ENTER) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					validatePasswordAndMoveForward(passWordField);
 				}
 			}
