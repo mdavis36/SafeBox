@@ -71,6 +71,7 @@ public class StateManager extends JPanel {
 			confirmDialog.open();
 
 			if (!confirmDialog.getConfirmation()) {
+				LockManager.releaseLock();
 				System.exit(0);
 			}
 		}
