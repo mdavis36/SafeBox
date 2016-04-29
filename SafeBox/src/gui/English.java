@@ -1,7 +1,7 @@
 package gui;
 
 public class English {
-
+	static final String DELETE = "Delete";
 	static final String error = "Not a valid name.";
 	static final String ADD_A_RECORD_FOLDER = "Add a Record / Folder";
 	static final String CANCEL = "Cancel";

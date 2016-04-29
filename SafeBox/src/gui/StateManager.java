@@ -70,6 +70,7 @@ public class StateManager extends JPanel{
 		
 		if (!LockManager.requestLock()){
 			confirmDialog.setMessage(English.MULTIPLE_INSTANCES_OPEN);
+			confirmDialog.setButtonText(English.EXIT_TEXT, English.CONTINUE_TEXT);
 			confirmDialog.open();
 			
 			if (!confirmDialog.getConfirmation()){

@@ -19,10 +19,8 @@ public class ConfirmDialog extends CustomDialog {
 	 */
 	private static final long serialVersionUID = -4807039006822180146L;
 	private String confirmText;
-	private final String cancel = "Cancel";
-	private final String delete = "Confirm";
-	private CustomButton deleteButton;
-	private CustomButton cancelButton;
+	private CustomButton rightButton;
+	private CustomButton leftButton;
 	private JTextArea confirmationText;
 	private boolean confirm;
 	private static JDialog snapTo;
@@ -45,26 +43,31 @@ public class ConfirmDialog extends CustomDialog {
 		centerPanel.add(confirmationText);
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_HGAP, 0));
-		cancelButton = setupButton(cancel, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
-		deleteButton = setupButton(delete, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
-		southPanel.add(cancelButton);
-		southPanel.add(deleteButton);
+		leftButton = setupButton(null, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		rightButton = setupButton(null, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
+		southPanel.add(leftButton);
+		southPanel.add(rightButton);
 		// --------------------Listeners----------------------------------
-		cancelButton.addMouseListener(new MouseAdapter() {
+		leftButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				confirm = false;
 				close();
 			}
 		});
-		deleteButton.addMouseListener(new MouseAdapter() {
+		rightButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				confirm = true;
 				close();
 			}
 		});
 	}
-
 	
+	public void setButtonText(String left, String right){
+		leftButton.setText(left);
+		rightButton.setText(right);
+	}
+	
+
 	public boolean getConfirmation(){
 		return confirm;
 	}
