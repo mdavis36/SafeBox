@@ -34,7 +34,7 @@ public class English {
 	static final String NO_CHANGES_DETECTED = "No Changes Detected.";
 	static final String NOT_A_VALID_NAME = "Not a valid name.";
 	static final String NOT_VALID_NAME = "Not a valid name";
-	static final String OK = "Ok";
+	static final String OK = "OK";
 	static final String PASSWORD = "Password";
 	static final String PASSWORD_DID_NOT_MEET_REQUIREMENTS_ERROR = "Error, password did not meet minimum requirements.";
 	static final String PASSWORD_MEETS = "Password must meet requirements";
