@@ -36,7 +36,7 @@ public class English {
 	static final String NOT_VALID_NAME = "Not a valid name";
 	static final String ADD_FIELD = "Add Field";
 	static final String NAME = "Name";
-	static final String CONTENT= "Content";
+	static final String CONTENT = "Content";
 	static final String WELCOME_TO_SAFEBOX = "Welcome to SafeBox!";
 	static final String CREATE_PASSWORD_HINT = "Please create a password and a hint in case you forget.";
 	static final String PASSWORD = "Password";

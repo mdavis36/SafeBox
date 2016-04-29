@@ -8,20 +8,24 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class FolderDisplayButton extends BackgroundPanel{
-	
+public class FolderDisplayButton extends BackgroundPanel {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -8350969263067776655L;
 	private int index;
 	private int type;
 	private String imgName;
 	private static final int EDIT_BUTTON_WIDTH = 20;
 	private static final int FOLDER_BUTTON_WIDTH = 40;
 	private static final int LAYOUT_ARG = 10;
-	
+
 	protected static final int RECORD = 0;
 	protected static final int FOLDER = 1;
-	
+
 	private StateManager sm;
-	
+
 	/**
 	 * @param text name of the folder
 	 * @param x x coordinate of button
@@ -40,76 +44,70 @@ public class FolderDisplayButton extends BackgroundPanel{
 		setLayout(new FlowLayout(LAYOUT_ARG));
 		final EditRecordFolderDialog editRecordFolder = new EditRecordFolderDialog(sm, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, index);
 		editRecordFolder.setVisible(false);
-	
-		
-		if (type == FOLDER){
+
+		if (type == FOLDER) {
 			imgName = Consts.FOLDER;
 		} else {
 			imgName = Consts.RECORD;
 		}
-		
+
 		CustomButton button = new CustomButton(text, 0, 0, FOLDER_BUTTON_WIDTH, FOLDER_BUTTON_WIDTH);
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setHorizontalTextPosition(JButton.RIGHT);
 		button.setImageFromFile(imgName, true);
 		button.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mousePressed(MouseEvent e) {
 				pressed(e);
 			}
 		});
-		
-		
+
 		CustomButton edit = new CustomButton("", 0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_WIDTH);
-		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, 
-																						Consts.BLUE_PANEL_COLOUR_DARK, 
-																						EDIT_BUTTON_WIDTH, 
-																						EDIT_BUTTON_WIDTH, 
-																						true), 
-														MiscUtils.getBufferedImageFromFile(Consts.BUTTON_PATH + Consts.PEN_IMAGE, 
-																						EDIT_BUTTON_WIDTH)),
-						true);
+		edit.setImageIcon(MiscUtils.layerBufferedImages(MiscUtils.getBufferedGradImage(Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, EDIT_BUTTON_WIDTH, EDIT_BUTTON_WIDTH, true), MiscUtils.getBufferedImageFromFile(Consts.BUTTON_PATH + Consts.PEN_IMAGE, EDIT_BUTTON_WIDTH)), true);
 		edit.setHorizontalAlignment(SwingConstants.RIGHT);
-		edit.addMouseListener(new MouseAdapter(){
+		edit.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				editRecordFolder.open();
 			}
 		});
-		
+
 		addMouseListener(new MouseAdapter() {
+			@Override
 			public void mousePressed(MouseEvent e) {
 				pressed(e);
 			}
 		});
-		
-		
+
 		add(edit);
 		add(button);
-		
+
 	}
-	
-	private void pressed(MouseEvent e){
-		if (type == FOLDER)
+
+	private void pressed(MouseEvent e) {
+		if (type == FOLDER) {
 			folderAction(e.getButton());
-		else
+		} else {
 			recordAction();
-		
+		}
+
 	}
-	
-	private void folderAction(int b){
+
+	private void folderAction(int b) {
 		sm.getESM().getFileSystemHandler().setCurrentNode(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
 		sm.update();
 	}
-	
-	private void recordAction(){
+
+	private void recordAction() {
 		sm.getESM().getFileSystemHandler().setCurrentRecord(sm.getESM().getFileSystemHandler().getCurrent().getChild(index));
 		sm.update();
 	}
-	
-	protected int getIndex(){
+
+	protected int getIndex() {
 		return index;
 	}
-	
-	protected void setIndex(int i){
+
+	protected void setIndex(int i) {
 		index = i;
 	}
 }

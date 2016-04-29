@@ -18,11 +18,9 @@ public class mainPrototype {
 				System.out.println("Results:");
 				for (int i = 0; i < size; i++) {
 					if (results.get(i).getData().isRecord()) {
-						System.out.println("   " + (i + 1)+ ". " + "[R]"
-								+ results.get(i).getData().getName());
+						System.out.println("   " + (i + 1) + ". " + "[R]" + results.get(i).getData().getName());
 					} else {
-						System.out.println("   " + (i + 1) + ". "+"[F]"
-								+ results.get(i).getData().getName());
+						System.out.println("   " + (i + 1) + ". " + "[F]" + results.get(i).getData().getName());
 					}
 				}
 				System.out.println("Select Folder/Record Number or \n[B]ack");
@@ -38,37 +36,38 @@ public class mainPrototype {
 					scan.close();
 					return results.get(index - 1);
 				}
-				
+
 			}
 		}
 		return current;
 	}
 
-	public static  boolean deleteFolder(Scanner scan,FileSystemHandler fsh, Node parent){
+	public static boolean deleteFolder(Scanner scan, FileSystemHandler fsh, Node parent) {
 		int pick = 0;
 		boolean exit = false;
-		while (!exit){
+		while (!exit) {
 			System.out.println("Enter the Record/Folder number you would like to delete.");
 			pick = scan.nextInt();
 			//System.out.println(pick);
 			//System.out.println(parent.getChildren().size());
-			if(pick >0 && pick <= parent.getChildren().size()){
+			if (pick > 0 && pick <= parent.getChildren().size()) {
 				//System.out.println(pick);
 				exit = true;
 			}
 		}
-		System.out.println("Are you sure you want to delete " + parent.getChild(pick-1).getData().getName() + " and all of it's contents?\nY/N");
+		System.out.println("Are you sure you want to delete " + parent.getChild(pick - 1).getData().getName() + " and all of it's contents?\nY/N");
 		String choice = "";
-		while (!(choice.equalsIgnoreCase("n") || choice.equalsIgnoreCase("y"))){
+		while (!(choice.equalsIgnoreCase("n") || choice.equalsIgnoreCase("y"))) {
 			choice = scan.next();
 		}
-		if(choice.equalsIgnoreCase("y")){
-			fsh.deleteFolder(parent,pick-1);
+		if (choice.equalsIgnoreCase("y")) {
+			fsh.deleteFolder(parent, pick - 1);
 			return true;
 		}
 		return false;
-		
+
 	}
+
 	public static void main(String[] args) {
 		///////////////
 		//SETUP BEGIN//
@@ -84,8 +83,8 @@ public class mainPrototype {
 			choice = scan.nextLine();
 		} while (choice.isEmpty());
 		esm.setPassword(choice.toCharArray()); // this is used
-																// for all
-																// encryption/decryption
+												// for all
+												// encryption/decryption
 		if (!esm.fileSystemExists()) { // if this is the first run
 			System.out.println("No filesystem exists, creating one!");
 			esm.initNewFileSystem(); // make a blank filesystem
@@ -127,8 +126,7 @@ public class mainPrototype {
 
 			// Record Screen Start
 			if (current.getData().isRecord()) {
-				System.out.println("Record: " + directoryPath
-						+ current.getData().toString());
+				System.out.println("Record: " + directoryPath + current.getData().toString());
 				System.out.println("[N]ew Field\n[B]ack\n[E]xit");
 				choice = scan.nextLine();
 				if (choice.equals("B") || choice.equals("b")) {
@@ -182,19 +180,16 @@ public class mainPrototype {
 				} else if (choice.equalsIgnoreCase("E")) {
 					exit = true;
 				} else if (choice.equalsIgnoreCase("S")) {
-					current = search(scan,fsh, current);
-				} 
-				else if (choice.equalsIgnoreCase("D")){
-					if(current.hasChildren()){
-						if(deleteFolder(scan, fsh, current)){
+					current = search(scan, fsh, current);
+				} else if (choice.equalsIgnoreCase("D")) {
+					if (current.hasChildren()) {
+						if (deleteFolder(scan, fsh, current)) {
 							System.out.println("Deletion Success!");
 						}
-					}
-					else{
+					} else {
 						System.out.println("Nothing in this folder to delete!");
 					}
-				}
-				else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
+				} else if (!choice.isEmpty() && choice.charAt(0) > 48 && choice.charAt(0) <= 57) {
 					int index = Integer.parseInt(choice);
 					if (index <= current.getChildren().size() && index > 0) {
 						current = current.getChild(index - 1);

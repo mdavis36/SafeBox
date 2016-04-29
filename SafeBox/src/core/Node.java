@@ -3,7 +3,7 @@ package core;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Node implements Serializable{
+public class Node implements Serializable {
 	private static final long serialVersionUID = 221949262324254923L;
 	/////////////
 	//Variables//
@@ -12,159 +12,144 @@ public class Node implements Serializable{
 	private int globalIndex;
 	private Node parent;
 	private ArrayList<Node> children;
-	
-	
+
 	//Constructor Initializes a new node containing the folder/record f , with it's parent = p, without any children
-	public Node(Folder f){
+	public Node(Folder f) {
 		data = f;
 		children = new ArrayList<Node>();
 	}
-	
-	public Node(Folder f, ArrayList<Node> children){
+
+	public Node(Folder f, ArrayList<Node> children) {
 		data = f;
 		this.children = children;
 	}
-	
+
 	///////////
 	//GETTERS//
 	///////////
-	public int getLocalIndex(){
-		if (parent == null){ // this should mean we're the root node
+	public int getLocalIndex() {
+		if (parent == null) { // this should mean we're the root node
 			return 0;
 		}
 		return parent.getChildren().indexOf(this);
 	}
-	
-	public Folder getData(){
+
+	public Folder getData() {
 		return data;
 	}
-	
-	public Node getParent(){
+
+	public Node getParent() {
 		return parent;
 	}
-	
-	
-	public ArrayList<Node> getChildren(){
+
+	public ArrayList<Node> getChildren() {
 		return children;
 	}
-	
-	public Node getChild(int localIndex){
+
+	public Node getChild(int localIndex) {
 		return children.get(localIndex);
 	}
-	
-	public int getGlobalIndex(){
+
+	public int getGlobalIndex() {
 		return globalIndex;
 	}
-	
+
 	///////////
 	//SETTERS//
 	///////////
-	public void setGlobalIndex(int globalIndex){
+	public void setGlobalIndex(int globalIndex) {
 		this.globalIndex = globalIndex;
 	}
-	
-	public void setData(Folder f){
+
+	public void setData(Folder f) {
 		data = f;
 	}
-	
-	public void setParent(Node p){
+
+	public void setParent(Node p) {
 		parent = p;
 	}
-	
+
 	////////////////
 	//MANIPULATION//
 	////////////////
 	/**
 	 * @param child the node added as a child of the current node
 	 */
-	public void addChild(Node child){
+	public void addChild(Node child) {
 		children.add(child);
 	}
-	
+
 	/**
 	 * @param index the spot where a child node is
 	 */
-	public void removeChild(int index){
+	public void removeChild(int index) {
 		children.remove(index);
 	}
-	
+
 	/**
 	 * @return a multi-line, indented representation of the tree, starting at this node
 	 */
-	public String deepToString(){
+	public String deepToString() {
 		return getGlobalIndex() + "G [Top] " + getData().getName() + "\n" + recursiveToString(1);
 	}
-	
+
 	/**
 	 * @param depth the number of indents to place before a row, will be incremented on each recursive call
 	 * @return a multi-line, indented representation of the tree, starting at this.children
 	 */
-	private String recursiveToString(int depth){
+	private String recursiveToString(int depth) {
 		String output = "";
-		
-		for (Node child : children){
-			if(child.getData().isRecord()){
-				output += MiscUtils.repeatStr("  ", depth) + child.getGlobalIndex() + "G " + child.getLocalIndex() + "L [R] "+ child.getData().getName() + "\n";
+
+		for (Node child : children) {
+			if (child.getData().isRecord()) {
+				output += MiscUtils.repeatStr("  ", depth) + child.getGlobalIndex() + "G " + child.getLocalIndex() + "L [R] " + child.getData().getName() + "\n";
 			} else {
-				output += MiscUtils.repeatStr("  ", depth) + child.getGlobalIndex() + "G " + child.getLocalIndex() + "L [F] "+ child.getData().getName() + "\n";
+				output += MiscUtils.repeatStr("  ", depth) + child.getGlobalIndex() + "G " + child.getLocalIndex() + "L [F] " + child.getData().getName() + "\n";
 				output += child.recursiveToString(depth + 1);
 			}
 		}
-		
+
 		return output;
 	}
-	
-//	public String toString(){//For debugging
-//		return "[name=" + getData().getName() + ", localIndex=" + getLocalIndex() + ", globaIndex=" + getGlobalIndex() + ", children.size()=" + getChildren().size() + "]";
-//	}
-	
-	public String toString(){
+
+	//	public String toString(){//For debugging
+	//		return "[name=" + getData().getName() + ", localIndex=" + getLocalIndex() + ", globaIndex=" + getGlobalIndex() + ", children.size()=" + getChildren().size() + "]";
+	//	}
+
+	@Override
+	public String toString() {
 		String outputString = data.getName();
-		if(children.size() == 0){
+		if (children.size() == 0) {
 			outputString += "\n\tThis folder is empty! Add something!";
 		}
-		for(int i = 0; i < children.size(); i++){
-			if (children.get(i).getData().isRecord()){
-				outputString += "\n\t"+ (i+1) +". [R]" + children.get(i).getData().getName();
-			}
-			else{
-				outputString += "\n\t"+ (i+1) +". [F]" + children.get(i).getData().getName();
+		for (int i = 0; i < children.size(); i++) {
+			if (children.get(i).getData().isRecord()) {
+				outputString += "\n\t" + (i + 1) + ". [R]" + children.get(i).getData().getName();
+			} else {
+				outputString += "\n\t" + (i + 1) + ". [F]" + children.get(i).getData().getName();
 			}
 		}
 		return outputString;
 	}
-	
+
 	/**
 	 * @return whether of not the node has children
 	 */
-	public boolean hasChildren(){
-		if(children.size() == 0){
+	public boolean hasChildren() {
+		if (children.size() == 0) {
 			return false;
-		}
-		else{
+		} else {
 			return true;
 		}
 	}
-	
+
 	//TODO: Remove once done testing
-	/*public static void main(String[] args) {
-		Folder f1 = new Folder();
-		Folder f2 = new Folder();
-		Folder f3 = new Folder();
-		f1.setName("Home");
-		f2.setName("Websites");
-		f3.setName("Contacts");
-		Node n1 = new Node(f1, null);
-		Node n2 = new Node(f2, n1);
-		Node n3 = new Node(f3, n1);
-		n1.addChild(n2);
-		n1.addChild(n3);
-		if(n1.children == null){
-			System.out.println("Uh oh");
-		}
-		else
-			System.out.println(n1.toString());
-	}*/
+	/*
+	 * public static void main(String[] args) { Folder f1 = new Folder(); Folder
+	 * f2 = new Folder(); Folder f3 = new Folder(); f1.setName("Home");
+	 * f2.setName("Websites"); f3.setName("Contacts"); Node n1 = new Node(f1,
+	 * null); Node n2 = new Node(f2, n1); Node n3 = new Node(f3, n1);
+	 * n1.addChild(n2); n1.addChild(n3); if(n1.children == null){
+	 * System.out.println("Uh oh"); } else System.out.println(n1.toString()); }
+	 */
 }
-
-
