@@ -47,7 +47,7 @@ public class PasswordState extends BackgroundPanel{
 	private static final int PASSWORD_FIELD_FONT_SIZE = 24;
 	
 	private static final String TITLE = "SafeBox";
-	private static final String FORGOT_PASSWORD_TITLE = "ForgotPassword";
+	private static final String FORGOT_PASSWORD_TITLE = "Forgot Password";
 	private static final String ENTER_SAFEBOX_TITLE = "Enter SafeBox";
 	private static final String INCORRECT_PASSWORD_MESSAGE = "Incorrect password, please try again.";
 	
@@ -96,6 +96,7 @@ public class PasswordState extends BackgroundPanel{
 		passWordField = new JPasswordField();
 		passWordField.setPreferredSize(PASSWORD_FIELD_DIMENSION);
 		passWordField.setFont(new Font(Consts.FONT_STYLE, Font.PLAIN, PASSWORD_FIELD_FONT_SIZE));
+		passWordField.setHorizontalAlignment(SwingConstants.CENTER);
 		resetPasswordField(passWordField);
 		passWordField.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -180,6 +181,7 @@ public class PasswordState extends BackgroundPanel{
 	}
 	
 	private void resetPasswordField(JPasswordField p){
+		p.setHorizontalAlignment(SwingConstants.CENTER);
 		p.setText(PASSWORD_TITLE);
 		p.setEchoChar((char)0);
 		p.setEditable(false);
