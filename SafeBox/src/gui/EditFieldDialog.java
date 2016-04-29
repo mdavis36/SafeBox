@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -44,12 +46,17 @@ public class EditFieldDialog extends CustomDialog {
 		this.index = i;
 		fieldName = rec.getField(index).getName();
 		fieldContent = rec.getField(index).getData();
+		
 		centerPanel.setLayout(new BorderLayout());
+		
 		nameTextField = new JTextField(fieldName);
 		contentTextField = new JTextField(fieldContent);
+		
 		centerPanel.setBorder(new EmptyBorder(Consts.CENTER_PANEL_TOP, 0, Consts.CENTER_PANEL_BOTTOM, 0));
+		
 		nameTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		contentTextField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
+		
 		centerPanel.add(nameTextField, BorderLayout.NORTH);
 		centerPanel.add(contentTextField, BorderLayout.SOUTH);
 
@@ -99,17 +106,33 @@ public class EditFieldDialog extends CustomDialog {
 				}
 			}
 		});
-		nameTextField.addMouseListener(new MouseAdapter() {
+		nameTextField.addFocusListener(new FocusListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void focusLost(FocusEvent e) {
+				if ("".equals(nameTextField.getText())) {
+					nameTextField.setText(fieldName);
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
 				if (nameTextField.getText().equals(fieldName)) {
 					nameTextField.setText("");
 				}
 			}
 		});
-		contentTextField.addMouseListener(new MouseAdapter() {
+		contentTextField.addFocusListener(new FocusListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void focusLost(FocusEvent e) {
+				if ("".equals(contentTextField.getText())) {
+					contentTextField.setText(fieldContent);
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
 				if (contentTextField.getText().equals(fieldContent)) {
 					contentTextField.setText("");
 				}
@@ -144,6 +167,8 @@ public class EditFieldDialog extends CustomDialog {
 
 	@Override
 	protected void init() {
+		titleLabel.setFocusable(true);
+		titleLabel.requestFocus();
 		// TODO Auto-generated method stub
 
 	}
