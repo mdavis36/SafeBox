@@ -64,7 +64,7 @@ public class PlainMessageDialog extends CustomDialog {
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 		
-		okButton = setupButton(OK_TEXT, 120, 36);
+		okButton = setupButton(OK_TEXT, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		okButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				close();
