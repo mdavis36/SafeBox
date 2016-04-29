@@ -10,5 +10,5 @@ public class Consts {
 	protected static final String PDM_WIDTH_NAME = "GUI_WIDTH";
 	protected static final String PDM_HEIGHT_NAME = "GUI_HEIGHT";
 
-	public static final byte[] SALT = "CHANGE THIS!!!".getBytes(); // change this sometime
+	public static final byte[] SALT = "Osvaldo".getBytes();
 }
