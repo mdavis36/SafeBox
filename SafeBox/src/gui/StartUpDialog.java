@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import core.EncryptedStorageManager;
 import core.HintManager;
+import core.LockManager;
 
 public class StartUpDialog extends CustomDialog {
 
@@ -154,6 +155,7 @@ public class StartUpDialog extends CustomDialog {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				LockManager.releaseLock();
 				System.exit(0);
 			}
 		});
