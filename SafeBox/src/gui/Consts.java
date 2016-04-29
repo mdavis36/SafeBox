@@ -22,6 +22,7 @@ public class Consts {
 	protected static final Color ORANGE_PANEL_COLOUR_BORDER2 = new Color(215, 155, 0);
 	
 	protected static final Dimension DIALOGUE_TEXT_FIELD_DIMENSION = new Dimension(300, 30);
+	protected static final Dimension DIALOG_CONFIRM_TEXT_DIMENSION = new Dimension(400, 100);
 	protected static final String FONT_STYLE = "Arial";
 	protected static final String PEN_IMAGE = "pen.png";
 	protected static final String FOLDER = "folder.png";

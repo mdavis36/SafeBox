@@ -25,7 +25,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 	private final String initTextField = "New Name";
 	private static String name;
 	private final String error = "Not a valid name";
-	private final String DELETE_MESSAGE = "Delete this record/folder?";
+	private final String DELETE_MESSAGE = "Are you sure you want to delete this record/folder?";
 	private int index;
 	
 	private JLabel titleLabel;

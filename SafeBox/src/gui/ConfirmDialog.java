@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -19,10 +20,10 @@ public class ConfirmDialog extends CustomDialog {
 	private static final long serialVersionUID = -4807039006822180146L;
 	private String confirmText;
 	private final String cancel = "Cancel";
-	private final String delete = "Delete";
+	private final String delete = "Confirm";
 	private CustomButton deleteButton;
 	private CustomButton cancelButton;
-	private JLabel confirmationText;
+	private JTextArea confirmationText;
 	private boolean confirm;
 	private static JDialog snapTo;
 	
@@ -34,7 +35,12 @@ public class ConfirmDialog extends CustomDialog {
 		confirmText = message;
 		//--------------------Center panel----------------------------------
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		confirmationText = new JLabel(confirmText);
+		confirmationText = new JTextArea(confirmText);
+		confirmationText.setEditable(false);
+		confirmationText.setLineWrap(true);
+		confirmationText.setWrapStyleWord(true);
+		confirmationText.setOpaque(false);
+		confirmationText.setPreferredSize(Consts.DIALOG_CONFIRM_TEXT_DIMENSION);
 		confirmationText.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, CONFIRM_TEXT_FONT_SIZE));
 		centerPanel.add(confirmationText);
 		//--------------------South panel----------------------------------
