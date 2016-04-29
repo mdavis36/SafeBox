@@ -144,8 +144,8 @@ public class SearchBar extends BackgroundPanel {
 
 		//------------------------Search Button -------------------------
 		CustomButton searchButton = new CustomButton(English.SEARCH, 0, 0, SEARCH_BUTTON_WIDTH, (int) (BAR_HEIGHT * HEIGHT_RATIO));
-		searchButton.setGradientBackground(Consts.BUTTON_COLOUR_DARK, Consts.BUTTON_COLOUR_LIGHT, true);
-		searchButton.setBoarderDetails(Consts.BLUE_PANEL_COLOUR_BORDER, SEARCH_BUTTON_BORDER_WIDTH);
+		searchButton.setGradientBackground(Consts.BUTTON_COLOUR_LIGHT, Consts.BUTTON_COLOUR_DARK, true);
+		searchButton.setBoarderDetails(Consts.BUTTON_COLOUR_BORDER, SEARCH_BUTTON_BORDER_WIDTH);
 		searchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
