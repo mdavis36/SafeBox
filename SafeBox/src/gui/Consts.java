@@ -35,7 +35,7 @@ public class Consts {
 	protected static final String BIG_LOGO_NAME = "largeLogo.png";
 
 	protected static final char ECHO_CHAR = '*';
-	protected final static String BUTTON_PATH = "res/buttons/"; // this should be called something like BUTTON_PATH, please rename when it won't case massive conflicts
+	protected final static String BUTTON_PATH = "res/buttons/";
 	protected final static String LOGO_PATH = "res/logos/";
 	protected static final int DIALOGUE_BOX_TITLE_FONT_SIZE = 22;
 	static final int CENTER_PANEL_BOTTOM = 20;
