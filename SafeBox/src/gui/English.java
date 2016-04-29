@@ -11,4 +11,7 @@ public class English {
 	static final String MULTIPLE_INSTANCES_OPEN = "It looks like there may be another instance of SafeBox running. Running multiple instances can cause data corruption. Continue?";
 	static final String EXIT = "Exit";
 	static final String CONTINUE_TEXT = "Continue";
+	static final String OK = "Ok";
+	static final String SEARCH = "Search";
+	static final String SEARCH_RESULTS = "Search Results";
 }
