@@ -47,18 +47,4 @@ public class PlainDataManager {
 		dataSerialized = StorageManager.readFromFile(Consts.PLAIN_FILE_NAME);
 		data = (HashMap<String, String>) SerializationUtils.byteArrayToObject(dataSerialized);
 	}
-
-	public static void main(String[] args) {
-		setElement("test key #1", "test value #1");
-		setElement("test key #2", "test value #2");
-
-		saveToFile();
-		data.clear();
-		data = null;
-		loadFromFile();
-
-		System.out.println(getElement("test key #2"));
-		System.out.println();
-
-	}
 }

@@ -5,7 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -70,25 +69,5 @@ class DataEncryptor {
 		SecretKey key = getKey(getFactory(), password, salt);
 
 		return decryptDataFromKey(key, data);
-	}
-
-	public static void main(String[] args) { // just testing here
-		try {
-			byte[] salt = "this is my salt".getBytes();
-			char[] password = "ipickbadpasswords".toCharArray();
-			byte[] testDataToEncrypt = "secrets go here!".getBytes();
-
-			EncryptionObject encryptedDataObject = encryptData(testDataToEncrypt, password, salt);
-
-			System.out.println(MiscUtils.bytesToHex(encryptedDataObject.getData()));
-
-			System.out.println(new String(decryptData(encryptedDataObject, password, salt))); // this should work
-			System.out.println(new String(decryptData(encryptedDataObject, "ThisIsNotMyPassword".toCharArray(), salt))); // this should fail
-		} catch (BadPaddingException ex) { // wrong password
-			System.out.println("Nice try...");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
 	}
 }

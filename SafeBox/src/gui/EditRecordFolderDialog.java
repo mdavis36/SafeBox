@@ -136,7 +136,6 @@ public class EditRecordFolderDialog extends CustomDialog {
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
 
 	}
 

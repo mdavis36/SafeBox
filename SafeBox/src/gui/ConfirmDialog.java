@@ -72,7 +72,6 @@ public class ConfirmDialog extends CustomDialog {
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
 
 	}
 

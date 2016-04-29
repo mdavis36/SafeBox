@@ -125,22 +125,6 @@ public class FileSystemHandler implements Serializable {
 		return toReturn;
 	}
 
-	public static void main(String[] args) {
-		FileSystemHandler fsh = new FileSystemHandler();
-		fsh.createFolder(fsh.getCurrent(), "One Folder");
-		fsh.createRecord(fsh.getCurrent(), "Two Folder");
-		fsh.createRecord(fsh.getCurrent(), "Not searched");
-		fsh.createRecord(fsh.getCurrent().getChild(0), "Three Folder");
-		ArrayList<Node> temp = fsh.search("folder", fsh.getContents().getRoot());
-		for (int i = 0; i < temp.size(); i++) {
-			System.out.println(temp.get(i));
-		}
-		fsh.deleteFolder(temp.get(0), 0);
-		for (int i = 0; i < temp.size(); i++) {
-			System.out.println(temp.get(i));
-		}
-	}
-
 	public void removeFromList(int gIndex) {
 		ArrayList<Node> list = contents.getNodeList();
 		list.set(gIndex, null);

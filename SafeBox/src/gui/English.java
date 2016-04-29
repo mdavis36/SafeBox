@@ -48,5 +48,6 @@ public class English {
 	static final String SEARCH = "Search";
 	static final String SEARCH_RESULTS = "Search Results";
 	static final String SETTINGS = "Settings";
+	static final String PROGRAM_TITLE = "SafeBox";
 	static final String WELCOME_TO_SAFEBOX = "Welcome to SafeBox!";
 }

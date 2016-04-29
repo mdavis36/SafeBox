@@ -166,8 +166,6 @@ public class StartUpDialog extends CustomDialog {
 	protected void init() {
 		title.setFocusable(true);
 		title.requestFocus();
-		// TODO Auto-generated method stub
-
 	}
 
 }

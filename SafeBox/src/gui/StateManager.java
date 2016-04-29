@@ -81,11 +81,9 @@ public class StateManager extends JPanel {
 			@Override
 			public void run() {
 				if (successfullyDecrypted) {
-					System.out.println("Saving...");
 					eSM.saveFileSystemHandler();
 					WindowSizeManager.setSize(window.getWidth(), window.getHeight());
 					LockManager.releaseLock();
-					System.out.println("Saved.");
 				}
 			}
 		});

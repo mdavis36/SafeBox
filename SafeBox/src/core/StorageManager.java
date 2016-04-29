@@ -29,7 +29,6 @@ public class StorageManager {
 		try {
 			return Files.readAllBytes(Paths.get(file));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -55,7 +54,6 @@ public class StorageManager {
 		try {
 			Files.delete(Paths.get(file));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

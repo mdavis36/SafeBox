@@ -65,20 +65,4 @@ public class Record extends Folder {
 	public boolean isRecord() {
 		return true;
 	}
-
-	public static void main(String[] args) {
-		Record rec = new Record();
-		Field f1 = new Field();
-		f1.setName("field 1 name");
-		f1.setData("field 1 content");
-		rec.addField(f1);
-		rec.setName("Record");
-		System.out.println(rec.getField("field 2 name"));
-		System.out.println(rec.toString());
-		rec.swap(1, 0);
-		System.out.println(rec.toString());
-		//rec.deleteField(f1);
-		System.out.println(rec.toString());
-
-	}
 }

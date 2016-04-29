@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -52,14 +50,6 @@ public class PlainMessageDialog extends CustomDialog {
 				close();
 			}
 		});
-		okButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
 		southPanel.add(okButton);
 
 	}
@@ -70,7 +60,6 @@ public class PlainMessageDialog extends CustomDialog {
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -93,7 +93,6 @@ public class FieldBox extends BackgroundPanel {
 		editButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("This Field is index: " + index);
 				b.open();
 			}
 		});

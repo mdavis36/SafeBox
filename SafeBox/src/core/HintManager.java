@@ -16,9 +16,4 @@ public class HintManager {
 	public static String getHint() {
 		return PlainDataManager.getElement(Consts.HINT_NAME_PDM_ENTRY_NAME);
 	}
-
-	public static void main(String[] args) {
-		setHint(Consts.HINT_NAME_PDM_ENTRY_NAME);
-		System.out.println(getHint());
-	}
 }

@@ -112,10 +112,6 @@ public class Node implements Serializable {
 		return output;
 	}
 
-	//	public String toString(){//For debugging
-	//		return "[name=" + getData().getName() + ", localIndex=" + getLocalIndex() + ", globaIndex=" + getGlobalIndex() + ", children.size()=" + getChildren().size() + "]";
-	//	}
-
 	@Override
 	public String toString() {
 		String outputString = data.getName();
@@ -142,14 +138,4 @@ public class Node implements Serializable {
 			return true;
 		}
 	}
-
-	//TODO: Remove once done testing
-	/*
-	 * public static void main(String[] args) { Folder f1 = new Folder(); Folder
-	 * f2 = new Folder(); Folder f3 = new Folder(); f1.setName("Home");
-	 * f2.setName("Websites"); f3.setName("Contacts"); Node n1 = new Node(f1,
-	 * null); Node n2 = new Node(f2, n1); Node n3 = new Node(f3, n1);
-	 * n1.addChild(n2); n1.addChild(n3); if(n1.children == null){
-	 * System.out.println("Uh oh"); } else System.out.println(n1.toString()); }
-	 */
 }

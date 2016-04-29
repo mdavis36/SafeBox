@@ -76,7 +76,6 @@ public class EditFieldDialog extends CustomDialog {
 				sm.confirmDialog.setButtonText(English.CANCEL, English.DELETE);
 				sm.confirmDialog.open();
 				if (sm.confirmDialog.getConfirmation()) {
-					System.out.println("Index in button:" + index);
 					rec.deleteField(index);
 					sm.update();
 					close();
@@ -137,14 +136,12 @@ public class EditFieldDialog extends CustomDialog {
 	}
 
 	private void editField(String name, String content) {
-		System.out.println("The index being changed: " + index);
 		rec.getField(index).setName(name);
 		rec.getField(index).setData(content);
 	}
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
 
 	}
 

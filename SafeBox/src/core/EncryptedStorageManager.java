@@ -12,7 +12,6 @@ public class EncryptedStorageManager {
 	char[] password;
 
 	public EncryptedStorageManager() {
-		// TODO Auto-generated constructor stub
 		fileSystem = new FileSystemHandler();
 	}
 
@@ -96,7 +95,6 @@ public class EncryptedStorageManager {
 		try {
 			encryptedFileSystem = DataEncryptor.encryptData(SerializationUtils.objectToByteArray(fileSystem), password, Consts.SALT);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -127,42 +125,6 @@ public class EncryptedStorageManager {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public static void main(String[] args) {
-		EncryptedStorageManager eSM = new EncryptedStorageManager();
-
-		eSM.setPassword("this is my password!".toCharArray()); // this is used for all encryption/decryption
-
-		if (!eSM.fileSystemExists()) { // if this is the first run
-			System.out.println("No filesystem exists, creating one!");
-			eSM.initNewFileSystem(); // make a blank filesystem
-		} else {
-			if (eSM.loadFileSystemHandler()) { // try to load the saved filesystem
-				System.out.println("Successfully loaded FSH!");
-			} else {
-				System.out.println("Error loading FSH!");
-				return; // abort if loading failed
-			}
-		}
-
-		FileSystemHandler fsh = eSM.getFileSystemHandler(); // this gets the actual saved FileSystemhandler object
-
-		System.out.println(fsh);
-
-		Node tempNode = fsh.createFolder(fsh.getRoot(), "test folder"); // change something here
-		fsh.createRecord(tempNode, "shallow record");
-		tempNode = fsh.createFolder(tempNode, "deeper 1");
-		Node deeper1 = tempNode;
-		tempNode = fsh.createFolder(tempNode, "deeper 2");
-		tempNode = fsh.createRecord(tempNode, "deep record");
-		tempNode = fsh.createRecord(deeper1, "less deep record");
-		fsh.createRecord(fsh.getRoot(), "under root #1");
-		fsh.createRecord(fsh.getRoot(), "under root #2");
-		System.out.println(fsh); // write it out to see the change
-
-		//eSM.saveFileSystemHandler(); // save the FileSystemHandler to the disk
-
 	}
 
 }
