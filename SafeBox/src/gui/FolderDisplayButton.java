@@ -43,9 +43,9 @@ public class FolderDisplayButton extends BackgroundPanel{
 	
 		
 		if (type == FOLDER){
-			imgName = "folder.png";
+			imgName = Consts.FOLDER;
 		} else {
-			imgName = "record.png";
+			imgName = Consts.RECORD;
 		}
 		
 		CustomButton button = new CustomButton(text, 0, 0, FOLDER_BUTTON_WIDTH, FOLDER_BUTTON_WIDTH);

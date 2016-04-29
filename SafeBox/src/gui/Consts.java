@@ -25,7 +25,11 @@ public class Consts {
 	protected static final String FONT_STYLE = "Arial";
 	protected static final String PEN_IMAGE = "pen.png";
 	protected static final String FOLDER = "folder.png";
-	protected static final String Record = "record.png";
+	protected static final String RECORD = "record.png";
+	
+	protected static final int DIALOGUE_BOX_BUTTON_WIDTH = 120;
+	protected static final int DIALOGUE_BOX_BUTTON_HEIGHT = 36;
+
 	
 	protected static final String ICON_NAME = "smallButtonLogo.png";
 	
@@ -33,5 +37,6 @@ public class Consts {
 	protected static final char ECHO_CHAR = '*';
 	protected final static String PATH = "res/buttons/"; // this should be called something like BUTTON_PATH, please rename when it won't case massive conflicts
 	protected final static String LOGO_PATH = "res/logos/";
+	protected static final int DIALOGUE_BOX_TITLE_FONT_SIZE = 22;
 
 }

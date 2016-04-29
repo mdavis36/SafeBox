@@ -22,9 +22,6 @@ public class AddRecordFieldDialog extends CustomDialog{
 	private static final String ADD_FOLDER = "Add Folder";
 	private static final String initTextField = "";
 	
-	private static final int BUTTON_WIDTH = 120; 
-	private static final int BUTTON_HEIGHT = 36;
-	private static final int FONT_SIZE = 22;
 	private static final int SOUTH_PANEL_LAYOUT_HGAP = 10;
 
 	private JLabel title;
@@ -40,7 +37,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 		//--------------------north panel----------------------------------
 		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		title = new JLabel(ADD_A_RECORD_FOLDER);
-		title.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, FONT_SIZE));
+		title.setFont(new Font(Consts.FONT_STYLE,Font.PLAIN, Consts.DIALOGUE_BOX_TITLE_FONT_SIZE));
 		northPanel.add(title);
 		
 		
@@ -55,14 +52,14 @@ public class AddRecordFieldDialog extends CustomDialog{
 		//--------------------South panel----------------------------------
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, SOUTH_PANEL_LAYOUT_HGAP, 0));
 		
-		cancelButton = setupButton(CANCEL, BUTTON_WIDTH, BUTTON_HEIGHT);
+		cancelButton = setupButton(CANCEL, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		cancelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				close();
 			}
 		});
 		
-		addRecordButton = setupButton(ADD_RECORD, BUTTON_WIDTH, BUTTON_HEIGHT);
+		addRecordButton = setupButton(ADD_RECORD, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		addRecordButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
@@ -74,7 +71,7 @@ public class AddRecordFieldDialog extends CustomDialog{
 				}
 			}
 		});
-		addFolderButton = setupButton(ADD_FOLDER, BUTTON_WIDTH, BUTTON_HEIGHT);
+		addFolderButton = setupButton(ADD_FOLDER, Consts.DIALOGUE_BOX_BUTTON_WIDTH, Consts.DIALOGUE_BOX_BUTTON_HEIGHT);
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isValidName(textField.getText())){
