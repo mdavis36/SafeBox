@@ -13,3 +13,4 @@ target/
 
 /EncryptedData.txt
 /PlainData.ser
+/open.lock

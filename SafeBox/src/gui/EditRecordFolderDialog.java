@@ -77,9 +77,9 @@ public class EditRecordFolderDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				sm.deleteDialog.setMessage(DELETE_MESSAGE);
-				sm.deleteDialog.open();
-				if(sm.deleteDialog.getConfirmation()){
+				sm.confirmDialog.setMessage(DELETE_MESSAGE);
+				sm.confirmDialog.open();
+				if(sm.confirmDialog.getConfirmation()){
 					deleteFolder(sm, index);
 					sm.update();
 					close();

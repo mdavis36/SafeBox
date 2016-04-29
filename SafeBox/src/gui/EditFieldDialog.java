@@ -84,9 +84,9 @@ public class EditFieldDialog extends CustomDialog {
 		});
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				sm.deleteDialog.setMessage(DELETE_MESSAGE);
-				sm.deleteDialog.open();
-				if(sm.deleteDialog.getConfirmation()){
+				sm.confirmDialog.setMessage(DELETE_MESSAGE);
+				sm.confirmDialog.open();
+				if(sm.confirmDialog.getConfirmation()){
 					System.out.println("Index in button:" + index);
 					rec.deleteField(index);
 					sm.update();				

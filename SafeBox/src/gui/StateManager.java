@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import core.EncryptedStorageManager;
+import core.LockManager;
 import core.WindowSizeManager;
 
 public class StateManager extends JPanel{
@@ -25,7 +26,7 @@ public class StateManager extends JPanel{
 	private boolean successfullyDecrypted = false;
 	
 	PlainMessageDialog plainMessageDialog;
-	ConfirmDialog deleteDialog;
+	ConfirmDialog confirmDialog;
 	
 	boolean isSuccessfullyDecrypted() {
 		return successfullyDecrypted;
@@ -63,9 +64,18 @@ public class StateManager extends JPanel{
 		}
 		
 		plainMessageDialog = new PlainMessageDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 200, "");
-		deleteDialog = new ConfirmDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 220, null);
+		confirmDialog = new ConfirmDialog(this, Consts.BLUE_PANEL_COLOUR_LIGHT, Consts.BLUE_PANEL_COLOUR_DARK, 450, 220, null);
 		
 		MiscUtils.setIcon(window, Consts.LOGO_PATH + Consts.ICON_NAME);
+		
+		if (!LockManager.requestLock()){
+			confirmDialog.setMessage(English.MULTIPLE_INSTANCES_OPEN);
+			confirmDialog.open();
+			
+			if (!confirmDialog.getConfirmation()){
+				System.exit(0);
+			}
+		}
 		
 		init();
 		
@@ -76,6 +86,7 @@ public class StateManager extends JPanel{
 			    	System.out.println("Saving...");
 			        eSM.saveFileSystemHandler();
 			        WindowSizeManager.setSize(window.getWidth(), window.getHeight());
+			        LockManager.releaseLock();
 			        System.out.println("Saved.");
 		    	}
 		    }

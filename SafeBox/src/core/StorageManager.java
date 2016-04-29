@@ -47,4 +47,19 @@ public class StorageManager {
 		
 		return new File(file).exists();
 	}
+	
+	/**
+	 * @param file the name of the file to delete
+	 * @return true if deleted, otherwise false
+	 */
+	protected static boolean deleteFile(String file) {
+		try {
+			Files.delete(Paths.get(file));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }
