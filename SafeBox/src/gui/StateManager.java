@@ -20,7 +20,6 @@ public class StateManager extends JPanel{
 	private PasswordState passwordState;
 	private MainScreenState mainScreenState;
 	
-	static JPanel cards;
 	static CardLayout cl;
 	
 	private boolean successfullyDecrypted = false;

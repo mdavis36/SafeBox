@@ -19,7 +19,6 @@ public class Consts {
 	
 	protected static final Color ORANGE_PANEL_COLOUR_LIGHT2 = new Color(255, 205, 40);
 	protected static final Color ORANGE_PANEL_COLOUR_DARK2 = new Color(215, 165, 0);
-	protected static final Color ORANGE_PANEL_COLOUR_BORDER2 = new Color(215, 155, 0);
 	
 	protected static final Dimension DIALOGUE_TEXT_FIELD_DIMENSION = new Dimension(300, 30);
 	protected static final Dimension DIALOG_CONFIRM_TEXT_DIMENSION = new Dimension(400, 100);

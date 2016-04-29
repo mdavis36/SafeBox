@@ -45,23 +45,7 @@ public class MiscUtils {
 		g2d.dispose();
 		return bi;
 	}
-	
-	/**
-	 * @param width of the image
-	 * @param height of the image
-	 * @return the image
-	 */
-	protected static BufferedImage getTransparentImage(int width, int height){
-		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2d = bi.createGraphics();
-		AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.CLEAR, ALPHA);
-		g2d.setComposite(ac);
-		g2d.setColor(new Color(0,0,0,0));
-		g2d.fillRect(0, 0, width, height);
-		g2d.drawRect(0, 0, width, height);
-		g2d.dispose();
-		return bi;
-	}
+
 	
 	/**
 	 * @param fileName name of the image file
@@ -100,21 +84,7 @@ public class MiscUtils {
 		return bi;
 	}
 	
-	/**
-	 * @param component 
-	 * @return the index of the component
-	 */
-	public static final int getComponentIndex(Component component) {
-	    if (component != null && component.getParent() != null) {
-	        Container c = component.getParent();
-	        for (int i = 0; i < c.getComponentCount(); i++) {
-	            if (c.getComponent(i) == component)
-	                return i;
-	        }
-	    }
-
-	    return -1;
-	}
+	
 	public static void setClipboard(String value){
 		StringSelection stringSelection = new StringSelection(value);
 		Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();

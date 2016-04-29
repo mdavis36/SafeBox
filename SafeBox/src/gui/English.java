@@ -34,7 +34,6 @@ public class English {
 	static final String NEW_NAME = "New Name";
 	static final String DELETE_RF_MESSAGE = "Are you sure you want to delete this record/folder?";
 	static final String NOT_VALID_NAME = "Not a valid name";
-	static final String COPIED_TO_CLIPBOARD = "Copied to clipboard.";
 	static final String ADD_FIELD = "Add Field";
 	static final String NAME = "Name";
 	static final String CONTENT= "Content";
@@ -49,4 +48,5 @@ public class English {
 	static final String OK = "Ok";
 	static final String SEARCH = "Search";
 	static final String SEARCH_RESULTS = "Search Results";
+	static final String SAFE_BOX = "SafeBox";
 }

@@ -5,9 +5,9 @@ import javax.swing.*;
 
 public class BackgroundPanel extends JPanel
 {
-	public static final int SCALED = 0;
-	public static final int TILED = 1;
-	public static final int ACTUAL = 2;
+	private static final int SCALED = 0;
+	private static final int TILED = 1;
+	private static final int ACTUAL = 2;
 
 	private Paint painter;
 	private Image image;
@@ -28,25 +28,6 @@ public class BackgroundPanel extends JPanel
 	public BackgroundPanel(Image image, int style){
 		setImage( image );
 		setStyle( style );
-		setLayout( new BorderLayout() );
-	}
-
-	/*
-	 *  Set image as the backround with the specified style and alignment
-	 */
-	public BackgroundPanel(Image image, int style, float alignmentX, float alignmentY){
-		setImage( image );
-		setStyle( style );
-		setImageAlignmentX( alignmentX );
-		setImageAlignmentY( alignmentY );
-		setLayout( new BorderLayout() );
-	}
-
-	/*
-	 *  Use the Paint interface to paint a background
-	 */
-	public BackgroundPanel(Paint painter){
-		setPaint( painter );
 		setLayout( new BorderLayout() );
 	}
 

@@ -19,7 +19,6 @@ public abstract class CustomDialog extends JDialog{
 	protected JPanel centerPanel = new JPanel();
 	protected JPanel southPanel = new JPanel();
 	protected BackgroundPanel contentPane;
-	protected Point location;
 	protected static final int BORDER_WIDTH = 15;
 	
 	protected StateManager sm;

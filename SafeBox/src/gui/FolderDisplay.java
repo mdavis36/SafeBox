@@ -55,14 +55,11 @@ public class FolderDisplay extends BackgroundPanel{
 	private BackgroundPanel top;
 	
 	GridBagConstraints c = new GridBagConstraints();
-	HashMap<Integer, Integer> hMap;
-	ArrayList<FolderDisplayButton> fButtons = new ArrayList<FolderDisplayButton>();
 	
 	AddRecordFieldDialog addRecordField;
 	
 	ArrayList<Node> children;
 	
-	FileSystemHandler fsh;
 	StateManager sm;
 	Node currentNode;
 	protected JLabel directoryTitle;
