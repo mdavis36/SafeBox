@@ -54,7 +54,7 @@ public class EditRecordFolderDialog extends CustomDialog {
 
 		// --------------------Center panel----------------------------------
 		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		textField = new JTextField(initTextField);
+		textField = new JTextField(name);
 		centerPanel.setBorder(new EmptyBorder(CENTER_PANEL_TOP,0,CENTER_PANEL_BOTTOM,0));
 		textField.setPreferredSize(Consts.DIALOGUE_TEXT_FIELD_DIMENSION);
 		centerPanel.add(textField);
