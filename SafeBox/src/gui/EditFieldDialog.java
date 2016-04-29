@@ -73,6 +73,7 @@ public class EditFieldDialog extends CustomDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sm.confirmDialog.setMessage(English.DELETE_MESSAGE);
+				sm.confirmDialog.setButtonText(English.CANCEL, English.DELETE);
 				sm.confirmDialog.open();
 				if (sm.confirmDialog.getConfirmation()) {
 					System.out.println("Index in button:" + index);
