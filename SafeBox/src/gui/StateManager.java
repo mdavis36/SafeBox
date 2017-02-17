@@ -93,7 +93,6 @@ public class StateManager extends JPanel {
 	 * adds all states
 	 */
 	private void populateStates() {
-
 		passwordState = new PasswordState(this);
 		mainScreenState = new MainScreenState(this);
 
